@@ -1,0 +1,29 @@
+#summary idées pour l'histoire.. Updates bienvenues !
+
+== Histoire ==
+_cf: Downloads Synopsis_
+----------------
+=== Idées pour l'histoire====
+
+====Mission====
+ 
+ * Objectif : reconstituer une porte à l'aides des objets trouvés dans chaque pays. Une fois tous les objets retrouvés, pour que le monstre puisse rentrer chez lui, trouver la clé. Pour ceci, une série d'énigmes/indices au cours du jeu aidera. 
+ * Objets : Les objets ont rapport à la culture de chaque pays, peuvent être magiques etc. Un emplacement déterminé a chacun se trouve sur la porte incomplète. _Ex: Pérou poterie, Tanzanie masque africain etc._
+
+
+----------------
+=== Pays ===
+
+ #  *Afrique*
+  * résumé
+ # *Asie*
+  * résumé
+ # *Amérique du Nord*
+  * résumé
+ # *Amérique du Sud*
+  * résumé
+ # *Océanie*
+  * résumé
+ # *Europe*
+  * résumé
+----------------
