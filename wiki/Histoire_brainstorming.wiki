@@ -39,8 +39,10 @@ _cf: Downloads Synopsis_
   * résumé
  # *Europe*
   * Italie
-     # Drapeau et hymne national en fond. Le monstre (en short bleu/marcel blanc et ray ban) le défi de retrouver son chemin dans la ville : l'objet se trouve dans un musée.
-     # Regarde deux trois tableaux célèbres (joconde, naissance de venus...) ou sont masqués des indices pour l'énigme finale/ ou bien les 7 erreurs
-
+     # Drapeau et hymne national en fond. Le monstre (en short bleu/marcel blanc et ray ban) le défie de retrouver son chemin dans la ville : l'objet se trouve dans un musée.
+       * Labyrinthe pour récupérer un bras de la Venus de Millau
+     # Regarde deux tableaux célèbres dans le musée:
+       * La Joconde (ou Portrait de Mona Lisa),Léonard de Vinci, réalisé entre 1503 et 1506 qui représente en buste une jeune femme qui s'appelait Mona Lisa del Giocondo: http://lewebpedagogique.com/isiblog/files/joconde.jpg => le jeu des 7 erreurs
+       * Naissance de Vénus, Botticelli ~1485 : http://www.kulturica.com/img/art/botticelli.jpg => un indice pour l'énigme finale.
 
 ----------------
