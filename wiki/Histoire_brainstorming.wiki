@@ -18,7 +18,7 @@ _cf: Downloads Synopsis_
   * Tanzanie. 
      # Arrivée sur la piste du petit aéroport du kilimandjaro. (avec moyen de locomotion spécifique). Quelques informations sur le pays. Le monstre lui indique qu'ils doivent rencontrer une tribu massai pour trouver l'objet.
      # Départ dans la brousse : -Moyen de transport ? -4x4, velo, pied ? 
-      * 4x4 -> Safari dans la brousse : découverte des animaux. quizz (rapide) -> gagner indice pour énigme. Retour aéroport.
+      * 4x4 -> Safari dans la brousse : découverte des animaux. quizz (rapide) avec photos animaux -> gagner indice pour énigme. Retour aéroport.
       * vélo, pied -> Rencontre d'un habitant d'Arusha, qui les emmène dans la brousse et leur permettent de rencontrer une tribu massai. Quelques informations sur les massai. Jeu (- définir type): permet de gagner objet -> masque africain typique.Proposition de les emmener a la découverte des animaux -> retour au quizz.
 
 
