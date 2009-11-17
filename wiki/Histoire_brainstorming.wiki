@@ -8,14 +8,22 @@ _cf: Downloads Synopsis_
 ====Mission====
  
  * Objectif : reconstituer une porte à l'aides des objets trouvés dans chaque pays. Une fois tous les objets retrouvés, pour que le monstre puisse rentrer chez lui, trouver la clé. Pour ceci, une série d'énigmes/indices au cours du jeu aidera. 
- * Objets : Les objets ont rapport à la culture de chaque pays, peuvent être magiques etc. Un emplacement déterminé a chacun se trouve sur la porte incomplète. _Ex: Pérou poterie, Tanzanie masque africain etc._
+ * Objets : Les objets ont rapport à la culture de chaque pays, peuvent être magiques etc. Un emplacement déterminé a chacun se trouve sur la porte incomplète. _Ex: Pérou poterie, Tanzanie masque africain etc._ . Le monstre connait les objets et leur emplacement mais a besoin de l'aide du joueur pour les ramener. (-> succès des différents jeux = gagner un objet)
 
 
 ----------------
 === Pays ===
 
  #  *Afrique*
-  * résumé
+  * Tanzanie. Arrivée sur la piste du petit aéroport du kilimandjaro. (avec moyen de locomotion spécifique). Quelques informations sur le pays.
+Le monstre lui indique qu'ils doivent rencontrer une tribu massai pour trouver l'objet.
+Départ dans la brousse : -Moyen de transport ? -4x4, velo, pied ?
+4x4 -> Safari dans la brousse : découverte des animaux. quizz (rapide) -> gagner indice pour énigme. Retour aéroport.
+vélo, pied -> Rencontre d'un habitant d'Arusha, qui les emmène dans la brousse et leur permettent de rencontrer une tribu massai. Quelques informations sur les massai. 
+Jeu (- définir type): permet de gagner objet -> masque africain typique.
+Proposition de les emmener a la découverte des animaux -> retour au quizz.
+
+
  # *Asie*
   * résumé
  # *Amérique du Nord*
