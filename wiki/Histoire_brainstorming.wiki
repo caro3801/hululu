@@ -23,7 +23,14 @@ _cf: Downloads Synopsis_
 
 
  # *Asie*
-  * résumé
+  * Japon (j'ai changé ça sera plus simple pour les jeux et les informations sur le pays) : 
+     # Arrivée dans un temple Kyoto ancienne capital du Japon. Explication sur le pays 
+       * Explication comment lire un manga.  
+       * Quiz sur des personnages de mangas pour enfant. -> gagne un lampion utilisé dans le temple 
+     # Présentation d'estampes japonaise 
+       * Jeu avec la recherche de la fin de Haiku -> plusieurs propositions le joueur choisi cette qu'il trouve le mieux adapté. 
+
+
  # *Amérique du Nord*
   * résumé
  # *Amérique du Sud*
