@@ -22,6 +22,10 @@ int main()
 
 	// pour pas que le programme ne se termine pas :)
 	// on attent, si Running passe a false, on passe la boucle et on termine
+
+	// cette methode s'appelle le *polling* (le fait d'attendre ds une boucle)
+	// nous on a deja utilise des *callback*
+	// rappellez vous les fameux headers !
 	bool Running = true;
 	while (Running)
 	{
