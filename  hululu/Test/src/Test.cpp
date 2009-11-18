@@ -3,7 +3,7 @@
 // Author      : 
 // Version     :
 // Copyright   : Your copyright notice
-// Description : Hello World in C++, Ansi-style
+// Description : Test SFML
 //============================================================================
 
 #include <iostream>
@@ -14,6 +14,8 @@ using namespace sf;
 
 int main()
 {
+	// VOIR LES VERSIONS PRECEDENTES DU FICHIER
+
 	cout << "Je vais ouvrir une fenetre !" << endl;
 
 	// je n'utilise pas obligatoirement sf:: (cf using namespace)
@@ -40,12 +42,25 @@ int main()
 	// "Un type d'evenement ? Mais Pierrot, la fievre te monte a la tete ?!"
 	// ne me regardez pas comme ca, vous allez comprendre...
 
-	bool running = true;
-	while(running)
+	// gestion du temps
+	// ces objets la sont compliques
+	// je ne m'etend pas
+	sf::Clock m_clock;
+
+
+	while(fenetre.IsOpened())
 	{
 		Event event;
 		while (fenetre.GetEvent(event))
 		{
+
+			// permet de recupere le temps ecoule entre chaque itteration
+		    float elapsedTime = m_clock.GetElapsedTime();
+		    m_clock.Reset();
+
+			// calcul primitif du taux de rafraichissement
+		   cout << "# Taux de rafraichissement: " << (1.f / elapsedTime) << endl;
+
 			// je laisse l'espace de nomage sf pour que vous voyez bien
 
 			// regardez comme c'est bien fait
@@ -54,12 +69,14 @@ int main()
 			// quand elle vaut sf::Event::Closed
 			// c'est qu'on a ferme la fenetre !
 			if (event.Type == sf::Event::Closed)
-				running = false;
+				fenetre.Close();
 
 			// pour la gestion des boutons, c'est un peu pareil
 			// si un bouton est presse et que c'est echap, alors bingo
 			if ((event.Type == sf::Event::KeyPressed) && (event.Key.Code == sf::Key::Escape))
-				running = false;
+				fenetre.Close();
+
+
 		}
 
 		// toujour pour actualiser le rendu (et en fin de boucle surtout) !
