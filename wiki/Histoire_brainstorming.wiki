@@ -35,7 +35,7 @@ _cf: Downloads Synopsis_
  # *Amérique du Nord*
   * résumé
  # *Amérique du Sud*
-  *Pérou.
+  * Pérou.
   # Arrivée à l’aéroport de Lima, la capitale. 
     * Bus direction Cuzco, ancienne capitale des Incas. Il doit payer le chauffeur (170  nouveaux sol) en utilisant les pièces proposées par le monstre.
     *    Pendant le trajet le monstre donne des informations sur le pays et sur le peuple Inca. En fond, des photos de paysages défilent
