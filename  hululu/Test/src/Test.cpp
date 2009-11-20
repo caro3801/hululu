@@ -1,6 +1,8 @@
-//============================================================================
+
+
+
 // Name        : Test.cpp
-// Author      : 
+// Author      :
 // Version     :
 // Copyright   : Your copyright notice
 // Description : Test SFML
@@ -10,9 +12,44 @@
 #include <SFML/System.hpp>
 #include <SFML/Window.hpp>
 #include <SFML/Graphics.hpp>
+
 using namespace std;
 using namespace sf;
 
+
+// distance parcouru (en pixel) par le Sprite à chaque "pas"
+#define PAS_PX 10
+
+#define NO_CLEAR true
+#if NO_CLEAR == true
+		// comme la méthode Clear ne marche pas à l'IUT
+		// j'ai essayé de la surcharger, je sais pas ce que ça vaut, mais ça marche...
+		void sf::RenderTarget::Clear(const sf::Color & color)
+		{
+
+			// dimension de la fenêtre active
+			int width = this->GetWidth();
+			int height = this->GetHeight();
+
+			// "masque" est un carré qu'on va dessiner sur la fenêtre
+			sf::Shape masque;
+
+			// on place les 4 points du carré aux angles de la fenêtre
+			masque.AddPoint(0, 0, color);
+			masque.AddPoint(width, 0, color);
+			masque.AddPoint(width, height, color);
+			masque.AddPoint(0, height, color);
+
+			// on active le fond du carré
+			masque.EnableFill(true);
+
+			// on lui met une couleur
+			masque.SetColor(color);
+
+			// enfin, on dessine le carré sur la fenêtre
+			this->Draw(masque);
+		}
+#endif
 
 int main()
 {
@@ -125,7 +162,8 @@ int main()
 		    m_clock.Reset();
 
 			// calcul primitif du taux de rafraichissement
-		   cout << "# Taux de rafraichissement: " << (1.f / elapsedTime) << endl;
+		    float fps = fenetre.GetFrameTime();
+		    cout << fps << endl;
 
 			// je laisse l'espace de nomage sf pour que vous voyez bien
 
@@ -147,16 +185,16 @@ int main()
 			{
 			    sf::Image Screen = fenetre.Capture();
 			    if(Screen.SaveToFile("screenshot.jpg"))
-			    	cout << "Ecran capture dans screenshot.jpg" << endl;
+			    	cout << "Ecran capturé dans screenshot.jpg" << endl;
 			}
 
 
 			//# deplacement du Sprite
-
+			fps = 1;
 			if (fenetre.GetInput().IsKeyDown(sf::Key::Left))
 			{
 				// on deplace le sprite de -10 pixel, vers la gauche
-				sprite.Move(-10, 0);
+				sprite.Move(-PAS_PX * fps, 0);
 
 				// on change la partie visible du sprite
 				// on montre le personage de profile vers la gauche
@@ -168,7 +206,7 @@ int main()
 			}
 			if (fenetre.GetInput().IsKeyDown(sf::Key::Right))
 			{
-				sprite.Move( 10, 0);
+				sprite.Move(PAS_PX * fps, 0);
 
 				// on change la partie visible du sprite
 				// on montre le personage de profile vers la droite
@@ -180,7 +218,7 @@ int main()
 			}
 			if (fenetre.GetInput().IsKeyDown(sf::Key::Up))
 			{
-				sprite.Move(0, -10);
+				sprite.Move(0, -PAS_PX * fps);
 
 				if(px < 32*3) px += 32;
 				else px = 0;
@@ -190,7 +228,7 @@ int main()
 			}
 			if (fenetre.GetInput().IsKeyDown(sf::Key::Down))
 			{
-				sprite.Move(0,  10);
+				sprite.Move(0,  PAS_PX * fps);
 
 				if(px < 32*3) px += 32;
 				else px = 0;
