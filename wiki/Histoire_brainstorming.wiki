@@ -33,7 +33,13 @@ _cf: Downloads Synopsis_
 
 
  # *Amérique du Nord*
-  * résumé
+  * Canada.
+   # Arrivée dans un gros aéroport avec plein de bruit de voitures de gens une voix qui   parle en background. Le monstre dit : « Hello! Welcome » ;
+    * Labyrinthe pour sortir de l'aéroport avec un temps (suivant le temps mis prendra une autre branche de l'arbre). => une cross de hockey.
+   # Visite de la ville en taxis (informations sur le pays, les différentes langues parlés). Il finit dans une patinoire où il y a un match de hockey sur glace.
+    * Jeu des 7 erreurs => indice pour énigme finale.
+
+  
  # *Amérique du Sud*
   * Pérou.
   # Arrivée à l’aéroport de Lima, la capitale. 
