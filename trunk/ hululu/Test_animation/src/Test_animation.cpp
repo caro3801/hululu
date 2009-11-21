@@ -13,10 +13,8 @@ using namespace std;
 #include <SFML/Window.hpp>
 #include <SFML/Graphics.hpp>
 
-
-// distance parcouru (en pixel) par le Sprite à chaque "pas"
+#include "Person2D.h"
 #define PAS_PX 10
-
 
 int main()
 {
@@ -30,8 +28,7 @@ int main()
 		cout << "Erreur lors du chargement de l'image.";
 	}
 
-	// on créai le sprite du garçon
-	sf::Sprite garcon_sp;
+	Person2D garcon_sp(100.f, 200.f, 100, 6, 4);
 	garcon_sp.SetColor(sf::Color(255, 255, 255, 255));
 
 	// position du sprite
@@ -52,65 +49,38 @@ int main()
 
 	// clipage du sprite
 	// c-à-d on n'affiche que les partie du sprite qui nous intérèsse
-	int px = 0, // depuis le point x= 0
-		lx = 100, // sur largeur 100
-		py = 200,
-		ly = 200*2;
-	garcon_sp.SetSubRect(sf::IntRect(px, py, lx, ly));
+	garcon_sp.initClip();
 
 
 	// Pour que le programme ne se termine pas :)
-	while(fenetre.IsOpened() and true)
+	sf::Event event;
+	while(fenetre.IsOpened())
 	{
-		sf::Event event;
-		while (fenetre.GetEvent(event))
-		{
+		fenetre.GetEvent(event);
 
 
-			// calcul primitif du taux de rafraichissement
-		    float fps = fenetre.GetFrameTime();
+		// calcul primitif du taux de rafraichissement
+		float fps = fenetre.GetFrameTime();
 
-			// # fermeture de la fenetre
-		    // si echap ou fermeture manuelle
-			if (event.Type == sf::Event::Closed)
-				fenetre.Close();
+		// # fermeture de la fenetre
+		// si echap ou fermeture manuelle
+		if (event.Type == sf::Event::Closed)
+			fenetre.Close();
 
-			if (event.Key.Code == sf::Key::Escape)
-				fenetre.Close();
+		if (event.Key.Code == sf::Key::Escape)
+			fenetre.Close();
 
 
-			// # deplacement du Sprite
-			//fps = 1; // annule l'effet du FPS (commenter sinon)
-			if (fenetre.GetInput().IsKeyDown(sf::Key::Left))
-			{
-				// on deplace le sprite de -10 pixel, vers la gauche
-				garcon_sp.Move(-PAS_PX * fps, 0);
+		// # deplacement du Sprite
+		fps = 1; // annule l'effet du FPS (commenter sinon)
 
-				// on change la partie visible du sprite
-				// on montre le personage de profile vers la gauche
-				if(px < 100*5) px += 100;
-				else px = 0;
-				py = 0;
-				lx = px + 100;
-				ly = 200;
-			}
-			if (fenetre.GetInput().IsKeyDown(sf::Key::Right))
-			{
-				garcon_sp.Move(PAS_PX * fps, 0);
+		if( (fenetre.GetInput().IsKeyDown(sf::Key::Left)) or (garcon_sp.getActiveLeftCase() > 0) )
+			garcon_sp.walkLeft(5);
 
-				// on change la partie visible du sprite
-				// on montre le personage de profile vers la droite
-				if(px < 100*5) px += 100;
-				else px = 0;
-				py = 200;
-				lx = px + 100;
-				ly = 200*2;
+		if( (fenetre.GetInput().IsKeyDown(sf::Key::Right)) or (garcon_sp.getActiveRightCase() > 0) )
+			garcon_sp.walkRight(5);
 
-			}
 
-			garcon_sp.SetSubRect(sf::IntRect(px, py, lx, ly));
-
-		}
 
 		// efface l'ecran
 		fenetre.Clear(sf::Color(255, 255, 255));
@@ -120,6 +90,7 @@ int main()
 
 		// toujour pour actualiser le rendu (et en fin de boucle surtout) !
 		fenetre.Display();
+
 
 
 	}
