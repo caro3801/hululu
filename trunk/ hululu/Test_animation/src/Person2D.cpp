@@ -102,7 +102,7 @@ void Person2D::walkRight(float interval)
 		activeRightCase ++; // on passe a la case suivante
 		this->SetSubRect(sf::IntRect(px, py, lx, ly));
 
-		sleep( interval / (nbCaseX + 1) );
+		sleep( 0.5 );
 
 	}
 	else activeRightCase = 0;

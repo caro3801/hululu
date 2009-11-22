@@ -75,10 +75,10 @@ int main()
 		fps = 1; // annule l'effet du FPS (commenter sinon)
 
 		if( (fenetre.GetInput().IsKeyDown(sf::Key::Left)) or (garcon_sp.getActiveLeftCase() > 0) )
-			garcon_sp.walkLeft(5);
+			garcon_sp.walkLeft(7);
 
 		if( (fenetre.GetInput().IsKeyDown(sf::Key::Right)) or (garcon_sp.getActiveRightCase() > 0) )
-			garcon_sp.walkRight(5);
+			garcon_sp.walkRight(7);
 
 
 
