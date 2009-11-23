@@ -25,12 +25,12 @@ _cf: Downloads Synopsis_
  # *Asie*
   * Japon (j'ai changé ça sera plus simple pour les jeux et les informations sur le pays) : 
      # Arrivée dans un temple Kyoto ancienne capitale du Japon. Explication sur le pays 
-       * Hanafuda (花札) jeu de cartes traditionnel japonais (composé de 12 séries de 4 cartes florales représentant chacune l'un des douze mois de l'année). Jeu sur les 12 mois de l'année 
-     # Présentation d'estampes japonaise Hokusaï //mont Fuji 
-       * Jeu avec la recherche de la fin de Haiku -> plusieurs propositions le joueur choisi celle qu'il trouve le mieux adaptée. 
+       * Hanafuda (花札) jeu de cartes traditionnel japonais (composé de 12 séries de 4 cartes florales représentant chacune l'un des douze mois de l'année). Jeu sur les 12 mois de l'année -> gagne un lampion utilisé dans les temples
+     # Présentation d'estampe japonaise Hokusaï //mont Fuji 
+       * Jeu avec la recherche de la fin de Haiku -> plusieurs propositions le joueur choisi celle qu'il trouve le mieux adaptée. -> gagne un pinceau et de l'encre 
      # Présentation de Tokyo et de la modernité 
        * Explication comment lire un manga.  (culture d'aujourd'hui de japon)
-       * Quiz sur des personnages de mangas pour enfant. -> gagne un lampion utilisé dans les temples
+       * Quiz sur des personnages de mangas pour enfant. 
 
 
 
