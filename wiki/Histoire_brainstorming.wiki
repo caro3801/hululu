@@ -49,7 +49,17 @@ _cf: Downloads Synopsis_
 
 
  # *Océanie*
-  * résumé
+  * Australie
+   # Arrivée en plein coeur de Sydney: panorama sur la ville, la culture et... le surf
+    * jeu des pairs avec des des planches de Surf
+   # Le monstre entraîne notre héros dans les Terres arides de l'Australie (topo sur un climat hétérogène et sur les aborigènes sous forme de dialogue avec un Koala)
+    * Parcours du combattant à dos de Kangourou (ou d'autruche, j'hésite) pour obtenir des feuilles d'eucalyptus, afin de nourrir le Koala affamé.
+    * Le Koala de montre le chemin vers la Nouvelle-Zélande
+  * Nouvelle-Zélande
+   # Dialogue avec un maori au sujet du Weta géant...
+    * jeu de nuit pour attraper une *Weta Géant*
+
+
  # *Europe*
   * Italie
      # Drapeau et hymne national en fond. Le monstre (en short bleu/marcel blanc et ray ban) le défie de retrouver son chemin dans la ville : l'objet se trouve dans un musée.
