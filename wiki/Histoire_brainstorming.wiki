@@ -15,7 +15,7 @@ _cf: Downloads Synopsis_
 === Pays ===
 
  #  *Afrique*
-  * Tanzanie. 
+  * Tanzanie :
      # Arrivée sur la piste du petit aéroport du kilimandjaro. (avec moyen de locomotion spécifique). Quelques informations sur le pays. Le monstre lui indique qu'ils doivent rencontrer une tribu massai pour trouver l'objet.
      # Départ dans la brousse : -Moyen de transport ? -4x4, velo, pied ? 
       * 4x4 -> Safari dans la brousse : découverte des animaux. quizz (rapide) avec photos animaux -> gagner indice pour énigme. Retour aéroport.
@@ -23,19 +23,27 @@ _cf: Downloads Synopsis_
 
 
  # *Asie*
-  * Japon (j'ai changé ça sera plus simple pour les jeux et les informations sur le pays) : 
+  * Japon : 
      # Arrivée dans un temple Kyoto ancienne capitale du Japon. Explication sur le pays 
        * Hanafuda (花札) jeu de cartes traditionnel japonais (composé de 12 séries de 4 cartes florales représentant chacune l'un des douze mois de l'année). Jeu sur les 12 mois de l'année -> gagne un lampion utilisé dans les temples
      # Présentation d'estampe japonaise Hokusaï //mont Fuji 
+http://upload.wikimedia.org/wikipedia/commons/a/a5/Tsunami_by_hokusai_19th_century.jpg
+
+_La grande vague de Kanagawa (1831) est la première des 46 estampes composant les Trente-six vues du mont Fuji, l'une des œuvres majeures d'Hokusai._
+
+http://upload.wikimedia.org/wikipedia/commons/7/7f/Hokusai-fuji7.png
+
+_Mont Fuji connu aussi sous le nom Rouge Fuji_
+
        * Jeu avec la recherche de la fin de Haiku -> plusieurs propositions le joueur choisi celle qu'il trouve le mieux adaptée. -> gagne un pinceau et de l'encre 
-     # Présentation de Tokyo et de la modernité 
-       * Explication comment lire un manga.  (culture d'aujourd'hui de japon)
-       * Quiz sur des personnages de mangas pour enfant. 
+     # Présentation de Tokyo et de la modernité (extension)
+       * Explication comment lire un manga.  (culture d'aujourd'hui du japon)
+       * Quiz sur des personnages de mangas pour enfant 
 
 
 
  # *Amérique du Nord*
-  * Canada.
+  * Canada :
    # Arrivée dans un gros aéroport avec plein de bruit de voitures de gens une voix qui   parle en background. Le monstre dit : « Hello! Welcome » ;
     * Labyrinthe pour sortir de l'aéroport avec un temps (suivant le temps mis prendra une autre branche de l'arbre). => une cross de hockey.
    # Visite de la ville en taxis (informations sur le pays, les différentes langues parlés). Il finit dans une patinoire où il y a un match de hockey sur glace.
@@ -43,7 +51,7 @@ _cf: Downloads Synopsis_
 
   
  # *Amérique du Sud*
-  * Pérou.
+  * Pérou :
   # Arrivée à l’aéroport de Lima, la capitale. 
     * Bus direction Cuzco, ancienne capitale des Incas. Il doit payer le chauffeur (170  nouveaux sol) en utilisant les pièces proposées par le monstre.
     *    Pendant le trajet le monstre donne des informations sur le pays et sur le peuple Inca. En fond, des photos de paysages défilent
@@ -51,19 +59,19 @@ _cf: Downloads Synopsis_
 
 
  # *Océanie*
-  * Australie
+  * Australie :
    # Arrivée en plein coeur de Sydney: panorama sur la ville, la culture et... le surf
     * jeu des pairs avec des des planches de Surf
    # Le monstre entraîne notre héros dans les Terres arides de l'Australie (topo sur un climat hétérogène et sur les aborigènes sous forme de dialogue avec un Koala)
     * Parcours du combattant à dos de Kangourou (ou d'autruche, j'hésite) pour obtenir des feuilles d'eucalyptus, afin de nourrir le Koala affamé.
     * Le Koala de montre le chemin vers la Nouvelle-Zélande
-  * Nouvelle-Zélande
+  * Nouvelle-Zélande (extension)
    # Dialogue avec un maori au sujet du Weta géant...
     * jeu de nuit pour attraper une *Weta Géant*
 
 
  # *Europe*
-  * Italie
+  * Italie :
      # Drapeau et hymne national en fond. Le monstre (en short bleu/marcel blanc et ray ban) le défie de retrouver son chemin dans la ville : l'objet se trouve dans un musée.
        * Labyrinthe pour récupérer un bras de la Venus de Millau
      # Regarde deux tableaux célèbres dans le musée:
