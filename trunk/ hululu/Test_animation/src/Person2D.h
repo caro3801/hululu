@@ -18,20 +18,24 @@ class Person2D : public sf::Sprite
 	// elle a pour but de simplifier et standardiser l'usage d'un Sprite
 	// lorsque ce dernier représente un personage en 2D
 
+
 	public:
+		// directions possibles
+		enum moveDirection {LEFT,RIGHT,TOP,BOTTOM};
+
 		Person2D(const float widthCase=0.f, const float heightCase=0.f, const int stepLenght=0.f, const int nbCaseX=1.f, const int nbCaseY=1.f);
 		// re-construteur
 		void create(const float widthCase=0.f, const float heightCase=0.f, const int stepLenght=0.f, const int nbCaseX=1.f, const int nbCaseY=1.f);
 		void initClip();
 
 		// accesseurs
-		float getWidthCase();
-		float getHeightCase();
-		int getNbCaseX();
-		int getNbCaseY();
+		inline float getWidthCase() { return widthCase; }
+		inline float getHeightCase() { return heightCase; }
+		inline int getNbCaseX() { return nbCaseX; }
+		inline int getNbCaseY() { return nbCaseY; }
 		inline int getActiveLeftCase() { return activeLeftCase; }
 		inline int getActiveRightCase() { return activeRightCase; }
-		int getStepLenght();
+		inline int getStepLenght(){ return stepLenght; }
 
 		void setWidthCase(float width);
 		void setHeightCase(float height);
@@ -39,9 +43,9 @@ class Person2D : public sf::Sprite
 		void setNbCaseY(int nb);
 		void setStepLenght(int lenght);
 
-		void walkLeft(float interval);
-		void walkRight(float interval);
-
+		void walk(moveDirection direction, float interval);
+		bool inMoveTo(moveDirection direction);
+		bool readyToMove(float interval);
 
 	protected:
 		// un Sprite est composé de plusieurs cases
@@ -63,6 +67,7 @@ class Person2D : public sf::Sprite
 		int activeRightCase;
 
 		int stepLenght; // distance parcouru à chaque pas
+		sf::Clock timeSinceLastRefresh; // temps écoulé depuis le dernier *refresh*
 };
 
 #endif /* PERSON2D_H_ */
