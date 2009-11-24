@@ -51,20 +51,30 @@ int main()
 	garcon_sp.initClip();
 
 
+	// création d'une vue
+	sf::View vue(sf::FloatRect(0, 0, fenetre.GetWidth(), fenetre.GetHeight()) );
+	fenetre.SetView(vue);
+
+	// les instructions
+	sf::String text("Fleches gauche et droite pour deplacer le personnage,\ntouches + et - pour zoomer,\nQ,D,Z,S pour deplacer la camera.");
+	text.Move(10, 10);
+	text.SetColor(sf::Color::Magenta);
+	text.SetSize(25.f);
+
 	// Pour que le programme ne se termine pas :)
 	sf::Event event;
 	while(fenetre.IsOpened())
 	{
-		fenetre.GetEvent(event);
+        while (fenetre.GetEvent(event))
+        {
+			// # fermeture de la fenetre
+			// si echap ou fermeture manuelle
+			if (event.Type == sf::Event::Closed)
+				fenetre.Close();
 
-		// # fermeture de la fenetre
-		// si echap ou fermeture manuelle
-		if (event.Type == sf::Event::Closed)
-			fenetre.Close();
-
-		if (event.Key.Code == sf::Key::Escape)
-			fenetre.Close();
-
+			if (event.Key.Code == sf::Key::Escape)
+				fenetre.Close();
+        }
 
 		// # deplacement du Sprite
 
@@ -75,11 +85,25 @@ int main()
 			garcon_sp.walk(Person2D::RIGHT, 1000);
 
 
+
+        // Déplace la vue
+        float Offset = 200.f * fenetre.GetFrameTime();
+        if (fenetre.GetInput().IsKeyDown(sf::Key::Z))    vue.Move( 0,      -Offset);
+        if (fenetre.GetInput().IsKeyDown(sf::Key::S))  vue.Move( 0,       Offset);
+        if (fenetre.GetInput().IsKeyDown(sf::Key::Q))  vue.Move(-Offset,  0);
+        if (fenetre.GetInput().IsKeyDown(sf::Key::D)) vue.Move( Offset,  0);
+
+        // Zoom sur la vue
+        if (fenetre.GetInput().IsKeyDown(sf::Key::Add))      vue.Zoom(1.001f);
+        if (fenetre.GetInput().IsKeyDown(sf::Key::Subtract)) vue.Zoom(0.999f);
+
 		// efface l'ecran
 		fenetre.Clear(sf::Color(255, 255, 255));
 
 		// on dessine le Sprite sur la fenetre de rendu
 		fenetre.Draw(garcon_sp);
+		// on dessine les inscrution
+		fenetre.Draw(text);
 
 		// toujour pour actualiser le rendu (et en fin de boucle surtout) !
 		fenetre.Display();
