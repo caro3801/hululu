@@ -14,12 +14,11 @@ using namespace std;
 #include <SFML/Graphics.hpp>
 
 #include "Person2D.h"
-#define PAS_PX 10
 
 int main()
 {
-	sf::RenderWindow fenetre(sf::VideoMode::GetMode(0), "Test animation personnage", sf::Style::Fullscreen);
-
+	//sf::RenderWindow fenetre(sf::VideoMode::GetMode(0), "Test animation personnage", sf::Style::Fullscreen);
+	sf::RenderWindow fenetre(sf::VideoMode(800, 600, 32),  "Test animation personnage");
 
 	// on charge une image
 	sf::Image garcon_img;
@@ -33,7 +32,7 @@ int main()
 
 	// position du sprite
 	garcon_sp.SetX(50.f);
-	garcon_sp.SetY( fenetre.GetHeight() / 2.f); // centre le sprite
+	garcon_sp.SetY( ( fenetre.GetHeight() - garcon_sp.getHeightCase() ) / 2.f); // centre le sprite
 
 	// c'est le "centre relatif" de l'objet
 	garcon_sp.SetCenter(0, 0);
@@ -58,10 +57,6 @@ int main()
 	{
 		fenetre.GetEvent(event);
 
-
-		// calcul primitif du taux de rafraichissement
-		float fps = fenetre.GetFrameTime();
-
 		// # fermeture de la fenetre
 		// si echap ou fermeture manuelle
 		if (event.Type == sf::Event::Closed)
@@ -72,14 +67,12 @@ int main()
 
 
 		// # deplacement du Sprite
-		fps = 1; // annule l'effet du FPS (commenter sinon)
 
-		if( (fenetre.GetInput().IsKeyDown(sf::Key::Left)) or (garcon_sp.getActiveLeftCase() > 0) )
-			garcon_sp.walkLeft(7);
+		if( (fenetre.GetInput().IsKeyDown(sf::Key::Left)) or ( garcon_sp.inMoveTo(Person2D::LEFT) ) )
+			garcon_sp.walk(Person2D::LEFT, 1000);
 
-		if( (fenetre.GetInput().IsKeyDown(sf::Key::Right)) or (garcon_sp.getActiveRightCase() > 0) )
-			garcon_sp.walkRight(7);
-
+		if( (fenetre.GetInput().IsKeyDown(sf::Key::Right)) or ( garcon_sp.inMoveTo(Person2D::RIGHT) ) )
+			garcon_sp.walk(Person2D::RIGHT, 1000);
 
 
 		// efface l'ecran
@@ -90,8 +83,6 @@ int main()
 
 		// toujour pour actualiser le rendu (et en fin de boucle surtout) !
 		fenetre.Display();
-
-
 
 	}
 
