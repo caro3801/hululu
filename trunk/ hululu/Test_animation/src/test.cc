@@ -11,9 +11,8 @@ int main()
 
 	    // Load the sprite image from a file
 	    sf::Image Image;
-	    if (!Image.LoadFromFile("sprite_g_walk.png"))
+	    if (!Image.LoadFromFile("Test_animation/src/sprite_g_walk.png"))
 	        return EXIT_FAILURE;
-
 	    // Create the sprite
 	    sf::Sprite Sprite(Image);
 
