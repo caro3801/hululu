@@ -22,7 +22,7 @@ int main()
 
 	// on charge une image
 	sf::Image garcon_img;
-	if (!garcon_img.LoadFromFile("Test_animation/src/sprite_g_walk.png"))
+	if (!garcon_img.LoadFromFile("Test_animation/img/sprite/sprite_g_walk.png"))
 	{
 		cout << "Erreur lors du chargement de l'image.";
 	}
@@ -115,18 +115,3 @@ int main()
 
 	return 0;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
