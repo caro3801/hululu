@@ -116,58 +116,58 @@ void Person2D::walk(moveDirection direction, float interval)
 		else activeRightCase = 0;
 
 	}
-	else if( (direction == TOP) && ( readyToMove(interval) ) )
+	else if( (direction == BOTTOM) && ( readyToMove(interval) ) )
 	{
-		if(activeTopCase < nbCaseX)
+		if(activeBottomCase < nbCaseX)
 		{
-			int px  = activeTopCase * widthCase, py;
+			int px  = activeBottomCase * widthCase, py;
 			int lx, ly;
 
 			// on deplace le sprite vers le haut
 			this->Move(0, stepLenght/(nbCaseY)+1);
 
 			// on change la partie visible du sprite
-			if(activeTopCase == nbCaseX -1) px = 0;
+			if(activeBottomCase == nbCaseX -1) px = 0;
 			else px += widthCase;
 			lx = px + widthCase;
 
 			py = 0;
 			ly = py + heightCase;
 
-			activeTopCase ++; // on passe a la case suivante
+			activeBottomCase ++; // on passe a la case suivante
 			this->SetSubRect(sf::IntRect(px, py, lx, ly));
 
 			timeSinceLastRefresh.Reset();
 		}
-		else activeTopCase = 0;
+		else activeBottomCase = 0;
 
 	}
-	else if( (direction == BOTTOM) && ( readyToMove(interval) ) )
+	else if( (direction == TOP) && ( readyToMove(interval) ) )
 
 	{
-		if(activeBottomCase < nbCaseX)
+		if(activeTopCase < nbCaseX)
 		{
 
-			int px  = activeBottomCase * widthCase, py;
+			int px  = activeTopCase * widthCase, py;
 			int lx, ly;
 
 //			// on deplace le sprite vers le haut
 			this->Move(0, stepLenght/(-(nbCaseY)+1));
 
 //			// on change la partie visible du sprite
-			if(activeBottomCase == nbCaseX -1) px = 0;
+			if(activeTopCase == nbCaseX -1) px = 0;
 			else px += widthCase;
 			lx = px + widthCase;
 
 			py = heightCase*3;
 			ly = py + heightCase;
 
-			activeBottomCase++; // on passe a la case suivante
+			activeTopCase++; // on passe a la case suivante
 			this->SetSubRect(sf::IntRect(px, py, lx, ly));
 
 			timeSinceLastRefresh.Reset();
 		}
-		else activeBottomCase = 0;
+		else activeTopCase = 0;
 	}
 }
 
