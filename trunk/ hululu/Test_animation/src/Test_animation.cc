@@ -44,7 +44,7 @@ int main()
 	 SpriteCarte.SetPosition(0.f, 0.f);
 
 
-	Person2D garcon_sp(100.f, 200.f, 100, 6, 4);
+	Person2D garcon_sp(50.f, 100.f, 50, 6, 4);
 	garcon_sp.SetColor(sf::Color(255, 255, 255, 255));
 
 	// position du sprite
