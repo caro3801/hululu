@@ -22,7 +22,7 @@ int main()
 
 	// on charge une image
 	sf::Image garcon_img;
-	if (!garcon_img.LoadFromFile("Test_animation/img/sprite/sprite_g_walk.png"))
+	if (!garcon_img.LoadFromFile("Test_animation/img/sprite/sprite_g_walk_v04.png"))
 	{
 		cout << "Erreur lors du chargement de l'image.";
 	}
@@ -43,8 +43,8 @@ int main()
 	garcon_sp.SetImage(garcon_img);
 
 	// On récupère les dimensions du sprite
-	// float largeur  = garcon_sp.GetSize().x;
-	// float hauteur = garcon_sp.GetSize().y;
+	 //float largeur  = garcon_sp.GetSize().x;
+	 //float hauteur = garcon_sp.GetSize().y;
 
 	// clipage du sprite
 	// c-à-d on n'affiche que les partie du sprite qui nous intérèsse
@@ -56,7 +56,7 @@ int main()
 	fenetre.SetView(vue);
 
 	// les instructions
-	sf::String text("Fleches gauche et droite pour deplacer le personnage,\ntouches + et - pour zoomer,\nQ,D,Z,S pour deplacer la camera.");
+	sf::String text("Fleches haut, bas, gauche et droite pour deplacer le personnage,\ntouches + et - pour zoomer,\nQ,D,Z,S pour deplacer la camera.");
 	text.Move(10, 10);
 	text.SetColor(sf::Color::Magenta);
 	text.SetSize(25.f);
@@ -84,7 +84,11 @@ int main()
 		if( (fenetre.GetInput().IsKeyDown(sf::Key::Right)) or ( garcon_sp.inMoveTo(Person2D::RIGHT) ) )
 			garcon_sp.walk(Person2D::RIGHT, 1000);
 
+		if( (fenetre.GetInput().IsKeyDown(sf::Key::Up)) or ( garcon_sp.inMoveTo(Person2D::TOP) ) )
+			garcon_sp.walk(Person2D::TOP, 1000);
 
+		if( (fenetre.GetInput().IsKeyDown(sf::Key::Down)) or ( garcon_sp.inMoveTo(Person2D::BOTTOM) ) )
+			garcon_sp.walk(Person2D::BOTTOM, 1000);
 
         // Déplace la vue
         float Offset = 200.f * fenetre.GetFrameTime();
@@ -102,10 +106,10 @@ int main()
 
 		// on dessine le Sprite sur la fenetre de rendu
 		fenetre.Draw(garcon_sp);
-		// on dessine les inscrution
+		// on dessine les instructions
 		fenetre.Draw(text);
 
-		// toujour pour actualiser le rendu (et en fin de boucle surtout) !
+		// toujours pour actualiser le rendu (et en fin de boucle surtout) !
 		fenetre.Display();
 
 	}

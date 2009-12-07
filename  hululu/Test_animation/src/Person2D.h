@@ -34,6 +34,8 @@ class Person2D : public sf::Sprite
 		inline int getNbCaseX() { return nbCaseX; }
 		inline int getNbCaseY() { return nbCaseY; }
 		inline int getActiveLeftCase() { return activeLeftCase; }
+		inline int getActiveTopCase() { return activeTopCase; }
+		inline int getActiveBottomCase() { return activeBottomCase; }
 		inline int getActiveRightCase() { return activeRightCase; }
 		inline int getStepLenght(){ return stepLenght; }
 
@@ -49,7 +51,7 @@ class Person2D : public sf::Sprite
 
 	protected:
 		// un Sprite est composé de plusieurs cases
-		// ces cases représentent les états succéssifs (visuellement) du sprite
+		// ces cases représentent les états successifs (visuellement) du sprite
 
 		// pour conventioner la création des Sprites, on fixe:
 			// - première ligne, mouvement de face (montant)
@@ -65,7 +67,8 @@ class Person2D : public sf::Sprite
 
 		int activeLeftCase;
 		int activeRightCase;
-
+		int activeTopCase;
+		int activeBottomCase;
 		int stepLenght; // distance parcouru à chaque pas
 		sf::Clock timeSinceLastRefresh; // temps écoulé depuis le dernier *refresh*
 };
