@@ -19,7 +19,7 @@ int main()
 {
 
 	//sf::RenderWindow fenetre(sf::VideoMode::GetMode(0), "Test animation personnage", sf::Style::Fullscreen);
-	sf::RenderWindow fenetre(sf::VideoMode(900, 587, 32),  "Test animation personnage");
+	sf::RenderWindow fenetre(sf::VideoMode(900, 687, 32),  "Test animation personnage");
 
 //IMAGES/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -74,8 +74,8 @@ int main()
 
 	// les instructions
 	sf::String text("Fleches haut, bas, gauche et droite pour deplacer le personnage,\ntouches + et - pour zoomer,\nQ,D,Z,S pour deplacer la camera.");
-	text.Move(10, 10);
-	text.SetColor(sf::Color::Magenta);
+	text.Move(10, 600);
+	text.SetColor(sf::Color::Blue);
 	text.SetSize(25.f);
 
 	// Pour que le programme ne se termine pas :)
