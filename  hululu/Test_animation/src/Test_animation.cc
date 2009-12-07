@@ -19,7 +19,7 @@ int main()
 {
 
 	//sf::RenderWindow fenetre(sf::VideoMode::GetMode(0), "Test animation personnage", sf::Style::Fullscreen);
-	sf::RenderWindow fenetre(sf::VideoMode(800, 600, 32),  "Test animation personnage");
+	sf::RenderWindow fenetre(sf::VideoMode(900, 587, 32),  "Test animation personnage");
 
 //IMAGES/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -28,7 +28,7 @@ int main()
 	//image garcon
 	sf::Image garcon_img;
 
-	if (!garcon_img.LoadFromFile("Test_animation/img/sprite/sprite_g_walk_v04.png"))
+	if (!garcon_img.LoadFromFile("Test_animation/img/sprite/sprite_g_walk_petit.png"))
 	{
 		cout << "Erreur lors du chargement de l'image.";
 	}
@@ -120,7 +120,7 @@ int main()
 
 		// efface l'ecran
 		fenetre.Clear(sf::Color(255, 255, 255));
-
+		fenetre.Draw(SpriteCarte) ;
 		// on dessine le Sprite sur la fenetre de rendu
 		fenetre.Draw(garcon_sp);
 		// on dessine les instructions
