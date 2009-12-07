@@ -17,15 +17,32 @@ using namespace std;
 
 int main()
 {
+
 	//sf::RenderWindow fenetre(sf::VideoMode::GetMode(0), "Test animation personnage", sf::Style::Fullscreen);
 	sf::RenderWindow fenetre(sf::VideoMode(800, 600, 32),  "Test animation personnage");
 
+//IMAGES/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 	// on charge une image
+
+	//image garcon
 	sf::Image garcon_img;
+
 	if (!garcon_img.LoadFromFile("Test_animation/img/sprite/sprite_g_walk_v04.png"))
 	{
 		cout << "Erreur lors du chargement de l'image.";
 	}
+	//image de fond
+	sf::Image carte;
+	if (!carte.LoadFromFile("Test_animation/img/sprite/mapemondev02.png"))
+	{
+		cout << "Erreur lors du chargement de l'image.";
+	}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	 sf::Sprite SpriteCarte(carte);
+	 SpriteCarte.SetPosition(0.f, 0.f);
+
 
 	Person2D garcon_sp(100.f, 200.f, 100, 6, 4);
 	garcon_sp.SetColor(sf::Color(255, 255, 255, 255));
