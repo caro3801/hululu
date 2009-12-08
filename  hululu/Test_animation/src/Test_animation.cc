@@ -17,17 +17,14 @@ using namespace std;
 
 int main()
 {
-
+	bool etape0=true; //etape1 definit l'etape de la mapemonde, plus tard sera defini dans la classe Etape
 	//sf::RenderWindow fenetre(sf::VideoMode::GetMode(0), "Test animation personnage", sf::Style::Fullscreen);
 	sf::RenderWindow fenetre(sf::VideoMode(900, 687, 32),  "Test animation personnage");
 
-//IMAGES/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-	// on charge une image
+	//IMAGES/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 	//image garcon
 	sf::Image garcon_img;
-
 	if (!garcon_img.LoadFromFile("Test_animation/img/sprite/sprite_g_walk_petit.png"))
 	{
 		cout << "Erreur lors du chargement de l'image.";
@@ -38,11 +35,18 @@ int main()
 	{
 		cout << "Erreur lors du chargement de l'image.";
 	}
+	//image de fond
+	sf::Image imgpage;
+	if (!imgpage.LoadFromFile("Test_animation/img/histoire/page1.png"))
+	{
+		cout << "Erreur lors du chargement de l'image.";
+	}
+	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	sf::Sprite SpriteCarte(carte);
+	SpriteCarte.SetPosition(0.f, 0.f);
 
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	 sf::Sprite SpriteCarte(carte);
-	 SpriteCarte.SetPosition(0.f, 0.f);
-
+	sf::Sprite page(imgpage);
+	page.SetPosition(0.f, 0.f);
 
 	Person2D garcon_sp(50.f, 100.f, 50, 6, 4);
 	garcon_sp.SetColor(sf::Color(255, 255, 255, 255));
@@ -60,8 +64,8 @@ int main()
 	garcon_sp.SetImage(garcon_img);
 
 	// On récupère les dimensions du sprite
-	 //float largeur  = garcon_sp.GetSize().x;
-	 //float hauteur = garcon_sp.GetSize().y;
+	//float largeur  = garcon_sp.GetSize().x;
+	//float hauteur = garcon_sp.GetSize().y;
 
 	// clipage du sprite
 	// c-à-d on n'affiche que les partie du sprite qui nous intérèsse
@@ -89,8 +93,8 @@ int main()
 	sf::Event event;
 	while(fenetre.IsOpened())
 	{
-        while (fenetre.GetEvent(event))
-        {
+		while (fenetre.GetEvent(event))
+		{
 			// # fermeture de la fenetre
 			// si echap ou fermeture manuelle
 			if (event.Type == sf::Event::Closed)
@@ -98,42 +102,56 @@ int main()
 
 			if (event.Key.Code == sf::Key::Escape)
 				fenetre.Close();
-        }
+		}
 
-		// # deplacement du Sprite
 
-		if( (fenetre.GetInput().IsKeyDown(sf::Key::Left)) or ( garcon_sp.inMoveTo(Person2D::LEFT) ) )
-			garcon_sp.walk(Person2D::LEFT, 1000);
+		fenetre.Clear(sf::Color(255, 255, 255)); // efface l'ecran
+		if (fenetre.GetInput().IsKeyDown(sf::Key::Space))
+				etape0=false;
+		if(etape0) {
+		sf::String texte("Appuyez sur espace");
+		texte.Move(10, 600);
+		texte.SetColor(sf::Color::Blue);
+		texte.SetSize(25.f);
+		texte.SetFont(MyFont);
+		fenetre.Draw(page);
+		fenetre.Draw(texte);
+		}
 
-		if( (fenetre.GetInput().IsKeyDown(sf::Key::Right)) or ( garcon_sp.inMoveTo(Person2D::RIGHT) ) )
-			garcon_sp.walk(Person2D::RIGHT, 1000);
+		else  {
+				if( (fenetre.GetInput().IsKeyDown(sf::Key::Left)) or ( garcon_sp.inMoveTo(Person2D::LEFT) ) )
+					garcon_sp.walk(Person2D::LEFT, 750);
 
-		if( (fenetre.GetInput().IsKeyDown(sf::Key::Up)) or ( garcon_sp.inMoveTo(Person2D::TOP) ) )
-			garcon_sp.walk(Person2D::TOP, 1000);
+				if( (fenetre.GetInput().IsKeyDown(sf::Key::Right)) or ( garcon_sp.inMoveTo(Person2D::RIGHT) ) )
+					garcon_sp.walk(Person2D::RIGHT, 750);
 
-		if( (fenetre.GetInput().IsKeyDown(sf::Key::Down)) or ( garcon_sp.inMoveTo(Person2D::BOTTOM) ) )
-			garcon_sp.walk(Person2D::BOTTOM, 1000);
+				if( (fenetre.GetInput().IsKeyDown(sf::Key::Up)) or ( garcon_sp.inMoveTo(Person2D::TOP) ) )
+					garcon_sp.walk(Person2D::TOP, 750);
 
-        // Déplace la vue
-        float Offset = 200.f * fenetre.GetFrameTime();
-        if (fenetre.GetInput().IsKeyDown(sf::Key::Z))    vue.Move( 0,      -Offset);
-        if (fenetre.GetInput().IsKeyDown(sf::Key::S))  vue.Move( 0,       Offset);
-        if (fenetre.GetInput().IsKeyDown(sf::Key::Q))  vue.Move(-Offset,  0);
-        if (fenetre.GetInput().IsKeyDown(sf::Key::D)) vue.Move( Offset,  0);
+				if( (fenetre.GetInput().IsKeyDown(sf::Key::Down)) or ( garcon_sp.inMoveTo(Person2D::BOTTOM) ) )
+					garcon_sp.walk(Person2D::BOTTOM, 750);
 
-        // Zoom sur la vue
-        if (fenetre.GetInput().IsKeyDown(sf::Key::Add))      vue.Zoom(1.001f);
-        if (fenetre.GetInput().IsKeyDown(sf::Key::Subtract)) vue.Zoom(0.999f);
+				// Déplace la vue
+				float Offset = 200.f * fenetre.GetFrameTime();
+				if (fenetre.GetInput().IsKeyDown(sf::Key::Z))    vue.Move( 0,      -Offset);
+				if (fenetre.GetInput().IsKeyDown(sf::Key::S))  vue.Move( 0,       Offset);
+				if (fenetre.GetInput().IsKeyDown(sf::Key::Q))  vue.Move(-Offset,  0);
+				if (fenetre.GetInput().IsKeyDown(sf::Key::D)) vue.Move( Offset,  0);
 
-		// efface l'ecran
-		//fenetre.Clear(sf::Color(255, 255, 255));
-		fenetre.Draw(SpriteCarte) ;
-		// on dessine le Sprite sur la fenetre de rendu
-		fenetre.Draw(garcon_sp);
-		// on dessine les instructions
-		fenetre.Draw(text);
+				// Zoom sur la vue
+				if (fenetre.GetInput().IsKeyDown(sf::Key::Add))      vue.Zoom(1.001f);
+				if (fenetre.GetInput().IsKeyDown(sf::Key::Subtract)) vue.Zoom(0.999f);
 
-		// toujours pour actualiser le rendu (et en fin de boucle surtout) !
+				fenetre.Clear(sf::Color(255, 255, 255));
+
+					fenetre.Draw(SpriteCarte) ;
+					// on dessine le Sprite sur la fenetre de rendu
+					fenetre.Draw(garcon_sp);
+					// on dessine les instructions
+					fenetre.Draw(text);
+					// toujours pour actualiser le rendu (et en fin de boucle surtout) !
+					// # deplacement du Sprite
+		}
 		fenetre.Display();
 
 	}

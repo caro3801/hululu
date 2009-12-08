@@ -124,7 +124,7 @@ void Person2D::walk(moveDirection direction, float interval)
 			int lx, ly;
 
 			// on deplace le sprite vers le haut
-			this->Move(0, stepLenght/(nbCaseY)+1);
+			this->Move(0, stepLenght/(nbCaseX)+1);
 
 			// on change la partie visible du sprite
 			if(activeBottomCase == nbCaseX -1) px = 0;
@@ -152,7 +152,7 @@ void Person2D::walk(moveDirection direction, float interval)
 			int lx, ly;
 
 //			// on deplace le sprite vers le haut
-			this->Move(0, stepLenght/(-(nbCaseY)+1));
+			this->Move(0, stepLenght/(-(nbCaseX)+1));
 
 //			// on change la partie visible du sprite
 			if(activeTopCase == nbCaseX -1) px = 0;
