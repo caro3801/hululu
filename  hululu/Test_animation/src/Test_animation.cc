@@ -107,50 +107,50 @@ int main()
 
 		fenetre.Clear(sf::Color(255, 255, 255)); // efface l'ecran
 		if (fenetre.GetInput().IsKeyDown(sf::Key::Space))
-				etape0=false;
+			etape0=false;
 		if(etape0) {
-		sf::String texte("Appuyez sur espace");
-		texte.Move(10, 600);
-		texte.SetColor(sf::Color::Blue);
-		texte.SetSize(25.f);
-		texte.SetFont(MyFont);
-		fenetre.Draw(page);
-		fenetre.Draw(texte);
+			sf::String texte("Appuyez sur espace");
+			texte.Move(10, 600);
+			texte.SetColor(sf::Color::Blue);
+			texte.SetSize(25.f);
+			texte.SetFont(MyFont);
+			fenetre.Draw(page);
+			fenetre.Draw(texte);
 		}
 
 		else  {
-				if( (fenetre.GetInput().IsKeyDown(sf::Key::Left)) or ( garcon_sp.inMoveTo(Person2D::LEFT) ) )
-					garcon_sp.walk(Person2D::LEFT, 750);
+			if( (fenetre.GetInput().IsKeyDown(sf::Key::Left)) or ( garcon_sp.inMoveTo(Person2D::LEFT) ) )
+				garcon_sp.walk(Person2D::LEFT, 750);
 
-				if( (fenetre.GetInput().IsKeyDown(sf::Key::Right)) or ( garcon_sp.inMoveTo(Person2D::RIGHT) ) )
-					garcon_sp.walk(Person2D::RIGHT, 750);
+			if( (fenetre.GetInput().IsKeyDown(sf::Key::Right)) or ( garcon_sp.inMoveTo(Person2D::RIGHT) ) )
+				garcon_sp.walk(Person2D::RIGHT, 750);
 
-				if( (fenetre.GetInput().IsKeyDown(sf::Key::Up)) or ( garcon_sp.inMoveTo(Person2D::TOP) ) )
-					garcon_sp.walk(Person2D::TOP, 750);
+			if( (fenetre.GetInput().IsKeyDown(sf::Key::Up)) or ( garcon_sp.inMoveTo(Person2D::TOP) ) )
+				garcon_sp.walk(Person2D::TOP, 750);
 
-				if( (fenetre.GetInput().IsKeyDown(sf::Key::Down)) or ( garcon_sp.inMoveTo(Person2D::BOTTOM) ) )
-					garcon_sp.walk(Person2D::BOTTOM, 750);
+			if( (fenetre.GetInput().IsKeyDown(sf::Key::Down)) or ( garcon_sp.inMoveTo(Person2D::BOTTOM) ) )
+				garcon_sp.walk(Person2D::BOTTOM, 750);
 
-				// Déplace la vue
-				float Offset = 200.f * fenetre.GetFrameTime();
-				if (fenetre.GetInput().IsKeyDown(sf::Key::Z))    vue.Move( 0,      -Offset);
-				if (fenetre.GetInput().IsKeyDown(sf::Key::S))  vue.Move( 0,       Offset);
-				if (fenetre.GetInput().IsKeyDown(sf::Key::Q))  vue.Move(-Offset,  0);
-				if (fenetre.GetInput().IsKeyDown(sf::Key::D)) vue.Move( Offset,  0);
+			// Déplace la vue
+			float Offset = 200.f * fenetre.GetFrameTime();
+			if (fenetre.GetInput().IsKeyDown(sf::Key::Z))    vue.Move( 0,      -Offset);
+			if (fenetre.GetInput().IsKeyDown(sf::Key::S))  vue.Move( 0,       Offset);
+			if (fenetre.GetInput().IsKeyDown(sf::Key::Q))  vue.Move(-Offset,  0);
+			if (fenetre.GetInput().IsKeyDown(sf::Key::D)) vue.Move( Offset,  0);
 
-				// Zoom sur la vue
-				if (fenetre.GetInput().IsKeyDown(sf::Key::Add))      vue.Zoom(1.001f);
-				if (fenetre.GetInput().IsKeyDown(sf::Key::Subtract)) vue.Zoom(0.999f);
+			// Zoom sur la vue
+			if (fenetre.GetInput().IsKeyDown(sf::Key::Add))      vue.Zoom(1.001f);
+			if (fenetre.GetInput().IsKeyDown(sf::Key::Subtract)) vue.Zoom(0.999f);
 
-				fenetre.Clear(sf::Color(255, 255, 255));
+			fenetre.Clear(sf::Color(255, 255, 255));
 
-					fenetre.Draw(SpriteCarte) ;
-					// on dessine le Sprite sur la fenetre de rendu
-					fenetre.Draw(garcon_sp);
-					// on dessine les instructions
-					fenetre.Draw(text);
-					// toujours pour actualiser le rendu (et en fin de boucle surtout) !
-					// # deplacement du Sprite
+			fenetre.Draw(SpriteCarte) ;
+			// on dessine le Sprite sur la fenetre de rendu
+			fenetre.Draw(garcon_sp);
+			// on dessine les instructions
+			fenetre.Draw(text);
+			// toujours pour actualiser le rendu (et en fin de boucle surtout) !
+			// # deplacement du Sprite
 		}
 		fenetre.Display();
 
