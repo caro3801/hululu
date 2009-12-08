@@ -8,10 +8,7 @@
 #include "Bouton.h"
 
 Bouton::Bouton() {
-	// TODO Auto-generated constructor stub
 
 }
 
-Bouton::~Bouton() {
-	// TODO Auto-generated destructor stub
-}
+
