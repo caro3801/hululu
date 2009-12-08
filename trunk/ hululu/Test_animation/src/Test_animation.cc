@@ -41,12 +41,21 @@ int main()
 	{
 		cout << "Erreur lors du chargement de l'image.";
 	}
+	//image de bouton
+		sf::Image imgbouton;
+		if (!imgbouton.LoadFromFile("Test_animation/img/histoire/bouton_test.png"))
+		{
+			cout << "Erreur lors du chargement de l'image.";
+		}
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	sf::Sprite SpriteCarte(carte);
 	SpriteCarte.SetPosition(0.f, 0.f);
 
 	sf::Sprite page(imgpage);
 	page.SetPosition(0.f, 0.f);
+
+	sf::Sprite bouton(imgbouton);
+	bouton.SetPosition(100.f, 300.f);
 
 	Person2D garcon_sp(50.f, 100.f, 50, 6, 4);
 	garcon_sp.SetColor(sf::Color(255, 255, 255, 255));
@@ -104,18 +113,25 @@ int main()
 				fenetre.Close();
 		}
 
-
 		fenetre.Clear(sf::Color(255, 255, 255)); // efface l'ecran
-		if (fenetre.GetInput().IsKeyDown(sf::Key::Space))
-			etape0=false;
+		//On recupere la position du sprite Bouton
+		int posx = bouton.GetPosition().x ;
+		int posy = bouton.GetPosition().y ;
+
+		if (fenetre.GetInput().IsMouseButtonDown(sf::Mouse::Left) && (fenetre.GetInput().GetMouseX()<=(posx+bouton.GetSize().x)
+				&& fenetre.GetInput().GetMouseX()>=posx) && (fenetre.GetInput().GetMouseY()<=(posy+bouton.GetSize().y)
+						&& fenetre.GetInput().GetMouseY()>=posy)) //Si on clique sur le bouton, on passe a l'étape suivante
+				etape0=false;
+
 		if(etape0) {
-			sf::String texte("Appuyez sur espace");
-			texte.Move(10, 600);
-			texte.SetColor(sf::Color::Blue);
+			sf::String texte("Continuer");
+			texte.Move(posx+10,posy+10);
+			texte.SetColor(sf::Color::White);
 			texte.SetSize(25.f);
-			texte.SetFont(MyFont);
 			fenetre.Draw(page);
+			fenetre.Draw(bouton);
 			fenetre.Draw(texte);
+
 		}
 
 		else  {
