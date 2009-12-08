@@ -73,10 +73,17 @@ int main()
 	fenetre.SetView(vue);
 
 	// les instructions
-	sf::String text("Fleches haut, bas, gauche et droite pour deplacer le personnage,\ntouches + et - pour zoomer,\nQ,D,Z,S pour deplacer la camera.");
+	sf::Font MyFont;
+	if (!MyFont.LoadFromFile("Test_animation/img/font/Cursive_standard.ttf", 50))
+	{
+		cout << "Erreur lors du chargement de la police";
+	}
+
+	sf::String text("Fleches haut, bas, gauche et droite pour deplacer le personnage, touches plus et moins pour \nzoomer. Q, D, Z, S pour deplacer la camera.");
 	text.Move(10, 600);
 	text.SetColor(sf::Color::Blue);
 	text.SetSize(25.f);
+	text.SetFont(MyFont);
 
 	// Pour que le programme ne se termine pas :)
 	sf::Event event;
