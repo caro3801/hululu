@@ -119,7 +119,7 @@ int main()
         if (fenetre.GetInput().IsKeyDown(sf::Key::Subtract)) vue.Zoom(0.999f);
 
 		// efface l'ecran
-		fenetre.Clear(sf::Color(255, 255, 255));
+		//fenetre.Clear(sf::Color(255, 255, 255));
 		fenetre.Draw(SpriteCarte) ;
 		// on dessine le Sprite sur la fenetre de rendu
 		fenetre.Draw(garcon_sp);
