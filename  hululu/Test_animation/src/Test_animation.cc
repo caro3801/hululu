@@ -15,12 +15,13 @@ using namespace std;
 
 #include "Person2D.h"
 #include "Bouton.h"
-
+				//( penser a mettre des .0f pour les floats)
 int main()
 {
 	bool etape0=true; //etape1 definit l'etape de la mapemonde, plus tard sera defini dans la classe Etape
 	//sf::RenderWindow fenetre(sf::VideoMode::GetMode(0), "Test animation personnage", sf::Style::Fullscreen);
 	sf::RenderWindow fenetre(sf::VideoMode(900, 687, 32),  "Test animation personnage");
+	fenetre.SetFramerateLimit(60); //limite la génération d'images a 60/s
 
 	//IMAGES/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -43,18 +44,19 @@ int main()
 		cout << "Erreur lors du chargement de l'image.";
 	}
 	//image de bouton normal
-		sf::Image imgbouton_n;
-		if (!imgbouton_n.LoadFromFile("Test_animation/img/histoire/bouton_n.png"))
-		{
-			cout << "Erreur lors du chargement de l'image.";
-		}
+	sf::Image imgbouton_n;
+	if (!imgbouton_n.LoadFromFile("Test_animation/img/histoire/bouton_n.png"))
+	{
+		cout << "Erreur lors du chargement de l'image.";
+	}
 	//image de bouton focus
-		sf::Image imgbouton;
-		if (!imgbouton.LoadFromFile("Test_animation/img/histoire/bouton_f.png"))
-		{
-			cout << "Erreur lors du chargement de l'image.";
-		}
+	sf::Image imgbouton;
+	if (!imgbouton.LoadFromFile("Test_animation/img/histoire/bouton_f.png"))
+	{
+		cout << "Erreur lors du chargement de l'image.";
+	}
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 	sf::Sprite SpriteCarte(carte);
 	SpriteCarte.SetPosition(0.f, 0.f);
 
@@ -97,11 +99,20 @@ int main()
 		cout << "Erreur lors du chargement de la police";
 	}
 
-	sf::String text("Fleches haut, bas, gauche et droite pour deplacer le personnage, touches plus et moins pour \nzoomer. Q, D, Z, S pour deplacer la camera.");
+	sf::String text("Fleches haut, bas, gauche et droite pour deplacer le personnage, touches plus et moins pour \nzoomer. "
+			"Q, D, Z, S pour deplacer la camera.");
 	text.Move(10, 600);
 	text.SetColor(sf::Color::Blue);
 	text.SetSize(25.f);
 	text.SetFont(MyFont);
+
+	sf::String texte("Continuer");
+	texte.SetColor(sf::Color::White);
+	texte.SetSize(25.f);
+
+	bouton.setPosition(100,200);
+	bouton.initBouton(&imgbouton_n, &imgbouton);
+	bouton.placerTexte(&texte);
 
 	// Pour que le programme ne se termine pas :)
 	sf::Event event;
@@ -113,40 +124,38 @@ int main()
 			// si echap ou fermeture manuelle
 			if (event.Type == sf::Event::Closed)
 				fenetre.Close();
-
-			if (event.Key.Code == sf::Key::Escape)
-				fenetre.Close();
+			//Au lieu de :
+			//if (event.Key.Code == sf::Key::Escape) il faut faire :
+			 if (event.Type==sf::Event::KeyReleased && event.Key.Code == sf::Key::Escape)
+				 //sinon, la valeur est completement aléatoire et n'a aucun sens, résultat la fenetre se ferme de maniere aléatoire !
+				 //(en bougeant la souris, etc..)
+							fenetre.Close();
 		}
 
 		fenetre.Clear(sf::Color(255, 255, 255)); // efface l'ecran
-		bouton.setPosition(100,200);
-		bouton.initBouton(&imgbouton_n, &imgbouton);
+
 
 		if(bouton.estClique(&fenetre))
 			etape0=false;
 
 		if(etape0) {
-			sf::String texte("Continuer");
-			texte.SetColor(sf::Color::White);
-			texte.SetSize(25.f);
 			fenetre.Draw(page);
-			bouton.focus(&fenetre);
-			bouton.placerTexte(&texte);
+			bouton.drawMe(&fenetre);
 			fenetre.Draw(texte);
 
 		}
 
 		else  {
-			if( (fenetre.GetInput().IsKeyDown(sf::Key::Left)) or ( garcon_sp.inMoveTo(Person2D::LEFT) ) )
+			if( (fenetre.GetInput().IsKeyDown(sf::Key::Left)) || ( garcon_sp.inMoveTo(Person2D::LEFT) ) )
 				garcon_sp.walk(Person2D::LEFT, 750);
 
-			if( (fenetre.GetInput().IsKeyDown(sf::Key::Right)) or ( garcon_sp.inMoveTo(Person2D::RIGHT) ) )
+			if( (fenetre.GetInput().IsKeyDown(sf::Key::Right)) || ( garcon_sp.inMoveTo(Person2D::RIGHT) ) )
 				garcon_sp.walk(Person2D::RIGHT, 750);
 
-			if( (fenetre.GetInput().IsKeyDown(sf::Key::Up)) or ( garcon_sp.inMoveTo(Person2D::TOP) ) )
+			if( (fenetre.GetInput().IsKeyDown(sf::Key::Up)) || ( garcon_sp.inMoveTo(Person2D::TOP) ) )
 				garcon_sp.walk(Person2D::TOP, 750);
 
-			if( (fenetre.GetInput().IsKeyDown(sf::Key::Down)) or ( garcon_sp.inMoveTo(Person2D::BOTTOM) ) )
+			if( (fenetre.GetInput().IsKeyDown(sf::Key::Down)) || ( garcon_sp.inMoveTo(Person2D::BOTTOM) ) )
 				garcon_sp.walk(Person2D::BOTTOM, 750);
 
 			// Déplace la vue
