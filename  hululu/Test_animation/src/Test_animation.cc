@@ -44,13 +44,13 @@ int main()
 	}
 	//image de bouton normal
 		sf::Image imgbouton_n;
-		if (!imgbouton_n.LoadFromFile("Test_animation/img/histoire/bouton_normal.png"))
+		if (!imgbouton_n.LoadFromFile("Test_animation/img/histoire/bouton_n.png"))
 		{
 			cout << "Erreur lors du chargement de l'image.";
 		}
 	//image de bouton focus
 		sf::Image imgbouton;
-		if (!imgbouton.LoadFromFile("Test_animation/img/histoire/bouton.png"))
+		if (!imgbouton.LoadFromFile("Test_animation/img/histoire/bouton_f.png"))
 		{
 			cout << "Erreur lors du chargement de l'image.";
 		}
@@ -120,7 +120,7 @@ int main()
 
 		fenetre.Clear(sf::Color(255, 255, 255)); // efface l'ecran
 		bouton.setPosition(100,200);
-		bouton.initBouton(imgbouton_n, imgbouton);
+		bouton.initBouton(&imgbouton_n, &imgbouton);
 
 		if(bouton.estClique(&fenetre))
 			etape0=false;
@@ -130,9 +130,8 @@ int main()
 			texte.SetColor(sf::Color::White);
 			texte.SetSize(25.f);
 			fenetre.Draw(page);
-			bouton.placerTexte(texte);
 			bouton.focus(&fenetre);
-
+			bouton.placerTexte(&texte);
 		}
 
 		else  {
