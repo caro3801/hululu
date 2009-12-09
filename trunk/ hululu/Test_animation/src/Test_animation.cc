@@ -119,6 +119,9 @@ int main()
 		}
 
 		fenetre.Clear(sf::Color(255, 255, 255)); // efface l'ecran
+		bouton.setPosition(100,200);
+		bouton.initBouton(imgbouton_n, imgbouton);
+
 		if(bouton.estClique(&fenetre))
 			etape0=false;
 
