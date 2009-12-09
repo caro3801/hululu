@@ -15,6 +15,9 @@ this->spritef=spritef;
 void Bouton::initBouton(sf::Image* img1, sf::Image* img2) {
 	spriten.SetImage(*img1);
 	spritef.SetImage(*img2);
+	spriten.Resize(200,100);
+	spritef.Resize(200,100);
+
 }
 
 void Bouton::setPosition(float x, float y) {
