@@ -15,19 +15,19 @@ class Bouton : public sf::Sprite
 {
 public:
 	Bouton();
-	void InitBouton(sf::Image img);
-	sf::Sprite CreerSpriteN(sf::Sprite sprite1);
-	sf::Sprite CreerSpriteF(sf::Sprite sprite2);
-	void PlacerTexte(sf::String texte);
-	int getPosX(sf::Sprite sprite1);
-	int getPosY(sf::Sprite sprite1);
-	int getTaille(sf::Sprite sprite1);
-	int setPosY(sf::Sprite sprite2);
-	int setPosX(sf::Sprite sprite2);
+	void initBouton(sf::Image img1, sf::Image img2);
+	void setPosition(float x,float y);
+	inline void placerTexte(sf::String texte) {	texte.SetPosition(getPosY(),getPosX()); }
+	inline float getPosX() { return spriten.GetPosition().x; }
+	inline float getPosY() { return spriten.GetPosition().y; }
+	inline float getTailleX() { return spriten.GetSize().x; }
+	inline float getTailleY() { return spriten.GetSize().y; }
+	bool estClique(sf::RenderWindow* fenetre);
+	void focus(sf::RenderWindow* fenetre);
 
 private:
 
-	sf::Sprite sprite1 ;
-	sf::Sprite sprite2 ;
+	sf::Sprite spriten ;
+	sf::Sprite spritef ;
 };
 #endif /* BOUTON_H_ */
