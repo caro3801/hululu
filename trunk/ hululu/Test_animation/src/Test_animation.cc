@@ -127,11 +127,11 @@ int main()
 
 		if(etape0) {
 			sf::String texte("Continuer");
-			texte.SetColor(sf::Color::White);
-			texte.SetSize(25.f);
 			fenetre.Draw(page);
 			bouton.focus(&fenetre);
 			bouton.placerTexte(&texte);
+			texte.SetColor(sf::Color::White);
+			texte.SetSize(25.f);
 		}
 
 		else  {
