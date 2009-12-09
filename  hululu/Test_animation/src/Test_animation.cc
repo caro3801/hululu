@@ -14,6 +14,7 @@ using namespace std;
 #include <SFML/Graphics.hpp>
 
 #include "Person2D.h"
+#include "Bouton.h"
 
 int main()
 {
@@ -41,9 +42,15 @@ int main()
 	{
 		cout << "Erreur lors du chargement de l'image.";
 	}
-	//image de bouton
+	//image de bouton normal
+		sf::Image imgbouton_n;
+		if (!imgbouton_n.LoadFromFile("Test_animation/img/histoire/bouton_normal.png"))
+		{
+			cout << "Erreur lors du chargement de l'image.";
+		}
+	//image de bouton focus
 		sf::Image imgbouton;
-		if (!imgbouton.LoadFromFile("Test_animation/img/histoire/bouton_test.png"))
+		if (!imgbouton.LoadFromFile("Test_animation/img/histoire/bouton.png"))
 		{
 			cout << "Erreur lors du chargement de l'image.";
 		}
@@ -54,9 +61,7 @@ int main()
 	sf::Sprite page(imgpage);
 	page.SetPosition(0.f, 0.f);
 
-	sf::Sprite bouton(imgbouton);
-	bouton.SetPosition(100.f, 300.f);
-
+	Bouton bouton;
 	Person2D garcon_sp(50.f, 100.f, 50, 6, 4);
 	garcon_sp.SetColor(sf::Color(255, 255, 255, 255));
 
@@ -114,23 +119,16 @@ int main()
 		}
 
 		fenetre.Clear(sf::Color(255, 255, 255)); // efface l'ecran
-		//On recupere la position du sprite Bouton
-		int posx = bouton.GetPosition().x ;
-		int posy = bouton.GetPosition().y ;
-
-		if (fenetre.GetInput().IsMouseButtonDown(sf::Mouse::Left) && (fenetre.GetInput().GetMouseX()<=(posx+bouton.GetSize().x)
-				&& fenetre.GetInput().GetMouseX()>=posx) && (fenetre.GetInput().GetMouseY()<=(posy+bouton.GetSize().y)
-						&& fenetre.GetInput().GetMouseY()>=posy)) //Si on clique sur le bouton, on passe a l'étape suivante
-				etape0=false;
+		if(bouton.estClique(&fenetre))
+			etape0=false;
 
 		if(etape0) {
 			sf::String texte("Continuer");
-			texte.Move(posx+10,posy+10);
 			texte.SetColor(sf::Color::White);
 			texte.SetSize(25.f);
 			fenetre.Draw(page);
-			fenetre.Draw(bouton);
-			fenetre.Draw(texte);
+			bouton.placerTexte(texte);
+			bouton.focus(&fenetre);
 
 		}
 
