@@ -23,15 +23,15 @@ void Bouton::setPosition(float x, float y) {
 }
 
 void Bouton::focus(sf::RenderWindow* fenetre) {
-	if (((*fenetre).GetInput().GetMouseX()<=(getPosX()+getTailleX()) && (*fenetre).GetInput().GetMouseX()>=getPosX())
-			&& ((*fenetre).GetInput().GetMouseY()<=(getPosY()+getTailleY()) && (*fenetre).GetInput().GetMouseY()>=getPosY()))
+	if ((fenetre->GetInput().GetMouseX()<=(getPosX()+getTailleX()) && fenetre->GetInput().GetMouseX()>=getPosX())
+			&& (fenetre->GetInput().GetMouseY()<=(getPosY()+getTailleY()) && fenetre->GetInput().GetMouseY()>=getPosY()))
 	fenetre->Draw(spritef);
 	else
 	fenetre->Draw(spriten);
 }
 
 bool Bouton::estClique(sf::RenderWindow* fenetre) {
-	return ((*fenetre).GetInput().IsMouseButtonDown(sf::Mouse::Left) && (fenetre->GetInput().GetMouseX()<=(getPosX()+getTailleX()) && fenetre->GetInput().GetMouseX()>=getPosX())
+	return (fenetre->GetInput().IsMouseButtonDown(sf::Mouse::Left) && (fenetre->GetInput().GetMouseX()<=(getPosX()+getTailleX()) && fenetre->GetInput().GetMouseX()>=getPosX())
 			&& (fenetre->GetInput().GetMouseY()<=(getPosY()+getTailleY()) && fenetre->GetInput().GetMouseY()>=getPosY()) ) ;
 }
 
