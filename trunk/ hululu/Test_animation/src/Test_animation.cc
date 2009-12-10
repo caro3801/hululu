@@ -15,10 +15,14 @@ using namespace std;
 
 #include "Person2D.h"
 #include "Bouton.h"
+#include "JeuPerou.h"
+
 				//( penser a mettre des .0f pour les floats)
 int main()
 {
 	bool etape0=true; //etape1 definit l'etape de la mapemonde, plus tard sera defini dans la classe Etape
+	bool etape1=false;
+
 	//sf::RenderWindow fenetre(sf::VideoMode::GetMode(0), "Test animation personnage", sf::Style::Fullscreen);
 	sf::RenderWindow fenetre(sf::VideoMode(900, 687, 32),  "Test animation personnage");
 	fenetre.SetFramerateLimit(60); //limite la génération d'images a 60/s
@@ -55,15 +59,23 @@ int main()
 	{
 		cout << "Erreur lors du chargement de l'image.";
 	}
+	//image de jeu Perou
+	sf::Image fondPerou;
+	if (!fondPerou.LoadFromFile("Test_animation/img/histoire/fondJeuPerou.png"))
+	{
+		cout << "Erreur lors du chargement de l'image.";
+	}
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 	sf::Sprite SpriteCarte(carte);
 	SpriteCarte.SetPosition(0.f, 0.f);
 
+
 	sf::Sprite page(imgpage);
 	page.SetPosition(0.f, 0.f);
 
 	Bouton bouton;
+	JeuPerou perou;
 	Person2D garcon_sp(50.f, 100.f, 50, 6, 4);
 	garcon_sp.SetColor(sf::Color(255, 255, 255, 255));
 
@@ -134,18 +146,17 @@ int main()
 
 		fenetre.Clear(sf::Color(255, 255, 255)); // efface l'ecran
 
-
-		if(bouton.estClique(&fenetre))
-			etape0=false;
-
-		if(etape0) {
+		if(etape0==true) {
 			fenetre.Draw(page);
 			bouton.drawMe(&fenetre);
 			fenetre.Draw(texte);
-
+			if(bouton.estClique(&fenetre)) {
+						etape0=false;
+					    etape1=true;
+					}
 		}
 
-		else  {
+		else if(etape1==true)  {
 			if( (fenetre.GetInput().IsKeyDown(sf::Key::Left)) || ( garcon_sp.inMoveTo(Person2D::LEFT) ) )
 				garcon_sp.walk(Person2D::LEFT, 750);
 
@@ -178,7 +189,18 @@ int main()
 			fenetre.Draw(text);
 			// toujours pour actualiser le rendu (et en fin de boucle surtout) !
 			// # deplacement du Sprite
+			if((fenetre.GetInput().IsKeyDown(sf::Key::Space)) && etape1==true) {
+				perou.lancer();
+				etape1=false;
+				etape0=false;
+			}
+			}
+
+		else if(perou.lance()) {
+			fenetre.Clear(sf::Color(255, 255, 255));
+			perou.placerFond(&fenetre,fondPerou);
 		}
+
 		fenetre.Display();
 
 	}
