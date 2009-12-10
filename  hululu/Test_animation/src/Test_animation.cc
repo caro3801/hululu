@@ -23,8 +23,8 @@ int main()
 	bool etape0=true; //etape1 definit l'etape de la mapemonde, plus tard sera defini dans la classe Etape
 	bool etape1=false;
 
-	//sf::RenderWindow fenetre(sf::VideoMode::GetMode(0), "Test animation personnage", sf::Style::Fullscreen);
-	sf::RenderWindow fenetre(sf::VideoMode(900, 687, 32),  "Test animation personnage");
+	sf::RenderWindow fenetre(sf::VideoMode::GetMode(0), "Test animation personnage", sf::Style::Fullscreen);
+	//sf::RenderWindow fenetre(sf::VideoMode(900, 687, 32),  "Test animation personnage");
 	fenetre.SetFramerateLimit(60); //limite la génération d'images a 60/s
 
 	//IMAGES/////////////////////////////////////////////////////////////////////////////////////////////////////////////////

@@ -70,8 +70,13 @@ void Person2D::walk(moveDirection direction, float interval)
 			int px = activeLeftCase * widthCase, py;
 			int lx, ly;
 
-			// on deplace le sprite vers la gauche
-			this->Move(-stepLenght / (nbCaseX+1), 0);
+			// on deplace le sprite vers la droite
+			this->Move(- floor(stepLenght/(nbCaseX)), 0);
+
+			// correctif (les pixels n'aiment pas les flotans)
+			if( (stepLenght/(nbCaseX)%nbCaseX != 0) // nombre impair de mouvement
+			and (activeRightCase == nbCaseX - 1) ) // dernier mouvement
+				this->Move(- (stepLenght/(nbCaseX)%nbCaseX), 0);
 
 			// on change la partie visible du sprite
 			if(activeLeftCase == nbCaseX -1) px = 0;
@@ -93,15 +98,19 @@ void Person2D::walk(moveDirection direction, float interval)
 	{
 		if(activeRightCase < nbCaseX)
 		{
-
 			int px  = activeRightCase * widthCase, py;
 			int lx, ly;
 
 			// on deplace le sprite vers la droite
-			this->Move(stepLenght/ (nbCaseX+1), 0);
+			this->Move(floor(stepLenght/(nbCaseX)), 0);
+
+			// correctif (les pixels n'aiment pas les flotans)
+			if( (stepLenght/(nbCaseX)%nbCaseX != 0) // nombre impair de mouvement
+			and (activeRightCase == nbCaseX - 1) ) // dernier mouvement
+				this->Move((stepLenght/(nbCaseX)%nbCaseX), 0);
 
 			// on change la partie visible du sprite
-			if(activeRightCase == nbCaseX -1) px = 0;
+			if(activeRightCase == nbCaseX - 1) px = 0;
 			else px += widthCase;
 			lx = px + widthCase;
 
@@ -124,7 +133,12 @@ void Person2D::walk(moveDirection direction, float interval)
 			int lx, ly;
 
 			// on deplace le sprite vers le haut
-			this->Move(0, stepLenght/(nbCaseX)+1);
+			this->Move(0, floor(stepLenght/(nbCaseX)));
+
+			// correctif (les pixels n'aiment pas les flotans)
+			if( (stepLenght/(nbCaseX)%nbCaseX != 0) // nombre impair de mouvement
+			and (activeRightCase == nbCaseX - 1) ) // dernier mouvement
+				this->Move(0, (stepLenght/(nbCaseX)%nbCaseX));
 
 			// on change la partie visible du sprite
 			if(activeBottomCase == nbCaseX -1) px = 0;
@@ -151,8 +165,13 @@ void Person2D::walk(moveDirection direction, float interval)
 			int px  = activeTopCase * widthCase, py;
 			int lx, ly;
 
-//			// on deplace le sprite vers le haut
-			this->Move(0, stepLenght/(-(nbCaseX)+1));
+			// on deplace le sprite vers le bas
+			this->Move(0,- floor(stepLenght/(nbCaseX)));
+
+			// correctif (les pixels n'aiment pas les flotans)
+			if( (stepLenght/(nbCaseX)%nbCaseX != 0) // nombre impair de mouvement
+			and (activeRightCase == nbCaseX - 1) ) // dernier mouvement
+				this->Move(0,- (stepLenght/(nbCaseX)%nbCaseX));
 
 //			// on change la partie visible du sprite
 			if(activeTopCase == nbCaseX -1) px = 0;
