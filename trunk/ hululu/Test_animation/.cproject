@@ -71,11 +71,8 @@
 </tool>
 </toolChain>
 </folderInfo>
-<fileInfo id="cdt.managedbuild.config.gnu.exe.debug.91049304.849055785" name="Person2D.cpp" rcbsApplicability="disable" resourcePath="src/Person2D.cpp" toolsToInvoke="cdt.managedbuild.tool.gnu.cpp.compiler.exe.debug.1098993652.1403683307">
-<tool id="cdt.managedbuild.tool.gnu.cpp.compiler.exe.debug.1098993652.1403683307" name="GCC C++ Compiler" superClass="cdt.managedbuild.tool.gnu.cpp.compiler.exe.debug.1098993652"/>
-</fileInfo>
 <sourceEntries>
-<entry flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name=""/>
+<entry excluding="src/Test_animation.cc" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name=""/>
 </sourceEntries>
 </configuration>
 </storageModule>
@@ -732,20 +729,12 @@
 </folderInfo>
 <fileInfo id="cdt.managedbuild.config.gnu.exe.release.1911883474.32798783" name="Person2D.cpp" rcbsApplicability="disable" resourcePath="src/Person2D.cpp" toolsToInvoke="cdt.managedbuild.tool.gnu.cpp.compiler.exe.release.1941334128.1796008695">
 <tool id="cdt.managedbuild.tool.gnu.cpp.compiler.exe.release.1941334128.1796008695" name="GCC C++ Compiler" superClass="cdt.managedbuild.tool.gnu.cpp.compiler.exe.release.1941334128">
-<option id="gnu.cpp.compiler.option.include.paths.1539481485" superClass="gnu.cpp.compiler.option.include.paths" valueType="includePath"/>
+<option id="gnu.cpp.compiler.option.include.paths.1539481485" name="Include paths (-I)" superClass="gnu.cpp.compiler.option.include.paths"/>
 <inputType id="cdt.managedbuild.tool.gnu.cpp.compiler.input.84903490" superClass="cdt.managedbuild.tool.gnu.cpp.compiler.input"/>
 </tool>
 </fileInfo>
-<fileInfo id="cdt.managedbuild.config.gnu.exe.release.1911883474.293929407" name="Test_animation.cpp" rcbsApplicability="disable" resourcePath="src/Test_animation.cpp" toolsToInvoke="cdt.managedbuild.tool.gnu.cpp.compiler.exe.release.1941334128.822162608">
-<tool id="cdt.managedbuild.tool.gnu.cpp.compiler.exe.release.1941334128.822162608" name="GCC C++ Compiler" superClass="cdt.managedbuild.tool.gnu.cpp.compiler.exe.release.1941334128">
-<option id="gnu.cpp.compiler.option.include.paths.625960372" name="Include paths (-I)" superClass="gnu.cpp.compiler.option.include.paths" valueType="includePath">
-<listOptionValue builtIn="false" value="sfml-system"/>
-</option>
-<inputType id="cdt.managedbuild.tool.gnu.cpp.compiler.input.1503558509" superClass="cdt.managedbuild.tool.gnu.cpp.compiler.input"/>
-</tool>
-</fileInfo>
 <sourceEntries>
-<entry flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name=""/>
+<entry excluding="src/Test_animation.cc" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name=""/>
 </sourceEntries>
 </configuration>
 </storageModule>
