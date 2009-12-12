@@ -43,6 +43,20 @@ int main(int argc, char** argv)
     tabEcrans.push_back (&ecran0);
     Mapmonde ecran1;
     tabEcrans.push_back (&ecran1);
+//    Canada ecran2;
+//    tabEcrans.push_back (&ecran2);
+//    Italie ecran3;
+//    tabEcrans.push_back (&ecran3);
+//    Japon ecran4;
+//    tabEcrans.push_back (&ecran4);
+//    Perou ecran5;
+//    tabEcrans.push_back (&ecran5);
+//    Tanzanie ecran6;
+//    tabEcrans.push_back (&ecran6);
+//    Australie ecran7;
+//    tabEcrans.push_back (&ecran7);
+//    Pole ecran8;
+//    tabEcrans.push_back (&ecran8);
 
     // # boucle principale, c'est ici que tt commence...
     while ( ecran >= 0 and fenetre.IsOpened() ) // -1 provoque l'arrêt du programme

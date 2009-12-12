@@ -21,7 +21,8 @@ using namespace std;
 int Mapmonde::run(sf::RenderWindow &fenetre)
 {
 	int ecranSuivant = 1; // par défault, celui de l'écran actif
-	bool col = false;
+	bool colj, colt, colc, colp, coli, colpo, cola = false; //Pour gerer les collisions de
+															//chaque pays
 	//IMAGES/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 	// # image garçon
@@ -41,7 +42,7 @@ int Mapmonde::run(sf::RenderWindow &fenetre)
 
 	// # image de position de pays actif
 		sf::Image imgmp_a;
-		if (!imgmp_a.LoadFromFile("le_voyage_de_barbulle/img/histoire/marque_pays_actif.png"))
+		if (!imgmp_a.LoadFromFile("le_voyage_de_barbulle/img/histoire/marque_pays_a.png"))
 			cerr << "Erreur lors du chargement de l'image.";
 
 	// SPRITES/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -68,16 +69,68 @@ int Mapmonde::run(sf::RenderWindow &fenetre)
 	sf::Sprite SpriteCarte(carte);
 	SpriteCarte.SetPosition(0.f, 0.f);
 	SpriteCarte.Resize(fenetre.GetWidth(), fenetre.GetHeight());
+	// # image de marque pays canada non actif
+	sf::Sprite canada_na(imgmp_na);
+	canada_na.SetPosition(((70*SpriteCarte.GetSize().x)/1000),((146*SpriteCarte.GetSize().y)/650));
+	//canada_na.Resize(30,30);
+	// # image de marque pays canada actif
+	sf::Sprite canada_a(imgmp_a);
+	canada_a.SetPosition(((70*SpriteCarte.GetSize().x)/1000),((146*SpriteCarte.GetSize().y)/650));
+	//canada_a.Resize(30,30);
 
-	// # image de marque pays non actif
-		sf::Sprite mp_na(imgmp_na);
-		mp_na.SetPosition(200.f,200.f);
-		mp_na.Resize(30,30);
+	// # image de marque pays japon non actif
+	sf::Sprite japon_na(imgmp_na);
+	japon_na.SetPosition(((840*SpriteCarte.GetSize().x)/1000),((170*SpriteCarte.GetSize().y)/650));
+	//japon_na.Resize(30,30);
+	// # image de marque pays japon actif
+	sf::Sprite japon_a(imgmp_a);
+	japon_a.SetPosition(((840*SpriteCarte.GetSize().x)/1000),((170*SpriteCarte.GetSize().y)/650));
+	//japon_a.Resize(30,30);
 
-	// # image de marque pays actif
-		sf::Sprite mp_a(imgmp_a);
-		mp_a.SetPosition(200.f,200.f);
-		mp_a.Resize(30,30);
+	// # image de marque pays tanzanie non actif
+	sf::Sprite tanzanie_na(imgmp_na);
+	tanzanie_na.SetPosition(((519*SpriteCarte.GetSize().x)/1000),((405*SpriteCarte.GetSize().y)/650));
+	//tanzanie_na.Resize(30,30);
+	// # image de marque pays tanzanie actif
+	sf::Sprite tanzanie_a(imgmp_a);
+	tanzanie_a.SetPosition(((519*SpriteCarte.GetSize().x)/1000),((405*SpriteCarte.GetSize().y)/650));
+	//tanzanie_a.Resize(30,30);
+
+	// # image de marque pays australie non actif
+	sf::Sprite australie_na(imgmp_na);
+	australie_na.SetPosition(((878*SpriteCarte.GetSize().x)/1000),((485*SpriteCarte.GetSize().y)/650));
+	//australie_na.Resize(30,30);
+	// # image de marque pays australie actif
+	sf::Sprite australie_a(imgmp_a);
+	australie_a.SetPosition(((878*SpriteCarte.GetSize().x)/1000),((485*SpriteCarte.GetSize().y)/650));
+	//australie_a.Resize(30,30);
+
+	// # image de marque pays perou non actif
+	sf::Sprite perou_na(imgmp_na);
+	perou_na.SetPosition(((151*SpriteCarte.GetSize().x)/1000),((369*SpriteCarte.GetSize().y)/650));
+	//perou_na.Resize(30,30);
+	// # image de marque pays perou actif
+	sf::Sprite perou_a(imgmp_a);
+	perou_a.SetPosition(((151*SpriteCarte.GetSize().x)/1000),((369*SpriteCarte.GetSize().y)/650));
+	//perou_a.Resize(30,30);
+
+	// # image de marque pays  italie non actif
+	sf::Sprite italie_na(imgmp_na);
+	italie_na.SetPosition(((475*SpriteCarte.GetSize().x)/1000),((175*SpriteCarte.GetSize().y)/650));
+	//italie_na.Resize(30,30);
+	// # image de marque pays  italie actif
+	sf::Sprite italie_a(imgmp_a);
+	italie_a.SetPosition(((475*SpriteCarte.GetSize().x)/1000),((175*SpriteCarte.GetSize().y)/650));
+	//italie_a.Resize(30,30);
+
+	// # image de marque pays pole non actif
+	sf::Sprite pole_na(imgmp_na);
+	pole_na.SetPosition(((619*SpriteCarte.GetSize().x)/1000),((597*SpriteCarte.GetSize().y)/650));
+	//pole_na.Resize(30,30);
+	// # image de marque pays pole actif
+	sf::Sprite pole_a(imgmp_a);
+	pole_a.SetPosition(((619*SpriteCarte.GetSize().x)/1000),((597*SpriteCarte.GetSize().y)/650));
+	//pole_a.Resize(30,30);
 
 	// FONT/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	// instruction
@@ -91,11 +144,34 @@ int Mapmonde::run(sf::RenderWindow &fenetre)
 	text.SetSize(25.f);
 	text.SetFont(MyFont);
 
-	sf::String text_collision("Collision!");
-	text_collision.Move(300, 300);
-	text_collision.SetColor(sf::Color::Blue);
-	text_collision.SetSize(25.f);
-	text_collision.SetFont(MyFont);
+	//textes pour chacun des pays
+	sf::String texte_canada("Appuyez sur Entrée pour aller au Canada",MyFont,20.f);
+	texte_canada.Move( (fenetre.GetHeight()/3),(fenetre.GetWidth()/3));
+	texte_canada.SetColor(sf::Color::Blue);
+
+	sf::String texte_perou("Appuyez sur Entrée pour aller au Perou",MyFont,18.f);
+	texte_perou.Move( (fenetre.GetHeight()/3),(fenetre.GetWidth()/3));
+	texte_perou.SetColor(sf::Color::Blue);
+
+	sf::String texte_italie("Appuyez sur Entrée pour aller en Italie",MyFont,18.f);
+	texte_italie.Move( (fenetre.GetHeight()/3),(fenetre.GetWidth()/3));
+	texte_italie.SetColor(sf::Color::Blue);
+
+	sf::String texte_tanzanie("Appuyez sur Entrée pour aller en Tanzanie",MyFont,18.f);
+	texte_tanzanie.Move( (fenetre.GetHeight()/3),(fenetre.GetWidth()/3));
+	texte_tanzanie.SetColor(sf::Color::Blue);
+
+	sf::String texte_pole("Appuyez sur Entrée pour aller en Antarctique",MyFont,18.f);
+	texte_pole.Move( (fenetre.GetHeight()/3),(fenetre.GetWidth()/3));
+	texte_pole.SetColor(sf::Color::Blue);
+
+	sf::String texte_japon("Appuyez sur Entrée pour aller au Japon",MyFont,18.f);
+	texte_japon.Move( (fenetre.GetHeight()/3),(fenetre.GetWidth()/3));
+	texte_japon.SetColor(sf::Color::Blue);
+
+	sf::String texte_australie("Appuyez sur Entrée pour aller en Australie",MyFont,18.f);
+	texte_australie.Move( (fenetre.GetHeight()/3),(fenetre.GetWidth()/3));
+	texte_australie.SetColor(sf::Color::Blue);
 
 	// RENDU/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -109,7 +185,8 @@ int Mapmonde::run(sf::RenderWindow &fenetre)
 	{
 		// EVENEMENTS //////////////////////////////////////////
 		while (fenetre.GetEvent(event)) {
-			// # fermeture de la fenetre
+			// #
+		    // # Instanciation de tous les éc fermeture de la fenetre
 			// si echap ou fermeture manuelle
 			if (event.Type == sf::Event::Closed)
 				fenetre.Close();
@@ -122,32 +199,69 @@ int Mapmonde::run(sf::RenderWindow &fenetre)
 		// # on avance le bonhome vers la droite pour commencer
 		 if( ( garcon_sp.GetPosition().x < 50.f) and not garcon_sp.inMoveTo(Person2D::RIGHT) ) { // initialise le mouvement
 				garcon_sp.walk(Person2D::RIGHT, 450);
-			col=Collision::cercleTest(garcon_sp,mp_na);
+			colj=Collision::cercleTest(garcon_sp,japon_a);
+			colc=Collision::cercleTest(garcon_sp,canada_a);
+			colt=Collision::cercleTest(garcon_sp,tanzanie_a);
+			colp=Collision::cercleTest(garcon_sp,perou_a);
+			cola=Collision::cercleTest(garcon_sp,australie_a);
+			coli=Collision::cercleTest(garcon_sp,italie_a);
+			colpo=Collision::cercleTest(garcon_sp,pole_a);
+
 		 }
 		 else if(garcon_sp.inMoveTo(Person2D::RIGHT)) {// poursuit le mouvement
 				garcon_sp.walk(Person2D::RIGHT, 450);
-			col=Collision::cercleTest(garcon_sp,mp_na);
+				colj=Collision::cercleTest(garcon_sp,japon_a);
+				colc=Collision::cercleTest(garcon_sp,canada_a);
+				colt=Collision::cercleTest(garcon_sp,tanzanie_a);
+				colp=Collision::cercleTest(garcon_sp,perou_a);
+				cola=Collision::cercleTest(garcon_sp,australie_a);
+				coli=Collision::cercleTest(garcon_sp,italie_a);
+				colpo=Collision::cercleTest(garcon_sp,pole_a);
 		 }
 
 
 		if( (fenetre.GetInput().IsKeyDown(sf::Key::Left)) || ( garcon_sp.inMoveTo(Person2D::LEFT) ) ) {
 			garcon_sp.walk(Person2D::LEFT, 450);
-			col=Collision::cercleTest(garcon_sp,mp_na);
+			colj=Collision::cercleTest(garcon_sp,japon_a);
+			colc=Collision::cercleTest(garcon_sp,canada_a);
+			colt=Collision::cercleTest(garcon_sp,tanzanie_a);
+			colp=Collision::cercleTest(garcon_sp,perou_a);
+			cola=Collision::cercleTest(garcon_sp,australie_a);
+			coli=Collision::cercleTest(garcon_sp,italie_a);
+			colpo=Collision::cercleTest(garcon_sp,pole_a);
 		}
 
 		if( (fenetre.GetInput().IsKeyDown(sf::Key::Right)) || ( garcon_sp.inMoveTo(Person2D::RIGHT) ) ) {
 			garcon_sp.walk(Person2D::RIGHT, 450);
-			col=Collision::cercleTest(garcon_sp,mp_na);
+			colj=Collision::cercleTest(garcon_sp,japon_a);
+			colc=Collision::cercleTest(garcon_sp,canada_a);
+			colt=Collision::cercleTest(garcon_sp,tanzanie_a);
+			colp=Collision::cercleTest(garcon_sp,perou_a);
+			cola=Collision::cercleTest(garcon_sp,australie_a);
+			coli=Collision::cercleTest(garcon_sp,italie_a);
+			colpo=Collision::cercleTest(garcon_sp,pole_a);
 		}
 
 		if( (fenetre.GetInput().IsKeyDown(sf::Key::Up)) || ( garcon_sp.inMoveTo(Person2D::TOP) ) ) {
 			garcon_sp.walk(Person2D::TOP, 450) ;
-			col=Collision::cercleTest(garcon_sp,mp_na);
+			colj=Collision::cercleTest(garcon_sp,japon_a);
+			colc=Collision::cercleTest(garcon_sp,canada_a);
+			colt=Collision::cercleTest(garcon_sp,tanzanie_a);
+			colp=Collision::cercleTest(garcon_sp,perou_a);
+			cola=Collision::cercleTest(garcon_sp,australie_a);
+			coli=Collision::cercleTest(garcon_sp,italie_a);
+			colpo=Collision::cercleTest(garcon_sp,pole_a);
 		}
 
 		if( (fenetre.GetInput().IsKeyDown(sf::Key::Down)) || ( garcon_sp.inMoveTo(Person2D::BOTTOM) ) ) {
 			garcon_sp.walk(Person2D::BOTTOM, 450);
-			col=Collision::cercleTest(garcon_sp,mp_na);
+			colj=Collision::cercleTest(garcon_sp,japon_a);
+			colc=Collision::cercleTest(garcon_sp,canada_a);
+			colt=Collision::cercleTest(garcon_sp,tanzanie_a);
+			colp=Collision::cercleTest(garcon_sp,perou_a);
+			cola=Collision::cercleTest(garcon_sp,australie_a);
+			coli=Collision::cercleTest(garcon_sp,italie_a);
+			colpo=Collision::cercleTest(garcon_sp,pole_a);
 		}
 
 
@@ -159,10 +273,56 @@ int Mapmonde::run(sf::RenderWindow &fenetre)
 		// on dessine les instructions
 		fenetre.Draw(text);
 		//On affiche la marque du pays en fonction de si le bonhomme est a coté ou non
-		if(col) fenetre.Draw(mp_a);
-		else	fenetre.Draw(mp_na);
-		// toujours pour actualiser le rendu (et en fin de boucle surtout) !
+		//CANADA
+		if(colc) {
+			fenetre.Draw(canada_a);
+			fenetre.Draw(texte_canada);
+		}
+		else	fenetre.Draw(canada_na);
 
+		//ITALIE
+		if(coli)  {
+			fenetre.Draw(texte_italie);
+			fenetre.Draw(italie_a);
+		}
+		else	fenetre.Draw(italie_na);
+
+		//JAPON
+		if(colj) {
+			fenetre.Draw(texte_japon);
+			fenetre.Draw(japon_a);
+		}
+		else	fenetre.Draw(japon_na);
+
+		//PEROU
+		if(colp) {
+			fenetre.Draw(perou_a);
+			fenetre.Draw(texte_perou);
+		}
+		else	fenetre.Draw(perou_na);
+
+		//TANZANIE
+		if(colt) {
+			fenetre.Draw(tanzanie_a);
+			fenetre.Draw(texte_tanzanie);
+		}
+		else	fenetre.Draw(tanzanie_na);
+
+		//AUSTRALIE
+		if(cola) {
+			fenetre.Draw(australie_a);
+			fenetre.Draw(texte_australie);
+		}
+		else	fenetre.Draw(australie_na);
+
+		//POLE
+		if(colpo) {
+			fenetre.Draw(pole_a);
+			fenetre.Draw(texte_pole);
+		}
+		else	fenetre.Draw(pole_na);
+
+		// toujours pour actualiser le rendu (et en fin de boucle surtout) !
 		fenetre.Display();
 
 	}
