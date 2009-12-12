@@ -15,24 +15,34 @@ using namespace std;
 
 #include "Mapmonde.h"
 #include "Person2D.h"
+#include "Collision.h"
 
 
 int Mapmonde::run(sf::RenderWindow &fenetre)
 {
 	int ecranSuivant = 1; // par défault, celui de l'écran actif
-
+	bool col = false;
 	//IMAGES/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 	// # image garçon
 	sf::Image garcon_img;
-	if (!garcon_img.LoadFromFile("Test_animation/img/sprite/sprite_g_walk_petit.png"))
+	if (!garcon_img.LoadFromFile("le_voyage_de_barbulle/img/sprite/sprite_g_walk_petit.png"))
 		cerr << "Erreur lors du chargement de l'image.";
 
 	// # image de fond
 	sf::Image carte;
-	if (!carte.LoadFromFile("Test_animation/img/sprite/mapemondev02.png"))
+	if (!carte.LoadFromFile("le_voyage_de_barbulle/img/histoire/mapemonde_fond.png"))
 		cerr << "Erreur lors du chargement de l'image.";
 
+	// # image de position de pays non actif
+	sf::Image imgmp_na;
+	if (!imgmp_na.LoadFromFile("le_voyage_de_barbulle/img/histoire/marque_pays.png"))
+		cerr << "Erreur lors du chargement de l'image.";
+
+	// # image de position de pays actif
+		sf::Image imgmp_a;
+		if (!imgmp_a.LoadFromFile("le_voyage_de_barbulle/img/histoire/marque_pays_actif.png"))
+			cerr << "Erreur lors du chargement de l'image.";
 
 	// SPRITES/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -46,9 +56,9 @@ int Mapmonde::run(sf::RenderWindow &fenetre)
 
 	// charge l'image
 	garcon_sp.SetImage(garcon_img); // la taille du personnage dépend de la fenêtre
-	garcon_sp.Resize(fenetre.GetWidth()/3, fenetre.GetHeight()/2); /* on ne redimensione pas avec le même indice
-																    * puisque le sprite à 6 cases en largeur
-																    * et 4 en hauteur */
+	//garcon_sp.Resize(fenetre.GetWidth()/3, fenetre.GetHeight()/2); /* on ne redimensione pas avec le même indice
+																 //   * puisque le sprite à 6 cases en largeur
+																 //   * et 4 en hauteur */
 
 	// clipage du sprite
 	// c-à-d on n'affiche que les partie du sprite qui nous intérèssent
@@ -59,6 +69,15 @@ int Mapmonde::run(sf::RenderWindow &fenetre)
 	SpriteCarte.SetPosition(0.f, 0.f);
 	SpriteCarte.Resize(fenetre.GetWidth(), fenetre.GetHeight());
 
+	// # image de marque pays non actif
+		sf::Sprite mp_na(imgmp_na);
+		mp_na.SetPosition(200.f,200.f);
+		mp_na.Resize(30,30);
+
+	// # image de marque pays actif
+		sf::Sprite mp_a(imgmp_a);
+		mp_a.SetPosition(200.f,200.f);
+		mp_a.Resize(30,30);
 
 	// FONT/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	// instruction
@@ -72,6 +91,12 @@ int Mapmonde::run(sf::RenderWindow &fenetre)
 	text.SetSize(25.f);
 	text.SetFont(MyFont);
 
+	sf::String text_collision("Collision!");
+	text_collision.Move(300, 300);
+	text_collision.SetColor(sf::Color::Blue);
+	text_collision.SetSize(25.f);
+	text_collision.SetFont(MyFont);
+
 	// RENDU/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 	// # création d'une vue sur la fenêtre
@@ -82,33 +107,48 @@ int Mapmonde::run(sf::RenderWindow &fenetre)
 	sf::Event event;
 	while(fenetre.IsOpened())
 	{
-		// ANIMATIONS //////////////////////////////////////////
-		// # on avance le bonhome vers la droite pour commencer
-		 if( ( garcon_sp.GetPosition().x < 50.f) and not garcon_sp.inMoveTo(Person2D::RIGHT) ) // initialise le mouvement
-				garcon_sp.walk(Person2D::RIGHT, 450);
-		 else if(garcon_sp.inMoveTo(Person2D::RIGHT)) // poursuit le mouvement
-				garcon_sp.walk(Person2D::RIGHT, 450);
-
 		// EVENEMENTS //////////////////////////////////////////
-		while (fenetre.GetEvent(event))
+		while (fenetre.GetEvent(event)) {
 			// # fermeture de la fenetre
 			// si echap ou fermeture manuelle
 			if (event.Type == sf::Event::Closed)
 				fenetre.Close();
 			else if (event.Type==sf::Event::KeyReleased && event.Key.Code == sf::Key::Escape)
 				fenetre.Close();
+		}
 
-		if( (fenetre.GetInput().IsKeyDown(sf::Key::Left)) || ( garcon_sp.inMoveTo(Person2D::LEFT) ) )
+
+		// ANIMATIONS //////////////////////////////////////////
+		// # on avance le bonhome vers la droite pour commencer
+		 if( ( garcon_sp.GetPosition().x < 50.f) and not garcon_sp.inMoveTo(Person2D::RIGHT) ) { // initialise le mouvement
+				garcon_sp.walk(Person2D::RIGHT, 450);
+			col=Collision::cercleTest(garcon_sp,mp_na);
+		 }
+		 else if(garcon_sp.inMoveTo(Person2D::RIGHT)) {// poursuit le mouvement
+				garcon_sp.walk(Person2D::RIGHT, 450);
+			col=Collision::cercleTest(garcon_sp,mp_na);
+		 }
+
+
+		if( (fenetre.GetInput().IsKeyDown(sf::Key::Left)) || ( garcon_sp.inMoveTo(Person2D::LEFT) ) ) {
 			garcon_sp.walk(Person2D::LEFT, 450);
+			col=Collision::cercleTest(garcon_sp,mp_na);
+		}
 
-		if( (fenetre.GetInput().IsKeyDown(sf::Key::Right)) || ( garcon_sp.inMoveTo(Person2D::RIGHT) ) )
+		if( (fenetre.GetInput().IsKeyDown(sf::Key::Right)) || ( garcon_sp.inMoveTo(Person2D::RIGHT) ) ) {
 			garcon_sp.walk(Person2D::RIGHT, 450);
+			col=Collision::cercleTest(garcon_sp,mp_na);
+		}
 
-		if( (fenetre.GetInput().IsKeyDown(sf::Key::Up)) || ( garcon_sp.inMoveTo(Person2D::TOP) ) )
-			garcon_sp.walk(Person2D::TOP, 450);
+		if( (fenetre.GetInput().IsKeyDown(sf::Key::Up)) || ( garcon_sp.inMoveTo(Person2D::TOP) ) ) {
+			garcon_sp.walk(Person2D::TOP, 450) ;
+			col=Collision::cercleTest(garcon_sp,mp_na);
+		}
 
-		if( (fenetre.GetInput().IsKeyDown(sf::Key::Down)) || ( garcon_sp.inMoveTo(Person2D::BOTTOM) ) )
+		if( (fenetre.GetInput().IsKeyDown(sf::Key::Down)) || ( garcon_sp.inMoveTo(Person2D::BOTTOM) ) ) {
 			garcon_sp.walk(Person2D::BOTTOM, 450);
+			col=Collision::cercleTest(garcon_sp,mp_na);
+		}
 
 
 		fenetre.Clear(sf::Color(255, 255, 255));
@@ -118,6 +158,9 @@ int Mapmonde::run(sf::RenderWindow &fenetre)
 		fenetre.Draw(garcon_sp);
 		// on dessine les instructions
 		fenetre.Draw(text);
+		//On affiche la marque du pays en fonction de si le bonhomme est a coté ou non
+		if(col) fenetre.Draw(mp_a);
+		else	fenetre.Draw(mp_na);
 		// toujours pour actualiser le rendu (et en fin de boucle surtout) !
 
 		fenetre.Display();
