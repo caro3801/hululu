@@ -31,13 +31,13 @@ int main(int argc, char** argv)
 {
 	// # Vecteur contenant les adresses des variables-écran
 	vector<Ecran*> tabEcrans;
-    int ecran = 1; // ecran en cours (naturellement, on commence par le premier)
+    int ecran = 0; // ecran en cours (naturellement, on commence par le premier)
 
     // # création de la fenêtre
     sf::RenderWindow fenetre(sf::VideoMode::GetMode(0), "Le voyage de Barbule", sf::Style::Fullscreen);
 	fenetre.SetFramerateLimit(60); //limite la génération d'images a 60/s
 
-    // # Instenciation de tous les écrans
+    // # Instanciation de tous les écrans
 	// Le menu principal
     Menu_0 ecran0;
     tabEcrans.push_back (&ecran0);
@@ -47,7 +47,6 @@ int main(int argc, char** argv)
     // # boucle principale, c'est ici que tt commence...
     while ( ecran >= 0 and fenetre.IsOpened() ) // -1 provoque l'arrêt du programme
         ecran = tabEcrans[ecran]->run(fenetre);
-
 
     return 0;
 }
