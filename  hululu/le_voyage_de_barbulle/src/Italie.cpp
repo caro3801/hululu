@@ -6,6 +6,10 @@
  */
 #include <iostream>
 using namespace std;
+// LIB SFML/////////////////////////////
+#include <SFML/System.hpp>
+#include <SFML/Window.hpp>
+#include <SFML/Graphics.hpp>
 
 #include "Italie.h"
 
@@ -63,15 +67,14 @@ int Italie::run(sf::RenderWindow &fenetre) {
 				}
 
 		fenetre.Clear(sf::Color(255, 255, 255));
-
-		if ((fenetre.GetInput().IsKeyDown(sf::Key::Space))) {
-			return (ecranSuivant=1);
-		}
 		fenetre.Draw(fond);
 		fenetre.Draw(texte);
-		fenetre.Display();
 
+		fenetre.Display();
+		if ((fenetre.GetInput().IsKeyDown(sf::Key::Space)))
+			return (ecranSuivant=1);
 	}
+
 	return ecranSuivant;
 
 }
