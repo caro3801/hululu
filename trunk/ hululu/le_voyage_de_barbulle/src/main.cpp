@@ -25,8 +25,8 @@ using namespace std;
 // à chaque écran un numéro (à respecter tout au long du programme)
 #include "Menu_0.h"		// numéro 0
 #include "Mapmonde.h"	// numéro 1
-#include "JeuPerou.h"		// numéro 5
 #include "Italie.h"		//numero 2
+#include "JeuPerou.h"	// numéro 5
 
 // PROCEDURE PRINCIPALE/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 int main(int argc, char** argv)
