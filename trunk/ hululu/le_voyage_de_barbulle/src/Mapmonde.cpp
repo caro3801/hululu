@@ -264,7 +264,7 @@ int Mapmonde::run(sf::RenderWindow &fenetre)
 		}
 
 
-		fenetre.Clear(sf::Color(255, 255, 255));
+	//	fenetre.Clear(sf::Color(255, 255, 255));
 
 		fenetre.Draw(SpriteCarte) ;
 		// on dessine le Sprite sur la fenetre de rendu
