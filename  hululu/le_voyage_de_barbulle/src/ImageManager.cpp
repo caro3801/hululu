@@ -1,7 +1,7 @@
 /*
 * Class ImageManager
 * Manage sf::Image creation for better use of memory
-* @author : Adrian Gaudebert - adrian.gaudebert@gmail.com -found on WIKI SFML
+* @author : Adrian Gaudebert - adrian.gaudebert@gmail.com -found on WIKI SFML // modifications apportées
 */
 
 #include "ImageManager.h"
@@ -24,8 +24,8 @@ ImageManager::~ImageManager()
   for(it = Images.begin(); it != Images.end(); it++)
   {
     delete it->second;
-    Images.erase(it);
   }
+  Images.clear();
 }
 
 /* ------------------------- */

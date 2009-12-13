@@ -16,6 +16,7 @@ using namespace std;
 #include "Mapmonde.h"
 #include "Person2D.h"
 #include "Collision.h"
+#include "Bouton.h"
 
 
 int Mapmonde::run(sf::RenderWindow &fenetre)
@@ -132,6 +133,13 @@ int Mapmonde::run(sf::RenderWindow &fenetre)
 	pole_a.SetPosition(((619*SpriteCarte.GetSize().x)/1000),((597*SpriteCarte.GetSize().y)/650));
 	//pole_a.Resize(30,30);
 
+//	Bouton back_icon;
+//	back_icon.initBouton()
+//	sf::Sprite back_icon ;
+//	back_icon.SetImage(Ecran::MonManager.GetImage("le_voyage_de_barbulle/img/histoire/back_icon.png"));
+//	back_icon.SetPosition((fenetre.GetWidth()-100),(fenetre.GetHeight()-100));
+//	back_icon.Resize(50,50);
+
 	// FONT/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	// instruction
 	sf::Font MyFont;
@@ -198,24 +206,9 @@ int Mapmonde::run(sf::RenderWindow &fenetre)
 		// # on avance le bonhome vers la droite pour commencer
 		 if( ( garcon_sp.GetPosition().x < 50.f) and not garcon_sp.inMoveTo(Person2D::RIGHT) ) { // initialise le mouvement
 				garcon_sp.walk(Person2D::RIGHT, 450);
-			colj=Collision::cercleTest(garcon_sp,japon_a);
-			colc=Collision::cercleTest(garcon_sp,canada_a);
-			colt=Collision::cercleTest(garcon_sp,tanzanie_a);
-			colp=Collision::cercleTest(garcon_sp,perou_a);
-			cola=Collision::cercleTest(garcon_sp,australie_a);
-			coli=Collision::cercleTest(garcon_sp,italie_a);
-			colpo=Collision::cercleTest(garcon_sp,pole_a);
-
 		 }
 		 else if(garcon_sp.inMoveTo(Person2D::RIGHT)) {// poursuit le mouvement
 				garcon_sp.walk(Person2D::RIGHT, 450);
-				colj=Collision::cercleTest(garcon_sp,japon_a);
-				colc=Collision::cercleTest(garcon_sp,canada_a);
-				colt=Collision::cercleTest(garcon_sp,tanzanie_a);
-				colp=Collision::cercleTest(garcon_sp,perou_a);
-				cola=Collision::cercleTest(garcon_sp,australie_a);
-				coli=Collision::cercleTest(garcon_sp,italie_a);
-				colpo=Collision::cercleTest(garcon_sp,pole_a);
 		 }
 
 
@@ -269,6 +262,7 @@ int Mapmonde::run(sf::RenderWindow &fenetre)
 		fenetre.Draw(SpriteCarte) ;
 		// on dessine le Sprite sur la fenetre de rendu
 		fenetre.Draw(garcon_sp);
+		fenetre.Draw(back_icon);
 		// on dessine les instructions
 		fenetre.Draw(text);
 
