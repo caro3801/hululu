@@ -54,7 +54,7 @@ int Menu_0::run(sf::RenderWindow &fenetre)
 
 	// FONT/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	sf::Font MyFont;
-		if (!MyFont.LoadFromFile("Test_animation/img/font/Cursive_standard.ttf", 50))
+		if (!MyFont.LoadFromFile("le_voyage_de_barbulle/img/font/Cursive_standard.ttf", 50))
 		{
 			cout << "Erreur lors du chargement de la police";
 		}

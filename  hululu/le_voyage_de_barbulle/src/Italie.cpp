@@ -26,12 +26,28 @@ int Italie::run(sf::RenderWindow &fenetre) {
 	if (!fond_italie.LoadFromFile("le_voyage_de_barbulle/img/italie/italie_fond.png"))
 		cerr << "Erreur lors du chargement de l'image.";
 
+	// # image de fond
+		sf::Image carte;
+		if (!carte.LoadFromFile("le_voyage_de_barbulle/img/histoire/mapemonde_fond.png"))
+			cerr << "Erreur lors du chargement de l'image.";
+
 	// SPRITES/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 	// # image de fond
 	sf::Sprite fond(fond_italie);
 	fond.SetPosition(0.f, 0.f);
 	fond.Resize(fenetre.GetWidth(), fenetre.GetHeight());
+
+	// FONT/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	sf::Font MyFont;
+		if (!MyFont.LoadFromFile("le_voyage_de_barbulle/img/font/Cursive_standard.ttf", 50))
+		{
+			cout << "Erreur lors du chargement de la police";
+		}
+
+		sf::String texte("Continuer");
+		texte.SetColor(sf::Color::Blue);
+		texte.SetSize(25.f);
 
 	sf::Event event;
 
@@ -46,10 +62,16 @@ int Italie::run(sf::RenderWindow &fenetre) {
 						fenetre.Close();
 				}
 
+		fenetre.Clear(sf::Color(255, 255, 255));
+
+		if ((fenetre.GetInput().IsKeyDown(sf::Key::Space))) {
+			return (ecranSuivant=1);
+		}
 		fenetre.Draw(fond);
+		fenetre.Draw(texte);
 		fenetre.Display();
 
 	}
-	return  ecranSuivant;
+	return ecranSuivant;
 
 }

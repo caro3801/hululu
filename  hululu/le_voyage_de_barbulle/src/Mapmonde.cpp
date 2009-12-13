@@ -135,7 +135,7 @@ int Mapmonde::run(sf::RenderWindow &fenetre)
 	// FONT/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	// instruction
 	sf::Font MyFont;
-	if (!MyFont.LoadFromFile("Test_animation/img/font/Cursive_standard.ttf", 50))
+	if (!MyFont.LoadFromFile("le_voyage_de_barbulle/img/font/Cursive_standard.ttf", 50))
 		cerr << "Erreur lors du chargement de la police";
 
 	sf::String text("Fleches haut, bas, gauche et droite pour deplacer le personnage.");
@@ -287,8 +287,6 @@ int Mapmonde::run(sf::RenderWindow &fenetre)
 			fenetre.Draw(texte_canada);
 		}
 		else	fenetre.Draw(canada_na);
-
-
 
 		//JAPON
 		if(colj) {
