@@ -80,8 +80,6 @@ int Menu_0::run(sf::RenderWindow &fenetre)
 			bouton.placerTexte(&texte);
 
 			fenetre.Clear(sf::Color(255, 255, 255));
-
-
 			fenetre.Draw(page);
 			bouton.drawMe(&fenetre);
 			fenetre.Draw(texte);
