@@ -145,31 +145,31 @@ int Mapmonde::run(sf::RenderWindow &fenetre)
 	text.SetFont(MyFont);
 
 	//textes pour chacun des pays
-	sf::String texte_canada("Appuyez sur Entrée pour aller au Canada",MyFont,20.f);
+	sf::String texte_canada("Appuyez sur Espace pour aller au Canada",MyFont,20.f);
 	texte_canada.Move( (fenetre.GetHeight()/3),(fenetre.GetWidth()/3));
 	texte_canada.SetColor(sf::Color::Blue);
 
-	sf::String texte_perou("Appuyez sur Entrée pour aller au Perou",MyFont,18.f);
+	sf::String texte_perou("Appuyez sur Espace pour aller au Perou",MyFont,18.f);
 	texte_perou.Move( (fenetre.GetHeight()/3),(fenetre.GetWidth()/3));
 	texte_perou.SetColor(sf::Color::Blue);
 
-	sf::String texte_italie("Appuyez sur Entrée pour aller en Italie",MyFont,18.f);
+	sf::String texte_italie("Appuyez sur Espace pour aller en Italie",MyFont,18.f);
 	texte_italie.Move( (fenetre.GetHeight()/3),(fenetre.GetWidth()/3));
 	texte_italie.SetColor(sf::Color::Blue);
 
-	sf::String texte_tanzanie("Appuyez sur Entrée pour aller en Tanzanie",MyFont,18.f);
+	sf::String texte_tanzanie("Appuyez sur Espace pour aller en Tanzanie",MyFont,18.f);
 	texte_tanzanie.Move( (fenetre.GetHeight()/3),(fenetre.GetWidth()/3));
 	texte_tanzanie.SetColor(sf::Color::Blue);
 
-	sf::String texte_pole("Appuyez sur Entrée pour aller en Antarctique",MyFont,18.f);
+	sf::String texte_pole("Appuyez sur Espace pour aller en Antarctique",MyFont,18.f);
 	texte_pole.Move( (fenetre.GetHeight()/3),(fenetre.GetWidth()/3));
 	texte_pole.SetColor(sf::Color::Blue);
 
-	sf::String texte_japon("Appuyez sur Entrée pour aller au Japon",MyFont,18.f);
+	sf::String texte_japon("Appuyez sur Espace pour aller au Japon",MyFont,18.f);
 	texte_japon.Move( (fenetre.GetHeight()/3),(fenetre.GetWidth()/3));
 	texte_japon.SetColor(sf::Color::Blue);
 
-	sf::String texte_australie("Appuyez sur Entrée pour aller en Australie",MyFont,18.f);
+	sf::String texte_australie("Appuyez sur Espace pour aller en Australie",MyFont,18.f);
 	texte_australie.Move( (fenetre.GetHeight()/3),(fenetre.GetWidth()/3));
 	texte_australie.SetColor(sf::Color::Blue);
 
@@ -185,7 +185,6 @@ int Mapmonde::run(sf::RenderWindow &fenetre)
 	{
 		// EVENEMENTS //////////////////////////////////////////
 		while (fenetre.GetEvent(event)) {
-			// #
 		    // # Instanciation de tous les éc fermeture de la fenetre
 			// si echap ou fermeture manuelle
 			if (event.Type == sf::Event::Closed)
@@ -272,7 +271,16 @@ int Mapmonde::run(sf::RenderWindow &fenetre)
 		fenetre.Draw(garcon_sp);
 		// on dessine les instructions
 		fenetre.Draw(text);
-		//On affiche la marque du pays en fonction de si le bonhomme est a coté ou non
+
+		//ITALIE
+		if(coli)  {
+			fenetre.Draw(texte_italie);
+			fenetre.Draw(italie_a);
+			if (fenetre.GetInput().IsKeyDown(sf::Key::Space))
+					return ecranSuivant=2;
+		}
+		else	fenetre.Draw(italie_na);
+
 		//CANADA
 		if(colc) {
 			fenetre.Draw(canada_a);
@@ -280,12 +288,7 @@ int Mapmonde::run(sf::RenderWindow &fenetre)
 		}
 		else	fenetre.Draw(canada_na);
 
-		//ITALIE
-		if(coli)  {
-			fenetre.Draw(texte_italie);
-			fenetre.Draw(italie_a);
-		}
-		else	fenetre.Draw(italie_na);
+
 
 		//JAPON
 		if(colj) {
