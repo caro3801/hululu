@@ -14,13 +14,18 @@
 #include <SFML/System.hpp>
 #include <SFML/Window.hpp>
 #include <SFML/Graphics.hpp>
+#include "ImageManager.h"
 
 class Ecran
 {
 public:
+	Ecran();
 	virtual int run (sf::RenderWindow &fenetre) = 0;
 	// serie d'instructions propres à chaque écran
 	// pas d'implémentation ici
+	inline ImageManager getManager() { return this->MonManager; }
+private:
+	static ImageManager MonManager;
 };
 
 #endif /* ECRAN_H_ */

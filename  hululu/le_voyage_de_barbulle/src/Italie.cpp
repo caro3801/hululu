@@ -11,7 +11,8 @@ using namespace std;
 #include <SFML/System.hpp>
 #include <SFML/Window.hpp>
 #include <SFML/Graphics.hpp>
-
+// WIKI SFML //////////////////////////
+#include  "ImageManager.h"
 #include "Italie.h"
 #include "Bouton.h"
 
@@ -32,15 +33,11 @@ int Italie::run(sf::RenderWindow &fenetre) {
 	if (!fond_italie.LoadFromFile("le_voyage_de_barbulle/img/italie/italie_fond.png"))
 		cerr << "Erreur lors du chargement de l'image.";
 
-	// # image de fond
-		sf::Image carte;
-		if (!carte.LoadFromFile("le_voyage_de_barbulle/img/histoire/mapemonde_fond.png"))
-			cerr << "Erreur lors du chargement de l'image.";
-
 	// SPRITES/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 	// # image de fond
-	sf::Sprite fond(fond_italie);
+	sf::Sprite fond ;
+	fond.SetImage(getManager().GetImage("le_voyage_de_barbulle/img/italie/italie_fond.png"));
 	fond.SetPosition(0.f, 0.f);
 	fond.Resize((fenetre.GetWidth()/3), (fenetre.GetHeight()/3));
 
