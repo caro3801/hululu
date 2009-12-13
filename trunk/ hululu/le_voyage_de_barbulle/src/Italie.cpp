@@ -6,12 +6,14 @@
  */
 #include <iostream>
 using namespace std;
+
 // LIB SFML/////////////////////////////
 #include <SFML/System.hpp>
 #include <SFML/Window.hpp>
 #include <SFML/Graphics.hpp>
 
 #include "Italie.h"
+#include "Bouton.h"
 
 Italie::Italie() {
 }
@@ -40,20 +42,23 @@ int Italie::run(sf::RenderWindow &fenetre) {
 	// # image de fond
 	sf::Sprite fond(fond_italie);
 	fond.SetPosition(0.f, 0.f);
-	fond.Resize(fenetre.GetWidth(), fenetre.GetHeight());
+	fond.Resize((fenetre.GetWidth()/3), (fenetre.GetHeight()/3));
 
 	// FONT/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	sf::Font MyFont;
-		if (!MyFont.LoadFromFile("le_voyage_de_barbulle/img/font/Cursive_standard.ttf", 50))
-		{
-			cout << "Erreur lors du chargement de la police";
-		}
-
-		sf::String texte("Continuer");
+		sf::String texte("Benvenuto in Italia");
 		texte.SetColor(sf::Color::Blue);
 		texte.SetSize(25.f);
+		texte.SetPosition((fenetre.GetWidth()/3), (fenetre.GetHeight()/3));
 
 	sf::Event event;
+
+	// # création d'une vue sur la fenêtre - !! Puisqu'une vue a été créee sur l'ecran précédent (Mapemonde) obligé de recréer une vue
+	//pour toutes les fenetres suivantes, ou images et sprites ne s'affichent pas!
+	//a voir pour trouver une autre solution : suppression vue ? re-definition de la vue par defaut ?
+	//ou on crée une autre vue a chaque fois.
+	sf::View vue(sf::FloatRect(0, 0, fenetre.GetWidth(), fenetre.GetHeight()) );
+	fenetre.SetView(vue);
+	////////////////////////////////
 
 	while(fenetre.IsOpened())
 	{

@@ -188,7 +188,7 @@ int Mapmonde::run(sf::RenderWindow &fenetre)
 		    // # Instanciation de tous les éc fermeture de la fenetre
 			// si echap ou fermeture manuelle
 			if (event.Type == sf::Event::Closed)
-				fenetre.Close();
+				fenetre.Close ();
 			else if (event.Type==sf::Event::KeyReleased && event.Key.Code == sf::Key::Escape)
 				fenetre.Close();
 		}
