@@ -20,11 +20,13 @@ using namespace std;
 #include "Bouton.h"
 #include "Ecran.h"
 
+
 // ECRANS/////////////////////////////
 // à chaque écran un numéro (à respecter tout au long du programme)
 #include "Menu_0.h"		// numéro 0
 #include "Mapmonde.h"	// numéro 1
-#include "JeuPerou.h"		// numéro 2
+#include "JeuPerou.h"		// numéro 5
+#include "Italie.h"		//numero 2
 
 // PROCEDURE PRINCIPALE/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 int main(int argc, char** argv)
@@ -43,9 +45,10 @@ int main(int argc, char** argv)
     tabEcrans.push_back (&ecran0);
     Mapmonde ecran1;
     tabEcrans.push_back (&ecran1);
-//    Canada ecran2;
-//    tabEcrans.push_back (&ecran2);
-//    Italie ecran3;
+    Italie ecran2;
+    tabEcrans.push_back (&ecran2);
+
+//    Canada ecran3;
 //    tabEcrans.push_back (&ecran3);
 //    Japon ecran4;
 //    tabEcrans.push_back (&ecran4);
