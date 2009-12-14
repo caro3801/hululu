@@ -19,7 +19,7 @@ public:
 	void placer(float x,float y);
 	void redimensionner(float x, float y);
 	inline sf::Sprite getSprite() { return spriten; }
-	inline void placerTexte(sf::String* texte) {texte->SetPosition(getPosX()+10.0,getPosY()+10.0); }
+	inline void placerTexte(sf::String* texte) {texte->SetPosition(getPosX()+(getTailleX()/3),getPosY()+(getTailleY()/3)); }
 	inline float getPosX() { return spriten.GetPosition().x; }
 	inline float getPosY() { return spriten.GetPosition().y; }
 	inline float getTailleX() { return spriten.GetSize().x; }
