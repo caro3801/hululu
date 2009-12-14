@@ -22,35 +22,15 @@ using namespace std;
 int Menu_0::run(sf::RenderWindow &fenetre)
 {
 	int ecranSuivant = 0;
-	//IMAGES/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-	//image de bouton normal
-	sf::Image imgbouton_n;
-	if (!imgbouton_n.LoadFromFile("le_voyage_de_barbulle/img/histoire/bouton_n.png"))
-	{
-		cout << "Erreur lors du chargement de l'image.";
-	}
-	//image de bouton focus
-	sf::Image imgbouton;
-	if (!imgbouton.LoadFromFile("le_voyage_de_barbulle/img/histoire/bouton_f.png"))
-	{
-		cout << "Erreur lors du chargement de l'image.";
-	}
+	// SPRITES /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-	//image de fond
-	sf::Image imgpage;
-	if (!imgpage.LoadFromFile("le_voyage_de_barbulle/img/histoire/page1.png"))
-	{
-		cout << "Erreur lors du chargement de l'image.";
-	}
-	// SPRITES/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-	sf::Sprite page(imgpage);
+	sf::Sprite page(Ecran::MonManager.GetImage("le_voyage_de_barbulle/img/histoire/page1.png"));
 	page.SetPosition(0.f, 0.f);
 
 	Bouton bouton;
-	bouton.setPosition(100,200);
-	bouton.initBouton(&imgbouton_n, &imgbouton);
+	bouton.placer(100,200);
+	bouton.initBouton("le_voyage_de_barbulle/img/histoire/bouton_n.png","le_voyage_de_barbulle/img/histoire/bouton_f.png" );
 
 	// FONT/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	sf::Font MyFont;
@@ -64,6 +44,10 @@ int Menu_0::run(sf::RenderWindow &fenetre)
 		texte.SetSize(25.f);
 
 		sf::Event event;
+
+		// # création d'une vue sur la fenêtre
+		sf::View vue(sf::FloatRect(0, 0, fenetre.GetWidth(), fenetre.GetHeight()) );
+		fenetre.SetView(vue);
 
 		//Programme en lui-meme
 		while(fenetre.IsOpened())

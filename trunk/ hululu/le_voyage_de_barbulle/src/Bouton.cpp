@@ -12,15 +12,18 @@ this->spriten=spriten;
 this->spritef=spritef;
 }
 
-void Bouton::initBouton(sf::Image* img1, sf::Image* img2) {
-	spriten.SetImage(*img1);
-	spritef.SetImage(*img2);
-	spriten.Resize(200.0,100.0);
-	spritef.Resize(200.0,100.0);
+void Bouton::initBouton(const std::string &img1, const std::string &img2) {
+	spriten.SetImage(Ecran::MonManager.GetImage(img1));
+	spritef.SetImage(Ecran::MonManager.GetImage(img2));
+
 
 }
+void Bouton::redimensionner(float x, float y) {
+	spriten.Resize(x,y);
+	spritef.Resize(x,y);
+}
 
-void Bouton::setPosition(float x, float y) {
+void Bouton::placer(float x, float y) {
 	spriten.SetPosition(x,y);
 	spritef.SetPosition(x,y);
 }

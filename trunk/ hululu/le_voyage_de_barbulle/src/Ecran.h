@@ -24,8 +24,7 @@ public:
 	virtual int run (sf::RenderWindow &fenetre) = 0;
 	// serie d'instructions propres à chaque écran
 	// pas d'implémentation ici
-	inline ImageManager getManager() { return MonManager; }
-protected:
+	inline ImageManager getManager() { return MonManager; } ;
 	static ImageManager MonManager;
 };
 
