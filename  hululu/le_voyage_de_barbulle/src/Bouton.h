@@ -7,7 +7,7 @@
 #include <SFML/System.hpp>
 #include <SFML/Window.hpp>
 #include <SFML/Graphics.hpp>
-
+#include "Ecran.h"
 #ifndef BOUTON_H_
 #define BOUTON_H_
 
@@ -15,8 +15,9 @@ class Bouton : public sf::Sprite
 {
 public:
 	Bouton();
-	void initBouton(sf::Image* img1, sf::Image* img2);
-	void setPosition(float x,float y);
+	void initBouton(const std::string &img1,const std::string &img2);
+	void placer(float x,float y);
+	void redimensionner(float x, float y);
 	inline sf::Sprite getSprite() { return spriten; }
 	inline void placerTexte(sf::String* texte) {texte->SetPosition(getPosX()+10.0,getPosY()+10.0); }
 	inline float getPosX() { return spriten.GetPosition().x; }
