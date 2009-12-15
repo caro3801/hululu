@@ -15,7 +15,7 @@ using namespace std;
 
 #include "Person2D.h"
 
-Person2D::Person2D(const float widthCase, const float heightCase, const int stepLenght, const int nbCaseX, const int nbCaseY, const canGoOut)
+Person2D::Person2D(const float widthCase, const float heightCase, const int stepLenght, const int nbCaseX, const int nbCaseY)
 {
 	this->widthCase = widthCase;
 	this->heightCase = heightCase;
@@ -34,7 +34,7 @@ Person2D::Person2D(const float widthCase, const float heightCase, const int step
 	this->canGoOut = canGoOut;
 }
 
-void Person2D::create(const float widthCase, const float heightCase, const int stepLenght, const int nbCaseX, const int nbCaseY, const int canGoOut)
+void Person2D::create(const float widthCase, const float heightCase, const int stepLenght, const int nbCaseX, const int nbCaseY)
 {
 	this->widthCase = widthCase;
 	this->heightCase = heightCase;
@@ -63,18 +63,18 @@ void Person2D::initClip()
 	this->SetSubRect(sf::IntRect(0, heightCase*2, widthCase, heightCase*3));
 }
 
-void Person2D::allowToMove()
-{
-	return (canGoOut and GetPosition().x );
-}
+//void Person2D::allowToMove()
+//{
+//	return (canGoOut and GetPosition().x );
+//}
 void Person2D::walk(moveDirection direction, float interval)
 {
-	if(!allowToMove(moveDirection direction))
-	{
+	//if(!allowToMove(moveDirection direction))
+	//{
 
-	}
-	else
-	{
+	//}
+	//else
+	//{
 
 
 		if( (direction == LEFT) && ( readyToMove(interval) ) )
@@ -204,7 +204,7 @@ void Person2D::walk(moveDirection direction, float interval)
 			else activeTopCase = 0;
 		}
 	}
-}
+//}
 
 bool Person2D::inMoveTo(moveDirection direction)
 {

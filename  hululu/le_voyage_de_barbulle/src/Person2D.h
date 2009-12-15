@@ -23,9 +23,9 @@ class Person2D : public sf::Sprite
 		// directions possibles
 		enum moveDirection {LEFT,RIGHT,TOP,BOTTOM};
 
-		Person2D(const float widthCase=0.f, const float heightCase=0.f, const int stepLenght=0.f, const int nbCaseX=1.f, const int nbCaseY=1.f, const bool canGoOut=true);
+		Person2D(const float widthCase, const float heightCase, const int stepLenght, const int nbCaseX, const int nbCaseY);
 		// re-construteur
-		void create(const float widthCase=0.f, const float heightCase=0.f, const int stepLenght=0.f, const int nbCaseX=1.f, const int nbCaseY=1.f, const bool canGoOut=true);
+		void create(const float widthCase, const float heightCase, const int stepLenght, const int nbCaseX, const int nbCaseY);
 		void initClip();
 
 		// accesseurs

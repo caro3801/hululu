@@ -21,20 +21,10 @@ using namespace std;
 
 int Mapmonde::run(sf::RenderWindow &fenetre)
 {
+	bool derriere = false;
 	int ecranSuivant = 1; // par défault, celui de l'écran actif
 	bool colj, colt, colc, colp, coli, colpo, cola = false; //Pour gerer les collisions de
 															//chaque pays
-	//IMAGES/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-	// # image garçon
-	sf::Image garcon_img;
-	if (!garcon_img.LoadFromFile("le_voyage_de_barbulle/img/sprite/sprite_g_walk_petit.png"))
-		cerr << "Erreur lors du chargement de l'image.";
-
-	// # image de fond
-	sf::Image carte;
-	if (!carte.LoadFromFile("le_voyage_de_barbulle/img/histoire/mapemonde_fond.png"))
-		cerr << "Erreur lors du chargement de l'image.";
 
 	// SPRITES/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -55,6 +45,13 @@ int Mapmonde::run(sf::RenderWindow &fenetre)
 	// clipage du sprite
 	// c-à-d on n'affiche que les partie du sprite qui nous intérèssent
 	garcon_sp.initClip();
+
+	// # image Barbule
+	Person2D barbule_sp(50.f, 100.f, fenetre.GetWidth()/15, 6, 4);
+	barbule_sp.SetColor(sf::Color(255, 255, 255, 255));
+	barbule_sp.SetPosition(-100.f, ( fenetre.GetHeight() - garcon_sp.getHeightCase() - 20 ) / 2.f);
+	barbule_sp.SetImage(Ecran::MonManager.GetImage("le_voyage_de_barbulle/img/sprite/sprite_monstre_petit.png"));
+	barbule_sp.initClip();
 
 	// # image de fond
 	sf::Sprite SpriteCarte(Ecran::MonManager.GetImage("le_voyage_de_barbulle/img/histoire/mapemonde_fond.png"));
@@ -195,14 +192,18 @@ int Mapmonde::run(sf::RenderWindow &fenetre)
 		// # on avance le bonhome vers la droite pour commencer
 		 if( ( garcon_sp.GetPosition().x < 50.f) and not garcon_sp.inMoveTo(Person2D::RIGHT) ) { // initialise le mouvement
 				garcon_sp.walk(Person2D::RIGHT, 450);
+				barbule_sp.walk(Person2D::RIGHT, 450);
 		 }
 		 else if(garcon_sp.inMoveTo(Person2D::RIGHT)) {// poursuit le mouvement
 				garcon_sp.walk(Person2D::RIGHT, 450);
+				barbule_sp.walk(Person2D::RIGHT, 450);
 		 }
 
 
 		if( (fenetre.GetInput().IsKeyDown(sf::Key::Left)) || ( garcon_sp.inMoveTo(Person2D::LEFT) ) ) {
 			garcon_sp.walk(Person2D::LEFT, 450);
+			barbule_sp.walk(Person2D::LEFT, 450);
+			derriere=false;
 			colj=Collision::cercleTest(garcon_sp,japon_a);
 			colc=Collision::cercleTest(garcon_sp,canada_a);
 			colt=Collision::cercleTest(garcon_sp,tanzanie_a);
@@ -214,6 +215,8 @@ int Mapmonde::run(sf::RenderWindow &fenetre)
 
 		if( (fenetre.GetInput().IsKeyDown(sf::Key::Right)) || ( garcon_sp.inMoveTo(Person2D::RIGHT) ) ) {
 			garcon_sp.walk(Person2D::RIGHT, 450);
+			barbule_sp.walk(Person2D::RIGHT, 450);
+			derriere=true;
 			colj=Collision::cercleTest(garcon_sp,japon_a);
 			colc=Collision::cercleTest(garcon_sp,canada_a);
 			colt=Collision::cercleTest(garcon_sp,tanzanie_a);
@@ -225,6 +228,8 @@ int Mapmonde::run(sf::RenderWindow &fenetre)
 
 		if( (fenetre.GetInput().IsKeyDown(sf::Key::Up)) || ( garcon_sp.inMoveTo(Person2D::TOP) ) ) {
 			garcon_sp.walk(Person2D::TOP, 450) ;
+			barbule_sp.walk(Person2D::TOP, 450);
+			derriere=false;
 			colj=Collision::cercleTest(garcon_sp,japon_a);
 			colc=Collision::cercleTest(garcon_sp,canada_a);
 			colt=Collision::cercleTest(garcon_sp,tanzanie_a);
@@ -236,6 +241,8 @@ int Mapmonde::run(sf::RenderWindow &fenetre)
 
 		if( (fenetre.GetInput().IsKeyDown(sf::Key::Down)) || ( garcon_sp.inMoveTo(Person2D::BOTTOM) ) ) {
 			garcon_sp.walk(Person2D::BOTTOM, 450);
+			barbule_sp.walk(Person2D::BOTTOM, 450);
+			derriere=false;
 			colj=Collision::cercleTest(garcon_sp,japon_a);
 			colc=Collision::cercleTest(garcon_sp,canada_a);
 			colt=Collision::cercleTest(garcon_sp,tanzanie_a);
@@ -250,7 +257,16 @@ int Mapmonde::run(sf::RenderWindow &fenetre)
 
 		fenetre.Draw(SpriteCarte) ;
 		// on dessine le Sprite sur la fenetre de rendu
-		fenetre.Draw(garcon_sp);
+		if(derriere) {
+			fenetre.Draw(barbule_sp);
+			fenetre.Draw(garcon_sp);
+		}
+		else {
+			fenetre.Draw(garcon_sp);
+			fenetre.Draw(barbule_sp);
+
+		}
+
 	//	fenetre.Draw(back_icon);
 		// on dessine les instructions
 		fenetre.Draw(text);
