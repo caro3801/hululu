@@ -15,7 +15,7 @@ using namespace std;
 
 #include "Person2D.h"
 
-Person2D::Person2D(const float widthCase, const float heightCase, const int stepLenght, const int nbCaseX, const int nbCaseY)
+Person2D::Person2D(const float widthCase, const float heightCase, const int stepLenght, const int nbCaseX, const int nbCaseY, const canGoOut)
 {
 	this->widthCase = widthCase;
 	this->heightCase = heightCase;
@@ -30,9 +30,11 @@ Person2D::Person2D(const float widthCase, const float heightCase, const int step
 
 	this->stepLenght = stepLenght;
 	this->timeSinceLastRefresh.Reset();
+
+	this->canGoOut = canGoOut;
 }
 
-void Person2D::create(const float widthCase, const float heightCase, const int stepLenght, const int nbCaseX, const int nbCaseY)
+void Person2D::create(const float widthCase, const float heightCase, const int stepLenght, const int nbCaseX, const int nbCaseY, const int canGoOut)
 {
 	this->widthCase = widthCase;
 	this->heightCase = heightCase;
@@ -47,6 +49,7 @@ void Person2D::create(const float widthCase, const float heightCase, const int s
 
 	this->stepLenght = stepLenght;
 
+	this->canGoOut = canGoOut;
 }
 
 
@@ -60,133 +63,146 @@ void Person2D::initClip()
 	this->SetSubRect(sf::IntRect(0, heightCase*2, widthCase, heightCase*3));
 }
 
+void Person2D::allowToMove()
+{
+	return (canGoOut and GetPosition().x );
+}
 void Person2D::walk(moveDirection direction, float interval)
 {
-	if( (direction == LEFT) && ( readyToMove(interval) ) )
+	if(!allowToMove(moveDirection direction))
 	{
-		if(activeLeftCase < nbCaseX)
-		{
-
-			int px = activeLeftCase * widthCase, py;
-			int lx, ly;
-
-			// on deplace le sprite vers la droite
-			this->Move(- floor(stepLenght/(nbCaseX)), 0);
-
-			// correctif (les pixels n'aiment pas les flotans)
-			if( (stepLenght/(nbCaseX)%nbCaseX != 0) // nombre impair de mouvement
-			and (activeRightCase == nbCaseX - 1) ) // dernier mouvement
-				this->Move(- (stepLenght/(nbCaseX)%nbCaseX), 0);
-
-			// on change la partie visible du sprite
-			if(activeLeftCase == nbCaseX -1) px = 0;
-			else px += widthCase;
-			lx = px + widthCase;
-
-			py = heightCase * 1;
-			ly = py + heightCase;
-
-			activeLeftCase ++; // on passe a la case suivante
-			this->SetSubRect(sf::IntRect(px, py, lx, ly));
-
-			timeSinceLastRefresh.Reset();
-		}
-		else activeLeftCase = 0;
 
 	}
-	else if( (direction == RIGHT) && ( readyToMove(interval) ) )
+	else
 	{
-		if(activeRightCase < nbCaseX)
+
+
+		if( (direction == LEFT) && ( readyToMove(interval) ) )
 		{
-			int px  = activeRightCase * widthCase, py;
-			int lx, ly;
+			if(activeLeftCase < nbCaseX)
+			{
 
-			// on deplace le sprite vers la droite
-			this->Move(floor(stepLenght/(nbCaseX)), 0);
+				int px = activeLeftCase * widthCase, py;
+				int lx, ly;
 
-			// correctif (les pixels n'aiment pas les flotans)
-			if( (stepLenght/(nbCaseX)%nbCaseX != 0) // nombre impair de mouvement
-			and (activeRightCase == nbCaseX - 1) ) // dernier mouvement
-				this->Move((stepLenght/(nbCaseX)%nbCaseX), 0);
+				// on deplace le sprite vers la droite
+				this->Move(- floor(stepLenght/(nbCaseX)), 0);
 
-			// on change la partie visible du sprite
-			if(activeRightCase == nbCaseX - 1) px = 0;
-			else px += widthCase;
-			lx = px + widthCase;
+				// correctif (les pixels n'aiment pas les flotans)
+				if( (stepLenght/(nbCaseX)%nbCaseX != 0) // nombre impair de mouvement
+				and (activeRightCase == nbCaseX - 1) ) // dernier mouvement
+					this->Move(- (stepLenght/(nbCaseX)%nbCaseX), 0);
 
-			py = heightCase * 2;
-			ly = py + heightCase;
+				// on change la partie visible du sprite
+				if(activeLeftCase == nbCaseX -1) px = 0;
+				else px += widthCase;
+				lx = px + widthCase;
 
-			activeRightCase ++; // on passe a la case suivante
-			this->SetSubRect(sf::IntRect(px, py, lx, ly));
+				py = heightCase * 1;
+				ly = py + heightCase;
 
-			timeSinceLastRefresh.Reset();
+				activeLeftCase ++; // on passe a la case suivante
+				this->SetSubRect(sf::IntRect(px, py, lx, ly));
+
+				timeSinceLastRefresh.Reset();
+			}
+			else activeLeftCase = 0;
+
 		}
-		else activeRightCase = 0;
-
-	}
-	else if( (direction == BOTTOM) && ( readyToMove(interval) ) )
-	{
-		if(activeBottomCase < nbCaseX)
+		else if( (direction == RIGHT) && ( readyToMove(interval) ) )
 		{
-			int px  = activeBottomCase * widthCase, py;
-			int lx, ly;
+			if(activeRightCase < nbCaseX)
+			{
+				int px  = activeRightCase * widthCase, py;
+				int lx, ly;
 
-			// on deplace le sprite vers le haut
-			this->Move(0, floor(stepLenght/(nbCaseX)));
+				// on deplace le sprite vers la droite
+				this->Move(floor(stepLenght/(nbCaseX)), 0);
 
-			// correctif (les pixels n'aiment pas les flotans)
-			if( (stepLenght/(nbCaseX)%nbCaseX != 0) // nombre impair de mouvement
-			and (activeRightCase == nbCaseX - 1) ) // dernier mouvement
-				this->Move(0, (stepLenght/(nbCaseX)%nbCaseX));
+				// correctif (les pixels n'aiment pas les flotans)
+				if( (stepLenght/(nbCaseX)%nbCaseX != 0) // nombre impair de mouvement
+				and (activeRightCase == nbCaseX - 1) ) // dernier mouvement
+					this->Move((stepLenght/(nbCaseX)%nbCaseX), 0);
 
-			// on change la partie visible du sprite
-			if(activeBottomCase == nbCaseX -1) px = 0;
-			else px += widthCase;
-			lx = px + widthCase;
+				// on change la partie visible du sprite
+				if(activeRightCase == nbCaseX - 1) px = 0;
+				else px += widthCase;
+				lx = px + widthCase;
 
-			py = 0;
-			ly = py + heightCase;
+				py = heightCase * 2;
+				ly = py + heightCase;
 
-			activeBottomCase ++; // on passe a la case suivante
-			this->SetSubRect(sf::IntRect(px, py, lx, ly));
+				activeRightCase ++; // on passe a la case suivante
+				this->SetSubRect(sf::IntRect(px, py, lx, ly));
 
-			timeSinceLastRefresh.Reset();
+				timeSinceLastRefresh.Reset();
+			}
+			else activeRightCase = 0;
+
 		}
-		else activeBottomCase = 0;
-
-	}
-	else if( (direction == TOP) && ( readyToMove(interval) ) )
-
-	{
-		if(activeTopCase < nbCaseX)
+		else if( (direction == BOTTOM) && ( readyToMove(interval) ) )
 		{
+			if(activeBottomCase < nbCaseX)
+			{
+				int px  = activeBottomCase * widthCase, py;
+				int lx, ly;
 
-			int px  = activeTopCase * widthCase, py;
-			int lx, ly;
+				// on deplace le sprite vers le haut
+				this->Move(0, floor(stepLenght/(nbCaseX)));
 
-			// on deplace le sprite vers le bas
-			this->Move(0,- floor(stepLenght/(nbCaseX)));
+				// correctif (les pixels n'aiment pas les flotans)
+				if( (stepLenght/(nbCaseX)%nbCaseX != 0) // nombre impair de mouvement
+				and (activeRightCase == nbCaseX - 1) ) // dernier mouvement
+					this->Move(0, (stepLenght/(nbCaseX)%nbCaseX));
 
-			// correctif (les pixels n'aiment pas les flotans)
-			if( (stepLenght/(nbCaseX)%nbCaseX != 0) // nombre impair de mouvement
-			and (activeRightCase == nbCaseX - 1) ) // dernier mouvement
-				this->Move(0,- (stepLenght/(nbCaseX)%nbCaseX));
+				// on change la partie visible du sprite
+				if(activeBottomCase == nbCaseX -1) px = 0;
+				else px += widthCase;
+				lx = px + widthCase;
 
-//			// on change la partie visible du sprite
-			if(activeTopCase == nbCaseX -1) px = 0;
-			else px += widthCase;
-			lx = px + widthCase;
+				py = 0;
+				ly = py + heightCase;
 
-			py = heightCase*3;
-			ly = py + heightCase;
+				activeBottomCase ++; // on passe a la case suivante
+				this->SetSubRect(sf::IntRect(px, py, lx, ly));
 
-			activeTopCase++; // on passe a la case suivante
-			this->SetSubRect(sf::IntRect(px, py, lx, ly));
+				timeSinceLastRefresh.Reset();
+			}
+			else activeBottomCase = 0;
 
-			timeSinceLastRefresh.Reset();
 		}
-		else activeTopCase = 0;
+		else if( (direction == TOP) && ( readyToMove(interval) ) )
+
+		{
+			if(activeTopCase < nbCaseX)
+			{
+
+				int px  = activeTopCase * widthCase, py;
+				int lx, ly;
+
+				// on deplace le sprite vers le bas
+				this->Move(0,- floor(stepLenght/(nbCaseX)));
+
+				// correctif (les pixels n'aiment pas les flotans)
+				if( (stepLenght/(nbCaseX)%nbCaseX != 0) // nombre impair de mouvement
+				and (activeRightCase == nbCaseX - 1) ) // dernier mouvement
+					this->Move(0,- (stepLenght/(nbCaseX)%nbCaseX));
+
+	//			// on change la partie visible du sprite
+				if(activeTopCase == nbCaseX -1) px = 0;
+				else px += widthCase;
+				lx = px + widthCase;
+
+				py = heightCase*3;
+				ly = py + heightCase;
+
+				activeTopCase++; // on passe a la case suivante
+				this->SetSubRect(sf::IntRect(px, py, lx, ly));
+
+				timeSinceLastRefresh.Reset();
+			}
+			else activeTopCase = 0;
+		}
 	}
 }
 
