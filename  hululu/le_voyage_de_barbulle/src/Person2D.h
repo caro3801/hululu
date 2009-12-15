@@ -23,9 +23,9 @@ class Person2D : public sf::Sprite
 		// directions possibles
 		enum moveDirection {LEFT,RIGHT,TOP,BOTTOM};
 
-		Person2D(const float widthCase=0.f, const float heightCase=0.f, const int stepLenght=0.f, const int nbCaseX=1.f, const int nbCaseY=1.f);
+		Person2D(const float widthCase=0.f, const float heightCase=0.f, const int stepLenght=0.f, const int nbCaseX=1.f, const int nbCaseY=1.f, const bool canGoOut=true);
 		// re-construteur
-		void create(const float widthCase=0.f, const float heightCase=0.f, const int stepLenght=0.f, const int nbCaseX=1.f, const int nbCaseY=1.f);
+		void create(const float widthCase=0.f, const float heightCase=0.f, const int stepLenght=0.f, const int nbCaseX=1.f, const int nbCaseY=1.f, const bool canGoOut=true);
 		void initClip();
 
 		// accesseurs
@@ -44,6 +44,7 @@ class Person2D : public sf::Sprite
 		void setNbCaseX(int nb);
 		void setNbCaseY(int nb);
 		void setStepLenght(int lenght);
+		void setCanGoOut(bool);
 
 		void walk(moveDirection direction, float interval);
 		bool inMoveTo(moveDirection direction);
@@ -71,6 +72,8 @@ class Person2D : public sf::Sprite
 		int activeBottomCase;
 		int stepLenght; // distance parcouru à chaque pas
 		sf::Clock timeSinceLastRefresh; // temps écoulé depuis le dernier *refresh*
+
+		bool canGoOut;
 };
 
 #endif /* PERSON2D_H_ */
