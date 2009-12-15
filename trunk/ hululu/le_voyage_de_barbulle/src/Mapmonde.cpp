@@ -251,7 +251,7 @@ int Mapmonde::run(sf::RenderWindow &fenetre)
 		fenetre.Draw(SpriteCarte) ;
 		// on dessine le Sprite sur la fenetre de rendu
 		fenetre.Draw(garcon_sp);
-		back_icon.drawMe(&fenetre);
+	//	fenetre.Draw(back_icon);
 		// on dessine les instructions
 		fenetre.Draw(text);
 

@@ -48,6 +48,7 @@ int main(int argc, char** argv)
     tabEcrans.push_back (&ecran1);
     Italie ecran2;
     tabEcrans.push_back (&ecran2);
+
     Japon ecran3;
     tabEcrans.push_back (&ecran3);
 //    Canada ecran3;
