@@ -72,7 +72,8 @@ int Italie::run(sf::RenderWindow &fenetre) {
 
 		fenetre.Clear(sf::Color(255, 255, 255));
 		italie.dessiner(fenetre,"le_voyage_de_barbulle/img/accueil/italie.png");
-
+		if (fenetre.GetInput().IsKeyDown(sf::Key::O))
+						return ecranSuivant=4;
 		fenetre.Display();
 	}
 
