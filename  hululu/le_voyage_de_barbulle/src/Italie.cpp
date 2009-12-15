@@ -14,6 +14,9 @@ using namespace std;
 // WIKI SFML //////////////////////////
 #include "Italie.h"
 #include "Bouton.h"
+#include "AccueilPays.h"
+
+
 ImageManager Ecran::MonManager; //a ne definir qu'une seule fois dans tout le programme
 
 Italie::Italie() {
@@ -28,6 +31,7 @@ int Italie::run(sf::RenderWindow &fenetre) {
 
 	//IMAGES/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+	AccueilPays italie;
 	// SPRITES/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 	// # image de fond
@@ -42,10 +46,8 @@ int Italie::run(sf::RenderWindow &fenetre) {
 	back_icon.Resize(30,30);
 
 	// FONT/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-		sf::String texte("Benvenuto in Italia");
-		texte.SetColor(sf::Color::Blue);
-		texte.SetSize(25.f);
-		texte.SetPosition((fenetre.GetWidth()/3), (fenetre.GetHeight()/3));
+
+	italie.InfosPays(fenetre,"Benvenuto in Italia","Florence o Firenze");
 
 	sf::Event event;
 
@@ -69,12 +71,9 @@ int Italie::run(sf::RenderWindow &fenetre) {
 				}
 
 		fenetre.Clear(sf::Color(255, 255, 255));
-		fenetre.Draw(fond);
-		fenetre.Draw(texte);
-		fenetre.Draw(back_icon);
+		italie.dessiner(fenetre,"le_voyage_de_barbulle/img/accueil/italie.png");
+
 		fenetre.Display();
-		if ((fenetre.GetInput().IsKeyDown(sf::Key::Space)))
-			return (ecranSuivant=1);
 	}
 
 	return ecranSuivant;
