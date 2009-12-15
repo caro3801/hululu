@@ -24,6 +24,17 @@ int Mapmonde::run(sf::RenderWindow &fenetre)
 	int ecranSuivant = 1; // par défault, celui de l'écran actif
 	bool colj, colt, colc, colp, coli, colpo, cola = false; //Pour gerer les collisions de
 															//chaque pays
+	//IMAGES/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+	// # image garçon
+	sf::Image garcon_img;
+	if (!garcon_img.LoadFromFile("le_voyage_de_barbulle/img/sprite/sprite_g_walk_petit.png"))
+		cerr << "Erreur lors du chargement de l'image.";
+
+	// # image de fond
+	sf::Image carte;
+	if (!carte.LoadFromFile("le_voyage_de_barbulle/img/histoire/mapemonde_fond.png"))
+		cerr << "Erreur lors du chargement de l'image.";
 
 	// SPRITES/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -264,6 +275,8 @@ int Mapmonde::run(sf::RenderWindow &fenetre)
 		if(colj) {
 			fenetre.Draw(texte_japon);
 			fenetre.Draw(japon_a);
+			if (fenetre.GetInput().IsKeyDown(sf::Key::Space))
+				return ecranSuivant=3;
 		}
 		else	fenetre.Draw(japon_na);
 
@@ -294,9 +307,6 @@ int Mapmonde::run(sf::RenderWindow &fenetre)
 			fenetre.Draw(texte_pole);
 		}
 		else	fenetre.Draw(pole_na);
-
-		if(back_icon.estClique(&fenetre))
-			return ecranSuivant=0;
 
 		// toujours pour actualiser le rendu (et en fin de boucle surtout) !
 		fenetre.Display();

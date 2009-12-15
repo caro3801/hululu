@@ -35,9 +35,9 @@ int Japon::run(sf::RenderWindow &fenetre) {
 
 	// # image de fond
 		sf::Sprite fond ;
-		fond.SetImage(Ecran::MonManager.GetImage("le_voyage_de_barbulle/img/japon/japon_fond.jpg"));
+		fond.SetImage(Ecran::MonManager.GetImage("le_voyage_de_barbulle/img/japon/japon_fond.png"));
 		fond.SetPosition(0.f, 0.f);
-		fond.Resize((fenetre.GetWidth()/3), (fenetre.GetHeight()/3));
+		fond.Resize((fenetre.GetWidth()), (fenetre.GetHeight()));
 
 		sf::Sprite back_icon ;
 		back_icon.SetImage(Ecran::MonManager.GetImage("le_voyage_de_barbulle/img/histoire/back_icon.png"));
