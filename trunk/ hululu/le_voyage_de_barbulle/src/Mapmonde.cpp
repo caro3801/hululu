@@ -121,11 +121,6 @@ int Mapmonde::run(sf::RenderWindow &fenetre)
 	pole_a.SetPosition(((619*SpriteCarte.GetSize().x)/1000),((597*SpriteCarte.GetSize().y)/650));
 	//pole_a.Resize(30,30);
 
-	Bouton back_icon;
-	back_icon.initBouton("le_voyage_de_barbulle/img/histoire/back_icon.png","le_voyage_de_barbulle/img/histoire/back_icon_a.png");
-	back_icon.placer(0.f,fenetre.GetHeight()-90);
-	back_icon.redimensionner(80,80);
-
 	// FONT/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	// instruction
 	sf::Font MyFont;
@@ -267,7 +262,6 @@ int Mapmonde::run(sf::RenderWindow &fenetre)
 
 		}
 
-	//	fenetre.Draw(back_icon);
 		// on dessine les instructions
 		fenetre.Draw(text);
 

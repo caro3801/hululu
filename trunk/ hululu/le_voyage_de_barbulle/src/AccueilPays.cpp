@@ -25,7 +25,7 @@ AccueilPays::~AccueilPays() {
 void AccueilPays::dessiner(sf::RenderWindow &fenetre,
 		const std::string &imgDrapeau) {
 	//affichage du fond d'accueil et du drapeau du pays concerné
-	//affichage du texte : bienvenue dasn la langue et ville visitée
+	//affichage du texte : bienvenue dans la langue et ville visitée
 	sf::Sprite SpriteAccueil(Ecran::MonManager.GetImage(
 			"le_voyage_de_barbulle/img/accueil/fondaccueil.png"));
 	SpriteAccueil.SetPosition(0.f, 0.f);
