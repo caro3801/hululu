@@ -15,6 +15,7 @@ using namespace std;
 #include "Italie.h"
 #include "Bouton.h"
 #include "AccueilPays.h"
+#include "Page.h"
 
 
 ImageManager Ecran::MonManager; //a ne definir qu'une seule fois dans tout le programme
@@ -30,7 +31,7 @@ int Italie::run(sf::RenderWindow &fenetre) {
 	int ecranSuivant = 2;
 
 	//IMAGES/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
+	Page pays;
 	AccueilPays italie;
 	// SPRITES/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -71,7 +72,8 @@ int Italie::run(sf::RenderWindow &fenetre) {
 				}
 
 		fenetre.Clear(sf::Color(255, 255, 255));
-		italie.dessiner(fenetre,"le_voyage_de_barbulle/img/accueil/italie.png");
+		pays.dessinerPage(fenetre);
+		//italie.dessiner(fenetre,"le_voyage_de_barbulle/img/accueil/italie.png");
 		if (fenetre.GetInput().IsKeyDown(sf::Key::O))
 						return ecranSuivant=4;
 		fenetre.Display();
