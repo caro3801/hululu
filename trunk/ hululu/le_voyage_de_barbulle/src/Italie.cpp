@@ -29,6 +29,8 @@ Italie::~Italie() {
 int Italie::run(sf::RenderWindow &fenetre) {
 
 	int ecranSuivant = 2;
+	sf::Clock Clock;
+	Clock.Reset();
 
 	//IMAGES/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	Page pays;
@@ -70,13 +72,15 @@ int Italie::run(sf::RenderWindow &fenetre) {
 					else if (event.Type==sf::Event::KeyReleased && event.Key.Code == sf::Key::Escape)
 						fenetre.Close();
 				}
-
 		fenetre.Clear(sf::Color(255, 255, 255));
+		italie.dessiner(fenetre,"le_voyage_de_barbulle/img/accueil/italie.png");
 		pays.dessinerPage(fenetre);
-		//italie.dessiner(fenetre,"le_voyage_de_barbulle/img/accueil/italie.png");
+		fenetre.Display();
+		if (fenetre.GetInput().IsMouseButtonDown(sf::Mouse::Left) && pays.menuActif(fenetre) && Clock.GetElapsedTime() > 1)
+			return ecranSuivant=pays.changerEcran(fenetre,2,4,1) ; //ecranSuivant = jeuItalie (4), ecranCourant = Italie (2),
+																   //ecranPrecedent = Mapmonde (1)
 		if (fenetre.GetInput().IsKeyDown(sf::Key::O))
 						return ecranSuivant=4;
-		fenetre.Display();
 	}
 
 	return ecranSuivant;

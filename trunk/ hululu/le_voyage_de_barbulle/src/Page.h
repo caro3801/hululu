@@ -16,17 +16,22 @@ class Page {
 public:
 	Page();
 	virtual ~Page();
-	void dessinerPage(sf::RenderWindow &fenetre); //A appeler dans chaque ecran d'histoire
+	void dessinerPage(sf::RenderWindow &fenetre); //A appeler dans chaque Ecran pour dessiner toute la page (page + music)
 	void dessinerFond(sf::RenderWindow &fenetre);
 	void dessinerMusic(sf::RenderWindow &fenetre);
-	//Fond + boutons precedents suivant + menu musique
+	bool menuActif(sf::RenderWindow &fenetre); //Vérifie que le clic est sur un élément du menu (Sécurité)
+	int  changerEcran(sf::RenderWindow &fenetre,int cour, int suiv, int prec);
+	//A appeler pour passer d'un écran a l'autre lorsqu'on clique sur les fleches
+	//Donner en parametre le numéro de l'ecran courant, celui du suivant et celui d'avant
+
 private:
-	Bouton back;
-	Bouton go;
-	Bouton pause;
-	Bouton play;
-	Bouton mute;
-	Bouton menu;
+	Bouton back; //Retourner en arriere
+	Bouton go; //Aller a l'ecran suivant
+	Bouton pause; //Pause et Play pour lire les instructions
+	Bouton play; //Fonctionnent ensembles ( play || pause)
+	Bouton mute; //Music pour la musique de fond et Mute pour l'enlever
+	Bouton music; // (music || mute)
+	Bouton menu; //Retourner au menu ( ou mapemonde, a voir)
 };
 
 #endif /* PAGE_H_ */

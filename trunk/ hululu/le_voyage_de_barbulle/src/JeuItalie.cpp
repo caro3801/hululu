@@ -9,6 +9,7 @@
 using namespace std;
 
 #include "JeuItalie.h"
+#include "Page.h"
 
 JeuItalie::JeuItalie() {
 }
@@ -23,18 +24,18 @@ bool JeuItalie::erreur1Trouvee(sf::RenderWindow &fenetre,float posImgX, float po
 	float posY = fenetre.GetInput().GetMouseY();
 	if( (posX >= (113.f + posImgX)) && (posX <= (122.f + posImgX)) &&
 			(posY >= (154 + posImgY)) && (posY <= (160 + posImgY)))
-	//Si position souris entre 113 + posImgX et 122 +posImgX en X et entre 154 + posImgY et 160 + posImgY en Y
-	// Soit si la position de la souris est dans le cercle de l'erreur
+		//Si position souris entre 113 + posImgX et 122 +posImgX en X et entre 154 + posImgY et 160 + posImgY en Y
+		// Soit si la position de la souris est dans le cercle de l'erreur
 		return true; //L'erreur est trouvée
 	else
 		return false; //L'erreur n'est pas trouvée
 }
-	//erreur2=	54, 266
-	//erreur3=	92,317
-	//erreur4=	314,114
-	//erreur5=	390, 145
-	//erreur6=	370,513
-	//erreur7=	119,396
+//erreur2=	54, 266
+//erreur3=	92,317
+//erreur4=	314,114
+//erreur5=	390, 145
+//erreur6=	370,513
+//erreur7=	119,396
 
 bool JeuItalie::erreur2Trouvee(sf::RenderWindow &fenetre,float posImgX, float posImgY) {
 	//Retourne Vrai si l'erreur 2 est cliquée, faux sinon
@@ -106,7 +107,7 @@ bool JeuItalie::erreur7Trouvee(sf::RenderWindow &fenetre,float posImgX, float po
 
 void JeuItalie::dessineMarque(sf::RenderWindow &fenetre, bool er1, bool er2, bool er3, bool er4,
 		bool er5, bool er6, bool er7,float posImgX, float posImgY) {
-//Dessine les erreurs si celles-ci ont été trouvées
+	//Dessine les erreurs si celles-ci ont été trouvées
 
 	if(er1) {
 		sf::Sprite er1;
@@ -156,12 +157,14 @@ int JeuItalie::run(sf::RenderWindow &fenetre)
 {
 	//Initialisation des variables////////////////////////////////////////////////////////////////////////////////////////////////
 
+	sf::Clock Clock; //Horloge
 	int ecranSuivant = 4; // par défault, celui de l'écran actif
 	bool er1, er2,er6, er7 = false; //booléens indiquant si les erreurs ont été trouvées
-	bool er3=false;
+	bool er3=false; //déclarés en plusieurs fois sinon certains sont a true dès le départ ..
 	bool er4=false;
 	bool er5=false;
 	int nbATrouver=7; //Le nombre d'erreurs a trouver est de 7 au départ
+	Page pays; //Declaration d'une Page pays qui servira a afficher les menus music et menu
 
 	//SPRITES////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -208,6 +211,9 @@ int JeuItalie::run(sf::RenderWindow &fenetre)
 	// # création d'une vue sur la fenêtre
 	sf::View vue(sf::FloatRect(0, 0, fenetre.GetWidth(), fenetre.GetHeight()) );
 	fenetre.SetView(vue);
+	Clock.Reset();	//On remet l'horloge a zéro en dehors de la boucle. Sert pour passer a l'ecran Suivant uniquement si l'ecran actuel est resté affiché
+					// Plus d'une seconde, voir condition plus bas : (Clock.GetElapsedTime() > 1). Sécurité sinon le clic sur les fleches est compté
+					// Pour tous les écrans ! (boutons au même endroit sur tous les écrans :p )
 
 	// # Pour que le programme ne se termine pas :)
 	sf::Event event;
@@ -223,7 +229,6 @@ int JeuItalie::run(sf::RenderWindow &fenetre)
 				fenetre.Close();
 			else if (event.Type==sf::Event::KeyReleased && event.Key.Code == sf::Key::Escape)
 				fenetre.Close();
-
 		if( fenetre.GetInput().IsMouseButtonDown(sf::Mouse::Left)) {
 			//Si on clique sur la fenetre, on regarde la position du clic si elle correspond a une des erreurs
 
@@ -259,24 +264,29 @@ int JeuItalie::run(sf::RenderWindow &fenetre)
 
 		///On dessine sur la fenetre
 		fenetre.Clear();
+		pays.dessinerPage(fenetre);
+		if (fenetre.GetInput().IsMouseButtonDown(sf::Mouse::Left) && pays.menuActif(fenetre) && (Clock.GetElapsedTime() > 1) ) {
+			//On vérifie qu'on clic, que le clic est sur un élement du menu, et qu'au moins 1 seconde s'est écoulée
+				return ecranSuivant=pays.changerEcran(fenetre,4,4,2) ; // On retourne soit courant=4 (JeuItalie), suivant=4 (JeuItalie),
+																	  // precedent=2 (Italie)
+		}
 		fenetre.Draw(titre);
-		fenetre.Draw(original);
-		fenetre.Draw(erreur);
+		fenetre.Draw(original);//Image d'origine
+		fenetre.Draw(erreur); //Image d'erreur
+		//Ecrire les instructions : "Cliquez sur l'image fausse pour trouver les erreurs..."
 
 		//convertir nbAtrouver en string avec la fonction ostringstream
-			std::ostringstream texteb;
-			// on récupère le nombre d'erreur a trouver dans le flux
-			texteb << nbATrouver;
-			// on en extrait une chaîne de caractères
-			std::string Texte = texteb.str();
+		std::ostringstream texteb;
+		// on récupère le nombre d'erreur a trouver dans le flux
+		texteb << nbATrouver;
+		// on en extrait une chaîne de caractères
+		std::string Texte = texteb.str();
 
 		nbErreurs.SetText(Texte);
 		fenetre.Draw(nbErreurs);
 		dessineMarque(fenetre,er1,er2,er3,er4,er5,er6,er7,erreur.GetPosition().x,erreur.GetPosition().y);
 		if(nbATrouver==0)
 			fenetre.Draw(gagne);
-		if (fenetre.GetInput().IsKeyDown(sf::Key::O))
-								return ecranSuivant=2;
 		fenetre.Display();
 
 	}
