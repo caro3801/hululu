@@ -20,10 +20,10 @@ Page::~Page() {
 }
 
 void Page::dessinerFond(sf::RenderWindow &fenetre) {
-	fenetre.Clear();
 
 }
 void Page::dessinerMusic(sf::RenderWindow &fenetre) {
+
 	play.initBouton("le_voyage_de_barbulle/img/histoire/play_icon.png","le_voyage_de_barbulle/img/histoire/play_icon_a.png");
 	play.placer(fenetre.GetWidth()/6,0.f);
 	play.redimensionner(40,40);
@@ -43,8 +43,6 @@ void Page::dessinerMusic(sf::RenderWindow &fenetre) {
 			playing=true;
 		}
 	}
-
-
 }
 
 void Page::dessinerPage(sf::RenderWindow &fenetre) {
@@ -54,5 +52,26 @@ void Page::dessinerPage(sf::RenderWindow &fenetre) {
 	back.placer((fenetre.GetWidth()/2)-40.f,fenetre.GetHeight()-90);
 	back.redimensionner(40.f,40.f);
 	back.drawMe(&fenetre);
-
+	go.initBouton("le_voyage_de_barbulle/img/histoire/go_icon.png","le_voyage_de_barbulle/img/histoire/go_icon_a.png");
+	go.placer((fenetre.GetWidth()/2)+10,fenetre.GetHeight()-90);
+	go.redimensionner(40.f,40.f);
+	go.drawMe(&fenetre);
 }
+bool Page::menuActif(sf::RenderWindow &fenetre) {
+	if(back.estClique(& fenetre) || go.estClique(& fenetre))
+		return true;
+	else
+		return false;
+}
+
+int Page::changerEcran(sf::RenderWindow &fenetre, int cour, int suiv, int prec) {
+	if (go.estClique(& fenetre))
+		return suiv;
+	if (back.estClique(& fenetre))
+		return prec;
+	else
+		return cour;
+}
+
+
+
