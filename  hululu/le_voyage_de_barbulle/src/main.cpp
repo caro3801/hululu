@@ -28,6 +28,7 @@ using namespace std;
 #include "Italie.h"		//numero 2
 #include "Japon.h"      //numéro 3
 #include "JeuPerou.h"	// numéro 5
+#include "Perou.h"	// numéro 5
 #include "JeuItalie.h"	// numéro 4
 
 // PROCEDURE PRINCIPALE/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -53,6 +54,10 @@ int main(int argc, char** argv)
     tabEcrans.push_back (&ecran3);
     JeuItalie ecran4;
     tabEcrans.push_back(&ecran4);
+    Perou ecran5;
+    tabEcrans.push_back (&ecran5);//rajout a revoir
+    JeuPerou ecran6;//rajout a revoir
+    tabEcrans.push_back (&ecran6);//rajout a revoir
 //    Canada ecran3;
 
 //    tabEcrans.push_back (&ecran4);

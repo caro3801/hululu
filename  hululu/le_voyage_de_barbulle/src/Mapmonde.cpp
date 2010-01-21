@@ -294,6 +294,8 @@ int Mapmonde::run(sf::RenderWindow &fenetre)
 		if(colp) {
 			fenetre.Draw(perou_a);
 			fenetre.Draw(texte_perou);
+			if (fenetre.GetInput().IsKeyDown(sf::Key::Space))
+					return ecranSuivant=5;
 		}
 		else	fenetre.Draw(perou_na);
 
