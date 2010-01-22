@@ -16,7 +16,7 @@ using namespace std;
 #include "Person2D.h"
 #include "Mapmonde.h"
 #include "JeuPerou.h"
-
+#include "Page.h"
 
 // WIKI SFML //////////////////////////
 #include "Bouton.h"
@@ -33,6 +33,8 @@ Perou::~Perou() {
 int Perou::run(sf::RenderWindow &fenetre) {
 
 	int ecranSuivant = 5;
+	sf::Clock Clock; //Horloge
+	Clock.Reset();
 
 	//IMAGES////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -42,29 +44,19 @@ int Perou::run(sf::RenderWindow &fenetre) {
 		fond.SetPosition(0.f, 0.f);
 		fond.Resize((fenetre.GetWidth()), (fenetre.GetHeight()));
 
-		sf::Sprite back_icon ;
-		back_icon.SetImage(Ecran::MonManager.GetImage("le_voyage_de_barbulle/img/histoire/back_icon.png"));
-		back_icon.SetPosition((fenetre.GetWidth()-100),(fenetre.GetHeight()-100));
-		back_icon.Resize(30,30);
+		Page pays;
 
-
-		// FONT/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	// FONT/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 		sf::String texte("El Perudo, el pais de los Incas");
 		texte.SetColor(sf::Color::Red);
 		texte.SetSize(25.f);
 		texte.SetPosition((fenetre.GetWidth()*7/20), (fenetre.GetHeight()/8));
-
+   //
 		sf::Event event;
 
 		// # création d'une vue sur la fenêtre
 		sf::View vue(sf::FloatRect(0, 0, fenetre.GetWidth(), fenetre.GetHeight()) );
 		fenetre.SetView(vue);
-
-
-
-
-
-
 
 	// # image garçon
 
@@ -108,7 +100,7 @@ int Perou::run(sf::RenderWindow &fenetre) {
 					fenetre.Clear(sf::Color(255, 255, 255));
 					fenetre.Draw(fond);
 					fenetre.Draw(texte);
-					fenetre.Draw(back_icon);
+					pays.dessinerPage(fenetre);
 //					fenetre.Draw(garcon_sp);
 
 //					// ANIMATIONS //////////////////////////////////////////
@@ -138,8 +130,10 @@ int Perou::run(sf::RenderWindow &fenetre) {
 				//dessin de la fenêtre
 				 fenetre.Display();
 
-					if ((fenetre.GetInput().IsKeyDown(sf::Key::Tab)))
-					return (ecranSuivant=6);
+				 if (fenetre.GetInput().IsMouseButtonDown(sf::Mouse::Left) && pays.menuActif(fenetre) && Clock.GetElapsedTime() > 1)
+				 			return ecranSuivant=pays.changerEcran(fenetre,5,6,1) ; //ecranSuivant = jeuPerou (5), ecranCourant = Perou (4),
+				 																   //ecranPrecedent = Mapemonde (1)
+
 			}
 
 	return ecranSuivant;
