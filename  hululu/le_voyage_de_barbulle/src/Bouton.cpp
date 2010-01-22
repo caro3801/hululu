@@ -15,8 +15,6 @@ this->spritef=spritef;
 void Bouton::initBouton(const std::string &img1, const std::string &img2) {
 	spriten.SetImage(Ecran::MonManager.GetImage(img1));
 	spritef.SetImage(Ecran::MonManager.GetImage(img2));
-
-
 }
 void Bouton::redimensionner(float x, float y) {
 	spriten.Resize(x,y);

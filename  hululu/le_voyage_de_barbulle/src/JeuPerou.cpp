@@ -31,17 +31,15 @@ void JeuPerou::creerPieces(sf::RenderWindow* fenetre,const std::string & piece1,
 		const std::string & piece3)
 {
 
-	val1_1.setValeur(1); val1_1.initPiece(fenetre,piece1); val1_1.placerPiece(1106,493);
-	val1_2.setValeur(1); val1_2.initPiece(fenetre,piece1); val1_2.placerPiece(1006,493);
-	val1_3.setValeur(1); val1_3.initPiece(fenetre,piece1); val1_3.placerPiece(906,493);
-	val2_1.setValeur(2); val2_1.initPiece(fenetre,piece2); val2_1.placerPiece(806,493);
-	val3_1.setValeur(3); val3_1.initPiece(fenetre,piece3); val3_1.placerPiece(806,650);
-	val2_2.setValeur(2); val2_2.initPiece(fenetre,piece2); val2_2.placerPiece(1106,592);
-	val2_3.setValeur(2); val2_3.initPiece(fenetre,piece2); val2_3.placerPiece(1006,592);
-	val5_1.setValeur(5); val5_1.initPiece(fenetre,piece5); val5_1.placerPiece(906,592);
-	val3_2.setValeur(3); val3_2.initPiece(fenetre,piece3); val3_2.placerPiece(806,592);
-
-
+	val1_1.setValeur(1); val1_1.initBouton(piece1,piece1); val1_1.placer(1106,493);
+	val1_2.setValeur(1); val1_2.initBouton(piece1,piece1); val1_2.placer(1006,493);
+	val1_3.setValeur(1); val1_3.initBouton(piece1,piece1); val1_3.placer(906,493);
+	val2_1.setValeur(2); val2_1.initBouton(piece2,piece2); val2_1.placer(806,493);
+	val3_1.setValeur(3); val3_1.initBouton(piece3,piece3); val3_1.placer(806,650);
+	val2_2.setValeur(2); val2_2.initBouton(piece2,piece2); val2_2.placer(1106,592);
+	val2_3.setValeur(2); val2_3.initBouton(piece2,piece2); val2_3.placer(1006,592);
+	val5_1.setValeur(5); val5_1.initBouton(piece5,piece5); val5_1.placer(906,592);
+	val3_2.setValeur(3); val3_2.initBouton(piece3,piece3); val3_2.placer(806,592);
 }
 
 int JeuPerou::run(sf::RenderWindow &fenetre) {
