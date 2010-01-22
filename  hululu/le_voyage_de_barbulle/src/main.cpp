@@ -20,7 +20,6 @@ using namespace std;
 #include "Bouton.h"
 #include "Ecran.h"
 
-
 // ECRANS/////////////////////////////
 // à chaque écran un numéro (à respecter tout au long du programme)
 #include "Menu_0.h"		// numéro 0
@@ -54,10 +53,12 @@ int main(int argc, char** argv)
     tabEcrans.push_back (&ecran3);
     JeuItalie ecran4;
     tabEcrans.push_back(&ecran4);
+//   TestDeplacer ecran75;
+//    tabEcrans.push_back(&ecran75); -> Mettre valeur correcte si vous voulez voir ce qu'affiche cette classe de test
     Perou ecran5;
-    tabEcrans.push_back (&ecran5);//rajout a revoir
-    JeuPerou ecran6;//rajout a revoir
-    tabEcrans.push_back (&ecran6);//rajout a revoir
+    tabEcrans.push_back (&ecran5);
+    JeuPerou ecran6;
+    tabEcrans.push_back (&ecran6);
 //    Canada ecran3;
 
 //    tabEcrans.push_back (&ecran4);
