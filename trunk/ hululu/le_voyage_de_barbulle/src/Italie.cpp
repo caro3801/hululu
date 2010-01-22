@@ -79,8 +79,7 @@ int Italie::run(sf::RenderWindow &fenetre) {
 		if (fenetre.GetInput().IsMouseButtonDown(sf::Mouse::Left) && pays.menuActif(fenetre) && Clock.GetElapsedTime() > 1)
 			return ecranSuivant=pays.changerEcran(fenetre,2,4,1) ; //ecranSuivant = jeuItalie (4), ecranCourant = Italie (2),
 																   //ecranPrecedent = Mapmonde (1)
-		if (fenetre.GetInput().IsKeyDown(sf::Key::O))
-						return ecranSuivant=4;
+
 	}
 
 	return ecranSuivant;

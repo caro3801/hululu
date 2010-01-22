@@ -5,7 +5,7 @@
  *      Author: talotte&antho
  */
 #include "JeuPerou.h"
-
+#include "Page.h"
 JeuPerou::JeuPerou()
 {
 estLance = false;
@@ -46,7 +46,9 @@ void JeuPerou::creerPieces(sf::RenderWindow* fenetre,const std::string & piece1,
 
 int JeuPerou::run(sf::RenderWindow &fenetre) {
 
-	int ecranSuivant = 5;
+	int ecranSuivant = 6;
+	sf::Clock Clock; //Horloge
+	Clock.Reset();
 
 	//IMAGES////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -56,14 +58,10 @@ int JeuPerou::run(sf::RenderWindow &fenetre) {
 		fond.SetPosition(0.f, 0.f);
 		fond.Resize((fenetre.GetWidth()), (fenetre.GetHeight()));
 
-//		sf::Sprite back_icon ;
-//		back_icon.SetImage(Ecran::MonManager.GetImage("le_voyage_de_barbulle/img/histoire/back_icon.png"));
-//		back_icon.SetPosition((fenetre.GetWidth()-100),(fenetre.GetHeight()-100));
-//		back_icon.Resize(30,30);
-
 		// # création d'une vue sur la fenêtre
 		sf::View vue(sf::FloatRect(0, 0, fenetre.GetWidth(), fenetre.GetHeight()) );
 		fenetre.SetView(vue);
+		Page pays;
 
 
 	///AFFICHAGE FENETRE////////////////////////////////
@@ -81,12 +79,16 @@ int JeuPerou::run(sf::RenderWindow &fenetre) {
 
 					fenetre.Clear(sf::Color(255, 255, 255));
 					fenetre.Draw(fond);
-//					fenetre.Draw(back_icon);
+					pays.dessinerPage(fenetre);
 					JeuPerou::creerPieces( &fenetre,"le_voyage_de_barbulle/img/sprite/piece1.png","le_voyage_de_barbulle/img/sprite/piece2.png","le_voyage_de_barbulle/img/sprite/piece5.png",
 							"le_voyage_de_barbulle/img/sprite/piece3.png");
 
 				//dessin de la fenêtre
 				 fenetre.Display();
+
+				 if (fenetre.GetInput().IsMouseButtonDown(sf::Mouse::Left) && pays.menuActif(fenetre) && Clock.GetElapsedTime() > 1)
+				 			return ecranSuivant=pays.changerEcran(fenetre,6,6,5) ; //ecranSuivant = jeuPerou (5), ecranCourant = Perou (5),
+				 																   //ecranPrecedent = Perou (4)
 
 			}
 
