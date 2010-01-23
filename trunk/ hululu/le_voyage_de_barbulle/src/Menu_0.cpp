@@ -26,6 +26,11 @@ int Menu_0::run(sf::RenderWindow &fenetre)
 	int ecranSuivant = MENU_0;
 	sf::Clock Clock;
 
+	// DEF de la police par défaut
+	sf::Font cursiveFont;
+	if (!cursiveFont.LoadFromFile("le_voyage_de_barbulle/img/font/Cursive_standard_BOLD.ttf", 25.f))
+		cerr << "Erreur lors du chargement de la police" << endl;
+
 
 	// DEF du bouton "nouvelle partie" ////////////
 
@@ -35,7 +40,10 @@ int Menu_0::run(sf::RenderWindow &fenetre)
 
 	int boutonPosition[2]; // position du bouton en fonction de la taille de la fenêtre
 	boutonPosition[0] = (fenetre.GetWidth() / 2) - (boutNouvPartie.getTailleX() / 2);  // sur x, ici il est centré
-	boutonPosition[1] = (int)(fenetre.GetHeight() / 2) - (boutNouvPartie.getTailleY() / 2); // sur y, ici il est centré
+	// on veut ajuster le premier bouton pour centrer les 4
+	// la taille effective d'un bouton est égale à sa taille... plus 6px !
+	// Soit (boutNouvPartie.getTailleY() + 6px) * 4 boutons /2
+	boutonPosition[1] = (int)(fenetre.GetHeight() / 2) - (boutNouvPartie.getTailleY() + 6) * 2; // sur y, ici il est centré
 
 	boutNouvPartie.placer(boutonPosition[0],boutonPosition[1]);
 
@@ -43,6 +51,7 @@ int Menu_0::run(sf::RenderWindow &fenetre)
 	sf::String txtNouvPartie("Nouvelle Partie");
 	txtNouvPartie.SetColor(sf::Color::Black);
 	txtNouvPartie.SetSize(25.f);
+	txtNouvPartie.SetFont(cursiveFont);
 	boutNouvPartie.placerTexte(txtNouvPartie);
 
 
@@ -53,9 +62,9 @@ int Menu_0::run(sf::RenderWindow &fenetre)
 	boutContinuer.redimensionner(0.5);
 
 	// Seule la position vertical change pour ce bouton, on réutilise les variables précédentes
-	// la hauteur d'un demi bouton entre chaque bouton
+	// la hauteur un bouton plus 6px entre chaque bouton
 	// on poura eventuellement changer plus tard pour coller au font
-	boutonPosition[1] += boutContinuer.getTailleY();
+	boutonPosition[1] += boutContinuer.getTailleY() + 6;
 
 	boutContinuer.placer(boutonPosition[0],boutonPosition[1]);
 
@@ -63,8 +72,48 @@ int Menu_0::run(sf::RenderWindow &fenetre)
 	sf::String txtContinuer("Continuer");
 	txtContinuer.SetColor(sf::Color::Black);
 	txtContinuer.SetSize(25.f);
+	txtContinuer.SetFont(cursiveFont);
 	boutContinuer.placerTexte(txtContinuer);
 
+	// DEF du bouton "scores" ////////////
+
+	Bouton boutScores;
+	boutScores.initBouton("le_voyage_de_barbulle/img/histoire/bouton_n.png","le_voyage_de_barbulle/img/histoire/bouton_f.png" );
+	boutScores.redimensionner(0.5);
+
+	// Seule la position vertical change pour ce bouton, on réutilise les variables précédentes
+	// la hauteur un bouton plus 6px entre chaque bouton
+	// on poura eventuellement changer plus tard pour coller au font
+	boutonPosition[1] += boutContinuer.getTailleY() + 6;
+
+	boutScores.placer(boutonPosition[0],boutonPosition[1]);
+
+	// texte du bouton
+	sf::String txtScores("Scores");
+	txtScores.SetColor(sf::Color::Black);
+	txtScores.SetSize(25.f);
+	txtScores.SetFont(cursiveFont);
+	boutScores.placerTexte(txtScores);
+
+	// DEF du bouton "crédits" ////////////
+
+	Bouton boutCredits;
+	boutCredits.initBouton("le_voyage_de_barbulle/img/histoire/bouton_n.png","le_voyage_de_barbulle/img/histoire/bouton_f.png" );
+	boutCredits.redimensionner(0.5);
+
+	// Seule la position vertical change pour ce bouton, on réutilise les variables précédentes
+	// la hauteur un bouton plus 6px entre chaque bouton
+	// on poura eventuellement changer plus tard pour coller au font
+	boutonPosition[1] += boutContinuer.getTailleY() + 6;
+
+	boutCredits.placer(boutonPosition[0],boutonPosition[1]);
+
+	// texte du bouton
+	sf::String txtCredits(L"Crédits");
+	txtCredits.SetColor(sf::Color::Black);
+	txtCredits.SetSize(25.f);
+	txtCredits.SetFont(cursiveFont);
+	boutCredits.placerTexte(txtCredits);
 
 	sf::Event event;
 
@@ -72,7 +121,6 @@ int Menu_0::run(sf::RenderWindow &fenetre)
 	sf::View vue(sf::FloatRect(0, 0, fenetre.GetWidth(), fenetre.GetHeight()) );
 	fenetre.SetView(vue);
 
-	//Programme en lui-meme
 	while(fenetre.IsOpened())
 	{
 		// EVENEMENTS //////////////////////////////////////////
@@ -95,16 +143,17 @@ int Menu_0::run(sf::RenderWindow &fenetre)
 		// -- continuer
 		boutContinuer.drawMe(fenetre);
 		fenetre.Draw(txtContinuer);
+		// -- scores
+		boutScores.drawMe(fenetre);
+		fenetre.Draw(txtScores);
+		// -- crédits
+		boutCredits.drawMe(fenetre);
+		fenetre.Draw(txtCredits);
 
 		// CLIQUE SUR nouvelle partie ///////////////////////////////
 		if(boutNouvPartie.estClique(fenetre)) {
 			Clock.Reset();
-			while(Clock.GetElapsedTime()<1) {
-				fenetre.Clear(sf::Color(255, 255, 255));
-				boutNouvPartie.drawMe(fenetre);
-				fenetre.Draw(txtNouvPartie);
-				fenetre.Display();
-			}
+			fenetre.Display();
 			return (ecranSuivant = MAPPEMONDE);
 		}
 		fenetre.Display();
