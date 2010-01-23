@@ -17,7 +17,7 @@ BoutonMove::~BoutonMove() {
 
 bool BoutonMove::enDeplacement(sf::RenderWindow &fenetre) {
 	//a modifier si jamais on veut que ce soit un autre bouton que clicGauche
-	return ( estClique(&fenetre) || sourisGaucheAppuye(fenetre) );
+	return ( estClique(fenetre) || sourisGaucheAppuye(fenetre) );
 
 }
 

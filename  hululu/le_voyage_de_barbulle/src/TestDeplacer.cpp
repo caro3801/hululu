@@ -81,7 +81,7 @@ int TestDeplacer::run(sf::RenderWindow &fenetre) {
 
 		fenetre.Clear(sf::Color(255, 255, 255));
 		pays.dessinerPage(fenetre);
-		piece5.drawMe(&fenetre);
+		piece5.drawMe(fenetre);
 		fenetre.Display();
 	}
 

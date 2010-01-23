@@ -18,14 +18,15 @@ public:
 	void initBouton(const std::string &img1,const std::string &img2);
 	void placer(float x,float y);
 	void redimensionner(float x, float y);
+	void redimensionner(float scale); // scalling
+	void placerTexte(sf::String &texte);
 	inline sf::Sprite getSprite() { return spriten; }
-	inline void placerTexte(sf::String* texte) {texte->SetPosition(getPosX()+(getTailleX()/3),getPosY()+(getTailleY()/3)); }
 	inline float getPosX() { return spriten.GetPosition().x; }
 	inline float getPosY() { return spriten.GetPosition().y; }
 	inline float getTailleX() { return spriten.GetSize().x; }
 	inline float getTailleY() { return spriten.GetSize().y; }
-	bool estClique(sf::RenderWindow* fenetre);
-	void drawMe(sf::RenderWindow* fenetre);
+	bool estClique(sf::RenderWindow & fenetre);
+	void drawMe(sf::RenderWindow & fenetre);
 
 private:
 

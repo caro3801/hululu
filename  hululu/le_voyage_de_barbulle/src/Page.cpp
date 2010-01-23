@@ -32,14 +32,14 @@ void Page::dessinerMusic(sf::RenderWindow &fenetre) {
 	pause.redimensionner(40,40);
 
 	if(playing) {
-		play.drawMe(&fenetre);
-		if(play.estClique(&fenetre)) {
+		play.drawMe(fenetre);
+		if(play.estClique(fenetre)) {
 			playing=false;
 		}
 	}
 	else {
-		pause.drawMe(&fenetre);
-		if(pause.estClique(&fenetre)) {
+		pause.drawMe(fenetre);
+		if(pause.estClique(fenetre)) {
 			playing=true;
 		}
 	}
@@ -51,23 +51,23 @@ void Page::dessinerPage(sf::RenderWindow &fenetre) {
 	back.initBouton("le_voyage_de_barbulle/img/histoire/back_icon.png","le_voyage_de_barbulle/img/histoire/back_icon_a.png");
 	back.placer((fenetre.GetWidth()/2)-40.f,fenetre.GetHeight()-90);
 	back.redimensionner(40.f,40.f);
-	back.drawMe(&fenetre);
+	back.drawMe(fenetre);
 	go.initBouton("le_voyage_de_barbulle/img/histoire/go_icon.png","le_voyage_de_barbulle/img/histoire/go_icon_a.png");
 	go.placer((fenetre.GetWidth()/2)+10,fenetre.GetHeight()-90);
 	go.redimensionner(40.f,40.f);
-	go.drawMe(&fenetre);
+	go.drawMe(fenetre);
 }
-bool Page::menuActif(sf::RenderWindow &fenetre) {
-	if(back.estClique(& fenetre) || go.estClique(& fenetre))
+bool Page::menuActif(sf::RenderWindow & fenetre) {
+	if(back.estClique(fenetre) || go.estClique(fenetre))
 		return true;
 	else
 		return false;
 }
 
 int Page::changerEcran(sf::RenderWindow &fenetre, int cour, int suiv, int prec) {
-	if (go.estClique(& fenetre))
+	if (go.estClique(fenetre))
 		return suiv;
-	if (back.estClique(& fenetre))
+	if (back.estClique(fenetre))
 		return prec;
 	else
 		return cour;

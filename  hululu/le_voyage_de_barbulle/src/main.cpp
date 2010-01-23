@@ -21,13 +21,14 @@ using namespace std;
 #include "Ecran.h"
 
 // ECRANS/////////////////////////////
+#include "DefineEcrans.h"
 // à chaque écran un numéro (à respecter tout au long du programme)
 #include "Menu_0.h"		// numéro 0
 #include "Mapmonde.h"	// numéro 1
 #include "Italie.h"		//numero 2
 #include "Japon.h"      //numéro 3
 #include "JeuPerou.h"	// numéro 5
-#include "Perou.h"	// numéro 5
+#include "Perou.h"		// numéro 5
 #include "JeuItalie.h"	// numéro 4
 
 // PROCEDURE PRINCIPALE/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
