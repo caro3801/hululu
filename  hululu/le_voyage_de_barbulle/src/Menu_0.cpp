@@ -84,7 +84,7 @@ int Menu_0::run(sf::RenderWindow &fenetre)
 	// Seule la position vertical change pour ce bouton, on réutilise les variables précédentes
 	// la hauteur un bouton plus 6px entre chaque bouton
 	// on poura eventuellement changer plus tard pour coller au font
-	boutonPosition[1] += boutContinuer.getTailleY() + 6;
+	boutonPosition[1] += boutScores.getTailleY() + 6;
 
 	boutScores.placer(boutonPosition[0],boutonPosition[1]);
 
@@ -104,7 +104,7 @@ int Menu_0::run(sf::RenderWindow &fenetre)
 	// Seule la position vertical change pour ce bouton, on réutilise les variables précédentes
 	// la hauteur un bouton plus 6px entre chaque bouton
 	// on poura eventuellement changer plus tard pour coller au font
-	boutonPosition[1] += boutContinuer.getTailleY() + 6;
+	boutonPosition[1] += boutCredits.getTailleY() + 6;
 
 	boutCredits.placer(boutonPosition[0],boutonPosition[1]);
 
@@ -114,6 +114,20 @@ int Menu_0::run(sf::RenderWindow &fenetre)
 	txtCredits.SetSize(25.f);
 	txtCredits.SetFont(cursiveFont);
 	boutCredits.placerTexte(txtCredits);
+
+
+	// DEF titre de la page /////////////////////
+	// texte du bouton
+	sf::String txtTitre("Voyage avec Barbulle");
+	txtTitre.SetSize(25.f);
+	txtTitre.SetFont(cursiveFont);
+	sf::Color::Color bleuclair(179,195,228);
+	txtTitre.SetColor(bleuclair);
+
+	int txtPosition[2];
+	txtPosition[0] = (fenetre.GetWidth() / 2) - (txtTitre.GetRect().GetWidth() / 2);  // sur x, ici il est centré
+	txtPosition[1] = boutNouvPartie.getPosY() - txtTitre.GetRect().GetHeight() - 6.f;
+	txtTitre.SetPosition(txtPosition[0], txtPosition[1]);
 
 	sf::Event event;
 
@@ -136,6 +150,9 @@ int Menu_0::run(sf::RenderWindow &fenetre)
 		// init du font de la fenêtre
 		fenetre.Clear(sf::Color(255, 255, 255));
 
+		// titre de la fenêtre
+		fenetre.Draw(txtTitre);
+
 		// DESSIN DES BOUTONS //////////////////////////////////////
 		// -- nouvelle partie
 		boutNouvPartie.drawMe(fenetre);
@@ -157,6 +174,7 @@ int Menu_0::run(sf::RenderWindow &fenetre)
 			return (ecranSuivant = MAPPEMONDE);
 		}
 		fenetre.Display();
+
 
 	}
 	return ecranSuivant;
