@@ -29,7 +29,7 @@ public:
 	bool erreur7Trouvee(sf::RenderWindow &fenetre,float posImgX, float posImgY);
 
 	void dessineMarque(sf::RenderWindow &fenetre, bool er1, bool er2, bool er3, bool er4, bool er5, bool er6, bool er7,float posImgX, float posImgY);
-	void afficherAide(sf::RenderWindow &fenetre, bool er1, bool er2, bool er3, bool er4, bool er5, bool er6, bool er7);
+	void afficherAide(sf::RenderWindow &fenetre, bool er1, bool er2, bool er3, bool er4, bool er5, bool er6, bool er7, float posImgX, float posImgY);
 };
 
 #endif /* JEUITALIE_H_ */
