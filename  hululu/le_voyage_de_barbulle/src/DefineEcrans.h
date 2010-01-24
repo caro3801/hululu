@@ -17,5 +17,6 @@
 #define JEU_ITALIE 4
 #define PEROU 5
 #define JEU_PEROU 6
+#define AUSTRALIE_INTRO 7
 
 #endif /* DEFINEECRANS_H_ */
