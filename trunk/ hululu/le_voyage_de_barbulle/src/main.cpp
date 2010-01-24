@@ -27,9 +27,10 @@ using namespace std;
 #include "Mapmonde.h"	// numéro 1
 #include "Italie.h"		//numero 2
 #include "Japon.h"      //numéro 3
-#include "JeuPerou.h"	// numéro 5
-#include "Perou.h"		// numéro 5
 #include "JeuItalie.h"	// numéro 4
+#include "Perou.h"		// numéro 5
+#include "JeuPerou.h"	// numéro 6
+#include "AustralieIntro.h" // numéro 7
 
 // PROCEDURE PRINCIPALE/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 int main(int argc, char** argv)
@@ -54,23 +55,12 @@ int main(int argc, char** argv)
     tabEcrans.push_back (&ecran3);
     JeuItalie ecran4;
     tabEcrans.push_back(&ecran4);
-//   TestDeplacer ecran75;
-//    tabEcrans.push_back(&ecran75); -> Mettre valeur correcte si vous voulez voir ce qu'affiche cette classe de test
     Perou ecran5;
     tabEcrans.push_back (&ecran5);
     JeuPerou ecran6;
     tabEcrans.push_back (&ecran6);
-//    Canada ecran3;
-
-//    tabEcrans.push_back (&ecran4);
-//    Perou ecran5;
-//    tabEcrans.push_back (&ecran5);
-//    Tanzanie ecran6;
-//    tabEcrans.push_back (&ecran6);
-//    Australie ecran7;
-//    tabEcrans.push_back (&ecran7);
-//    Pole ecran8;
-//    tabEcrans.push_back (&ecran8);
+    AustralieIntro ecran7;
+    tabEcrans.push_back (&ecran7);
 
     // # boucle principale, c'est ici que tt commence...
     while ( ecran >= 0 and fenetre.IsOpened() ) // -1 provoque l'arrêt du programme

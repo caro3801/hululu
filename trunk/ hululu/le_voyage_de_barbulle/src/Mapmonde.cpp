@@ -18,6 +18,8 @@ using namespace std;
 #include "Collision.h"
 #include "Bouton.h"
 
+#include "DefineEcrans.h"
+
 
 int Mapmonde::run(sf::RenderWindow &fenetre)
 {
@@ -27,31 +29,6 @@ int Mapmonde::run(sf::RenderWindow &fenetre)
 															//chaque pays
 
 	// SPRITES/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-	// # image garçon
-	Person2D garcon_sp(50.f, 100.f, fenetre.GetWidth()/15, 6, 4); // le personnage parcoud 1/10 de la largeur de la fenêtre à chaque pas
-	garcon_sp.SetColor(sf::Color(255, 255, 255, 255));
-
-	// positione le garçon dans le vide horizontalement, à gauche de la fenêtre
-	// mais au centre, verticalement
-	garcon_sp.SetPosition(-100.f, ( fenetre.GetHeight() - garcon_sp.getHeightCase() ) / 2.f);
-
-	// charge l'image
-	garcon_sp.SetImage(Ecran::MonManager.GetImage("le_voyage_de_barbulle/img/sprite/sprite_g_walk_petit.png")); // la taille du personnage dépend de la fenêtre
-	//garcon_sp.Resize(fenetre.GetWidth()/3, fenetre.GetHeight()/2); /* on ne redimensione pas avec le même indice
-																 //   * puisque le sprite à 6 cases en largeur
-																 //   * et 4 en hauteur */
-
-	// clipage du sprite
-	// c-à-d on n'affiche que les partie du sprite qui nous intérèssent
-	garcon_sp.initClip();
-
-	// # image Barbule
-	Person2D barbule_sp(50.f, 100.f, fenetre.GetWidth()/15, 6, 4);
-	barbule_sp.SetColor(sf::Color(255, 255, 255, 255));
-	barbule_sp.SetPosition(-100.f, ( fenetre.GetHeight() - garcon_sp.getHeightCase() - 20 ) / 2.f);
-	barbule_sp.SetImage(Ecran::MonManager.GetImage("le_voyage_de_barbulle/img/sprite/sprite_monstre_petit.png"));
-	barbule_sp.initClip();
 
 	// # image de fond
 	sf::Sprite SpriteCarte(Ecran::MonManager.GetImage("le_voyage_de_barbulle/img/histoire/mapemonde_fond.png"));
@@ -88,6 +65,7 @@ int Mapmonde::run(sf::RenderWindow &fenetre)
 	// # image de marque pays australie non actif
 	sf::Sprite australie_na(Ecran::MonManager.GetImage("le_voyage_de_barbulle/img/histoire/marque_pays.png"));
 	australie_na.SetPosition(((878*SpriteCarte.GetSize().x)/1000),((485*SpriteCarte.GetSize().y)/650));
+
 	//australie_na.Resize(30,30);
 	// # image de marque pays australie actif
 	sf::Sprite australie_a(Ecran::MonManager.GetImage("le_voyage_de_barbulle/img/histoire/marque_pays_a.png"));
@@ -161,6 +139,34 @@ int Mapmonde::run(sf::RenderWindow &fenetre)
 	sf::String texte_australie("Appuyez sur Espace pour aller en Australie",MyFont,18.f);
 	texte_australie.Move( (fenetre.GetHeight()/3),(fenetre.GetWidth()/3));
 	texte_australie.SetColor(sf::Color::Blue);
+
+
+
+	// # image garçon
+	Person2D garcon_sp(50.f, 100.f, fenetre.GetWidth()/15, 6, 4); // le personnage parcoud 1/10 de la largeur de la fenêtre à chaque pas
+	garcon_sp.SetColor(sf::Color(255, 255, 255, 255));
+
+	// positione le garçon dans le vide horizontalement, à gauche de la fenêtre
+	// mais au centre, verticalement
+	garcon_sp.SetPosition(-100.f, ( fenetre.GetHeight() - garcon_sp.getHeightCase() ) / 2.f);
+
+	// charge l'image
+	garcon_sp.SetImage(Ecran::MonManager.GetImage("le_voyage_de_barbulle/img/sprite/sprite_g_walk_petit.png")); // la taille du personnage dépend de la fenêtre
+	//garcon_sp.Resize(fenetre.GetWidth()/3, fenetre.GetHeight()/2); /* on ne redimensione pas avec le même indice
+																 //   * puisque le sprite à 6 cases en largeur
+																 //   * et 4 en hauteur */
+
+	// clipage du sprite
+	// c-à-d on n'affiche que les partie du sprite qui nous intérèssent
+	garcon_sp.initClip();
+
+	// # image Barbule
+	Person2D barbule_sp(50.f, 100.f, fenetre.GetWidth()/15, 6, 4);
+	barbule_sp.SetColor(sf::Color(255, 255, 255, 255));
+	barbule_sp.SetPosition(-100.f, ( fenetre.GetHeight() - garcon_sp.getHeightCase() - 20 ) / 2.f);
+	barbule_sp.SetImage(Ecran::MonManager.GetImage("le_voyage_de_barbulle/img/sprite/sprite_monstre_petit.png"));
+	barbule_sp.initClip();
+
 
 	// RENDU/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -250,19 +256,10 @@ int Mapmonde::run(sf::RenderWindow &fenetre)
 
 	//	fenetre.Clear(sf::Color(255, 255, 255));
 
+		// CARTE
 		fenetre.Draw(SpriteCarte) ;
-		// on dessine le Sprite sur la fenetre de rendu
-		if(derriere) {
-			fenetre.Draw(barbule_sp);
-			fenetre.Draw(garcon_sp);
-		}
-		else {
-			fenetre.Draw(garcon_sp);
-			fenetre.Draw(barbule_sp);
 
-		}
-
-		// on dessine les instructions
+		// INSTRUCTIONS
 		fenetre.Draw(text);
 
 		//ITALIE
@@ -270,7 +267,7 @@ int Mapmonde::run(sf::RenderWindow &fenetre)
 			fenetre.Draw(texte_italie);
 			fenetre.Draw(italie_a);
 			if (fenetre.GetInput().IsKeyDown(sf::Key::Space))
-					return ecranSuivant=2;
+					return ecranSuivant=ITALIE;
 		}
 		else	fenetre.Draw(italie_na);
 
@@ -286,7 +283,7 @@ int Mapmonde::run(sf::RenderWindow &fenetre)
 			fenetre.Draw(texte_japon);
 			fenetre.Draw(japon_a);
 			if (fenetre.GetInput().IsKeyDown(sf::Key::Space))
-				return ecranSuivant=3;
+				return ecranSuivant=JAPON;
 		}
 		else	fenetre.Draw(japon_na);
 
@@ -295,7 +292,7 @@ int Mapmonde::run(sf::RenderWindow &fenetre)
 			fenetre.Draw(perou_a);
 			fenetre.Draw(texte_perou);
 			if (fenetre.GetInput().IsKeyDown(sf::Key::Space))
-					return ecranSuivant=5;
+					return ecranSuivant=PEROU;
 		}
 		else	fenetre.Draw(perou_na);
 
@@ -310,6 +307,9 @@ int Mapmonde::run(sf::RenderWindow &fenetre)
 		if(cola) {
 			fenetre.Draw(australie_a);
 			fenetre.Draw(texte_australie);
+
+			if (fenetre.GetInput().IsKeyDown(sf::Key::Space))
+					return ecranSuivant=AUSTRALIE_INTRO;
 		}
 		else	fenetre.Draw(australie_na);
 
@@ -320,6 +320,16 @@ int Mapmonde::run(sf::RenderWindow &fenetre)
 		}
 		else	fenetre.Draw(pole_na);
 
+
+		// GARÇON ET BARBULLE
+		if(derriere) {
+			fenetre.Draw(barbule_sp);
+			fenetre.Draw(garcon_sp);
+		}
+		else {
+			fenetre.Draw(garcon_sp);
+			fenetre.Draw(barbule_sp);
+		}
 		// toujours pour actualiser le rendu (et en fin de boucle surtout) !
 		fenetre.Display();
 
