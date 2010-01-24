@@ -232,10 +232,13 @@ int JeuItalie::run(sf::RenderWindow &fenetre) {
 
 	sf::Clock Clock; //Horloge
 	int ecranSuivant = 4; // par défault, celui de l'écran actif
-	bool er1, er2, er6, er7 = false; //booléens indiquant si les erreurs ont été trouvées
+	bool er1= false;
+	bool er2= false;   //booléens indiquant si les erreurs ont été trouvées
 	bool er3 = false; //déclarés en plusieurs fois sinon certains sont a true dès le départ ..
 	bool er4 = false;
 	bool er5 = false;
+	bool er6= false;
+	bool er7 = false;
 	int nbATrouver = 7; //Le nombre d'erreurs a trouver est de 7 au départ
 	Page pays; //Declaration d'une Page pays qui servira a afficher les menus music et menu
 
@@ -285,17 +288,18 @@ int JeuItalie::run(sf::RenderWindow &fenetre) {
 
 	sf::String jeu("Nombre d'erreurs a trouver : ");
 	jeu.Move(fenetre.GetWidth() / 2 - (jeu.GetRect().Right) / 2,
-			fenetre.GetHeight() - (fenetre.GetHeight() - original.GetSize().y)
-					/ 3);
+			fenetre.GetHeight() - 2*(original.GetSize().y)/ 7);
 	jeu.SetColor(sf::Color::White);
 
 	sf::String nbErreurs("7");
 	nbErreurs.Move(jeu.GetRect().Right, jeu.GetPosition().y);
 	nbErreurs.SetColor(sf::Color::White);
 
-	sf::String gagne("Tu as gagne !");
-	gagne.Move(fenetre.GetWidth() / 2, fenetre.GetHeight() - 40.f);
-	gagne.SetColor(sf::Color::White);
+	sf::String gagne("Tu as gagne !",MyFont,40.f);
+	float originalbottom=original.GetPosition().y+original.GetSize().y;
+	float diff= (jeu.GetPosition().y -originalbottom)/2;
+	gagne.Move(fenetre.GetWidth() / 2 - gagne.GetRect().Right/2,originalbottom+diff);
+	gagne.SetColor(sf::Color::Green);
 
 	sf::String txtAide("Aide");
 	//Bouton////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
