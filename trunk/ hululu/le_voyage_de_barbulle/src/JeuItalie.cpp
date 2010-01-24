@@ -169,31 +169,61 @@ void JeuItalie::dessineMarque(sf::RenderWindow &fenetre, bool er1, bool er2,
 }
 
 void JeuItalie::afficherAide(sf::RenderWindow &fenetre, bool er1, bool er2,
-		bool er3, bool er4, bool er5, bool er6, bool er7) {
-	sf::Clock Tempo;
+		bool er3, bool er4, bool er5, bool er6, bool er7, float posImgX,
+		float posImgY) {
 
-	sf::Sprite aide1;
-	aide1.SetImage(Ecran::MonManager.GetImage("le_voyage_de_barbulle/img/italie/aide1.png"));
-	float timer;
-	Tempo.Reset();
-	bool pause =true;
-	sf::Event event;
-	while (timer < 5 || pause) {
-
-
-		while (fenetre.GetEvent(event)) {
-			if (event.Type == sf::Event::Closed){
-				fenetre.Close();pause=false;}
-
-			else if (event.Type == sf::Event::KeyReleased && event.Key.Code
-								== sf::Key::Escape)
-							{
-				fenetre.Close();pause=false;}
-
-		}
-
-		timer = Tempo.GetElapsedTime();
+	if (!er1) {
+		sf::Sprite aide1;
+		aide1.SetImage(Ecran::MonManager.GetImage(
+				"le_voyage_de_barbulle/img/italie/aide1.png"));
+		aide1.SetPosition(posImgX, posImgY);
 		fenetre.Draw(aide1);
+
+
+	} else if (!er2) {
+		sf::Sprite aide2;
+		aide2.SetImage(Ecran::MonManager.GetImage(
+				"le_voyage_de_barbulle/img/italie/aide2.png"));
+		aide2.SetPosition(posImgX, posImgY);
+		fenetre.Draw(aide2);
+
+	}
+
+	else if (!er3) {
+		sf::Sprite aide3;
+		aide3.SetImage(Ecran::MonManager.GetImage(
+				"le_voyage_de_barbulle/img/italie/aide3.png"));
+		aide3.SetPosition(posImgX, posImgY);
+		fenetre.Draw(aide3);
+
+	} else if (!er4) {
+		sf::Sprite aide4;
+		aide4.SetImage(Ecran::MonManager.GetImage(
+				"le_voyage_de_barbulle/img/italie/aide4.png"));
+		aide4.SetPosition(posImgX, posImgY);
+		fenetre.Draw(aide4);
+
+	} else if (!er5) {
+		sf::Sprite aide5;
+		aide5.SetImage(Ecran::MonManager.GetImage(
+				"le_voyage_de_barbulle/img/italie/aide5.png"));
+		aide5.SetPosition(posImgX, posImgY);
+		fenetre.Draw(aide5);
+
+	} else if (!er6) {
+		sf::Sprite aide6;
+		aide6.SetImage(Ecran::MonManager.GetImage(
+				"le_voyage_de_barbulle/img/italie/aide6.png"));
+		aide6.SetPosition(posImgX, posImgY);
+		fenetre.Draw(aide6);
+
+	} else if (!er7) {
+		sf::Sprite aide7;
+		aide7.SetImage(Ecran::MonManager.GetImage(
+				"le_voyage_de_barbulle/img/italie/aide7.png"));
+		aide7.SetPosition(posImgX, posImgY);
+		fenetre.Draw(aide7);
+
 	}
 }
 
@@ -274,6 +304,7 @@ int JeuItalie::run(sf::RenderWindow &fenetre) {
 	boutAide.initBouton("le_voyage_de_barbulle/img/histoire/bouton_n.png",
 			"le_voyage_de_barbulle/img/histoire/bouton_f.png");
 	boutAide.redimensionner(0.5);
+	boutAide.placer(300,100);
 	boutAide.placerTexte(txtAide);
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -344,10 +375,7 @@ int JeuItalie::run(sf::RenderWindow &fenetre) {
 		///On dessine sur la fenetre
 		fenetre.Clear();
 		pays.dessinerPage(fenetre);
-		if (boutAide.estClique(fenetre)) {
-			afficherAide(fenetre, er1, er2, er3, er4, er5, er6, er7);
 
-		}
 		if (fenetre.GetInput().IsMouseButtonDown(sf::Mouse::Left)
 				&& pays.menuActif(fenetre) && (Clock.GetElapsedTime() > 1)) {
 			//On vérifie qu'on clic, que le clic est sur un élement du menu, et qu'au moins 1 seconde s'est écoulée
@@ -373,6 +401,10 @@ int JeuItalie::run(sf::RenderWindow &fenetre) {
 
 		nbErreurs.SetText(Texte);
 		fenetre.Draw(nbErreurs);
+		if (boutAide.estClique(fenetre)) {
+			afficherAide(fenetre, er1, er2, er3, er4, er5, er6, er7,erreur.GetPosition().x, erreur.GetPosition().y);
+
+		}
 		dessineMarque(fenetre, er1, er2, er3, er4, er5, er6, er7,
 				erreur.GetPosition().x, erreur.GetPosition().y);
 		if (nbATrouver == 0)
