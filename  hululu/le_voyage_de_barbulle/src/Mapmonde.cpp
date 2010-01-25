@@ -102,7 +102,7 @@ int Mapmonde::run(sf::RenderWindow &fenetre)
 	// FONT/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	// instruction
 	sf::Font MyFont;
-	if (!MyFont.LoadFromFile("le_voyage_de_barbulle/img/font/Cursive_standard.ttf", 50))
+	if (!MyFont.LoadFromFile("le_voyage_de_barbulle/img/font/Cursive_standard.ttf", 25.f))
 		cerr << "Erreur lors du chargement de la police";
 
 	sf::String text("Fleches haut, bas, gauche et droite pour deplacer le personnage.");
@@ -112,7 +112,7 @@ int Mapmonde::run(sf::RenderWindow &fenetre)
 	text.SetFont(MyFont);
 
 	//textes pour chacun des pays
-	sf::String texte_canada("Appuyez sur Espace pour aller au Canada",MyFont,20.f);
+	sf::String texte_canada("Appuyez sur Espace pour aller au Canada",MyFont,18.f);
 	texte_canada.Move( (fenetre.GetHeight()/3),(fenetre.GetWidth()/3));
 	texte_canada.SetColor(sf::Color::Blue);
 

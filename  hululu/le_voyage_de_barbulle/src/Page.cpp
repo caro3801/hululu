@@ -25,10 +25,10 @@ void Page::dessinerFond(sf::RenderWindow &fenetre) {
 void Page::dessinerMusic(sf::RenderWindow &fenetre) {
 
 	play.initBouton("le_voyage_de_barbulle/img/histoire/play_icon.png","le_voyage_de_barbulle/img/histoire/play_icon_a.png");
-	play.placer(fenetre.GetWidth()/6,0.f);
+	play.placer(fenetre.GetWidth()*0.02, fenetre.GetHeight()*0.02);
 	play.redimensionner(40,40);
 	pause.initBouton("le_voyage_de_barbulle/img/histoire/pause_icon.png","le_voyage_de_barbulle/img/histoire/pause_icon_a.png");
-	pause.placer(fenetre.GetWidth()/6,0.f);
+	pause.placer(fenetre.GetWidth()*0.02, fenetre.GetHeight()*0.02);
 	pause.redimensionner(40,40);
 
 	if(playing) {
@@ -48,12 +48,19 @@ void Page::dessinerMusic(sf::RenderWindow &fenetre) {
 void Page::dessinerPage(sf::RenderWindow &fenetre) {
 	dessinerFond(fenetre);
 	dessinerMusic(fenetre);
+
+	font.SetImage(Ecran::MonManager.GetImage("le_voyage_de_barbulle/img/histoire/fontBouton.png") );
+	font.SetPosition((fenetre.GetWidth()/2)-60.f, fenetre.GetHeight()-70);
+	//font.Set(110,60);
+	fenetre.Draw(font);
+
 	back.initBouton("le_voyage_de_barbulle/img/histoire/back_icon.png","le_voyage_de_barbulle/img/histoire/back_icon_a.png");
-	back.placer((fenetre.GetWidth()/2)-40.f,fenetre.GetHeight()-90);
+	back.placer((fenetre.GetWidth()/2)-50.f,fenetre.GetHeight()-60);
 	back.redimensionner(40.f,40.f);
 	back.drawMe(fenetre);
+
 	go.initBouton("le_voyage_de_barbulle/img/histoire/go_icon.png","le_voyage_de_barbulle/img/histoire/go_icon_a.png");
-	go.placer((fenetre.GetWidth()/2)+10,fenetre.GetHeight()-90);
+	go.placer((fenetre.GetWidth()/2),fenetre.GetHeight()-60);
 	go.redimensionner(40.f,40.f);
 	go.drawMe(fenetre);
 }

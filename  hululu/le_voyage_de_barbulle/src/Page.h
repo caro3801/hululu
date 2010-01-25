@@ -25,6 +25,7 @@ public:
 	//Donner en parametre le numéro de l'ecran courant, celui du suivant et celui d'avant
 
 private:
+	sf::Sprite font; // font des bouton back'n go
 	Bouton back; //Retourner en arriere
 	Bouton go; //Aller a l'ecran suivant
 	Bouton pause; //Pause et Play pour lire les instructions
