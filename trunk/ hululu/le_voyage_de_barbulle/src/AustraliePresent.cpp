@@ -56,8 +56,8 @@ int AustraliePresent::run(sf::RenderWindow &fenetre) {
 	txtTitre.SetColor(sf::Color(255,173,0));
 
 	int position[2];
-	position[0] = 10;
-	position[1] = 80; // sur y, ici il est centré
+	position[0] = 80;
+	position[1] = 15; // sur y, ici il est centré
 	txtTitre.SetPosition(position[0],position[1]);
 
 	// -- titre OMBRE
@@ -67,6 +67,7 @@ int AustraliePresent::run(sf::RenderWindow &fenetre) {
 	// -- cadre présentation
 	sf::Sprite presentation;
 	presentation.SetImage(Ecran::MonManager.GetImage("le_voyage_de_barbulle/img/australie/presentation.png"));
+	position[0] -= 60;
 	position[1] += txtTitre.GetRect().GetHeight() + 10;
 	presentation.SetPosition(position[0],position[1]);
 	float indice = presentation.GetSize().y / presentation.GetSize().x;
