@@ -12,7 +12,6 @@
 #include <SFML/Window.hpp>
 #include <SFML/Graphics.hpp>
 #include "Ecran.h"
-#include "JeuPerou.h"
 
 
 class AustralieIntro: public Ecran {

@@ -1,20 +1,15 @@
 /*
- * AutralieIntro.cpp
+ * AustraliePresent.cpp
  *
- *  Created on: 24 janv. 2010
+ *  Created on: 25 janv. 2010
  *      Author: pirhoo
  */
-
-#include <iostream>
-using namespace std;
-
 // LIB SFML/////////////////////////////
 #include <SFML/System.hpp>
 #include <SFML/Window.hpp>
 #include <SFML/Graphics.hpp>
 
-
-#include "AustralieIntro.h"
+#include "AustraliePresent.h"
 #include "DefineEcrans.h"
 
 #include "Bouton.h"
@@ -22,18 +17,22 @@ using namespace std;
 
 #include "effetSurTexte.h"
 
-AustralieIntro::AustralieIntro() {
+#include <iostream>;
+using namespace std;
+
+AustraliePresent::AustraliePresent() {
 	// TODO Auto-generated constructor stub
 
 }
 
-AustralieIntro::~AustralieIntro() {
+AustraliePresent::~AustraliePresent() {
 	// TODO Auto-generated destructor stub
 }
 
-int AustralieIntro::run(sf::RenderWindow &fenetre) {
 
-	int ecranSuivant = AUSTRALIE_INTRO;
+int AustraliePresent::run(sf::RenderWindow &fenetre) {
+
+	int ecranSuivant = AUSTRALIE_PRESENT;
 
 
 	// DEF de la police ////////////////
@@ -50,41 +49,28 @@ int AustralieIntro::run(sf::RenderWindow &fenetre) {
 
 	// ELEMENTS /////////////////////////
 
-	// -- drapeaux
-	sf::Sprite flag;
-	flag.SetImage(Ecran::MonManager.GetImage("le_voyage_de_barbulle/img/australie/flag.png"));
-	int position[2]; // position de l'élément en fonction de la taille de la fenêtre
-	position[0] = (fenetre.GetWidth() / 2) - ( flag.GetSize().x / 2);
-	position[1] = (fenetre.GetHeight() / 2) - ( flag.GetSize().y / 2);
-	flag.SetPosition(position[0],position[1]);
-
-	// -- sous-titre
-	sf::String txtSousTitre("Le pays des kangouroux...");
-	txtSousTitre.SetSize(40.f);
-	txtSousTitre.SetFont(cursiveFont);
-	txtSousTitre.SetColor(sf::Color(255,173,0));
-	position[0] = (fenetre.GetWidth() / 2) - ( txtSousTitre.GetRect().GetWidth() / 2);
-	position[1] -= (10 +  txtSousTitre.GetRect().GetHeight() );
-	txtSousTitre.SetPosition(position[0],position[1]);
-
-	// -- sous-titre OMBRE
-	sf::String txtSousTitreOMBRE;
-	ombreTexte(txtSousTitre, txtSousTitreOMBRE, sf::Color(70, 40, 0), 2, 2);
-
 	// -- titre
-	sf::String txtTitre("Welcome in Australia !");
-	txtTitre.SetSize(50.f);
+	sf::String txtTitre("Australie");
+	txtTitre.SetSize(40.f);
 	txtTitre.SetFont(cursiveFont);
 	txtTitre.SetColor(sf::Color(255,173,0));
 
-	position[0] = (fenetre.GetWidth() / 2) - ( txtTitre.GetRect().GetWidth() / 2);
-	position[1] -= 60; // sur y, ici il est centré
-
+	int position[2];
+	position[0] = 10;
+	position[1] = 80; // sur y, ici il est centré
 	txtTitre.SetPosition(position[0],position[1]);
 
 	// -- titre OMBRE
 	sf::String txtTitreOMBRE;
 	ombreTexte(txtTitre, txtTitreOMBRE, sf::Color(70, 40, 0), 2, 2);
+
+	// -- cadre présentation
+	sf::Sprite presentation;
+	presentation.SetImage(Ecran::MonManager.GetImage("le_voyage_de_barbulle/img/australie/presentation.png"));
+	position[1] += txtTitre.GetRect().GetHeight() + 10;
+	presentation.SetPosition(position[0],position[1]);
+	float indice = presentation.GetSize().y / presentation.GetSize().x;
+	presentation.Resize(fenetre.GetWidth()*0.40, fenetre.GetWidth()*0.40*indice);
 
 	// IMAGE DE FONT ////////////////////
 	sf::Sprite backgroundKangoo;
@@ -98,7 +84,7 @@ int AustralieIntro::run(sf::RenderWindow &fenetre) {
 	sf::View vue(sf::FloatRect(0, 0, fenetre.GetWidth(), fenetre.GetHeight()) );
 	fenetre.SetView(vue);
 
-	while (fenetre.IsOpened() && (ecranSuivant == AUSTRALIE_INTRO) )
+	while (fenetre.IsOpened() && (ecranSuivant == AUSTRALIE_PRESENT) )
 	{
 
 		// EVENEMENTS ///////////////////////
@@ -117,16 +103,14 @@ int AustralieIntro::run(sf::RenderWindow &fenetre) {
 		fenetre.Draw(backgroundKangoo);
 		fenetre.Draw(txtTitreOMBRE);
 		fenetre.Draw(txtTitre);
-		fenetre.Draw(txtSousTitreOMBRE);
-		fenetre.Draw(txtSousTitre);
-		fenetre.Draw(flag);
+		fenetre.Draw(presentation);
 		modelePage.dessinerPage(fenetre);
 
 		fenetre.Display();
 
 		// CTRL changement d'écran ////////////
 		if (fenetre.GetInput().IsMouseButtonDown(sf::Mouse::Left) && modelePage.menuActif(fenetre) && Clock.GetElapsedTime() > 1)
-			ecranSuivant = modelePage.changerEcran(fenetre, AUSTRALIE_INTRO, AUSTRALIE_PRESENT, MAPPEMONDE) ;
+			ecranSuivant = modelePage.changerEcran(fenetre, AUSTRALIE_PRESENT, AUSTRALIE_PRESENT, AUSTRALIE_INTRO) ;
 
 	}
 
