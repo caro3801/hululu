@@ -39,7 +39,7 @@ int main(int argc, char** argv)
 
 	// # Vecteur contenant les adresses des variables-écran
 	vector<Ecran*> tabEcrans;
-    int ecran = MAPPEMONDE; // ecran en cours (naturellement, on commence par le premier)
+    int ecran = MENU_0; // ecran en cours (naturellement, on commence par le premier)
 
     // # création de la fenêtre
     sf::RenderWindow fenetre(sf::VideoMode::GetMode(0), "Le voyage de Barbule", sf::Style::Fullscreen);

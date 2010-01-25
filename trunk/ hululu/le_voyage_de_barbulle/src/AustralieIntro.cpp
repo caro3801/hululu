@@ -66,8 +66,6 @@ int AustralieIntro::run(sf::RenderWindow &fenetre) {
 	position[1] = (fenetre.GetHeight() / 2) - ( flag.GetSize().y / 2);
 	flag.SetPosition(position[0],position[1]);
 
-
-
 	// -- sous-titre
 	sf::String txtSousTitre("Le pays des kangouroux...");
 	txtSousTitre.SetSize(40.f);
