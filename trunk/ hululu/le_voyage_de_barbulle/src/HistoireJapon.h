@@ -1,22 +1,22 @@
 /*
  * Japon.h
  *
- *  Created on: 24 déc. 2009
+ *  Created on: 15 déc. 2009
  *      Author: pollet
  */
 
-#ifndef JAPON_H_
-#define JAPON_H_
+#ifndef HISTOIREJAPON_H_
+#define HISTOIREJAPON_H_
 
 #include <SFML/System.hpp>
 #include <SFML/Window.hpp>
 #include <SFML/Graphics.hpp>
 #include "Ecran.h"
 
-class Japon : public Ecran {
+class HistoireJapon : public Ecran {
 public:
-	Japon();
-	virtual ~Japon();
+	HistoireJapon();
+	virtual ~HistoireJapon();
 	virtual int run(sf::RenderWindow &fenetre);
 };
 
