@@ -31,10 +31,12 @@ using namespace std;
 #include "Perou.h"		// numéro 5
 #include "JeuPerou.h"	// numéro 6
 #include "AustralieIntro.h" // numéro 7
+#include "PoleSud_Porte.h" //numero 8
 
 // PROCEDURE PRINCIPALE/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 int main(int argc, char** argv)
 {
+
 	// # Vecteur contenant les adresses des variables-écran
 	vector<Ecran*> tabEcrans;
     int ecran = MENU_0; // ecran en cours (naturellement, on commence par le premier)
@@ -45,7 +47,7 @@ int main(int argc, char** argv)
 
     // # Instanciation de tous les écrans
 	// Le menu principal
-    Menu_0 ecran0;
+	Menu_0 ecran0;
     tabEcrans.push_back (&ecran0);
     Mapmonde ecran1;
     tabEcrans.push_back (&ecran1);
@@ -61,7 +63,8 @@ int main(int argc, char** argv)
     tabEcrans.push_back (&ecran6);
     AustralieIntro ecran7;
     tabEcrans.push_back (&ecran7);
-
+    PoleSud_Porte ecran8;
+    tabEcrans.push_back (&ecran8);
     // # boucle principale, c'est ici que tt commence...
     while ( ecran >= 0 and fenetre.IsOpened() ) // -1 provoque l'arrêt du programme
         ecran = tabEcrans[ecran]->run(fenetre);

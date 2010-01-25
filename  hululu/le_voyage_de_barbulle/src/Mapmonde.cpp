@@ -92,11 +92,11 @@ int Mapmonde::run(sf::RenderWindow &fenetre)
 
 	// # image de marque pays pole non actif
 	sf::Sprite pole_na(Ecran::MonManager.GetImage("le_voyage_de_barbulle/img/histoire/marque_pays.png"));
-	pole_na.SetPosition(((619*SpriteCarte.GetSize().x)/1000),((597*SpriteCarte.GetSize().y)/650));
+	pole_na.SetPosition(((620*SpriteCarte.GetSize().x)/1000),((570*SpriteCarte.GetSize().y)/650));
 	//pole_na.Resize(30,30);
 	// # image de marque pays pole actif
 	sf::Sprite pole_a(Ecran::MonManager.GetImage("le_voyage_de_barbulle/img/histoire/marque_pays_a.png"));
-	pole_a.SetPosition(((619*SpriteCarte.GetSize().x)/1000),((597*SpriteCarte.GetSize().y)/650));
+	pole_a.SetPosition(((620*SpriteCarte.GetSize().x)/1000),((570*SpriteCarte.GetSize().y)/650));
 	//pole_a.Resize(30,30);
 
 	// FONT/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -317,6 +317,8 @@ int Mapmonde::run(sf::RenderWindow &fenetre)
 		if(colpo) {
 			fenetre.Draw(pole_a);
 			fenetre.Draw(texte_pole);
+			if (fenetre.GetInput().IsKeyDown(sf::Key::Space))
+					return ecranSuivant=POLESUD_PORTE;
 		}
 		else	fenetre.Draw(pole_na);
 

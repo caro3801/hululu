@@ -11,6 +11,9 @@ using namespace std;
 #include "JeuItalie.h"
 #include "Page.h"
 #include "Bouton.h"
+#include "PoleSud_Porte.h"
+#include "Objet.h"
+#include "DefineEcrans.h"
 JeuItalie::JeuItalie() {
 }
 
@@ -240,6 +243,7 @@ int JeuItalie::run(sf::RenderWindow &fenetre) {
 	bool er6= false;
 	bool er7 = false;
 	int nbATrouver = 7; //Le nombre d'erreurs a trouver est de 7 au départ
+	bool objetGagne = false;
 	Page pays; //Declaration d'une Page pays qui servira a afficher les menus music et menu
 
 
@@ -411,8 +415,22 @@ int JeuItalie::run(sf::RenderWindow &fenetre) {
 		}
 		dessineMarque(fenetre, er1, er2, er3, er4, er5, er6, er7,
 				erreur.GetPosition().x, erreur.GetPosition().y);
-		if (nbATrouver == 0)
+		if(nbATrouver == 0)	{
 			fenetre.Draw(gagne);
+			Clock.Reset();
+		}
+
+		while (nbATrouver == 0) {
+			fenetre.Display();
+			if(Clock.GetElapsedTime() > 5) {
+				objetGagne=true;
+				string nom = "popo";
+				blason.setNom(nom);
+				cout << "coucou" << blason.getNom() << endl;
+				return MAPPEMONDE;
+			}
+		}
+
 		fenetre.Display();
 
 	}
