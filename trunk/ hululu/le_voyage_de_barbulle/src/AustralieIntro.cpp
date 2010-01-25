@@ -48,6 +48,7 @@ int AustralieIntro::run(sf::RenderWindow &fenetre) {
 	Clock.Reset();
 
 	// ELEMENTS /////////////////////////
+	// -- titre
 	sf::String txtTitre("Welcome in Australia !");
 	txtTitre.SetSize(50.f);
 	txtTitre.SetFont(cursiveFont);
@@ -58,6 +59,22 @@ int AustralieIntro::run(sf::RenderWindow &fenetre) {
 	position[1] = (int)(fenetre.GetHeight()*0.1); // sur y, ici il est centré
 
 	txtTitre.SetPosition(position[0],position[1]);
+
+	// -- sous-titre
+	sf::String txtSousTitre("Le pays des kangouroux...");
+	txtSousTitre.SetSize(40.f);
+	txtSousTitre.SetFont(cursiveFont);
+	txtSousTitre.SetColor(sf::Color(179,69,17));
+	position[0] = (fenetre.GetWidth() / 2) - ( txtSousTitre.GetRect().GetWidth() / 2);
+	position[1] += 60;
+	txtSousTitre.SetPosition(position[0],position[1]);
+
+	// -- drapeaux
+	sf::Sprite flag;
+	flag.SetImage(Ecran::MonManager.GetImage("le_voyage_de_barbulle/img/australie/flag.png"));
+	position[0] = (fenetre.GetWidth() / 2) - ( flag.GetSize().x / 2);
+	position[1] += 80;
+	flag.SetPosition(position[0],position[1]);
 
 	// IMAGE DE FONT ////////////////////
 	sf::Sprite backgroundKangoo;
@@ -89,6 +106,8 @@ int AustralieIntro::run(sf::RenderWindow &fenetre) {
 		// DESSINS  //////////////////////////
 		fenetre.Draw(backgroundKangoo);
 		fenetre.Draw(txtTitre);
+		fenetre.Draw(txtSousTitre);
+		fenetre.Draw(flag);
 		page.dessinerPage(fenetre);
 
 		fenetre.Display();
