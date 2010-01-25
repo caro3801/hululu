@@ -171,7 +171,7 @@ int Menu_0::run(sf::RenderWindow &fenetre)
 		if(boutNouvPartie.estClique(fenetre)) {
 			Clock.Reset();
 			fenetre.Display();
-			return (ecranSuivant = MAPPEMONDE);
+			return (ecranSuivant = AUSTRALIE_INTRO);
 		}
 		fenetre.Display();
 
