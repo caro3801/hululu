@@ -51,7 +51,9 @@ int AustralieIntro::run(sf::RenderWindow &fenetre) {
 	if (!cursiveFont.LoadFromFile("le_voyage_de_barbulle/img/font/Cursive_standard_BOLD.ttf", 50.f))
 		cerr << "Erreur lors du chargement de la police" << endl;
 
-	Page page;
+	Page modelePage;
+
+
 	// HORLOGE //////////////////////////
 	sf::Clock Clock;
 	Clock.Reset();
@@ -106,7 +108,7 @@ int AustralieIntro::run(sf::RenderWindow &fenetre) {
 	sf::View vue(sf::FloatRect(0, 0, fenetre.GetWidth(), fenetre.GetHeight()) );
 	fenetre.SetView(vue);
 
-	while (fenetre.IsOpened())
+	while (fenetre.IsOpened() && (ecranSuivant == AUSTRALIE_INTRO) )
 	{
 
 		// EVENEMENTS ///////////////////////
@@ -128,9 +130,13 @@ int AustralieIntro::run(sf::RenderWindow &fenetre) {
 		fenetre.Draw(txtSousTitreOMBRE);
 		fenetre.Draw(txtSousTitre);
 		fenetre.Draw(flag);
-		page.dessinerPage(fenetre);
+		modelePage.dessinerPage(fenetre);
 
 		fenetre.Display();
+
+		// CTRL changement d'écran ////////////
+		if (fenetre.GetInput().IsMouseButtonDown(sf::Mouse::Left) && modelePage.menuActif(fenetre) && Clock.GetElapsedTime() > 1)
+			ecranSuivant = modelePage.changerEcran(fenetre, AUSTRALIE_INTRO, AUSTRALIE_INTRO, MAPPEMONDE) ;
 
 	}
 
