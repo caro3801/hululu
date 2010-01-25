@@ -18,5 +18,6 @@
 #define JEU_PEROU 6
 #define AUSTRALIE_INTRO 7
 #define POLESUD_PORTE 8
+#define AUSTRALIE_PRESENT 9
 
 #endif /* DEFINEECRANS_H_ */
