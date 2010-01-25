@@ -10,11 +10,14 @@
 #define ECRAN_H_
 
 
-// LIB SFML/////////////////////////////
+
+// LIB SFM L/////////////////////////////
 #include <SFML/System.hpp>
 #include <SFML/Window.hpp>
 #include <SFML/Graphics.hpp>
 #include "ImageManager.h"
+
+
 
 class Ecran
 {
