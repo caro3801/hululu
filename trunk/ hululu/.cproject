@@ -50,7 +50,7 @@
 </toolChain>
 </folderInfo>
 <sourceEntries>
-<entry excluding="Test_animation|Test_animation/src/test.cc|Test_animation/src/Test_animation.cpp|Test" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name=""/>
+<entry excluding="le_voyage_de_barbulle/src/Carte.cpp|le_voyage_de_barbulle/src/Carte.h|Test_animation|Test_animation/src/test.cc|Test_animation/src/Test_animation.cpp|Test" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name=""/>
 </sourceEntries>
 </configuration>
 </storageModule>
@@ -521,7 +521,7 @@
 </toolChain>
 </folderInfo>
 <sourceEntries>
-<entry excluding="Test_animation|Test_animation/src/test.cc|Test_animation/src/Test_animation.cpp|Test" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name=""/>
+<entry excluding="le_voyage_de_barbulle/src/Carte.cpp|le_voyage_de_barbulle/src/Carte.h|Test_animation|Test_animation/src/test.cc|Test_animation/src/Test_animation.cpp|Test" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name=""/>
 </sourceEntries>
 </configuration>
 </storageModule>

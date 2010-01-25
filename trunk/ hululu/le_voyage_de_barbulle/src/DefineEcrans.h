@@ -9,7 +9,6 @@
 
 #ifndef DEFINEECRANS_H_
 #define DEFINEECRANS_H_
-
 #define MENU_0 0
 #define MAPPEMONDE 1
 #define ITALIE 2
@@ -18,5 +17,6 @@
 #define PEROU 5
 #define JEU_PEROU 6
 #define AUSTRALIE_INTRO 7
+#define POLESUD_PORTE 8
 
 #endif /* DEFINEECRANS_H_ */
