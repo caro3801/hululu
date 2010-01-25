@@ -24,7 +24,7 @@ using namespace std;
 int Mapmonde::run(sf::RenderWindow &fenetre)
 {
 	bool derriere = false;
-	int ecranSuivant = 1; // par défault, celui de l'écran actif
+	int ecranSuivant = MAPPEMONDE; // par défault, celui de l'écran actif
 	bool colj, colt, colc, colp, coli, colpo, cola = false; //Pour gerer les collisions de
 															//chaque pays
 
@@ -176,7 +176,7 @@ int Mapmonde::run(sf::RenderWindow &fenetre)
 
 	// Pour que le programme ne se termine pas :)
 	sf::Event event;
-	while(fenetre.IsOpened())
+	while(fenetre.IsOpened() && (ecranSuivant == MAPPEMONDE) )
 	{
 		// EVENEMENTS //////////////////////////////////////////
 		while (fenetre.GetEvent(event)) {
@@ -267,7 +267,7 @@ int Mapmonde::run(sf::RenderWindow &fenetre)
 			fenetre.Draw(texte_italie);
 			fenetre.Draw(italie_a);
 			if (fenetre.GetInput().IsKeyDown(sf::Key::Space))
-					return ecranSuivant=ITALIE;
+					ecranSuivant=ITALIE;
 		}
 		else	fenetre.Draw(italie_na);
 
@@ -283,7 +283,7 @@ int Mapmonde::run(sf::RenderWindow &fenetre)
 			fenetre.Draw(texte_japon);
 			fenetre.Draw(japon_a);
 			if (fenetre.GetInput().IsKeyDown(sf::Key::Space))
-				return ecranSuivant=JAPON;
+				ecranSuivant=JAPON;
 		}
 		else	fenetre.Draw(japon_na);
 
@@ -292,7 +292,7 @@ int Mapmonde::run(sf::RenderWindow &fenetre)
 			fenetre.Draw(perou_a);
 			fenetre.Draw(texte_perou);
 			if (fenetre.GetInput().IsKeyDown(sf::Key::Space))
-					return ecranSuivant=PEROU;
+					ecranSuivant=PEROU;
 		}
 		else	fenetre.Draw(perou_na);
 
@@ -309,7 +309,7 @@ int Mapmonde::run(sf::RenderWindow &fenetre)
 			fenetre.Draw(texte_australie);
 
 			if (fenetre.GetInput().IsKeyDown(sf::Key::Space))
-					return ecranSuivant=AUSTRALIE_INTRO;
+					ecranSuivant=AUSTRALIE_INTRO;
 		}
 		else	fenetre.Draw(australie_na);
 
@@ -318,7 +318,7 @@ int Mapmonde::run(sf::RenderWindow &fenetre)
 			fenetre.Draw(pole_a);
 			fenetre.Draw(texte_pole);
 			if (fenetre.GetInput().IsKeyDown(sf::Key::Space))
-					return ecranSuivant=POLESUD_PORTE;
+					ecranSuivant=POLESUD_PORTE;
 		}
 		else	fenetre.Draw(pole_na);
 

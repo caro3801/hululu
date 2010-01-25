@@ -135,7 +135,7 @@ int Menu_0::run(sf::RenderWindow &fenetre)
 	sf::View vue(sf::FloatRect(0, 0, fenetre.GetWidth(), fenetre.GetHeight()) );
 	fenetre.SetView(vue);
 
-	while(fenetre.IsOpened())
+	while(fenetre.IsOpened() && (ecranSuivant == MENU_0) )
 	{
 		// EVENEMENTS //////////////////////////////////////////
 		while (fenetre.GetEvent(event)) {
@@ -167,15 +167,16 @@ int Menu_0::run(sf::RenderWindow &fenetre)
 		boutCredits.drawMe(fenetre);
 		fenetre.Draw(txtCredits);
 
+		fenetre.Display();
+
 		// CLIQUE SUR nouvelle partie ///////////////////////////////
 		if(boutNouvPartie.estClique(fenetre)) {
 			Clock.Reset();
-			fenetre.Display();
-			return (ecranSuivant = MAPPEMONDE);
+			ecranSuivant = MAPPEMONDE;
 		}
-		fenetre.Display();
 
 
+		// CLIQUE SUR continuer ///////////////////////////////
 	}
 	return ecranSuivant;
 }
