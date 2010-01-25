@@ -5,13 +5,20 @@
  *      Author: pollet
  */
 
+#include <SFML/System.hpp>
+#include <SFML/Window.hpp>
+#include <SFML/Graphics.hpp>
+#include "Ecran.h"
+
+
 #ifndef JEUJAPON_H_
 #define JEUJAPON_H_
 
-class JeuJapon {
+class JeuJapon: public Ecran {
 public:
 	JeuJapon();
 	virtual ~JeuJapon();
+	virtual int run(sf::RenderWindow &fenetre);
 };
 
 #endif /* JEUJAPON_H_ */
