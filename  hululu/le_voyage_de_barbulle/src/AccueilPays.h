@@ -20,11 +20,13 @@ using namespace std;
 class AccueilPays {
 public:
 	AccueilPays();
+	AccueilPays(sf::RenderWindow &fenetre,const std::string &imgDrapeau,const std::string &imgFond,const sf::Unicode::Text & ti, const sf::Unicode::Text & ssti,const sf::Color & colorTi,const sf::Color & colorSsti);
 	virtual ~AccueilPays();
-	void dessinerAccueil(sf::RenderWindow &fenetre,const std::string &imgDrapeau,const std::string &imgFond,const sf::Unicode::Text & ti, const sf::Unicode::Text & ssti,const sf::Color & colorTi,const sf::Color & colorSsti);
-	void dessinerFond(sf::RenderWindow &fenetre,const std::string &imgFond);
-	void dessinerDrapeau(sf::RenderWindow &fenetre,const std::string &imgDrapeau);
-	void InfosPays(sf::RenderWindow &fenetre, const sf::Unicode::Text & titre,const sf::Unicode::Text & sstitre,const sf::Color colorTi,const sf::Color colorSsti);
+	void initAccueil(sf::RenderWindow &fenetre);
+	void dessinerAccueil(sf::RenderWindow &fenetre);
+	void dessinerFond(sf::RenderWindow &fenetre);
+	void dessinerDrapeau(sf::RenderWindow &fenetre);
+	void InfosPays(sf::RenderWindow &fenetre);
 
 private:
 	sf::String titre;

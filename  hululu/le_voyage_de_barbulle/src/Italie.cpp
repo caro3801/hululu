@@ -34,7 +34,7 @@ int Italie::run(sf::RenderWindow &fenetre) {
 
 	//IMAGES/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	Page pays;
-	AccueilPays italie;
+
 	// SPRITES/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 	// # image de fond
@@ -50,14 +50,16 @@ int Italie::run(sf::RenderWindow &fenetre) {
 
 	// FONT/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-//	italie.InfosPays(fenetre,"Benvenuto in Italia","Florence o Firenze");
-
+	AccueilPays italie(fenetre,"le_voyage_de_barbulle/img/accueil/italie.png","le_voyage_de_barbulle/img/italie/italie_fond.png","Europe et Italie","L'art de l'entourloupe",sf::Color::Green,sf::Color::Red);
+	italie.initAccueil(fenetre);
 	sf::Event event;
 
 	// # création d'une vue sur la fenêtre - !! Puisqu'une vue a été créee sur l'ecran précédent (Mapemonde) obligé de recréer une vue
 	//pour toutes les fenetres suivantes, ou images et sprites ne s'affichent pas!
 	//a voir pour trouver une autre solution : suppression vue ? re-definition de la vue par defaut ?
 	//ou on crée une autre vue a chaque fois.
+
+
 	sf::View vue(sf::FloatRect(0, 0, fenetre.GetWidth(), fenetre.GetHeight()) );
 	fenetre.SetView(vue);
 	////////////////////////////////
@@ -73,7 +75,7 @@ int Italie::run(sf::RenderWindow &fenetre) {
 						fenetre.Close();
 				}
 		fenetre.Clear(sf::Color(255, 255, 255));
-		italie.dessinerAccueil(fenetre,"le_voyage_de_barbulle/img/accueil/italie.png","le_voyage_de_barbulle/img/italie/italie_fond.png","Europe et Italie","L'art de l'entourloupe",sf::Color::Green,sf::Color::Red);
+		italie.dessinerAccueil(fenetre);
 		pays.dessinerPage(fenetre);
 		fenetre.Display();
 		if (fenetre.GetInput().IsMouseButtonDown(sf::Mouse::Left) && pays.menuActif(fenetre) && Clock.GetElapsedTime() > 1)
