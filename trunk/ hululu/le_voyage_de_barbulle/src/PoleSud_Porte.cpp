@@ -23,6 +23,12 @@ PoleSud_Porte::PoleSud_Porte() {
 PoleSud_Porte::~PoleSud_Porte() {
 }
 
+Objet PoleSud_Porte::blason;
+Objet PoleSud_Porte::weta;
+Objet PoleSud_Porte::poncho;
+Objet PoleSud_Porte::lampion;
+
+
 int PoleSud_Porte::run(sf::RenderWindow &fenetre) {
 
 	int ecranSuivant = POLESUD_PORTE;
@@ -68,12 +74,10 @@ int PoleSud_Porte::run(sf::RenderWindow &fenetre) {
 		fenetre.Clear(sf::Color(255, 255, 255));
 		fenetre.Draw(fond);
 		pays.dessinerPage(fenetre);
-		blason.setNom("blabla");
-		cout << blason.getNom() << endl;
-//		if(blason_o.getTrouve()==true) {
-//			cout <<"ok"<< endl;
-//			fenetre.Draw(porte_blason);
-//		}
+
+		if(PoleSud_Porte::blason.getTrouve()==true) {
+			fenetre.Draw(porte_blason);
+		}
 		fenetre.Display();
 
 		if (fenetre.GetInput().IsMouseButtonDown(sf::Mouse::Left) && pays.menuActif(fenetre) && Clock.GetElapsedTime() > 1)

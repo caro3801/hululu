@@ -17,7 +17,7 @@
 
 #include "effetSurTexte.h"
 
-#include <iostream>;
+#include <iostream>
 using namespace std;
 
 AustraliePresent::AustraliePresent() {
