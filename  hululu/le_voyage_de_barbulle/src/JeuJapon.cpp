@@ -91,7 +91,7 @@ int JeuJapon::run(sf::RenderWindow &fenetre)
 	tabCarte.push_back(Carte("le_voyage_de_barbulle/img/japon/hanafuda_12-02.png","le_voyage_de_barbulle/img/japon/hanafuda_12-02C.png", 12, 2, 1) );
 	tabCarte.push_back(Carte("le_voyage_de_barbulle/img/japon/hanafuda_05-01.png","le_voyage_de_barbulle/img/japon/hanafuda_05-01C.png", 5, 1, 1) );
 	tabCarte.push_back(Carte("le_voyage_de_barbulle/img/japon/hanafuda_12-04.png","le_voyage_de_barbulle/img/japon/hanafuda_12-04C.png", 12, 4, 1) );
-	tabCarte.push_back(Carte("le_voyage_de_barbulle/img/japon/hanafuda_02-04.png","le_voyage_de_barbulle/img/japon/hanafuda_02-01C.png", 2, 4, 1) );
+	tabCarte.push_back(Carte("le_voyage_de_barbulle/img/japon/hanafuda_02-04.png","le_voyage_de_barbulle/img/japon/hanafuda_02-04C.png", 2, 4, 1) );
 
 
 	// PLACEMENT CARTE
@@ -294,6 +294,25 @@ int JeuJapon::run(sf::RenderWindow &fenetre)
 									Fevrier.SetImage(Ecran::MonManager.GetImage("le_voyage_de_barbulle/img/japon/02V.png"));
 								if (courant==3)
 									Mars.SetImage(Ecran::MonManager.GetImage("le_voyage_de_barbulle/img/japon/03V.png"));
+								if (courant==4)
+									Avril.SetImage(Ecran::MonManager.GetImage("le_voyage_de_barbulle/img/japon/04V.png"));
+								if (courant==5)
+									Mai.SetImage(Ecran::MonManager.GetImage("le_voyage_de_barbulle/img/japon/05V.png"));
+								if (courant==6)
+									Juin.SetImage(Ecran::MonManager.GetImage("le_voyage_de_barbulle/img/japon/06V.png"));
+								if (courant==7)
+									Juillet.SetImage(Ecran::MonManager.GetImage("le_voyage_de_barbulle/img/japon/07V.png"));
+								if (courant==8)
+									Aout.SetImage(Ecran::MonManager.GetImage("le_voyage_de_barbulle/img/japon/08V.png"));
+								if (courant==9)
+									Septembre.SetImage(Ecran::MonManager.GetImage("le_voyage_de_barbulle/img/japon/09V.png"));
+								if (courant==10)
+									Octobre.SetImage(Ecran::MonManager.GetImage("le_voyage_de_barbulle/img/japon/10V.png"));
+								if (courant==11)
+									Novembre.SetImage(Ecran::MonManager.GetImage("le_voyage_de_barbulle/img/japon/11V.png"));
+								if (courant==12)
+									Decembre.SetImage(Ecran::MonManager.GetImage("le_voyage_de_barbulle/img/japon/12V.png"));
+
 								courant++;
 
 							}
