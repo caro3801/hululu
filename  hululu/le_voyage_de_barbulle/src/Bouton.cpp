@@ -50,6 +50,7 @@ bool Bouton::estClique(sf::RenderWindow & fenetre) {
 
 	if (fenetre.GetInput().IsMouseButtonDown(sf::Mouse::Left)    && (fenetre.GetInput().GetMouseX()<=(getPosX()+getTailleX()) && fenetre.GetInput().GetMouseX()>=getPosX())
 	&& (fenetre.GetInput().GetMouseY()<=(getPosY()+getTailleY()) &&  fenetre.GetInput().GetMouseY()>=getPosY()) && pretACliquer(0)) {
+
 		return true;
 	}
 	else
@@ -58,12 +59,11 @@ bool Bouton::estClique(sf::RenderWindow & fenetre) {
 
 bool Bouton::pretACliquer(float interval)
 {
-	if( (timeSinceLastRefresh.GetElapsedTime() * 1000) >= interval )
+	if ( (timeSinceLastRefresh.GetElapsedTime() * 1000) >= interval )
 	{
-		timeSinceLastRefresh.Reset();
-		return true;
+			timeSinceLastRefresh.Reset();
+			return true;
 	}
 	else
 		return false;
-
 }
