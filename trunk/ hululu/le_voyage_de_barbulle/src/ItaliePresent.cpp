@@ -17,6 +17,7 @@ using namespace std;
 #include "DefineEcrans.h"
 
 ItaliePresent::ItaliePresent() {
+	this->etape = 0;
 	// TODO Auto-generated constructor stub
 
 }
@@ -26,9 +27,7 @@ ItaliePresent::~ItaliePresent() {
 }
 int ItaliePresent::run(sf::RenderWindow &fenetre) {
 
-	int ecranSuivant = ITALIE_PRESENT;
-
-
+	int ecranSuivant = ITALIEPRESENT;
 
 	Page pays;
 
@@ -36,10 +35,7 @@ int ItaliePresent::run(sf::RenderWindow &fenetre) {
 	sf::Clock Clock;
 	Clock.Reset();
 
-
-
-
-// DEF de la police ////////////////
+	// DEF de la police ////////////////
 	sf::Font cursiveFont;
 	if (!cursiveFont.LoadFromFile(
 			"le_voyage_de_barbulle/img/font/Cursive_standard_BOLD.ttf", 50.f))
@@ -47,19 +43,32 @@ int ItaliePresent::run(sf::RenderWindow &fenetre) {
 
 	// ecran de présentation numero 1
 	sf::Sprite present1;
-	present1.SetImage(Ecran::MonManager.GetImage("le_voyage_de_barbulle/img/italie/present1.png"));
-			present1.SetPosition(0.f, 0.f);
-			present1.Resize((fenetre.GetWidth()), (fenetre.GetHeight()));
+	present1.SetImage(Ecran::MonManager.GetImage(
+			"le_voyage_de_barbulle/img/italie/present1.png"));
+	present1.SetPosition(0.f, 0.f);
+	present1.Resize((fenetre.GetWidth()), (fenetre.GetHeight()));
 
+	// ecran de présentation numero 2
+	sf::Sprite present2;
+	present2.SetImage(Ecran::MonManager.GetImage(
+			"le_voyage_de_barbulle/img/italie/present2.png"));
+	present2.SetPosition(0.f, 0.f);
+	present2.Resize((fenetre.GetWidth()), (fenetre.GetHeight()));
+
+	// ecran de présentation numero 3
+	sf::Sprite present3;
+	present3.SetImage(Ecran::MonManager.GetImage(
+			"le_voyage_de_barbulle/img/italie/present3.png"));
+	present3.SetPosition(0.f, 0.f);
+	present3.Resize((fenetre.GetWidth()), (fenetre.GetHeight()));
 
 	// # création d'une vue sur la fenêtre
 	sf::View vue(sf::FloatRect(0, 0, fenetre.GetWidth(), fenetre.GetHeight()));
 	fenetre.SetView(vue);
 	// # Pour que le programme ne se termine pas :)
 	sf::Event event;
-	while (fenetre.IsOpened() && ecranSuivant == JEU_ITALIE) {
+	while (fenetre.IsOpened()) {
 		while (fenetre.GetEvent(event)) {
-
 			// # Instanciation de tous les éc fermeture de la fenetre
 			// si echap ou fermeture manuelle
 			if (event.Type == sf::Event::Closed)
@@ -68,10 +77,70 @@ int ItaliePresent::run(sf::RenderWindow &fenetre) {
 					== sf::Key::Escape)
 				fenetre.Close();
 		}
-		fenetre.Draw(present1);
-		fenetre.Display();
-		if (fenetre.GetInput().IsMouseButtonDown(sf::Mouse::Left) && pays.menuActif(fenetre) && Clock.GetElapsedTime() > 1)
-					return ecranSuivant=pays.changerEcran(fenetre,ITALIE_PRESENT,JEU_ITALIE,ITALIE) ;
+		switch (etape) {
+		case 0:
+			fenetre.Draw(present1);
+			fenetre.Display();
+			if (fenetre.GetInput().IsMouseButtonDown(sf::Mouse::Left)
+					&& pays.menuActif(fenetre) && Clock.GetElapsedTime() > 1) {
+				if (pays.getGoClique(fenetre)) {
+					pays.getGo().resetTimer();
+					etape++;
+					return ITALIEPRESENT;
+				} else if (pays.getBackClique(fenetre)) {
+					pays.getBack().resetTimer();
+					etape--;
+					return ITALIE;
+				} else
+					return ITALIEPRESENT;
+			}
+			break;
+		case 1:
+			fenetre.Draw(present2);
+
+			fenetre.Display();
+			if (fenetre.GetInput().IsMouseButtonDown(sf::Mouse::Left)
+					&& pays.menuActif(fenetre) && Clock.GetElapsedTime() > 1) {
+				if (pays.getGoClique(fenetre)) {
+					pays.getGo().resetTimer();
+					etape++;
+					return ITALIEPRESENT;
+				} else if (pays.getBackClique(fenetre)) {
+					pays.getBack().resetTimer();
+					etape--;
+					return ITALIEPRESENT;
+				} else
+					return ITALIEPRESENT;
+			}
+
+			break;
+		case 2:
+			fenetre.Draw(present3);
+			fenetre.Display();
+			if (fenetre.GetInput().IsMouseButtonDown(sf::Mouse::Left)
+					&& pays.menuActif(fenetre) && Clock.GetElapsedTime() > 1) {
+				if (pays.getGoClique(fenetre)) {
+					pays.getGo().resetTimer();
+					etape++;
+					return JEU_ITALIE;
+				} else if (pays.getBackClique(fenetre)) {
+					pays.getBack().resetTimer();
+					etape--;
+					return ITALIEPRESENT;
+				} else
+					return ITALIEPRESENT;
+			}
+			break;
+
+		default:
+
+			fenetre.Display();
+			if (fenetre.GetInput().IsMouseButtonDown(sf::Mouse::Left)
+					&& pays.menuActif(fenetre) && Clock.GetElapsedTime() > 1) {
+				return ecranSuivant = pays.changerEcran(fenetre, ITALIEPRESENT,
+						JEU_ITALIE, ITALIE);
+			}
+		}
 	}
 	return ecranSuivant;
 }

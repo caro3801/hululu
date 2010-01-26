@@ -352,7 +352,7 @@ int JeuJapon::run(sf::RenderWindow &fenetre)
 							fenetre.Draw(Sakura2);
 							fenetre.Draw(Instruction1);
 							//Instructions ///////////////////////////////////////
-							if (pays.getGo(fenetre))
+							if (pays.getGoClique(fenetre))
 							{
 								cout<<4;
 
