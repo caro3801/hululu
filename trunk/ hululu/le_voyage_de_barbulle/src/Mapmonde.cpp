@@ -25,7 +25,13 @@ int Mapmonde::run(sf::RenderWindow &fenetre)
 {
 	bool derriere = false;
 	int ecranSuivant = MAPPEMONDE; // par défault, celui de l'écran actif
-	bool colj, colt, colc, colp, coli, colpo, cola = false; //Pour gerer les collisions de
+	bool colj = false;
+	bool colt = false;
+	bool colc = false;
+	bool colp = false;
+	bool coli = false;
+	bool colpo = false;
+	bool cola = false; //Pour gerer les collisions de
 															//chaque pays
 
 	// SPRITES/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
