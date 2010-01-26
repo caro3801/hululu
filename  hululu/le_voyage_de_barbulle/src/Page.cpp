@@ -64,6 +64,7 @@ void Page::dessinerPage(sf::RenderWindow &fenetre) {
 	go.redimensionner(40.f,40.f);
 	go.drawMe(fenetre);
 }
+
 bool Page::menuActif(sf::RenderWindow & fenetre) {
 	if(back.estClique(fenetre) || go.estClique(fenetre))
 		return true;
@@ -74,7 +75,7 @@ bool Page::menuActif(sf::RenderWindow & fenetre) {
 int Page::changerEcran(sf::RenderWindow &fenetre, int cour, int suiv, int prec) {
 	if (go.estClique(fenetre))
 		return suiv;
-	if (back.estClique(fenetre))
+	else if (back.estClique(fenetre))
 		return prec;
 	else
 		return cour;
