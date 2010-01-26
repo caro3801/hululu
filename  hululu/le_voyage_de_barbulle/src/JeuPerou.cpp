@@ -148,7 +148,7 @@ int JeuPerou::run(sf::RenderWindow &fenetre) {
 					fenetre.Draw(fond);
 					pays.dessinerPage(fenetre);
 
-
+/*
 					val1_1.deplacer(fenetre,mouseMove,mouseLache);
 					val1_1.drawMe(fenetre);
 					val1_2.deplacer(fenetre,mouseMove,mouseLache);
@@ -167,6 +167,7 @@ int JeuPerou::run(sf::RenderWindow &fenetre) {
 //					val5_1.drawMe(fenetre);
 //					val3_2.deplacer(fenetre,mouseMove);
 //					val3_2.drawMe(fenetre);
+					*/
 
 					if(total== 0)	{
 						fenetre.Draw(gagne);

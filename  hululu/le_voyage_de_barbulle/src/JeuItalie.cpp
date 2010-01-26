@@ -26,7 +26,7 @@ bool JeuItalie::erreur1Trouvee(sf::RenderWindow &fenetre, float posImgX,
 
 	float posX = fenetre.GetInput().GetMouseX(); //On récupere la position de la souris lors du clic
 	float posY = fenetre.GetInput().GetMouseY();
-	if ((posX >= (113.f + posImgX)) && (posX <= (122.f + posImgX)) && (posY
+	if ((posX >= (110.f + posImgX)) && (posX <= (122.f + posImgX)) && (posY
 			>= (154 + posImgY)) && (posY <= (160 + posImgY)))
 		//Si position souris entre 113 + posImgX et 122 +posImgX en X et entre 154 + posImgY et 160 + posImgY en Y
 		// Soit si la position de la souris est dans le cercle de l'erreur
