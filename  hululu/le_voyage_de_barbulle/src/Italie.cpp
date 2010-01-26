@@ -73,7 +73,7 @@ int Italie::run(sf::RenderWindow &fenetre) {
 		pays.dessinerPage(fenetre);
 		fenetre.Display();
 		if (fenetre.GetInput().IsMouseButtonDown(sf::Mouse::Left) && pays.menuActif(fenetre) && Clock.GetElapsedTime() > 1)
-			return ecranSuivant=pays.changerEcran(fenetre,ITALIE,ITALIE_PRESENT,MAPPEMONDE) ; //ecranSuivant = jeuItalie (4), ecranCourant = Italie (2),
+			return ecranSuivant=pays.changerEcran(fenetre,ITALIE,ITALIEPRESENT,MAPPEMONDE) ; //ecranSuivant = jeuItalie (4), ecranCourant = Italie (2),
 																   //ecranPrecedent = Mapmonde (1)
 
 	}

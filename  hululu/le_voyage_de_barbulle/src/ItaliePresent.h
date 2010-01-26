@@ -11,12 +11,13 @@
 #include <SFML/Window.hpp>
 #include <SFML/Graphics.hpp>
 #include "Ecran.h"
-class ItaliePresent {
+class ItaliePresent : public Ecran {
 public:
 	ItaliePresent();
 	virtual ~ItaliePresent();
 	virtual int run(sf::RenderWindow &fenetre);
-
+private:
+	int etape;
 };
 
 #endif /* ITALIEPRESENT_H_ */
