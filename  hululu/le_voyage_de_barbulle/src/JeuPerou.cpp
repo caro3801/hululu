@@ -215,6 +215,7 @@ int JeuPerou::run(sf::RenderWindow &fenetre) {
 			val3_1.deplacer(fenetre,mouseMove,lache);
 			val3_1.drawMe(fenetre);
 
+
 			val3_2.deplacer(fenetre,mouseMove,lache);
 			val3_2.drawMe(fenetre);
 
