@@ -23,7 +23,9 @@ public:
 	void lancer();
 	void placerFond(sf::RenderWindow &fenetre,sf::Image img);
 	void creerPieces(sf::RenderWindow &fenetre,const std::string & piece1,const std::string & piece2,const std::string & piece3, const std::string & piece5);
+	bool detectePiecePayes(sf::RenderWindow &fenetre, float posImgX,float posImgY);
 	virtual int run(sf::RenderWindow &fenetre);
+
 
 private:
 	bool estLance;
