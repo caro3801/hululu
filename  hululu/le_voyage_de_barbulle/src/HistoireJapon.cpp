@@ -18,6 +18,7 @@ using namespace std;
 #include "Bouton.h"
 #include "AccueilPays.h"
 #include "Page.h"
+#include "DefineEcrans.h"
 
 
 HistoireJapon::HistoireJapon() {
@@ -48,7 +49,7 @@ int HistoireJapon::run(sf::RenderWindow &fenetre) {
 
 		// FONT/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-		// Texte////////////////////////////////////////////////////////////////////////
+
 
 		sf::Event event;
 
@@ -132,12 +133,12 @@ int HistoireJapon::run(sf::RenderWindow &fenetre) {
 
 				//dessin de la fenêtre
 				if (fenetre.GetInput().IsMouseButtonDown(sf::Mouse::Left) && pays.menuActif(fenetre) && Clock.GetElapsedTime() > 1)
-					return ecranSuivant=pays.changerEcran(fenetre,5,6,3) ; //ecranSuivant = HistoireJapon (5), ecranCourant = Japon (3),
+					return ecranSuivant=pays.changerEcran(fenetre,HISTOIREJAPON,JEUJAPON,JAPON) ; //ecranSuivant = HistoireJapon (5), ecranCourant = Japon (3),
 							 																		   //ecranPrecedent = Mapmonde (1)
 				if (fenetre.GetInput().IsKeyDown(sf::Key::O))
-							 		return ecranSuivant=5;
+							 		return ecranSuivant=HISTOIREJAPON;
 				if ((fenetre.GetInput().IsKeyDown(sf::Key::Space)))
-									return (ecranSuivant=5);
+									return (ecranSuivant=HISTOIREJAPON);
 				}
 	return ecranSuivant;
 

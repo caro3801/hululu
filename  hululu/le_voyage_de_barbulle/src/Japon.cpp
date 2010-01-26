@@ -17,6 +17,7 @@ using namespace std;
 #include "Bouton.h"
 #include "AccueilPays.h"
 #include "Page.h"
+#include "DefineEcrans.h"
 
 
 
@@ -38,13 +39,14 @@ int Japon::run(sf::RenderWindow &fenetre) {
 
 	//IMAGES/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	Page pays;
-	AccueilPays japon;
+	AccueilPays japon(fenetre,"le_voyage_de_barbulle/img/accueil/japon.png", "le_voyage_de_barbulle/img/accueil/fondaccueil.png", "Bienvenue au Japon","日本へようこそ", sf::Color::Red,sf::Color::Red);
+	japon.initAccueil(fenetre);
 	// SPRITES/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
 	// FONT/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-		//japon.InfosPays(fenetre,"Bienvenue au Japon","日本へようこそ");
+
 
 		sf::Event event;
 
@@ -64,15 +66,15 @@ int Japon::run(sf::RenderWindow &fenetre) {
 								fenetre.Close();
 						}
 				fenetre.Clear(sf::Color(255, 255, 255));
-				//japon.dessiner(fenetre,"le_voyage_de_barbulle/img/accueil/japon.png");
+				japon.dessinerAccueil(fenetre);
 				pays.dessinerPage(fenetre);
 				fenetre.Display();
 
 				if (fenetre.GetInput().IsMouseButtonDown(sf::Mouse::Left) && pays.menuActif(fenetre) && Clock.GetElapsedTime() > 1)
-					return ecranSuivant=pays.changerEcran(fenetre,3,5,1) ; //ecranSuivant = HistoireJapon (5), ecranCourant = Japon (3),
+					return ecranSuivant=pays.changerEcran(fenetre,JAPON,HISTOIREJAPON,MAPPEMONDE) ; //ecranSuivant = HistoireJapon (5), ecranCourant = Japon (3),
 																		   //ecranPrecedent = Mapmonde (1)
 				if (fenetre.GetInput().IsKeyDown(sf::Key::O))
-								return ecranSuivant=5;
+								return ecranSuivant=HISTOIREJAPON;
 			}
 
 			return ecranSuivant;
