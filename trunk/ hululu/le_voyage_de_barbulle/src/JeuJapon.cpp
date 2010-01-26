@@ -37,7 +37,7 @@ int JeuJapon::run(sf::RenderWindow &fenetre)
 	Clock.Reset();
 	int ecranSuivant = 6; // par défault, celui de l'écran actif
 	Page pays;
-	int mois=1;
+
 
 
 	vector<Carte> tabCarte;
@@ -207,6 +207,12 @@ int JeuJapon::run(sf::RenderWindow &fenetre)
 	Decembre.SetPosition((fenetre.GetWidth())/3.5, ((fenetre.GetHeight())/4)+E);
 	E+=60;
 
+	//INSTRUCTION ////////////////////////////////////////////////////////////////////////
+	sf::Sprite Instruction1;
+	Instruction1.SetImage(Ecran::MonManager.GetImage("le_voyage_de_barbulle/img/japon/instruction1.png"));
+	Instruction1.SetPosition((fenetre.GetWidth())/5, ((fenetre.GetHeight())/25));
+
+
 	//COMPTEUR ///////////////////////////////////////////////////////////////////////////
 
 	sf::String nbCarte("4");
@@ -217,6 +223,11 @@ int JeuJapon::run(sf::RenderWindow &fenetre)
 	Sakura.SetImage(Ecran::MonManager.GetImage("le_voyage_de_barbulle/img/japon/Sakura.png"));
 	Sakura.SetPosition((fenetre.GetWidth())/9, ((fenetre.GetHeight())/1.3));
 	Sakura.Resize(100, 100);
+
+	sf::Sprite Sakura2;
+	Sakura2.SetImage(Ecran::MonManager.GetImage("le_voyage_de_barbulle/img/japon/Sakura.png"));
+	Sakura2.SetPosition((fenetre.GetWidth())/9, ((fenetre.GetHeight())/30));
+	Sakura2.Resize(100, 100);
 
 
 
@@ -338,15 +349,19 @@ int JeuJapon::run(sf::RenderWindow &fenetre)
 							fenetre.Draw(Novembre);
 							fenetre.Draw(Decembre);
 							fenetre.Draw(Sakura);
+							fenetre.Draw(Sakura2);
+							fenetre.Draw(Instruction1);
+							//Instructions ///////////////////////////////////////
+							if (pays.getGo(fenetre))
+							{
+								cout<<4;
+
+							}
+
 							fenetre.Display();
 
-				//initialisation du mois /////
-
-
-
-
 					if (fenetre.GetInput().IsMouseButtonDown(sf::Mouse::Left) && pays.menuActif(fenetre))
-							ecranSuivant=pays.changerEcran(fenetre,JEUJAPON,JAPON,MAPPEMONDE) ;
+							ecranSuivant=pays.changerEcran(fenetre,JEUJAPON,JEUJAPON,JEUJAPON) ;
 
 					if (fenetre.GetInput().IsKeyDown(sf::Key::O))
 							ecranSuivant=JEUJAPON;

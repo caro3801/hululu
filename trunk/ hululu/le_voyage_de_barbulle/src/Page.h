@@ -21,6 +21,8 @@ public:
 	void dessinerMusic(sf::RenderWindow &fenetre);
 	bool menuActif(sf::RenderWindow &fenetre); //Vérifie que le clic est sur un élément du menu (Sécurité)
 	int  changerEcran(sf::RenderWindow &fenetre,int cour, int suiv, int prec);
+    inline Bouton getPlay() {return play; }
+    inline bool getGo(sf::RenderWindow &fenetre) {return go.estClique(fenetre); }
 	//A appeler pour passer d'un écran a l'autre lorsqu'on clique sur les fleches
 	//Donner en parametre le numéro de l'ecran courant, celui du suivant et celui d'avant
 
