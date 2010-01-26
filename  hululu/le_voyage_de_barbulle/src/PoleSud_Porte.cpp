@@ -80,7 +80,6 @@ int PoleSud_Porte::run(sf::RenderWindow &fenetre) {
 					else if(event.Type==sf::Event::MouseMoved)
 						mouseMove=true;
 					else if(event.Type==sf::Event::MouseButtonPressed && (event.MouseButton.Button==sf::Mouse::Left)) {
-						cout << "laché!" << endl;
 						lache = true;
 					}
 				}
