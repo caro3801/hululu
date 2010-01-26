@@ -17,6 +17,15 @@ Carte::Carte(std::string actif, std::string passif, int mois, int numero, int et
 	//actif 1 // passif 0
 }
 
+void Carte::create(std::string actif, std::string passif, int mois, int numero, int etat) {
+	this->actif.initBouton(actif, actif);
+	this->passif.initBouton(passif, passif);
+	this->mois = mois;
+	this->numero = numero;
+	this->etat = 1;
+	//actif 1 // passif 0
+}
+
 Carte::~Carte() {
 	// TODO Auto-generated destructor stub
 }
