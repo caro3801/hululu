@@ -21,13 +21,16 @@ class AccueilPays {
 public:
 	AccueilPays();
 	virtual ~AccueilPays();
-	void dessiner(sf::RenderWindow &fenetre,const std::string &imgDrapeau);
-	void InfosPays(sf::RenderWindow &fenetre, const sf::Unicode::Text & pres,const sf::Unicode::Text & li);
+	void dessinerAccueil(sf::RenderWindow &fenetre,const std::string &imgDrapeau,const std::string &imgFond,const sf::Unicode::Text & ti, const sf::Unicode::Text & ssti,const sf::Color & colorTi,const sf::Color & colorSsti);
+	void dessinerFond(sf::RenderWindow &fenetre,const std::string &imgFond);
+	void dessinerDrapeau(sf::RenderWindow &fenetre,const std::string &imgDrapeau);
+	void InfosPays(sf::RenderWindow &fenetre, const sf::Unicode::Text & titre,const sf::Unicode::Text & sstitre,const sf::Color colorTi,const sf::Color colorSsti);
 
 private:
-	sf::String present;
-	sf::String lieu;
+	sf::String titre;
+	sf::String sstitre;
 	sf::Sprite drapeau;
+	sf::Sprite fond;
 };
 
 #endif /* ACCUEILPAYS_H_ */

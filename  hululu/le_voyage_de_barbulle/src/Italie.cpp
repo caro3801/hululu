@@ -50,7 +50,7 @@ int Italie::run(sf::RenderWindow &fenetre) {
 
 	// FONT/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-	italie.InfosPays(fenetre,"Benvenuto in Italia","Florence o Firenze");
+//	italie.InfosPays(fenetre,"Benvenuto in Italia","Florence o Firenze");
 
 	sf::Event event;
 
@@ -73,7 +73,7 @@ int Italie::run(sf::RenderWindow &fenetre) {
 						fenetre.Close();
 				}
 		fenetre.Clear(sf::Color(255, 255, 255));
-		italie.dessiner(fenetre,"le_voyage_de_barbulle/img/accueil/italie.png");
+		italie.dessinerAccueil(fenetre,"le_voyage_de_barbulle/img/accueil/italie.png","le_voyage_de_barbulle/img/italie/italie_fond.png","Europe et Italie","L'art de l'entourloupe",sf::Color::Green,sf::Color::Red);
 		pays.dessinerPage(fenetre);
 		fenetre.Display();
 		if (fenetre.GetInput().IsMouseButtonDown(sf::Mouse::Left) && pays.menuActif(fenetre) && Clock.GetElapsedTime() > 1)
