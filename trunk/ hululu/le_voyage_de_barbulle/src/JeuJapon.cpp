@@ -143,7 +143,7 @@ int JeuJapon::run(sf::RenderWindow &fenetre)
 
 	sf::Sprite Bravo;
 	Bravo.SetImage(Ecran::MonManager.GetImage("le_voyage_de_barbulle/img/japon/bravo.png"));
-	Bravo.SetPosition((fenetre.GetWidth())/9, ((fenetre.GetHeight())/9));
+	Bravo.SetPosition((fenetre.GetWidth())/3.5, ((fenetre.GetHeight())/1.25));
 
 	// MOIS /////////////////////////////////////////////////////////////////////////////
 
@@ -210,8 +210,13 @@ int JeuJapon::run(sf::RenderWindow &fenetre)
 	//COMPTEUR ///////////////////////////////////////////////////////////////////////////
 
 	sf::String nbCarte("4");
-	nbCarte.Move((fenetre.GetWidth())/2, 0);
-	nbCarte.SetColor(sf::Color::Red);
+	nbCarte.Move((fenetre.GetWidth())/4, (fenetre.GetHeight())/1.25);
+	nbCarte.SetColor(sf::Color::Color(120,15,0));
+
+	sf::Sprite Sakura;
+	Sakura.SetImage(Ecran::MonManager.GetImage("le_voyage_de_barbulle/img/japon/Sakura.png"));
+	Sakura.SetPosition((fenetre.GetWidth())/9, ((fenetre.GetHeight())/1.3));
+	Sakura.Resize(100, 100);
 
 
 
@@ -332,6 +337,7 @@ int JeuJapon::run(sf::RenderWindow &fenetre)
 							fenetre.Draw(Octobre);
 							fenetre.Draw(Novembre);
 							fenetre.Draw(Decembre);
+							fenetre.Draw(Sakura);
 							fenetre.Display();
 
 				//initialisation du mois /////
