@@ -137,6 +137,70 @@ int JeuJapon::run(sf::RenderWindow &fenetre)
 
 		}
 
+	// MOIS /////////////////////////////////////////////////////////////////////////////
+
+	sf::Sprite Janvier;
+	Janvier.SetImage(Ecran::MonManager.GetImage("le_voyage_de_barbulle/img/japon/01.png"));
+	Janvier.SetPosition((fenetre.GetWidth())/9, (fenetre.GetHeight())/4);
+	int E=60;
+
+	sf::Sprite Fevrier;
+	Fevrier.SetImage(Ecran::MonManager.GetImage("le_voyage_de_barbulle/img/japon/02.png"));
+	Fevrier.SetPosition((fenetre.GetWidth())/9, ((fenetre.GetHeight())/4)+E);
+	E+=60;
+
+	sf::Sprite Mars;
+	Mars.SetImage(Ecran::MonManager.GetImage("le_voyage_de_barbulle/img/japon/03.png"));
+	Mars.SetPosition((fenetre.GetWidth())/9, ((fenetre.GetHeight())/4)+E);
+	E+=60;
+
+	sf::Sprite Avril;
+	Avril.SetImage(Ecran::MonManager.GetImage("le_voyage_de_barbulle/img/japon/04.png"));
+	Avril.SetPosition((fenetre.GetWidth())/9, ((fenetre.GetHeight())/4)+E);
+	E+=60;
+
+	sf::Sprite Mai;
+	Mai.SetImage(Ecran::MonManager.GetImage("le_voyage_de_barbulle/img/japon/05.png"));
+	Mai.SetPosition((fenetre.GetWidth())/9, ((fenetre.GetHeight())/4)+E);
+	E+=60;
+
+	sf::Sprite Juin;
+	Juin.SetImage(Ecran::MonManager.GetImage("le_voyage_de_barbulle/img/japon/06.png"));
+	Juin.SetPosition((fenetre.GetWidth())/9, ((fenetre.GetHeight())/4)+E);
+	E=0;
+
+	sf::Sprite Juillet;
+	Juillet.SetImage(Ecran::MonManager.GetImage("le_voyage_de_barbulle/img/japon/07.png"));
+	Juillet.SetPosition((fenetre.GetWidth())/3.5, ((fenetre.GetHeight())/4)+E);
+	E+=60;
+
+	sf::Sprite Aout;
+	Aout.SetImage(Ecran::MonManager.GetImage("le_voyage_de_barbulle/img/japon/08.png"));
+	Aout.SetPosition((fenetre.GetWidth())/3.5, ((fenetre.GetHeight())/4)+E);
+	E+=60;
+
+	sf::Sprite Septembre;
+	Septembre.SetImage(Ecran::MonManager.GetImage("le_voyage_de_barbulle/img/japon/09.png"));
+	Septembre.SetPosition((fenetre.GetWidth())/3.5, ((fenetre.GetHeight())/4)+E);
+	E+=60;
+
+	sf::Sprite Octobre;
+	Octobre.SetImage(Ecran::MonManager.GetImage("le_voyage_de_barbulle/img/japon/10.png"));
+	Octobre.SetPosition((fenetre.GetWidth())/3.5, ((fenetre.GetHeight())/4)+E);
+	E+=60;
+
+	sf::Sprite Novembre;
+	Novembre.SetImage(Ecran::MonManager.GetImage("le_voyage_de_barbulle/img/japon/11.png"));
+	Novembre.SetPosition((fenetre.GetWidth())/3.5, ((fenetre.GetHeight())/4)+E);
+	E+=60;
+
+	sf::Sprite Decembre;
+	Decembre.SetImage(Ecran::MonManager.GetImage("le_voyage_de_barbulle/img/japon/12.png"));
+	Decembre.SetPosition((fenetre.GetWidth())/3.5, ((fenetre.GetHeight())/4)+E);
+	E+=60;
+
+
+	//Janvier.Resize((fenetre.GetWidth())/4, (fenetre.GetHeight())/4);
 
 	// FONT//////////////////////////////////////////////////////////////////////////////
 
@@ -179,6 +243,18 @@ int JeuJapon::run(sf::RenderWindow &fenetre)
 
 
 							pays.dessinerPage(fenetre);
+							fenetre.Draw(Janvier);
+							fenetre.Draw(Fevrier);
+							fenetre.Draw(Mars);
+							fenetre.Draw(Avril);
+							fenetre.Draw(Mai);
+							fenetre.Draw(Juin);
+							fenetre.Draw(Juillet);
+							fenetre.Draw(Aout);
+							fenetre.Draw(Septembre);
+							fenetre.Draw(Octobre);
+							fenetre.Draw(Novembre);
+							fenetre.Draw(Decembre);
 							fenetre.Display();
 
 
