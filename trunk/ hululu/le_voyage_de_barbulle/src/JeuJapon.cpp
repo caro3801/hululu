@@ -138,6 +138,13 @@ int JeuJapon::run(sf::RenderWindow &fenetre)
 
 		}
 
+	// IMAGES ///////////////////////////////////////////////////////////////////////////
+	//Bravo
+
+	sf::Sprite Bravo;
+	Bravo.SetImage(Ecran::MonManager.GetImage("le_voyage_de_barbulle/img/japon/bravo.png"));
+	Bravo.SetPosition((fenetre.GetWidth())/9, ((fenetre.GetHeight())/9));
+
 	// MOIS /////////////////////////////////////////////////////////////////////////////
 
 	sf::Sprite Janvier;
@@ -221,6 +228,7 @@ int JeuJapon::run(sf::RenderWindow &fenetre)
 
 	///AFFICHAGE FENETRE////////////////////////////////
 			int nbATrouver=4;
+			int courant=1;
 
 				while(fenetre.IsOpened() && (ecranSuivant==6))
 					{
@@ -238,10 +246,11 @@ int JeuJapon::run(sf::RenderWindow &fenetre)
 
 							int l=0;
 
+
 							while (l<48){
 								if(tabCarte[l].estClique(fenetre)){
 									// la carte est cliquée
-									if (tabCarte[l].getMois()==1 && tabCarte[l].getEtat()==1){
+									if (tabCarte[l].getMois()==courant && tabCarte[l].getEtat()==1){
 										tabCarte[l].changerEtat(); // on change son état
 
 										//je décrémente le compteur
@@ -252,10 +261,7 @@ int JeuJapon::run(sf::RenderWindow &fenetre)
 											// on en extrait une chaîne de caractères
 											std::string Texte = compteur.str();
 											nbCarte.SetText(Texte);
-											if(nbATrouver==0)
-											{
-
-											}
+											Clock.Reset();
 
 										}
 
@@ -268,6 +274,30 @@ int JeuJapon::run(sf::RenderWindow &fenetre)
 
 
 							}
+
+							if(nbATrouver==0 && Clock.GetElapsedTime()<5)
+							{
+							fenetre.Draw(Bravo);
+							}
+							else if(nbATrouver==0){
+								Clock.Reset();
+								nbATrouver=4;
+								std::ostringstream compteur;
+								// on récupère le nombre d'erreur a trouver dans le flux
+								compteur << nbATrouver;
+								// on en extrait une chaîne de caractères
+								std::string Texte = compteur.str();
+								nbCarte.SetText(Texte);
+								if (courant==1)
+									Janvier.SetImage(Ecran::MonManager.GetImage("le_voyage_de_barbulle/img/japon/01V.png"));
+								if (courant==2)
+									Fevrier.SetImage(Ecran::MonManager.GetImage("le_voyage_de_barbulle/img/japon/02V.png"));
+								if (courant==3)
+									Mars.SetImage(Ecran::MonManager.GetImage("le_voyage_de_barbulle/img/japon/03V.png"));
+								courant++;
+
+							}
+
 
 							pays.dessinerPage(fenetre);
 							fenetre.Draw(nbCarte);
