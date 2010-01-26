@@ -248,7 +248,7 @@ int JeuItalie::run(sf::RenderWindow &fenetre) {
 
 
 	//SPRITES////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
+	//float rapport= fenetre.GetHeight()/fenetre.GetWidth();
 	sf::Sprite original; //L'image originale
 	original.SetImage(Ecran::MonManager.GetImage(
 			"le_voyage_de_barbulle/img/italie/7erreurs_originalp.png"));
@@ -265,7 +265,11 @@ int JeuItalie::run(sf::RenderWindow &fenetre) {
 	erreur.SetPosition(fenetre.GetWidth() / 2 + 10, (fenetre.GetHeight()
 			- original.GetSize().y) / 2); // placement de l'image erronée en fonction de l'originale
 
-	//erreur.Resize( ((fenetre.GetWidth())/3), ((fenetre.GetHeight()/2)));
+	//erreur.Resize( erreur.GetSize().x*rapport, erreur.GetSize().y*rapport);
+	sf::Sprite instructions; //L'image comportant les instructions
+		instructions.SetImage(Ecran::MonManager.GetImage(
+				"le_voyage_de_barbulle/img/italie/instructions.png"));
+		instructions.SetPosition(original.GetPosition().x - instructions.GetSize().x-20, fenetre.GetHeight()/2- instructions.GetSize().y/2); // placement de l'image erronée en fonction de l'originale
 
 	//TEXTES/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -398,6 +402,7 @@ int JeuItalie::run(sf::RenderWindow &fenetre) {
 		fenetre.Draw(erreur); //Image d'erreur
 		fenetre.Draw(legendeErreur);
 		fenetre.Draw(jeu);
+		fenetre.Draw(instructions);
 		//Ecrire les instructions : "Cliquez sur l'image fausse pour trouver les erreurs..."
 
 		//convertir nbAtrouver en string avec la fonction ostringstream

@@ -12,6 +12,8 @@
 #include <SFML/Graphics.hpp>
 #include "Piece.h"
 #include "Mapmonde.h"
+#include "Bouton.h"
+#include "BoutonMove.h"
 
 class JeuPerou: public Ecran {
 public:
@@ -40,6 +42,7 @@ private:
 	Piece val3_1;
 	Piece val3_2;
 	Piece val5_1;
+	Piece pieceA;
 };
 
 #endif /* JEUPEROU_H_ */

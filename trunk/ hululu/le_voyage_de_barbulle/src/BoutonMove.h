@@ -30,7 +30,7 @@ public:
 	//renvoie la position de la souris en Y dans la fenetre spécifiée
 
 	bool enDeplacement(sf::RenderWindow &fenetre);
-	//savoir si l'objet est en train d'etre déplacé-> retour: - vrai si l'objet est cliqué OU le bouton de la souris appuyé,
+	//savoir si l'objet est en train d'etre déplacé-> retour: - vrai si l'objet est cliqué ET le bouton de la souris appuyé,
 	//														  - faux sinon
 	void decalageSouris(float x, float y);
 	//Positionner l'objet par rapport a la souris pendant le déplacement: param: la valeur en X et Y du décalage souhaité

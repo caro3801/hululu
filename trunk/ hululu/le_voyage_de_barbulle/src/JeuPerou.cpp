@@ -31,15 +31,15 @@ void JeuPerou::creerPieces(sf::RenderWindow* fenetre,const std::string & piece1,
 		const std::string & piece3)
 {
 
-	val1_1.setValeur(1); val1_1.initBouton(piece1,piece1); val1_1.placer(1106,493);
-	val1_2.setValeur(1); val1_2.initBouton(piece1,piece1); val1_2.placer(1006,493);
-	val1_3.setValeur(1); val1_3.initBouton(piece1,piece1); val1_3.placer(906,493);
-	val2_1.setValeur(2); val2_1.initBouton(piece2,piece2); val2_1.placer(806,493);
-	val3_1.setValeur(3); val3_1.initBouton(piece3,piece3); val3_1.placer(806,650);
-	val2_2.setValeur(2); val2_2.initBouton(piece2,piece2); val2_2.placer(1106,592);
-	val2_3.setValeur(2); val2_3.initBouton(piece2,piece2); val2_3.placer(1006,592);
-	val5_1.setValeur(5); val5_1.initBouton(piece5,piece5); val5_1.placer(906,592);
-	val3_2.setValeur(3); val3_2.initBouton(piece3,piece3); val3_2.placer(806,592);
+	val1_1.setValeur(1); val1_1.initBouton(piece1,piece1); val1_1.redimensionner(0.75); val1_1.placer(1006,493);
+	val1_2.setValeur(1); val1_2.initBouton(piece1,piece1); val1_2.redimensionner(0.75); val1_2.placer(1006,493);
+	val1_3.setValeur(1); val1_3.initBouton(piece1,piece1); val1_3.redimensionner(0.75); val1_3.placer(906,493);
+	val2_1.setValeur(2); val2_1.initBouton(piece2,piece2); val2_1.redimensionner(0.75); val2_1.placer(806,493);
+	val3_1.setValeur(3); val3_1.initBouton(piece3,piece3); val3_1.redimensionner(0.75); val3_1.placer(806,650);
+	val2_2.setValeur(2); val2_2.initBouton(piece2,piece2); val2_2.redimensionner(0.75); val2_2.placer(1106,592);
+	val2_3.setValeur(2); val2_3.initBouton(piece2,piece2); val2_3.redimensionner(0.75); val2_3.placer(1006,592);
+	val5_1.setValeur(5); val5_1.initBouton(piece5,piece5); val5_1.redimensionner(0.75); val5_1.placer(906,592);
+	val3_2.setValeur(3); val3_2.initBouton(piece3,piece3); val3_2.redimensionner(0.75); val3_2.placer(806,592);
 }
 
 int JeuPerou::run(sf::RenderWindow &fenetre) {
@@ -47,6 +47,8 @@ int JeuPerou::run(sf::RenderWindow &fenetre) {
 	int ecranSuivant = 6;
 	sf::Clock Clock; //Horloge
 	Clock.Reset();
+	bool mouseMove = false;
+	//Booléen pour savoir si la souris est en mouvement: utile pour déplacer des objets a la souris
 
 	//IMAGES////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -61,7 +63,12 @@ int JeuPerou::run(sf::RenderWindow &fenetre) {
 		fenetre.SetView(vue);
 		Page pays;
 
+		pieceA.initBouton("le_voyage_de_barbulle/img/sprite/piece1.png","le_voyage_de_barbulle/img/sprite/piece1.png");
+		pieceA.redimensionner(0.75);
+		pieceA.placer((fenetre.GetWidth()*17/20), (fenetre.GetHeight()*6/8));
 
+		JeuPerou::creerPieces( &fenetre,"le_voyage_de_barbulle/img/sprite/piece1.png","le_voyage_de_barbulle/img/sprite/piece2.png","le_voyage_de_barbulle/img/sprite/piece5.png",
+									"le_voyage_de_barbulle/img/sprite/piece3.png");
 	///AFFICHAGE FENETRE////////////////////////////////
 		sf::Event event;
 			while(fenetre.IsOpened())
@@ -73,14 +80,20 @@ int JeuPerou::run(sf::RenderWindow &fenetre) {
 									fenetre.Close();
 								else if (event.Type==sf::Event::KeyReleased && event.Key.Code == sf::Key::Escape)
 									fenetre.Close();
+								//Si l'evenement est de type: souris en mouvement, mouseMove est vrai (utile pour les boutonMove)
+								else if(event.Type==sf::Event::MouseMoved)
+									mouseMove=true;
 							}
 
 					fenetre.Clear(sf::Color(255, 255, 255));
 					fenetre.Draw(fond);
 					pays.dessinerPage(fenetre);
-					JeuPerou::creerPieces( &fenetre,"le_voyage_de_barbulle/img/sprite/piece1.png","le_voyage_de_barbulle/img/sprite/piece2.png","le_voyage_de_barbulle/img/sprite/piece5.png",
-							"le_voyage_de_barbulle/img/sprite/piece3.png");
 
+
+					val1_1.deplacer(fenetre,mouseMove);
+					val1_1.drawMe(fenetre);
+					pieceA.deplacer(fenetre,mouseMove);
+					pieceA.drawMe(fenetre);
 				//dessin de la fenêtre
 				 fenetre.Display();
 
