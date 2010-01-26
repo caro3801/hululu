@@ -37,6 +37,7 @@ int JeuJapon::run(sf::RenderWindow &fenetre)
 	Clock.Reset();
 	int ecranSuivant = 6; // par défault, celui de l'écran actif
 	Page pays;
+	int mois=1;
 
 
 	vector<Carte> tabCarte;
@@ -199,8 +200,13 @@ int JeuJapon::run(sf::RenderWindow &fenetre)
 	Decembre.SetPosition((fenetre.GetWidth())/3.5, ((fenetre.GetHeight())/4)+E);
 	E+=60;
 
+	//COMPTEUR ///////////////////////////////////////////////////////////////////////////
 
-	//Janvier.Resize((fenetre.GetWidth())/4, (fenetre.GetHeight())/4);
+	sf::String nbCarte("4");
+	nbCarte.Move((fenetre.GetWidth())/2, 0);
+	nbCarte.SetColor(sf::Color::Red);
+
+
 
 	// FONT//////////////////////////////////////////////////////////////////////////////
 
@@ -214,6 +220,7 @@ int JeuJapon::run(sf::RenderWindow &fenetre)
 
 
 	///AFFICHAGE FENETRE////////////////////////////////
+			int nbATrouver=4;
 
 				while(fenetre.IsOpened() && (ecranSuivant==6))
 					{
@@ -228,18 +235,42 @@ int JeuJapon::run(sf::RenderWindow &fenetre)
 
 							fenetre.Clear(sf::Color(255, 200, 122));
 
+
 							int l=0;
+
 							while (l<48){
-								if(tabCarte[l].estClique(fenetre)) // la carte est cliquée
-								{
-									tabCarte[l].changerEtat(); // on change son état
+								if(tabCarte[l].estClique(fenetre)){
+									// la carte est cliquée
+									if (tabCarte[l].getMois()==1 && tabCarte[l].getEtat()==1){
+										tabCarte[l].changerEtat(); // on change son état
+
+										//je décrémente le compteur
+											std::ostringstream compteur;
+											nbATrouver--;
+											// on récupère le nombre d'erreur a trouver dans le flux
+											compteur << nbATrouver;
+											// on en extrait une chaîne de caractères
+											std::string Texte = compteur.str();
+											nbCarte.SetText(Texte);
+											if(nbATrouver==0)
+											{
+
+											}
+
+										}
+
+
 								}
+
 								tabCarte[l].carteVisible().drawMe(fenetre);
+
 								l++;
+
+
 							}
 
-
 							pays.dessinerPage(fenetre);
+							fenetre.Draw(nbCarte);
 							fenetre.Draw(Janvier);
 							fenetre.Draw(Fevrier);
 							fenetre.Draw(Mars);
@@ -254,17 +285,23 @@ int JeuJapon::run(sf::RenderWindow &fenetre)
 							fenetre.Draw(Decembre);
 							fenetre.Display();
 
+				//initialisation du mois /////
 
-					if (fenetre.GetInput().IsMouseButtonDown(sf::Mouse::Left) && pays.menuActif(fenetre) && Clock.GetElapsedTime() > 1)
+
+
+
+					if (fenetre.GetInput().IsMouseButtonDown(sf::Mouse::Left) && pays.menuActif(fenetre))
 							ecranSuivant=pays.changerEcran(fenetre,JEUJAPON,JAPON,MAPPEMONDE) ;
-
 
 					if (fenetre.GetInput().IsKeyDown(sf::Key::O))
 							ecranSuivant=JEUJAPON;
 
 					if ((fenetre.GetInput().IsKeyDown(sf::Key::Space)))
 							ecranSuivant=JEUJAPON;
-				}
+
+
+
+					}
 				return ecranSuivant;
 }
 
