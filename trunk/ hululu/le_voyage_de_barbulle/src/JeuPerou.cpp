@@ -6,6 +6,7 @@
  */
 #include "JeuPerou.h"
 #include "Page.h"
+#include "DefineEcrans.h"
 #include <iostream>
 #include <sstream>
 using namespace std;
@@ -61,11 +62,13 @@ bool JeuPerou::detectePiecePayes(sf::RenderWindow &fenetre, float posImgX,float 
 
 int JeuPerou::run(sf::RenderWindow &fenetre) {
 
-	int ecranSuivant = 6;
+	int ecranSuivant = JEU_PEROU;
 	sf::Clock Clock; //Horloge
 	Clock.Reset();
+
 	bool mouseMove = false;
-	bool mouseLache = true;
+	bool lache = true;
+
 	//Booléen pour savoir si la souris est en mouvement: utile pour déplacer des objets a la souris
 	bool detect=false;
 	int total=13;
@@ -73,119 +76,263 @@ int JeuPerou::run(sf::RenderWindow &fenetre) {
 	//IMAGES////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 	// # image de fond
-		sf::Sprite fond ;
-		fond.SetImage(Ecran::MonManager.GetImage("le_voyage_de_barbulle/img/perou/jeuPerou1.png"));
-		fond.SetPosition(0.f, 0.f);
-		fond.Resize((fenetre.GetWidth()), (fenetre.GetHeight()));
+	sf::Sprite fond ;
+	fond.SetImage(Ecran::MonManager.GetImage("le_voyage_de_barbulle/img/perou/jeuPerou1.png"));
+	fond.SetPosition(0.f, 0.f);
+	fond.Resize((fenetre.GetWidth()), (fenetre.GetHeight()));
 
-		// # création d'une vue sur la fenêtre
-		sf::View vue(sf::FloatRect(0, 0, fenetre.GetWidth(), fenetre.GetHeight()) );
-		fenetre.SetView(vue);
-		Page pays;
+	// # création d'une vue sur la fenêtre
+	sf::View vue(sf::FloatRect(0, 0, fenetre.GetWidth(), fenetre.GetHeight()) );
+	fenetre.SetView(vue);
+	Page pays;
 
 
-		JeuPerou::creerPieces( fenetre,"le_voyage_de_barbulle/img/sprite/piece1.png","le_voyage_de_barbulle/img/sprite/piece2.png","le_voyage_de_barbulle/img/sprite/piece3.png","le_voyage_de_barbulle/img/sprite/piece5.png");
-		///TEXTES/////////////////
-		sf::Font MyFont;
-			if (!MyFont.LoadFromFile(
-					"le_voyage_de_barbulle/img/font/Cursive_standard.ttf", 50))
-				cerr << "Erreur lors du chargement de la police";
+	JeuPerou::creerPieces( fenetre,"le_voyage_de_barbulle/img/sprite/piece1.png","le_voyage_de_barbulle/img/sprite/piece2.png","le_voyage_de_barbulle/img/sprite/piece3.png","le_voyage_de_barbulle/img/sprite/piece5.png");
+	///TEXTES/////////////////
+	sf::Font MyFont;
+		if (!MyFont.LoadFromFile(
+				"le_voyage_de_barbulle/img/font/Cursive_standard.ttf", 50))
+			cerr << "Erreur lors du chargement de la police";
 
 		sf::String gagne("Nous pouvons y aller, tu as payé ton ticket !",MyFont,40.f);
-			gagne.Move(fenetre.GetWidth() / 2 - gagne.GetRect().Right/2,fenetre.GetHeight() / 2 - gagne.GetRect().Top/2);
-			gagne.SetColor(sf::Color::Blue);
+		gagne.Move(fenetre.GetWidth() / 2 - gagne.GetRect().Right/2,fenetre.GetHeight() / 2 - gagne.GetRect().Top/2);
+		gagne.SetColor(sf::Color::Blue);
 
 		sf::String instructions("Pour voyager en bus tu dois payer ton ticket pour cela, tu dois sélectionner et déplacer les bonnes pieces sur la gauche dans le carré payé",MyFont,40.f);
-			instructions.Move(fenetre.GetWidth() / 2 - gagne.GetRect().Right/2,fenetre.GetHeight() / 2 - gagne.GetRect().Top/2);
-			instructions.SetColor(sf::Color::Black);
-			///AFFICHAGE FENETRE////////////////////////////////
+		instructions.Move(fenetre.GetWidth() / 2 - gagne.GetRect().Right/2,fenetre.GetHeight() / 2 - gagne.GetRect().Top/2);
+		instructions.SetColor(sf::Color::Black);
+
+		///AFFICHAGE FENETRE////////////////////////////////
 		sf::Event event;
-			while(fenetre.IsOpened())
-				{
 
-					while (fenetre.GetEvent(event)) {
-							    // # Instanciation de tous les écrans fermeture de la fenetre
-								// si echap ou fermeture manuelle
-								if (event.Type == sf::Event::Closed)
-									fenetre.Close();
-								else if (event.Type==sf::Event::KeyReleased && event.Key.Code == sf::Key::Escape)
-									fenetre.Close();
-								//Si l'evenement est de type: souris en mouvement, mouseMove est vrai (utile pour les boutonMove)
-								else if(event.Type==sf::Event::MouseMoved)
-									mouseMove=true;
-							}
-					if (fenetre.GetInput().IsMouseButtonDown(sf::Mouse::Left)&&(total>0)) {
-						//Si on clique sur la fenetre, on regarde la position du clic si elle correspond a une des erreurs
+		while(fenetre.IsOpened() && (ecranSuivant == JEU_PEROU) )
+		{
 
-						if (!detect && (detectePiecePayes(fenetre, val1_1.GetPosition().x,
-								val1_1.GetPosition().y) || detectePiecePayes(fenetre, val1_2.GetPosition().x,
-								val1_2.GetPosition().y) || detectePiecePayes(fenetre, val1_3.GetPosition().x,
-								val1_3.GetPosition().y))) {
-							detect = true; //piece detectee
-							total = total - 1; //total restan a trouver
-						}
-						if (!detect && (detectePiecePayes(fenetre, val2_1.GetPosition().x,
-								val2_1.GetPosition().y) || detectePiecePayes(fenetre, val2_2.GetPosition().x,
-								val2_2.GetPosition().y) || detectePiecePayes(fenetre, val2_3.GetPosition().x,
-								val2_3.GetPosition().y))) {
-							detect = true; //piece detectee
-							total = total - 2; //total restan a trouver
-						}
-						if (!detect && (detectePiecePayes(fenetre, val3_1.GetPosition().x,
-								val3_1.GetPosition().y) || detectePiecePayes(fenetre, val3_2.GetPosition().x,
-								val3_2.GetPosition().y))) {
-							detect = true; //piece detectee
-							total = total - 3; //total restan a trouver
-						}
-						if (!detect && (detectePiecePayes(fenetre, val5_1.GetPosition().x,
-								val5_1.GetPosition().y))) {
-							detect = true; //piece detectee
-							total = total - 5; //total restan a trouver
-						}
-					}
-
-					fenetre.Clear(sf::Color(255, 255, 255));
-					fenetre.Draw(fond);
-					pays.dessinerPage(fenetre);
-
-/*
-					val1_1.deplacer(fenetre,mouseMove,mouseLache);
-					val1_1.drawMe(fenetre);
-					val1_2.deplacer(fenetre,mouseMove,mouseLache);
-					val1_2.drawMe(fenetre);
-//					val1_3.deplacer(fenetre,mouseMove);
-//					val1_3.drawMe(fenetre);
-//					val2_1.deplacer(fenetre,mouseMove);
-//					val2_1.drawMe(fenetre);
-//					val3_1.deplacer(fenetre,mouseMove);
-//					val3_1.drawMe(fenetre);
-//					val2_2.deplacer(fenetre,mouseMove);
-//					val2_2.drawMe(fenetre);
-//					val2_3.deplacer(fenetre,mouseMove);
-//					val2_3.drawMe(fenetre);
-//					val5_1.deplacer(fenetre,mouseMove);
-//					val5_1.drawMe(fenetre);
-//					val3_2.deplacer(fenetre,mouseMove);
-//					val3_2.drawMe(fenetre);
-					*/
-
-					if(total== 0)	{
-						fenetre.Draw(gagne);
-						Clock.Reset();
-					}
-					if(total!= 0)	{
-						fenetre.Draw(instructions);
-						Clock.Reset();
-					}
-				 fenetre.Display();
-
-				 if (fenetre.GetInput().IsMouseButtonDown(sf::Mouse::Left) && pays.menuActif(fenetre))
-				 			return ecranSuivant=pays.changerEcran(fenetre,6,6,5) ; //ecranSuivant = jeuPerou (5), ecranCourant = Perou (5),
-				 																   //ecranPrecedent = Perou (4)
-
+			while (fenetre.GetEvent(event)) {
+				// # Instanciation de tous les éc fermeture de la fenetre
+				// si echap ou fermeture manuelle
+				if (event.Type == sf::Event::Closed)
+					fenetre.Close();
+				else if (event.Type==sf::Event::KeyReleased && event.Key.Code == sf::Key::Escape)
+					fenetre.Close();
+				else if(event.Type==sf::Event::MouseMoved)
+					mouseMove=true;
+				else if(event.Type==sf::Event::MouseButtonPressed && (event.MouseButton.Button==sf::Mouse::Left)) {
+					lache = true;
+				}
 			}
+
+
+			if (fenetre.GetInput().IsMouseButtonDown(sf::Mouse::Left)&&(total>0)) {
+				//Si on clique sur la fenetre, on regarde la position du clic si elle correspond a une des erreurs
+
+				if (!detect && (detectePiecePayes(fenetre, val1_1.GetPosition().x,
+						val1_1.GetPosition().y) || detectePiecePayes(fenetre, val1_2.GetPosition().x,
+						val1_2.GetPosition().y) || detectePiecePayes(fenetre, val1_3.GetPosition().x,
+						val1_3.GetPosition().y))) {
+					detect = true; //piece detectee
+					total = total - 1; //total restan a trouver
+				}
+				if (!detect && (detectePiecePayes(fenetre, val2_1.GetPosition().x,
+						val2_1.GetPosition().y) || detectePiecePayes(fenetre, val2_2.GetPosition().x,
+						val2_2.GetPosition().y) || detectePiecePayes(fenetre, val2_3.GetPosition().x,
+						val2_3.GetPosition().y))) {
+					detect = true; //piece detectee
+					total = total - 2; //total restan a trouver
+				}
+				if (!detect && (detectePiecePayes(fenetre, val3_1.GetPosition().x,
+						val3_1.GetPosition().y) || detectePiecePayes(fenetre, val3_2.GetPosition().x,
+						val3_2.GetPosition().y))) {
+					detect = true; //piece detectee
+					total = total - 3; //total restan a trouver
+				}
+				if (!detect && (detectePiecePayes(fenetre, val5_1.GetPosition().x,
+						val5_1.GetPosition().y))) {
+					detect = true; //piece detectee
+					total = total - 5; //total restan a trouver
+				}
+			}
+
+			fenetre.Clear( sf::Color(255, 255, 255) );
+
+			fenetre.Draw(fond);
+			pays.dessinerPage(fenetre);
+
+
+
+			// -- pieces de 1
+
+			if( !(autoriseBouger(val1_1)) && val1_1.estClique(fenetre) ) {
+				cout << "deplacer" << endl;
+				val1_1.setABouger(true);
+			}
+
+			if( !(autoriseBouger(val1_2)) && val1_2.estClique(fenetre) )
+				val1_2.setABouger(true);
+
+			if( !(autoriseBouger(val1_3)) && val1_3.estClique(fenetre) )
+				val1_3.setABouger(true);
+
+			// -- pieces de 2
+			if( !(autoriseBouger(val2_1)) && val2_1.estClique(fenetre) )
+				val2_1.setABouger(true);
+
+			if( !(autoriseBouger(val2_2)) && val2_2.estClique(fenetre) )
+				val2_2.setABouger(true);
+
+			if( !(autoriseBouger(val2_3)) && val2_3.estClique(fenetre) )
+				val2_3.setABouger(true);
+
+			// -- pieces de 3
+			if( !(autoriseBouger(val3_1)) && val3_1.estClique(fenetre) )
+				val3_1.setABouger(true);
+
+			if( !(autoriseBouger(val3_2)) && val3_2.estClique(fenetre) )
+				val3_2.setABouger(true);
+
+			// -- piece de 5
+			if( !(autoriseBouger(val5_1)) && val5_1.estClique(fenetre) )
+				val5_1.setABouger(true);
+
+			val1_1.deplacer(fenetre,mouseMove,lache);
+			val1_1.drawMe(fenetre);
+
+			val1_2.deplacer(fenetre,mouseMove,lache);
+			val1_2.drawMe(fenetre);
+
+			val1_3.deplacer(fenetre,mouseMove,lache);
+			val1_3.drawMe(fenetre);
+
+			val2_1.deplacer(fenetre,mouseMove,lache);
+			val2_1.drawMe(fenetre);
+
+			val2_2.deplacer(fenetre,mouseMove,lache);
+			val2_2.drawMe(fenetre);
+
+			val2_3.deplacer(fenetre,mouseMove,lache);
+			val2_3.drawMe(fenetre);
+
+			val3_1.deplacer(fenetre,mouseMove,lache);
+			val3_1.drawMe(fenetre);
+
+			val3_2.deplacer(fenetre,mouseMove,lache);
+			val3_2.drawMe(fenetre);
+
+			val5_1.deplacer(fenetre,mouseMove,lache);
+			val5_1.drawMe(fenetre);
+
+
+			if(total== 0)	{
+				fenetre.Draw(gagne);
+				Clock.Reset();
+			}
+			if(total!= 0)	{
+				fenetre.Draw(instructions);
+				Clock.Reset();
+			}
+
+		 fenetre.Display();
+
+		 if (fenetre.GetInput().IsMouseButtonDown(sf::Mouse::Left) && pays.menuActif(fenetre))
+				ecranSuivant=pays.changerEcran(fenetre,JEU_PEROU,JEU_PEROU,PEROU) ;
+	}
 
 	return ecranSuivant;
 
+}
+
+bool JeuPerou::autoriseBouger(Piece & obj) {
+
+	if(&obj == &val1_1)
+		return (  !val1_2.estBougeable()
+			   && !val1_3.estBougeable()
+			   && !val2_1.estBougeable()
+			   && !val2_2.estBougeable()
+			   && !val2_3.estBougeable()
+			   && !val3_1.estBougeable()
+			   && !val3_2.estBougeable()
+			   && !val5_1.estBougeable() );
+
+	else if(&obj == &val1_2)
+		return (  !val1_1.estBougeable()
+			   && !val1_3.estBougeable()
+			   && !val2_1.estBougeable()
+			   && !val2_2.estBougeable()
+			   && !val2_3.estBougeable()
+			   && !val3_1.estBougeable()
+			   && !val3_2.estBougeable()
+			   && !val5_1.estBougeable() );
+
+	else if(&obj == &val1_3)
+		return (  !val1_1.estBougeable()
+			   && !val1_2.estBougeable()
+			   && !val2_1.estBougeable()
+			   && !val2_2.estBougeable()
+			   && !val2_3.estBougeable()
+			   && !val3_1.estBougeable()
+			   && !val3_2.estBougeable()
+			   && !val5_1.estBougeable() );
+
+	else if(&obj == &val2_1)
+		return (  !val1_1.estBougeable()
+			   && !val1_2.estBougeable()
+			   && !val1_3.estBougeable()
+			   && !val2_2.estBougeable()
+			   && !val2_3.estBougeable()
+			   && !val3_1.estBougeable()
+			   && !val3_2.estBougeable()
+			   && !val5_1.estBougeable() );
+
+	else if(&obj == &val2_2)
+		return (  !val1_1.estBougeable()
+			   && !val1_2.estBougeable()
+			   && !val1_3.estBougeable()
+			   && !val2_1.estBougeable()
+			   && !val2_3.estBougeable()
+			   && !val3_1.estBougeable()
+			   && !val3_2.estBougeable()
+			   && !val5_1.estBougeable() );
+
+	else if(&obj == &val2_3)
+		return (  !val1_1.estBougeable()
+			   && !val1_2.estBougeable()
+			   && !val1_3.estBougeable()
+			   && !val2_1.estBougeable()
+			   && !val2_2.estBougeable()
+			   && !val3_1.estBougeable()
+			   && !val3_2.estBougeable()
+			   && !val5_1.estBougeable() );
+
+	else if(&obj == &val3_1)
+		return (  !val1_1.estBougeable()
+			   && !val1_2.estBougeable()
+			   && !val1_3.estBougeable()
+			   && !val2_1.estBougeable()
+			   && !val2_2.estBougeable()
+			   && !val2_3.estBougeable()
+			   && !val3_2.estBougeable()
+			   && !val5_1.estBougeable() );
+
+	else if(&obj == &val3_2)
+		return (  !val1_1.estBougeable()
+			   && !val1_2.estBougeable()
+			   && !val1_3.estBougeable()
+			   && !val2_1.estBougeable()
+			   && !val2_2.estBougeable()
+			   && !val2_3.estBougeable()
+			   && !val3_1.estBougeable()
+			   && !val5_1.estBougeable() );
+
+	else // val5_1
+	{
+		return (  !val1_1.estBougeable()
+			   && !val1_2.estBougeable()
+			   && !val1_3.estBougeable()
+			   && !val2_1.estBougeable()
+			   && !val2_2.estBougeable()
+			   && !val2_3.estBougeable()
+			   && !val3_1.estBougeable()
+			   && !val3_2.estBougeable() );
+	}
 }
 
