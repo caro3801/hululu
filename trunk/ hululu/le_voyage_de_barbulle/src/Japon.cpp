@@ -33,7 +33,7 @@ Japon::~Japon() {
 
 int Japon::run(sf::RenderWindow &fenetre) {
 
-	int ecranSuivant = 3;
+	int ecranSuivant = JAPON;
 	sf::Clock Clock;
 	Clock.Reset();
 
@@ -55,26 +55,28 @@ int Japon::run(sf::RenderWindow &fenetre) {
 
 		////////////////////////////////
 
-			while(fenetre.IsOpened())
+			while(fenetre.IsOpened() && (ecranSuivant == JAPON))
 			{
 				while (fenetre.GetEvent(event)) {
-						    // # Instanciation de tous les éc fermeture de la fenetre
-							// si echap ou fermeture manuelle
-							if (event.Type == sf::Event::Closed)
-								fenetre.Close();
-							else if (event.Type==sf::Event::KeyReleased && event.Key.Code == sf::Key::Escape)
-								fenetre.Close();
-						}
+					// # Instanciation de tous les éc fermeture de la fenetre
+					// si echap ou fermeture manuelle
+					if (event.Type == sf::Event::Closed)
+						fenetre.Close();
+					else if (event.Type==sf::Event::KeyReleased && event.Key.Code == sf::Key::Escape)
+						fenetre.Close();
+				}
+
 				fenetre.Clear(sf::Color(255, 255, 255));
 				japon.dessinerAccueil(fenetre);
 				pays.dessinerPage(fenetre);
 				fenetre.Display();
 
-				if (fenetre.GetInput().IsMouseButtonDown(sf::Mouse::Left) && pays.menuActif(fenetre) && Clock.GetElapsedTime() > 1)
-					return ecranSuivant=pays.changerEcran(fenetre,JAPON,HISTOIREJAPON,MAPPEMONDE) ; //ecranSuivant = HistoireJapon (5), ecranCourant = Japon (3),
+				if (fenetre.GetInput().IsMouseButtonDown(sf::Mouse::Left) && pays.menuActif(fenetre) )
+					ecranSuivant=pays.changerEcran(fenetre,JAPON,HISTOIREJAPON,MAPPEMONDE) ; //ecranSuivant = HistoireJapon (5), ecranCourant = Japon (3),
 																		   //ecranPrecedent = Mapmonde (1)
 				if (fenetre.GetInput().IsKeyDown(sf::Key::O))
-								return ecranSuivant=HISTOIREJAPON;
+					ecranSuivant=HISTOIREJAPON;
+
 			}
 
 			return ecranSuivant;
