@@ -19,7 +19,7 @@ BoutonMove::~BoutonMove() {
 
 bool BoutonMove::enDeplacement(sf::RenderWindow &fenetre) {
 	//a modifier si jamais onweta veut que ce soit un autre bouton que clicGauche
-		return enMouvement;
+	return enMouvement;
 }
 
 void BoutonMove::decalageSouris(float x, float y) {
@@ -40,14 +40,13 @@ void BoutonMove::deplacer(sf::RenderWindow &fenetre, bool mouseMove, bool lache)
 		enMouvement=true;
 	}
 	else if(enMouvement==true && lache==true) {
-			enMouvement=false;
-			lache=false;
-			bouger=false;
-			setABouger(bouger);
-		}
+		enMouvement=false;
+		lache=false;
+		bouger=false;
+		setABouger(bouger);
+	}
 
 	if(enMouvement && mouseMove) {
-		cout <<"le bouger" << endl;
 		posX = sourisPositionX(fenetre) - decalageX;
 		posY = sourisPositionY(fenetre) - decalageY;
 		this->placer(posX, posY);

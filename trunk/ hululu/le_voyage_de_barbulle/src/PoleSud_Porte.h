@@ -22,6 +22,8 @@ public:
 	PoleSud_Porte();
 	virtual ~PoleSud_Porte();
 	virtual int run(sf::RenderWindow &fenetre);
+	bool autoriseBouger(Objet & obj);
+
 	static Objet blason;
 	static Objet lampion;
 	static Objet weta;
