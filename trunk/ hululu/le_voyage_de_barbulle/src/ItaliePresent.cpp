@@ -26,11 +26,11 @@ ItaliePresent::~ItaliePresent() {
 }
 int ItaliePresent::run(sf::RenderWindow &fenetre) {
 
-	int ecranSuivant = JEU_ITALIE;
+	int ecranSuivant = ITALIE_PRESENT;
 
 
 
-	Page modelePage;
+	Page pays;
 
 	// HORLOGE //////////////////////////
 	sf::Clock Clock;
@@ -48,8 +48,8 @@ int ItaliePresent::run(sf::RenderWindow &fenetre) {
 	// ecran de présentation numero 1
 	sf::Sprite present1;
 	present1.SetImage(Ecran::MonManager.GetImage("le_voyage_de_barbulle/img/italie/present1.png"));
-			fond.SetPosition(0.f, 0.f);
-			fond.Resize((fenetre.GetWidth()), (fenetre.GetHeight()));
+			present1.SetPosition(0.f, 0.f);
+			present1.Resize((fenetre.GetWidth()), (fenetre.GetHeight()));
 
 
 	// # création d'une vue sur la fenêtre
@@ -68,6 +68,10 @@ int ItaliePresent::run(sf::RenderWindow &fenetre) {
 					== sf::Key::Escape)
 				fenetre.Close();
 		}
+		fenetre.Draw(present1);
+		fenetre.Display();
+		if (fenetre.GetInput().IsMouseButtonDown(sf::Mouse::Left) && pays.menuActif(fenetre) && Clock.GetElapsedTime() > 1)
+					return ecranSuivant=pays.changerEcran(fenetre,ITALIE_PRESENT,JEU_ITALIE,ITALIE) ;
 	}
 	return ecranSuivant;
 }

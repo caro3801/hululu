@@ -268,7 +268,7 @@ int JeuItalie::run(sf::RenderWindow &fenetre) {
 	//erreur.Resize( erreur.GetSize().x*rapport, erreur.GetSize().y*rapport);
 	sf::Sprite instructions; //L'image comportant les instructions
 		instructions.SetImage(Ecran::MonManager.GetImage(
-				"le_voyage_de_barbulle/img/italie/instructions.png"));
+				"le_voyage_de_barbulle/img/italie/er1.png"));
 		instructions.SetPosition(original.GetPosition().x - instructions.GetSize().x-20, fenetre.GetHeight()/2- instructions.GetSize().y/2); // placement de l'image erronée en fonction de l'originale
 
 	//TEXTES/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

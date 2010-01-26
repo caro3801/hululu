@@ -16,6 +16,7 @@ using namespace std;
 #include "Bouton.h"
 #include "AccueilPays.h"
 #include "Page.h"
+#include "DefineEcrans.h"
 
 
 ImageManager Ecran::MonManager; //a ne definir qu'une seule fois dans tout le programme
@@ -28,7 +29,7 @@ Italie::~Italie() {
 
 int Italie::run(sf::RenderWindow &fenetre) {
 
-	int ecranSuivant = 2;
+	int ecranSuivant = ITALIE;
 	sf::Clock Clock;
 	Clock.Reset();
 
@@ -72,7 +73,7 @@ int Italie::run(sf::RenderWindow &fenetre) {
 		pays.dessinerPage(fenetre);
 		fenetre.Display();
 		if (fenetre.GetInput().IsMouseButtonDown(sf::Mouse::Left) && pays.menuActif(fenetre) && Clock.GetElapsedTime() > 1)
-			return ecranSuivant=pays.changerEcran(fenetre,2,4,1) ; //ecranSuivant = jeuItalie (4), ecranCourant = Italie (2),
+			return ecranSuivant=pays.changerEcran(fenetre,ITALIE,ITALIE_PRESENT,MAPPEMONDE) ; //ecranSuivant = jeuItalie (4), ecranCourant = Italie (2),
 																   //ecranPrecedent = Mapmonde (1)
 
 	}
