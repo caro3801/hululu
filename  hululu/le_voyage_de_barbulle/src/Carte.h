@@ -14,6 +14,7 @@ public:
 	Carte(std::string actif, std::string passif, int mois, int numero, int etat);
 	void create(std::string actif, std::string passif, int mois, int numero, int etat);
 
+
 	virtual ~Carte();
 	void changerEtat();
 	bool estClique(sf::RenderWindow & fenetre);
