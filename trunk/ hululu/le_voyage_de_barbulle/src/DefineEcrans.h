@@ -19,5 +19,7 @@
 #define AUSTRALIE_INTRO 7
 #define POLESUD_PORTE 8
 #define AUSTRALIE_PRESENT 9
+#define HISTOIREJAPON 10
+#define JEUJAPON 11
 
 #endif /* DEFINEECRANS_H_ */
