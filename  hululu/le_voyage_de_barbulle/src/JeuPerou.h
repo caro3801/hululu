@@ -21,9 +21,8 @@ public:
 	virtual ~JeuPerou();
 	inline bool lance() { return estLance; };
 	void lancer();
-	void placerFond(sf::RenderWindow* fenetre,sf::Image img);
-	void creerPieces(sf::RenderWindow* fenetre,const std::string & piece1,const std::string & piece2,const std::string & piece5,
-			const std::string & piece3);
+	void placerFond(sf::RenderWindow &fenetre,sf::Image img);
+	void creerPieces(sf::RenderWindow &fenetre,const std::string & piece1,const std::string & piece2,const std::string & piece3, const std::string & piece5);
 	virtual int run(sf::RenderWindow &fenetre);
 
 private:
