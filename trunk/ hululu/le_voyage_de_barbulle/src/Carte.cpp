@@ -8,23 +8,47 @@
 #include "Carte.h"
 #include "Bouton.h"
 
-Carte::Carte(sf::Image actif, sf::Image passif, int mois, int etat) {
+Carte::Carte(std::string actif, std::string passif, int mois, int numero, int etat) {
 	this->actif.initBouton(actif, actif);
 	this->passif.initBouton(passif, passif);
 	this->mois = mois;
-	this->etat = 0;
+	this->numero = numero;
+	this->etat = 1;
+	//actif 1 // passif 0
 }
 
 Carte::~Carte() {
 	// TODO Auto-generated destructor stub
 }
 
-Carte::changerEtat(int etat, Bouton bouton){
+void Carte::changerEtat() {
 
-	if (bouton==actif){
-		return etat=1;
-	}
-	else{
-		return 0;
-	}
+	if (etat)
+		etat=0;
+	else
+		etat=1;
 }
+
+bool Carte::estClique(sf::RenderWindow & fenetre) {
+	return ( actif.estClique(fenetre) || passif.estClique(fenetre) );
+}
+
+Bouton & Carte::carteVisible() {
+	if(etat)
+		return actif;
+	else
+		return passif;
+}
+
+void Carte::placer(float x, float y) {
+	actif.placer(x,y);
+	passif.placer(x,y);
+}
+
+void Carte::redimensionner(float scale) {
+	actif.redimensionner(scale);
+	passif.redimensionner(scale);
+}
+
+
+
