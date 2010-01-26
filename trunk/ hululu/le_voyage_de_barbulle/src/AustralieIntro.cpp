@@ -125,7 +125,7 @@ int AustralieIntro::run(sf::RenderWindow &fenetre) {
 		fenetre.Display();
 
 		// CTRL changement d'écran ////////////
-		if (fenetre.GetInput().IsMouseButtonDown(sf::Mouse::Left) && modelePage.menuActif(fenetre) && Clock.GetElapsedTime() > 1)
+		if (fenetre.GetInput().IsMouseButtonDown(sf::Mouse::Left) && modelePage.menuActif(fenetre))
 			ecranSuivant = modelePage.changerEcran(fenetre, AUSTRALIE_INTRO, AUSTRALIE_PRESENT, MAPPEMONDE) ;
 
 	}

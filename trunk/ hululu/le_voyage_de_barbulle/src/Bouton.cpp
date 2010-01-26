@@ -15,6 +15,11 @@ Bouton::Bouton() {
 	this->timeSinceLastRefresh.Reset();
 }
 
+void Bouton::resetTimer()
+{
+	this->timeSinceLastRefresh.Reset();
+}
+
 void Bouton::initBouton(const std::string &img1, const std::string &img2) {
 	spriten.SetImage(Ecran::MonManager.GetImage(img1));
 	spritef.SetImage(Ecran::MonManager.GetImage(img2));
@@ -47,21 +52,14 @@ void Bouton::drawMe(sf::RenderWindow & fenetre) {
 }
 
 bool Bouton::estClique(sf::RenderWindow & fenetre) {
-
-	if (fenetre.GetInput().IsMouseButtonDown(sf::Mouse::Left)    && (fenetre.GetInput().GetMouseX()<=(getPosX()+getTailleX()) && fenetre.GetInput().GetMouseX()>=getPosX())
-	&& (fenetre.GetInput().GetMouseY()<=(getPosY()+getTailleY()) &&  fenetre.GetInput().GetMouseY()>=getPosY()) && pretACliquer(0)) {
-
-		return true;
-	}
-	else
-		return 	false;
+	return (fenetre.GetInput().IsMouseButtonDown(sf::Mouse::Left)    && (fenetre.GetInput().GetMouseX()<=(getPosX()+getTailleX()) && fenetre.GetInput().GetMouseX()>=getPosX())
+	    && (fenetre.GetInput().GetMouseY()<=(getPosY()+getTailleY()) &&  fenetre.GetInput().GetMouseY()>=getPosY()) && pretACliquer());
 }
 
-bool Bouton::pretACliquer(float interval)
-{
-	if ( (timeSinceLastRefresh.GetElapsedTime() * 1000) >= interval )
-	{
-			timeSinceLastRefresh.Reset();
+bool Bouton::pretACliquer() {
+
+	float timer =  timeSinceLastRefresh.GetElapsedTime();
+	if ( timer*1000 >= 500) {
 			return true;
 	}
 	else

@@ -37,6 +37,9 @@ void Carte::changerEtat() {
 		etat=0;
 	else
 		etat=1;
+
+	this->actif.resetTimer();
+	this->passif.resetTimer();
 }
 
 bool Carte::estClique(sf::RenderWindow & fenetre) {

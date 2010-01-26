@@ -228,18 +228,15 @@ int JeuJapon::run(sf::RenderWindow &fenetre)
 
 							fenetre.Clear(sf::Color(255, 200, 122));
 
-
 							int l=0;
 							while (l<48){
 								if(tabCarte[l].estClique(fenetre)) // la carte est cliquée
-								tabCarte[l].changerEtat(); // on change son état
+								{
+									tabCarte[l].changerEtat(); // on change son état
+								}
 								tabCarte[l].carteVisible().drawMe(fenetre);
 								l++;
 							}
-
-
-
-
 
 
 							pays.dessinerPage(fenetre);
@@ -261,15 +258,13 @@ int JeuJapon::run(sf::RenderWindow &fenetre)
 					if (fenetre.GetInput().IsMouseButtonDown(sf::Mouse::Left) && pays.menuActif(fenetre) && Clock.GetElapsedTime() > 1)
 							ecranSuivant=pays.changerEcran(fenetre,JEUJAPON,JAPON,MAPPEMONDE) ;
 
+
 					if (fenetre.GetInput().IsKeyDown(sf::Key::O))
 							ecranSuivant=JEUJAPON;
 
 					if ((fenetre.GetInput().IsKeyDown(sf::Key::Space)))
 							ecranSuivant=JEUJAPON;
-
-
-
-					}
+				}
 				return ecranSuivant;
 }
 

@@ -27,9 +27,10 @@ public:
 	inline float getTailleY() { return spriten.GetSize().y; }
 	bool estClique(sf::RenderWindow & fenetre);
 	void drawMe(sf::RenderWindow & fenetre);
-	bool pretACliquer(float interval);
+	bool pretACliquer();
+	void resetTimer();
 
-private:
+protected:
 
 	sf::Sprite spriten ;
 	sf::Sprite spritef ;
