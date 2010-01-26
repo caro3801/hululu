@@ -44,7 +44,6 @@ void BoutonMove::deplacer(sf::RenderWindow &fenetre, bool mouseMove, bool lache)
 			lache=false;
 			bouger=false;
 			setABouger(bouger);
-			cout << "bouton laché, en mouvement = faux" << endl;
 		}
 
 	if(enMouvement && mouseMove) {
@@ -53,9 +52,6 @@ void BoutonMove::deplacer(sf::RenderWindow &fenetre, bool mouseMove, bool lache)
 		posY = sourisPositionY(fenetre) - decalageY;
 		this->placer(posX, posY);
 	}
-	else
-		cout <<"ne pas le bouger" << endl;
-
 }
 
 
