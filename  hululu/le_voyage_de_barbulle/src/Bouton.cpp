@@ -6,10 +6,13 @@
  */
 
 #include "Bouton.h"
+#include <iostream>
+using namespace std;
 
 Bouton::Bouton() {
 	this->spriten=spriten;
 	this->spritef=spritef;
+	this->timeSinceLastRefresh.Reset();
 }
 
 void Bouton::initBouton(const std::string &img1, const std::string &img2) {
@@ -44,7 +47,23 @@ void Bouton::drawMe(sf::RenderWindow & fenetre) {
 }
 
 bool Bouton::estClique(sf::RenderWindow & fenetre) {
-	return (fenetre.GetInput().IsMouseButtonDown(sf::Mouse::Left)    && (fenetre.GetInput().GetMouseX()<=(getPosX()+getTailleX()) && fenetre.GetInput().GetMouseX()>=getPosX())
-		&& (fenetre.GetInput().GetMouseY()<=(getPosY()+getTailleY()) &&  fenetre.GetInput().GetMouseY()>=getPosY()) ) ;
+
+	if (fenetre.GetInput().IsMouseButtonDown(sf::Mouse::Left)    && (fenetre.GetInput().GetMouseX()<=(getPosX()+getTailleX()) && fenetre.GetInput().GetMouseX()>=getPosX())
+	&& (fenetre.GetInput().GetMouseY()<=(getPosY()+getTailleY()) &&  fenetre.GetInput().GetMouseY()>=getPosY()) && pretACliquer(500)) {
+		return true;
+	}
+	else
+		return 	false;
 }
 
+bool Bouton::pretACliquer(float interval)
+{
+	if( (timeSinceLastRefresh.GetElapsedTime() * 1000) >= interval )
+	{
+		timeSinceLastRefresh.Reset();
+		return true;
+	}
+	else
+		return false;
+
+}

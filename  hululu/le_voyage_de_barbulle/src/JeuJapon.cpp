@@ -16,6 +16,8 @@ using namespace std;
 #include "Bouton.h"
 #include "AccueilPays.h"
 
+#include "Carte.h"
+
 
 JeuJapon::JeuJapon() {
 	// TODO Auto-generated constructor stub
@@ -34,6 +36,13 @@ int JeuJapon::run(sf::RenderWindow &fenetre)
 	int ecranSuivant = 6; // par défault, celui de l'écran actif
 	Page pays;
 
+
+	// Declaration CARTES //////////////////////
+	Carte carteJanvier(	"le_voyage_de_barbulle/img/japon/hanafuda_01-01.png",
+						"le_voyage_de_barbulle/img/japon/hanafuda_01-01C.png", 1, 1, 1); // janvier, carte 1, active
+	carteJanvier.placer(500, 500);
+
+
 	// FONT//////////////////////////////////////////////////////////////////////////////
 
 
@@ -47,7 +56,7 @@ int JeuJapon::run(sf::RenderWindow &fenetre)
 
 	///AFFICHAGE FENETRE////////////////////////////////
 
-				while(fenetre.IsOpened())
+				while(fenetre.IsOpened() && (ecranSuivant==6))
 					{
 						while (fenetre.GetEvent(event)) {
 								    // # Instanciation de tous les écrans fermeture de la fenetre
@@ -60,16 +69,22 @@ int JeuJapon::run(sf::RenderWindow &fenetre)
 
 							fenetre.Clear(sf::Color(255, 200, 122));
 							pays.dessinerPage(fenetre);
+
+							if(carteJanvier.estClique(fenetre)) // la carte est cliquée
+								carteJanvier.changerEtat(); // on change son état
+							carteJanvier.carteVisible().drawMe(fenetre); // on dessine la carte visible (grisé ou non)
+
 							fenetre.Display();
 
+
 					if (fenetre.GetInput().IsMouseButtonDown(sf::Mouse::Left) && pays.menuActif(fenetre) && Clock.GetElapsedTime() > 1)
-									return ecranSuivant=pays.changerEcran(fenetre,6,7,1) ; //ecranSuivant = HistoireJapon (5), ecranCourant = Japon (3),
+							ecranSuivant=pays.changerEcran(fenetre,6,7,1) ; //ecranSuivant = HistoireJapon (5), ecranCourant = Japon (3),
 														 																		   //ecranPrecedent = Mapmonde (1)
 					if (fenetre.GetInput().IsKeyDown(sf::Key::O))
-							 		return ecranSuivant=6;
+							ecranSuivant=6;
 
 					if ((fenetre.GetInput().IsKeyDown(sf::Key::Space)))
-									return (ecranSuivant=6);
+							ecranSuivant=6;
 
 
 
