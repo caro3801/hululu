@@ -35,8 +35,8 @@ public:
 	void decalageSouris(float x, float y);
 	//Positionner l'objet par rapport a la souris pendant le déplacement: param: la valeur en X et Y du décalage souhaité
 	// (sinon par défaut l'objet aura son coin supérieur gauche a la place de la souris)
-	void aBouger(sf::RenderWindow &fenetre);
-
+	void setABouger(bool bouger);
+	bool estBougeable();
 	void deplacer(sf::RenderWindow &fenetre, bool mouseMove, bool lache);
 	//déplacer l'objet a ses nouvelles coordonnées : déplacer l'objet si enDeplacement et la souris bouge dans la fenetre, ne rien faire sinon
 	//nouvelles coordonnées : sourisPosition(X,Y) + posSouris(X,Y) (pour le décalage)
@@ -45,6 +45,7 @@ private:
 	float decalageY; //le décalage en Y de l'objet par rapport a la souris (0 par défaut)
 	float decalageX; //le décalage en X de l'objet par rapport a la souris (0 par défaut)
 	bool enMouvement;
+	bool aBouger;
 };
 
 #endif /* BOUTONMOVE_H_ */
