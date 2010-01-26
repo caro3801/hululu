@@ -34,7 +34,8 @@ int PoleSud_Porte::run(sf::RenderWindow &fenetre) {
 	int ecranSuivant = POLESUD_PORTE;
 	sf::Clock Clock;
 	Clock.Reset();
-
+	bool mouseMove = false;
+	bool lache = false;
 	//IMAGES/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	Page pays;
 
@@ -51,6 +52,10 @@ int PoleSud_Porte::run(sf::RenderWindow &fenetre) {
 	porte_blason.SetPosition(0.f, 0.f);
 	porte_blason.Resize((fenetre.GetWidth()), (fenetre.GetHeight()));
 
+	PoleSud_Porte::poncho.initBouton("le_voyage_de_barbulle/img/objets/blason.png","le_voyage_de_barbulle/img/objets/blason.png");
+	PoleSud_Porte::poncho.placer(100,100);
+	PoleSud_Porte::weta.placer(200,200);
+	PoleSud_Porte::weta.initBouton("le_voyage_de_barbulle/img/objets/weta.png","le_voyage_de_barbulle/img/objets/weta.png");
 	// FONT/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 	sf::Event event;
@@ -62,13 +67,21 @@ int PoleSud_Porte::run(sf::RenderWindow &fenetre) {
 
 	while(fenetre.IsOpened())
 	{
+
 		while (fenetre.GetEvent(event)) {
+
 				    // # Instanciation de tous les éc fermeture de la fenetre
 					// si echap ou fermeture manuelle
 					if (event.Type == sf::Event::Closed)
 						fenetre.Close();
 					else if (event.Type==sf::Event::KeyReleased && event.Key.Code == sf::Key::Escape)
 						fenetre.Close();
+					else if(event.Type==sf::Event::MouseMoved)
+						mouseMove=true;
+					else if(event.Type==sf::Event::MouseButtonPressed && (event.MouseButton.Button==sf::Mouse::Left)) {
+						cout << "laché!" << endl;
+						lache = true;
+					}
 				}
 
 		fenetre.Clear(sf::Color(255, 255, 255));
@@ -78,8 +91,20 @@ int PoleSud_Porte::run(sf::RenderWindow &fenetre) {
 		if(PoleSud_Porte::blason.getTrouve()==true) {
 			fenetre.Draw(porte_blason);
 		}
-		fenetre.Display();
 
+		PoleSud_Porte::weta.aBouger(fenetre);
+		PoleSud_Porte::weta.deplacer(fenetre,mouseMove,lache);
+		PoleSud_Porte::poncho.aBouger(fenetre);
+		PoleSud_Porte::poncho.deplacer(fenetre,mouseMove,lache);
+
+		PoleSud_Porte::weta.drawMe(fenetre);
+		PoleSud_Porte::poncho.drawMe(fenetre);
+
+		//if(PoleSud_Porte::weta.getTrouve()==true) {
+			//fenetre.Draw(porte_blason);
+		//}
+
+		fenetre.Display();
 		if (fenetre.GetInput().IsMouseButtonDown(sf::Mouse::Left) && pays.menuActif(fenetre) && Clock.GetElapsedTime() > 1)
 			return ecranSuivant=pays.changerEcran(fenetre,POLESUD_PORTE,POLESUD_PORTE,MAPPEMONDE) ;
 
