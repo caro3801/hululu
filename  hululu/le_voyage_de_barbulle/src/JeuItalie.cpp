@@ -390,7 +390,7 @@ int JeuItalie::run(sf::RenderWindow &fenetre) {
 		if (fenetre.GetInput().IsMouseButtonDown(sf::Mouse::Left)
 				&& pays.menuActif(fenetre) ) {
 			//On vérifie qu'on clic, que le clic est sur un élement du menu, et qu'au moins 1 seconde s'est écoulée
-			ecranSuivant = pays.changerEcran(fenetre, 4, 4, 2); // On retourne soit courant=4 (JeuItalie), suivant=4 (JeuItalie),
+			ecranSuivant = pays.changerEcran(fenetre, JEU_ITALIE, JEU_ITALIE, ITALIE); // On retourne soit courant=4 (JeuItalie), suivant=4 (JeuItalie),
 			// precedent=2 (Italie)
 		}
 		fenetre.Draw(titre);
