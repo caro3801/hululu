@@ -35,7 +35,8 @@ int PoleSud_Porte::run(sf::RenderWindow &fenetre) {
 	sf::Clock Clock;
 	Clock.Reset();
 	bool mouseMove = false;
-	bool lache = false;
+	bool lache = true;
+	bool bouger = false;
 	//IMAGES/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	Page pays;
 
@@ -91,10 +92,16 @@ int PoleSud_Porte::run(sf::RenderWindow &fenetre) {
 		if(PoleSud_Porte::blason.getTrouve()==true) {
 			fenetre.Draw(porte_blason);
 		}
+		if((!(weta.estBougeable())) && PoleSud_Porte::poncho.estClique(fenetre)==true) {
+					bouger=true;
+					poncho.setABouger(bouger);
+				}
+		if((!(poncho.estBougeable())) && PoleSud_Porte::weta.estClique(fenetre)==true) {
+			 bouger=true;
+			weta.setABouger(bouger);
+		}
 
-		PoleSud_Porte::weta.aBouger(fenetre);
 		PoleSud_Porte::weta.deplacer(fenetre,mouseMove,lache);
-		PoleSud_Porte::poncho.aBouger(fenetre);
 		PoleSud_Porte::poncho.deplacer(fenetre,mouseMove,lache);
 
 		PoleSud_Porte::weta.drawMe(fenetre);

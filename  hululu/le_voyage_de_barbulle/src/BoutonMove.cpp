@@ -26,18 +26,24 @@ void BoutonMove::decalageSouris(float x, float y) {
 	this->decalageX=x;
 	this->decalageY=y;
 }
-void BoutonMove::aBouger(sf::RenderWindow &fenetre) {
-	if(estClique(fenetre)) {
-		cout << "en mouvement = vrai" << endl;
-		enMouvement=true;
-	}
+void BoutonMove::setABouger(bool bouger) {
+	this->aBouger=bouger;
+}
+bool BoutonMove::estBougeable() {
+	return this->aBouger ;
 }
 void BoutonMove::deplacer(sf::RenderWindow &fenetre, bool mouseMove, bool lache) {
 	float posX = 0.0;
 	float posY = 0.0;
-	if(enMouvement==true && lache==true) {
+	bool bouger=true;
+	if(estBougeable() && sourisGaucheAppuye(fenetre)) {
+		enMouvement=true;
+	}
+	else if(enMouvement==true && lache==true) {
 			enMouvement=false;
 			lache=false;
+			bouger=false;
+			setABouger(bouger);
 			cout << "bouton laché, en mouvement = faux" << endl;
 		}
 
@@ -49,6 +55,7 @@ void BoutonMove::deplacer(sf::RenderWindow &fenetre, bool mouseMove, bool lache)
 	}
 	else
 		cout <<"ne pas le bouger" << endl;
+
 }
 
 
