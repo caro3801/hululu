@@ -424,9 +424,7 @@ int JeuItalie::run(sf::RenderWindow &fenetre) {
 			fenetre.Display();
 			if(Clock.GetElapsedTime() > 5) {
 				objetGagne=true;
-				string nom = "popo";
-				blason.setNom(nom);
-				cout << "coucou" << blason.getNom() << endl;
+				PoleSud_Porte::blason.setTrouve(objetGagne);
 				return MAPPEMONDE;
 			}
 		}

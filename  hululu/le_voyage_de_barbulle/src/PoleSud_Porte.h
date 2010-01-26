@@ -15,10 +15,6 @@
 #include "DefineEcrans.h"
 #include "Objet.h"
 
-static Objet blason;
-static Objet lampion;
-static Objet weta;
-
 
 class PoleSud_Porte : public Ecran {
 public:
@@ -26,6 +22,10 @@ public:
 	PoleSud_Porte();
 	virtual ~PoleSud_Porte();
 	virtual int run(sf::RenderWindow &fenetre);
+	static Objet blason;
+	static Objet lampion;
+	static Objet weta;
+	static Objet poncho;
 };
 
 #endif /* POLESUD_PORTE_H_ */
