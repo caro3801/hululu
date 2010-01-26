@@ -33,9 +33,11 @@ AccueilPays::~AccueilPays() {
 void AccueilPays::initAccueil(sf::RenderWindow &fenetre)
 {	//@param: fenetre,imageDrapeau, Image de fond, Titre, SousTitre, Couleur titre, couleur soustitre
 	//les couleurs peuvent etre en RVB ou posseder un nom
-	InfosPays(fenetre);
 	dessinerFond(fenetre);
 	dessinerDrapeau(fenetre);
+	InfosPays(fenetre);
+
+
 }
 
 
@@ -43,8 +45,6 @@ void AccueilPays::dessinerAccueil(sf::RenderWindow &fenetre) {
 
 	//affichage du fond d'accueil et du drapeau du pays concerné
 	//affichage du texte : bienvenue dans la langue et ville visitée
-
-
 	fenetre.Draw(fond);
 	fenetre.Draw(drapeau);
 	fenetre.Draw(titre);
@@ -59,27 +59,25 @@ void AccueilPays::dessinerFond(sf::RenderWindow &fenetre) {
 
 
 
-
-
 void AccueilPays::dessinerDrapeau(sf::RenderWindow &fenetre) {
 	drapeau.Resize(300, 200);
 	drapeau.SetPosition((fenetre.GetWidth()-drapeau.GetSize().x) / 2, (fenetre.GetHeight() - drapeau.GetSize().y)/2);
-
 }
-
+void AccueilPays::mettrePolice(sf::Font& cursiveFont, float sizeT, float sizeS) {
+	titre.SetFont(cursiveFont);
+	titre.SetSize(sizeT);
+	sstitre.SetFont(cursiveFont);
+	sstitre.SetSize(sizeS);
+}
 void AccueilPays::InfosPays(sf::RenderWindow &fenetre) {
 	// informations du Pays
 	//pres : presentation du pays: bienvenue dans la langue et nom du pays ex: "benvenuto in italia"
 	//li : nom de la ville visitée ex: "florence"
-	sf::Font cursiveFont;
-		if (!cursiveFont.LoadFromFile("le_voyage_de_barbulle/img/font/Cursive_standard_BOLD.ttf", 50.f))
-			cerr << "Erreur lors du chargement de la police" << endl;
+float center=sstitre.GetRect().Right/2;
 
-	//titre.SetFont(cursiveFont);
-	titre.SetPosition((fenetre.GetWidth() - titre.GetRect().Right)/2, fenetre.GetHeight()/ 4);
+	sstitre.SetPosition(fenetre.GetWidth()/2-center, drapeau.GetPosition().y-60);
+	titre.SetPosition(fenetre.GetWidth()/2 - titre.GetRect().Right/2, sstitre.GetPosition().y-60);
 
-	//sstitre.SetFont(cursiveFont);
-	sstitre.SetPosition((fenetre.GetWidth() - sstitre.GetRect().Right)/2, titre.GetPosition().y+30);
 
 }
 
