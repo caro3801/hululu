@@ -42,7 +42,7 @@ int main(int argc, char** argv)
 
 	// # Vecteur contenant les adresses des variables-écran
 	vector<Ecran*> tabEcrans;
-    int ecran = POLESUD_PORTE;
+    int ecran = ITALIE;
 
     // # création de la fenêtre
     sf::RenderWindow fenetre(sf::VideoMode::GetMode(0), "Le voyage de Barbule", sf::Style::Fullscreen);
