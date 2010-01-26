@@ -14,6 +14,7 @@ Carte::Carte(std::string actif, std::string passif, int mois, int numero, int et
 	this->mois = mois;
 	this->numero = numero;
 	this->etat = 1;
+
 	//actif 1 // passif 0
 }
 
