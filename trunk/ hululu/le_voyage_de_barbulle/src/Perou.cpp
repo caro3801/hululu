@@ -17,6 +17,7 @@ using namespace std;
 #include "Mapmonde.h"
 #include "JeuPerou.h"
 #include "Page.h"
+#include "AccueilPays.h"
 
 // WIKI SFML //////////////////////////
 #include "Bouton.h"
@@ -35,23 +36,24 @@ int Perou::run(sf::RenderWindow &fenetre) {
 	int ecranSuivant = 5;
 	sf::Clock Clock; //Horloge
 	Clock.Reset();
-
+	AccueilPays PerouAccueil(fenetre,"le_voyage_de_barbulle/img/sprite/piece5.png","le_voyage_de_barbulle/img/perou/Drapeau_Debut.png","Amerique du Sud et Perou","El Perudo, el pais de los Incas",sf::Color::Blue,sf::Color::Blue);
+	PerouAccueil.initAccueil(fenetre);
 	//IMAGES////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 	// # image de fond
 		sf::Sprite fond ;
-		fond.SetImage(Ecran::MonManager.GetImage("le_voyage_de_barbulle/img/perou/Drapeau_Debut.png"));
-		fond.SetPosition(0.f, 0.f);
-		fond.Resize((fenetre.GetWidth()), (fenetre.GetHeight()));
+		//fond.SetImage(Ecran::MonManager.GetImage("le_voyage_de_barbulle/img/perou/Drapeau_Debut.png"));
+		//fond.SetPosition(0.f, 0.f);
+		//fond.Resize((fenetre.GetWidth()), (fenetre.GetHeight()));
 
 		Page pays;
 
 	// FONT/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-		sf::String texte("El Perudo, el pais de los Incas");
-		texte.SetColor(sf::Color::Red);
-		texte.SetSize(25.f);
-		texte.SetPosition((fenetre.GetWidth()*7/20), (fenetre.GetHeight()/8));
-   //
+		//sf::String texte("El Perudo, el pais de los Incas");
+		//texte.SetColor(sf::Color::Red);
+		//texte.SetSize(25.f);
+		//texte.SetPosition((fenetre.GetWidth()*7/20), (fenetre.GetHeight()/8));
+	//
 		sf::Event event;
 
 		// # création d'une vue sur la fenêtre
@@ -60,28 +62,11 @@ int Perou::run(sf::RenderWindow &fenetre) {
 
 	// # image garçon
 
-			sf::Image garcon_img;
-			if (!garcon_img.LoadFromFile("le_voyage_de_barbulle/img/sprite/sprite_g_walk_petit.png"))
+	//		sf::Image garcon_img;
+	//		if (!garcon_img.LoadFromFile("le_voyage_de_barbulle/img/sprite/sprite_g_walk_petit.png"))
 				cerr << "Erreur lors du chargement de l'image.";
 
 	// SPRITES/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-//	Person2D garcon_sp(50.f, 100.f, fenetre.GetWidth()/15, 6, 4); // le personnage parcours 1/10 de la largeur de la fenêtre à chaque pas
-//	garcon_sp.SetColor(sf::Color(255, 255, 255, 255));
-//
-//	// positione le garçon dans le vide horizontalement, à gauche de la fenêtre
-//	// mais au centre, verticalement
-//	garcon_sp.SetPosition(-100.f, ( fenetre.GetHeight() - garcon_sp.getHeightCase() ) / 2.f);
-//
-//	// charge l'image
-//	garcon_sp.SetImage(Ecran::MonManager.GetImage("le_voyage_de_barbulle/img/sprite/sprite_g_walk_petit.png")); // la taille du personnage dépend de la fenêtre
-//	//garcon_sp.Resize(fenetre.GetWidth()/3, fenetre.GetHeight()/2); /* on ne redimensione pas avec le même indice
-//																		 //   * puisque le sprite à 6 cases en largeur
-//																		 //   * et 4 en hauteur */
-//
-//	// clipage du sprite
-//	// c-à-d on n'affiche que les parties du sprite qui nous intérèssent
-//	garcon_sp.initClip();
 
 
 	///AFFICHAGE FENETRE////////////////////////////////
@@ -98,8 +83,9 @@ int Perou::run(sf::RenderWindow &fenetre) {
 							}
 
 					fenetre.Clear(sf::Color(255, 255, 255));
-					fenetre.Draw(fond);
-					fenetre.Draw(texte);
+	//				fenetre.Draw(fond);
+	//				fenetre.Draw(texte);
+					PerouAccueil.dessinerAccueil(fenetre);
 					pays.dessinerPage(fenetre);
 //					fenetre.Draw(garcon_sp);
 
