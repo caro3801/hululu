@@ -35,23 +35,16 @@ int Italie::run(sf::RenderWindow &fenetre) {
 	//IMAGES/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	Page pays;
 
-	// SPRITES/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-	// # image de fond
-	sf::Sprite fond ;
-	fond.SetImage(Ecran::MonManager.GetImage("le_voyage_de_barbulle/img/italie/italie_fond.png"));
-	fond.SetPosition(0.f, 0.f);
-	fond.Resize((fenetre.GetWidth()/3), (fenetre.GetHeight()/3));
-
-	sf::Sprite back_icon ;
-	back_icon.SetImage(Ecran::MonManager.GetImage("le_voyage_de_barbulle/img/histoire/back_icon.png"));
-	back_icon.SetPosition((fenetre.GetWidth()-100),(fenetre.GetHeight()-100));
-	back_icon.Resize(30,30);
-
 	// FONT/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+	sf::Font cursiveFont;
+		if (!cursiveFont.LoadFromFile("le_voyage_de_barbulle/img/font/Cursive_standard_BOLD.ttf", 50.f))
+					cerr << "Erreur lors du chargement de la police" << endl;
+
 	AccueilPays italie(fenetre,"le_voyage_de_barbulle/img/accueil/italie.png","le_voyage_de_barbulle/img/italie/italie_fond.png","Europe et Italie","L'art de l'entourloupe",sf::Color::Green,sf::Color::Red);
-	italie.initAccueil(fenetre);
+		italie.mettrePolice(cursiveFont, 40,30);
+		italie.initAccueil(fenetre);
+
 	sf::Event event;
 
 	// # création d'une vue sur la fenêtre - !! Puisqu'une vue a été créee sur l'ecran précédent (Mapemonde) obligé de recréer une vue

@@ -27,7 +27,7 @@ public:
 	void dessinerFond(sf::RenderWindow &fenetre);
 	void dessinerDrapeau(sf::RenderWindow &fenetre);
 	void InfosPays(sf::RenderWindow &fenetre);
-
+	void mettrePolice(sf::Font& cursiveFont,float sizeT, float sizeS);
 private:
 	sf::String titre;
 	sf::String sstitre;
