@@ -25,6 +25,8 @@ public:
     inline bool getGo(sf::RenderWindow &fenetre) {return go.estClique(fenetre); }
 	//A appeler pour passer d'un écran a l'autre lorsqu'on clique sur les fleches
 	//Donner en parametre le numéro de l'ecran courant, celui du suivant et celui d'avant
+	inline bool getPlaying() { return playing; }
+	inline void triggerPlaying() { playing = (playing) ? false : true; }
 
 private:
 	sf::Sprite font; // font des bouton back'n go
@@ -35,6 +37,7 @@ private:
 	Bouton mute; //Music pour la musique de fond et Mute pour l'enlever
 	Bouton music; // (music || mute)
 	Bouton menu; //Retourner au menu ( ou mapemonde, a voir)
+	bool playing;
 };
 
 #endif /* PAGE_H_ */
