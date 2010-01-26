@@ -44,7 +44,7 @@ int Japon::run(sf::RenderWindow &fenetre) {
 
 	// FONT/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-		japon.InfosPays(fenetre,"Bienvenue au Japon","日本へようこそ");
+		//japon.InfosPays(fenetre,"Bienvenue au Japon","日本へようこそ");
 
 		sf::Event event;
 
@@ -64,7 +64,7 @@ int Japon::run(sf::RenderWindow &fenetre) {
 								fenetre.Close();
 						}
 				fenetre.Clear(sf::Color(255, 255, 255));
-				japon.dessiner(fenetre,"le_voyage_de_barbulle/img/accueil/japon.png");
+				//japon.dessiner(fenetre,"le_voyage_de_barbulle/img/accueil/japon.png");
 				pays.dessinerPage(fenetre);
 				fenetre.Display();
 
