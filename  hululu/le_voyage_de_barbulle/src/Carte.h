@@ -21,6 +21,9 @@ public:
 	Bouton & carteVisible();
 	void placer(float x, float y);
 	void redimensionner(float scale);
+	inline int getMois() {return mois; }
+	inline int getEtat() {return etat; }
+	inline int getNumero(){return numero; }
 
 
 private :
