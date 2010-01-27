@@ -8,7 +8,14 @@
 #ifndef ITALIEMUSEE_H_
 #define ITALIEMUSEE_H_
 
-class ItalieMusee {
+
+#include <SFML/System.hpp>
+#include <SFML/Window.hpp>
+#include <SFML/Graphics.hpp>
+#include "Ecran.h"
+
+
+class ItalieMusee :public Ecran{
 public:
 	ItalieMusee();
 	virtual ~ItalieMusee();
