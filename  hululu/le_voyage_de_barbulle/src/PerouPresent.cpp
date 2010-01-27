@@ -132,8 +132,8 @@ int PerouPresent::run(sf::RenderWindow &fenetre){
 											if (fenetre.GetInput().IsMouseButtonDown(sf::Mouse::Left) && pays.menuActif(fenetre)) {
 												if (pays.getGoClique(fenetre)) {
 													pays.getGo().resetTimer();
-													_etape++;
-													ecranSuivant = PEROUPRESENT;
+													_etape=0;
+													ecranSuivant = JEU_PEROU;
 												} else if (pays.getBackClique(fenetre)) {
 													pays.getBack().resetTimer();
 													_etape--;
