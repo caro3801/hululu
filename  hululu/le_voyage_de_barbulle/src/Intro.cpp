@@ -12,9 +12,11 @@ using namespace std;
 #include <SFML/System.hpp>
 #include <SFML/Window.hpp>
 #include <SFML/Graphics.hpp>
+#include <SFML/Audio.hpp>
 
 #include "Intro.h"
 #include "DefineEcrans.h"
+#include "Musique.h"
 
 #include "Bouton.h"
 #include "Page.h"
@@ -40,6 +42,8 @@ int Intro::run(sf::RenderWindow &fenetre) {
 	sf::Clock Clock;
 	Clock.Reset();
 
+	vector<Musique *> tabMusic;
+
 	// DEF de la police ////////////////
 	sf::Font cursiveFont;
 	if (!cursiveFont.LoadFromFile("le_voyage_de_barbulle/img/font/Cursive_standard_BOLD.ttf", 50.f))
@@ -54,6 +58,7 @@ int Intro::run(sf::RenderWindow &fenetre) {
 	accueil.Resize((fenetre.GetWidth()), (fenetre.GetHeight()));
 
 	// -- sous-titre
+
 	//ecran1
 	sf::String txtSousTitre1("Il etait une fois...");
 	txtSousTitre1.SetSize(40.f);
@@ -75,9 +80,9 @@ int Intro::run(sf::RenderWindow &fenetre) {
 
 	//ecran3
 	sf::String txtSousTitre3("ouah");
-	txtSousTitre2.SetSize(40.f);
-	txtSousTitre2.SetFont(cursiveFont);
-	txtSousTitre2.SetColor(sf::Color(48,84,163));
+	txtSousTitre3.SetSize(40.f);
+	txtSousTitre3.SetFont(cursiveFont);
+	txtSousTitre3.SetColor(sf::Color(48,84,163));
 	position[0] = (fenetre.GetWidth() / 2) - ( txtSousTitre3.GetRect().GetWidth() / 2);
 	position[1] = (10 +  txtSousTitre3.GetRect().GetHeight() );
 	txtSousTitre3.SetPosition(position[0],position[1]);
@@ -126,13 +131,43 @@ int Intro::run(sf::RenderWindow &fenetre) {
 	position[0] = (fenetre.GetWidth() / 2) - ( txtSousTitre8.GetRect().GetWidth() / 2);
 	position[1] = (10 +  txtSousTitre8.GetRect().GetHeight() );
 	txtSousTitre8.SetPosition(position[0],position[1]);
+
+	switch (etape) {
+		case 0:
+			tabMusic.push_back(new Musique("le_voyage_de_barbulle/music/intro/page1.ogg"));
+			break;
+		case 1:
+			tabMusic.push_back(new Musique("le_voyage_de_barbulle/music/intro/page2.ogg"));
+			break;
+		case 2:
+			tabMusic.push_back(new Musique("le_voyage_de_barbulle/music/intro/page3.ogg"));
+			break;
+		case 3:
+			tabMusic.push_back(new Musique("le_voyage_de_barbulle/music/intro/page4.ogg"));
+			break;
+		case 4:
+			tabMusic.push_back(new Musique("le_voyage_de_barbulle/music/intro/page5.ogg"));
+			break;
+		case 5:
+			tabMusic.push_back(new Musique("le_voyage_de_barbulle/music/intro/page6.ogg"));
+			break;
+		case 6:
+			tabMusic.push_back(new Musique("le_voyage_de_barbulle/music/intro/ouipage7.ogg"));
+			break;
+		case 7:
+			tabMusic.push_back(new Musique("le_voyage_de_barbulle/music/intro/ouipage8.ogg"));
+			break;
+	}
+
 	// # création d'une vue sur la fenêtre
 	sf::View vue(sf::FloatRect(0, 0, fenetre.GetWidth(), fenetre.GetHeight()) );
 	fenetre.SetView(vue);
 
+	tabMusic[0]->Lecture();
+
 	// # Pour que le programme ne se termine pas :)
 	sf::Event event;
-	int etapeInitiale = etape;
+	unsigned int etapeInitiale = etape;
 
 	while (fenetre.IsOpened() && (ecranSuivant == INTRO_G) && (etapeInitiale == etape) )
 	{
@@ -148,6 +183,10 @@ int Intro::run(sf::RenderWindow &fenetre) {
 				fenetre.Close();
 		}
 
+		// on surveille l'avancement de la lecture
+		if(tabMusic[0]->GetStatus() == sf::Music::Stopped && (etape < 7) )
+			etape++;
+
 		switch (etape) {
 		case 0:
 			fenetre.Draw(accueil);
@@ -162,7 +201,6 @@ int Intro::run(sf::RenderWindow &fenetre) {
 				} else if (modelePage.getBackClique(fenetre)) {
 					modelePage.getBack().resetTimer();
 					ecranSuivant = MENU_0;
-
 				} else
 					ecranSuivant = MAPPEMONDE;
 			}
@@ -303,7 +341,36 @@ int Intro::run(sf::RenderWindow &fenetre) {
 
 			break;
 		}
+
+		// PAUSE/PLAY instruction ///////////
+		if(!modelePage.getPlaying() ) {
+			if(tabMusic[0]->GetStatus() == sf::Music::Paused) {
+				tabMusic[0]->Lecture();
+			}
+		}
+		else {
+			 if(tabMusic[0]->GetStatus() == sf::Music::Playing) {
+				tabMusic[0]->Pause();
+			 }
+		}
+
+		// REPETER instruction ///////////////
+		if(modelePage.getRepeterClique(fenetre) ) {
+				tabMusic[0]->Stop();
+				tabMusic[0]->Lecture();
+		}
+
+		// MUTE instruction //////////////////
+		if(!modelePage.getMuting())
+			for(unsigned int i = 0; i < tabMusic.size(); i++)
+				tabMusic[i]->SetVolume(0);
+		else
+			for(unsigned int i = 0; i < tabMusic.size(); i++)
+				tabMusic[i]->SetVolume(100);
 	}
 
+	// INTERUPTION de toutes les musiques
+	for(unsigned int i = 0; i < tabMusic.size(); i++)
+		tabMusic[i]->Stop();
 	return ecranSuivant;
 }
