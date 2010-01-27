@@ -246,12 +246,18 @@ int JeuItalie::run(sf::RenderWindow &fenetre) {
 	bool er6= false;
 	bool er7 = false;
 	int nbATrouver = 7; //Le nombre d'erreurs a trouver est de 7 au départ
-	bool objetGagne = false;
 	Page pays; //Declaration d'une Page pays qui servira a afficher les menus music et menu
 
 
 	//SPRITES////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	//float rapport= fenetre.GetHeight()/fenetre.GetWidth();
+	sf::Sprite  fond; //L'image comportant les Erreurs
+		fond.SetImage(Ecran::MonManager.GetImage(
+				"le_voyage_de_barbulle/img/italie/JeuMusee.png"));
+		fond.SetPosition(0.f,0.f);
+		fond.Resize(fenetre.GetWidth(),fenetre.GetHeight());
+
+
 	sf::Sprite original; //L'image originale
 	original.SetImage(Ecran::MonManager.GetImage(
 			"le_voyage_de_barbulle/img/italie/7erreurs_originalp.png"));
@@ -287,17 +293,17 @@ int JeuItalie::run(sf::RenderWindow &fenetre) {
 	titre.Move(fenetre.GetWidth() / 3, 60.f);
 	titre.SetColor(sf::Color::Blue);
 
-	sf::String legendeOriginal("Tableau Original", MyFont, 25.f);
+	sf::String legendeOriginal("Tableau Original", MyFont, 30.f);
 	legendeOriginal.Move(original.GetPosition().x + original.GetSize().x / 2
 			- legendeOriginal.GetRect().GetWidth() / 2,
 			original.GetPosition().y - 30);
 
-	sf::String legendeErreur("Tableau aux 7 erreurs", MyFont, 25.f);
+	sf::String legendeErreur("Tableau aux 7 erreurs", MyFont, 30.f);
 	legendeErreur.Move(erreur.GetPosition().x + erreur.GetSize().x / 2
 			- legendeErreur.GetRect().GetWidth() / 2, erreur.GetPosition().y
 			- 30);
 
-	sf::String jeu("Nombre d'erreurs a trouver : ");
+	sf::String jeu(L"Nombre d'erreurs à trouver : ",MyFont,35.f);
 	jeu.Move(fenetre.GetWidth() / 2 - (jeu.GetRect().Right) / 2,
 			fenetre.GetHeight() - 2*(original.GetSize().y)/ 7);
 	jeu.SetColor(sf::Color::White);
@@ -312,7 +318,7 @@ int JeuItalie::run(sf::RenderWindow &fenetre) {
 	gagne.Move(fenetre.GetWidth() / 2 - gagne.GetRect().Right/2,originalbottom+diff);
 	gagne.SetColor(sf::Color::Green);
 
-	sf::String txtAide("Aide");
+	sf::String txtAide("Aide",MyFont,25.f);
 	//Bouton////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 	Bouton boutAide;
@@ -388,8 +394,8 @@ int JeuItalie::run(sf::RenderWindow &fenetre) {
 
 		///On dessine sur la fenetre
 		fenetre.Clear();
-		pays.dessinerPage(fenetre);
 
+		fenetre.Draw(fond);
 		fenetre.Draw(titre);
 		boutAide.drawMe(fenetre);
 		fenetre.Draw(txtAide);
@@ -398,7 +404,7 @@ int JeuItalie::run(sf::RenderWindow &fenetre) {
 		fenetre.Draw(erreur); //Image d'erreur
 		fenetre.Draw(legendeErreur);
 		fenetre.Draw(jeu);
-		fenetre.Draw(instructions);
+		fenetre.Draw(instructions);pays.dessinerPage(fenetre);
 		//Ecrire les instructions : "Cliquez sur l'image fausse pour trouver les erreurs..."
 
 		//convertir nbAtrouver en string avec la fonction ostringstream
@@ -409,6 +415,8 @@ int JeuItalie::run(sf::RenderWindow &fenetre) {
 		std::string Texte = texteb.str();
 
 		nbErreurs.SetText(Texte);
+		nbErreurs.SetFont(MyFont);
+		nbErreurs.SetSize(35.f);
 		fenetre.Draw(nbErreurs);
 		if (boutAide.estClique(fenetre)) {
 			afficherAide(fenetre, er1, er2, er3, er4, er5, er6, er7,erreur.GetPosition().x, erreur.GetPosition().y);
@@ -422,15 +430,7 @@ int JeuItalie::run(sf::RenderWindow &fenetre) {
 			Clock.Reset();
 		}
 
-	/*	while (nbATrouver == 0) {
-			fenetre.Display();
-			if(Clock.GetElapsedTime() > 5) {
-				objetGagne=true;
-				PoleSud_Porte::blason.setTrouve(objetGagne);
-				nbATrouver++;
-				ecranSuivant = MAPPEMONDE;
-			}
-		}*/
+
 
 		fenetre.Display();
 		if (fenetre.GetInput().IsMouseButtonDown(sf::Mouse::Left) && pays.menuActif(fenetre) )
