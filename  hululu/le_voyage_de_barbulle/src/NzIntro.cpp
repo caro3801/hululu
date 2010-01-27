@@ -43,7 +43,7 @@ int NzIntro::run(sf::RenderWindow &fenetre) {
 
 	// LISTE musique ////////////////////
 	vector<Musique *> tabMusic;
-	tabMusic.push_back(new Musique("le_voyage_de_barbulle/music/australie/aust1.ogg"));
+	//tabMusic.push_back(new Musique("le_voyage_de_barbulle/music/australie/aust1.ogg"));
 
 
 	// ELEMENTS /////////////////////////
@@ -112,27 +112,27 @@ int NzIntro::run(sf::RenderWindow &fenetre) {
 
 
 		// PAUSE/PLAY instruction ///////////
-		if(!modelePage.getPlaying() ) {
+		if(!modelePage.getPlaying() && ( tabMusic.size() > 0 ) ) {
 			if(tabMusic[0]->GetStatus() == sf::Music::Paused) {
 				tabMusic[0]->Lecture();
 			}
-		} else {
+		} else if (tabMusic.size() > 0) {
 			 if(tabMusic[0]->GetStatus() == sf::Music::Playing) {
 				tabMusic[0]->Pause();
 			 }
 		}
 
 		// REPETER instruction ///////////////
-		if(modelePage.getRepeterClique(fenetre) ) {
+		if(modelePage.getRepeterClique(fenetre)  && (tabMusic.size() > 0) ) {
 				tabMusic[0]->Stop();
 				tabMusic[0]->Lecture();
 		}
 
 		// MUTE instruction //////////////////
-		if(!modelePage.getMuting())
+		if(!modelePage.getMuting() )
 			for(unsigned int i = 0; i < tabMusic.size(); i++)
 				tabMusic[i]->SetVolume(0);
-		else
+		else if (tabMusic.size() > 0)
 			for(unsigned int i = 0; i < tabMusic.size(); i++)
 				tabMusic[i]->SetVolume(100);
 
