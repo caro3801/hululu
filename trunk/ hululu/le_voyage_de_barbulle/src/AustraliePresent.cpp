@@ -8,13 +8,14 @@
 #include <SFML/System.hpp>
 #include <SFML/Window.hpp>
 #include <SFML/Graphics.hpp>
+#include <SFML/Audio.hpp>
 
 #include "AustraliePresent.h"
 #include "DefineEcrans.h"
 
 #include "Bouton.h"
 #include "Page.h"
-
+#include "Musique.h"
 #include "effetSurTexte.h"
 
 #include <iostream>
@@ -85,6 +86,12 @@ int AustraliePresent::run(sf::RenderWindow &fenetre) {
 	sf::View vue(sf::FloatRect(0, 0, fenetre.GetWidth(), fenetre.GetHeight()) );
 	fenetre.SetView(vue);
 
+
+	vector<Musique *> tabMusic;
+	tabMusic.push_back(new Musique("le_voyage_de_barbulle/music/divers/Epoq-Lepidoptera.ogg"));
+	tabMusic[0]->Lecture();
+
+
 	while (fenetre.IsOpened() && (ecranSuivant == AUSTRALIE_PRESENT) )
 	{
 
@@ -97,6 +104,17 @@ int AustraliePresent::run(sf::RenderWindow &fenetre) {
 				fenetre.Close();
 			else if (event.Type == sf::Event::KeyReleased && event.Key.Code == sf::Key::Escape)
 				fenetre.Close();
+		}
+
+
+		if(!modelePage.getPlaying() ) {
+			if(tabMusic[0]->GetStatus() != sf::Music::Playing) {
+				tabMusic[0]->Lecture();
+			}
+		} else {
+			 if(tabMusic[0]->GetStatus() == sf::Music::Playing) {
+				tabMusic[0]->Pause();
+			 }
 		}
 
 
@@ -114,6 +132,8 @@ int AustraliePresent::run(sf::RenderWindow &fenetre) {
 			ecranSuivant = modelePage.changerEcran(fenetre, AUSTRALIE_PRESENT, AUSTRALIE_PRESENT, AUSTRALIE_INTRO) ;
 
 	}
+
+	// on éteint
 
 	return ecranSuivant;
 }
