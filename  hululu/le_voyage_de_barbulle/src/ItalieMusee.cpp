@@ -5,7 +5,6 @@
  *      Author: caroline
  */
 
-
 #include <iostream>
 using namespace std;
 
@@ -25,11 +24,42 @@ ItalieMusee::ItalieMusee() {
 ItalieMusee::~ItalieMusee() {
 	// TODO Auto-generated destructor stub
 }
-int ItalieMusee::run(sf::RenderWindow &fenetre){
+int ItalieMusee::run(sf::RenderWindow &fenetre) {
 	int ecranSuivant = ITALIEMUSEE;
-Page pays;
-	if (fenetre.GetInput().IsMouseButtonDown(sf::Mouse::Left) && pays.menuActif(fenetre) )
-		ecranSuivant=pays.changerEcran(fenetre,ITALIEMUSEE,JEU_ITALIE,ITALIEPRESENT) ;
+	Page pays;
+	sf::Sprite fond;
+	fond.SetImage(Ecran::MonManager.GetImage(
+			"le_voyage_de_barbulle/img/japon/presJapon3.png"));
+	fond.SetPosition(0.f, 0.f);
+	fond.Resize(fenetre.GetWidth(), fenetre.GetHeight());
+
+	sf::Event event;
+
+	// # création d'une vue sur la fenêtre
+	sf::View vue(sf::FloatRect(0, 0, fenetre.GetWidth(), fenetre.GetHeight()));
+	fenetre.SetView(vue);
+
+	///AFFICHAGE FENETRE///////////////////////////////
+
+	while (fenetre.IsOpened() && (ecranSuivant == ITALIEMUSEE)) {
+		// EVENEMENTS //////////////////////////////////////////
+		while (fenetre.GetEvent(event))
+			// # fermeture de la fenetre
+			// si echap ou fermeture manuelle
+			if (event.Type == sf::Event::Closed)
+				fenetre.Close();
+			else if (event.Type == sf::Event::KeyReleased && event.Key.Code
+					== sf::Key::Escape)
+				fenetre.Close();
+
+
+		fenetre.Draw(fond);
+
+		if (fenetre.GetInput().IsMouseButtonDown(sf::Mouse::Left)
+				&& pays.menuActif(fenetre))
+			ecranSuivant = pays.changerEcran(fenetre, ITALIEMUSEE, JEU_ITALIE,
+					ITALIEPRESENT);
+	}
 	return ecranSuivant;
 
 }
