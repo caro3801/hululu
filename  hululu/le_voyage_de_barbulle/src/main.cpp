@@ -39,6 +39,7 @@ using namespace std;
 #include "JaponGagne.h"			// numero 13
 #include "Intro.h"				// numero 14
 #include "TrajetANZ.h"			// numero 15
+#include "NzIntro.h"			// numero 16
 
 // PROCEDURE PRINCIPALE/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 int main(int argc, char** argv)
@@ -86,6 +87,8 @@ int main(int argc, char** argv)
     tabEcrans.push_back (&ecran14);
     TrajetANZ ecran15;
     tabEcrans.push_back (&ecran15);
+    NzIntro ecran16;
+    tabEcrans.push_back (&ecran16);
 
     // # boucle principale, c'est ici que tt commence...
     while ( ecran >= 0 and fenetre.IsOpened() ) // -1 provoque l'arrêt du programme
