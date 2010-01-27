@@ -47,8 +47,9 @@ bool JeuItalie::erreur2Trouvee(sf::RenderWindow &fenetre, float posImgX,
 
 	float posX = fenetre.GetInput().GetMouseX();
 	float posY = fenetre.GetInput().GetMouseY();
-	if( ((posX >= (30.f + posImgX)) && (posX <= (37.f + posImgX)) && (posY >= (270.f + posImgY)) && (posY <= (278.f + posImgY)))
-			|| ((posX >= (30.f + posImgX)) && (posX <= (55.f + posImgX)) && (posY>= (270.f + posImgY)) && (posY <= (260.f + posImgY))))
+	if( ((posX >= (30.f + posImgX)) && (posX <= (46.f + posImgX)) && (posY >= (270.f + posImgY)) && (posY <= (278.f + posImgY)))
+			|| ((posX >= (42.f + posImgX)) && (posX <= (60.f + posImgX)) && (posY >= (260.f + posImgY)) && (posY <= (270.f + posImgY))))
+
 		return true; //L'erreur est trouvée
 	else
 		return false; //L'erreur n'est pas trouvée
@@ -60,8 +61,8 @@ bool JeuItalie::erreur3Trouvee(sf::RenderWindow &fenetre, float posImgX,
 
 	float posX = fenetre.GetInput().GetMouseX();
 	float posY = fenetre.GetInput().GetMouseY();
-	if ((posX >= (92.f + posImgX)) && (posX <= (100.f + posImgX)) && (posY
-			>= (315.f + posImgY)) && (posY <= (320.f + posImgY)))
+	if ((posX >= (82.f + posImgX)) && (posX <= (104.f + posImgX)) && (posY
+			>= (310.f + posImgY)) && (posY <= (330.f + posImgY)))
 		return true;
 	else
 		return false;
@@ -72,8 +73,8 @@ bool JeuItalie::erreur4Trouvee(sf::RenderWindow &fenetre, float posImgX,
 	//Retourne Vrai si l'erreur 4 est cliquée, faux sinon
 	float posX = fenetre.GetInput().GetMouseX();
 	float posY = fenetre.GetInput().GetMouseY();
-	if ((posX >= (300.f + posImgX)) && (posX <= (310.f + posImgX)) && (posY
-			>= (108.f + posImgY)) && (posY <= (112.f + posImgY)))
+	if ((posX >= (308.f + posImgX)) && (posX <= (322.f + posImgX)) && (posY
+			>= (105.f + posImgY)) && (posY <= (126.f + posImgY)))
 		return true;
 	else
 		return false;
@@ -84,8 +85,10 @@ bool JeuItalie::erreur5Trouvee(sf::RenderWindow &fenetre, float posImgX,
 	//Retourne Vrai si l'erreur 1 est cliquée, faux sinon
 	float posX = fenetre.GetInput().GetMouseX();
 	float posY = fenetre.GetInput().GetMouseY();
-	if ((posX >= (385.f + posImgX)) && (posX <= (395.f + posImgX)) && (posY
-			>= (140.f + posImgY)) && (posY <= (150.f + posImgY)))
+	if (((posX >= (377.f + posImgX)) && (posX <= (386.f + posImgX)) && (posY	>= (162.f + posImgY)) && (posY <= (180.f + posImgY)))
+			|| ((posX >= (384.f + posImgX)) && (posX <= (392.f + posImgX)) && (posY	>= (142.f + posImgY)) && (posY <= (164.f + posImgY)))
+					|| ((posX >= (390.f + posImgX)) && (posX <= (398.f + posImgX)) && (posY	>= (124.f + posImgY)) && (posY <= (144.f + posImgY)))
+							|| ((posX >= (397.f + posImgX)) && (posX <= (405.f + posImgX)) && (posY	>= (107.f + posImgY)) && (posY <= (126.f + posImgY))))
 		return true; //L'erreur est trouvée
 	else
 		return false; //L'erreur n'est pas trouvée
@@ -96,8 +99,8 @@ bool JeuItalie::erreur6Trouvee(sf::RenderWindow &fenetre, float posImgX,
 	//Retourne Vrai si l'erreur 1 est cliquée, faux sinon
 	float posX = fenetre.GetInput().GetMouseX();
 	float posY = fenetre.GetInput().GetMouseY();
-	if ((posX >= (365.f + posImgX)) && (posX <= (375.f + posImgX)) && (posY
-			>= (509 + posImgY)) && (posY <= (515 + posImgY)))
+	if ((posX >= (361.f + posImgX)) && (posX <= (377.f + posImgX)) && (posY
+			>= (510 + posImgY)) && (posY <= (522 + posImgY)))
 		return true; //L'erreur est trouvée
 	else
 		return false; //L'erreur n'est pas trouvée
@@ -108,8 +111,8 @@ bool JeuItalie::erreur7Trouvee(sf::RenderWindow &fenetre, float posImgX,
 	//Retourne Vrai si l'erreur 1 est cliquée, faux sinon
 	float posX = fenetre.GetInput().GetMouseX();
 	float posY = fenetre.GetInput().GetMouseY();
-	if ((posX >= (110.f + posImgX)) && (posX <= (125.f + posImgX)) && (posY
-			>= (390 + posImgY)) && (posY <= (400 + posImgY)))
+	if (((posX >= (111.f + posImgX)) && (posX <= (118.f + posImgX)) && (posY	>= (395 + posImgY)) && (posY <= (408 + posImgY)))
+			||((posX >= (114.f + posImgX)) && (posX <= (122.f + posImgX)) && (posY	>= (387 + posImgY)) && (posY <= (397 + posImgY))))
 		return true; //L'erreur est trouvée
 	else
 		return false; //L'erreur n'est pas trouvée
@@ -331,7 +334,7 @@ int JeuItalie::run(sf::RenderWindow &fenetre) {
 
 	// # Pour que le programme ne se termine pas :)
 	sf::Event event;
-	while (fenetre.IsOpened() && ecranSuivant == JEU_ITALIE)
+	while (fenetre.IsOpened() && (ecranSuivant == JEU_ITALIE) )
 	{
 
 		// EVENEMENTS //////////////////////////////////////////
@@ -387,12 +390,6 @@ int JeuItalie::run(sf::RenderWindow &fenetre) {
 		fenetre.Clear();
 		pays.dessinerPage(fenetre);
 
-		if (fenetre.GetInput().IsMouseButtonDown(sf::Mouse::Left)
-				&& pays.menuActif(fenetre) ) {
-			//On vérifie qu'on clic, que le clic est sur un élement du menu, et qu'au moins 1 seconde s'est écoulée
-			ecranSuivant = pays.changerEcran(fenetre, JEU_ITALIE, JEU_ITALIE, ITALIE); // On retourne soit courant=4 (JeuItalie), suivant=4 (JeuItalie),
-			// precedent=2 (Italie)
-		}
 		fenetre.Draw(titre);
 		boutAide.drawMe(fenetre);
 		fenetre.Draw(txtAide);
@@ -435,7 +432,8 @@ int JeuItalie::run(sf::RenderWindow &fenetre) {
 		}
 
 		fenetre.Display();
-
+		if (fenetre.GetInput().IsMouseButtonDown(sf::Mouse::Left) && pays.menuActif(fenetre) )
+					ecranSuivant=pays.changerEcran(fenetre,JEU_ITALIE,JEU_ITALIE,ITALIEPRESENT) ;
 	}
 
 	return ecranSuivant;
