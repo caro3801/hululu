@@ -418,6 +418,7 @@ int JeuItalie::run(sf::RenderWindow &fenetre) {
 				erreur.GetPosition().x, erreur.GetPosition().y);
 		if(nbATrouver == 0)	{
 			fenetre.Draw(gagne);
+			PoleSud_Porte::blason.setTrouve(true);
 			Clock.Reset();
 		}
 
@@ -433,7 +434,7 @@ int JeuItalie::run(sf::RenderWindow &fenetre) {
 
 		fenetre.Display();
 		if (fenetre.GetInput().IsMouseButtonDown(sf::Mouse::Left) && pays.menuActif(fenetre) )
-					ecranSuivant=pays.changerEcran(fenetre,JEU_ITALIE,JEU_ITALIE,ITALIEPRESENT) ;
+					ecranSuivant=pays.changerEcran(fenetre,JEU_ITALIE,JEU_ITALIE,ITALIEMUSEE) ;
 	}
 
 	return ecranSuivant;
