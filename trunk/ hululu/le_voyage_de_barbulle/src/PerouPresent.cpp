@@ -56,7 +56,7 @@ int PerouPresent::run(sf::RenderWindow &fenetre){
 	// FONT/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 	// # titre
-		sf::String txtTitre("Perou");
+		sf::String txtTitre(L"Pérou");
 		txtTitre.SetSize(40.f);
 		txtTitre.SetFont(cursiveFont);
 		txtTitre.SetColor(sf::Color(40,90,80));
