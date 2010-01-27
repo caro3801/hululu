@@ -20,7 +20,7 @@ public:
 
 	inline string getNom() { return this->nom ; }
 	inline void setNom(string) { this->nom=nom; }
-	inline void setTrouve(bool trouve) { this->trouve=trouve;}
+	inline void setTrouve(bool esttrouve) { this->trouve=esttrouve;}
 	inline bool getTrouve() { return this->trouve; } //objet trouvé ou non, oui a la fin d'un jeu réussi
 	void dessinerDansSac(); //Pole : dessiner l'objet dans la case correspondante
 	void emplacementPorte(); //Afficher l'emplacement de l'objet sur la porte

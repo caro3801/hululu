@@ -113,6 +113,7 @@ int JaponGagne::run(sf::RenderWindow &fenetre)
 					fenetre.Draw(Barbulle);
 					fenetre.Draw(text);
 					pays.dessinerPage(fenetre);
+					PoleSud_Porte::lampion.setTrouve(true);
 					PoleSud_Porte::lampion.dessinerObjet(fenetre);
 					fenetre.Display();
 
