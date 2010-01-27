@@ -172,7 +172,7 @@ int Menu_0::run(sf::RenderWindow &fenetre)
 		// CLIQUE SUR nouvelle partie ///////////////////////////////
 		if(boutNouvPartie.estClique(fenetre)) {
 			Clock.Reset();
-			ecranSuivant = MAPPEMONDE;
+			ecranSuivant = INTRO_G;
 		}
 
 
