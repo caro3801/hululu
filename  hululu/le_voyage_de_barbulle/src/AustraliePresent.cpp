@@ -60,7 +60,7 @@ int AustraliePresent::run(sf::RenderWindow &fenetre) {
 	txtTitre.SetColor(sf::Color(255,173,0));
 
 	int position[2];
-	position[0] = 80;
+	position[0] = 180;
 	position[1] = 15; // sur y, ici il est centré
 	txtTitre.SetPosition(position[0],position[1]);
 
