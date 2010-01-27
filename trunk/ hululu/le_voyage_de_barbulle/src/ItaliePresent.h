@@ -17,7 +17,7 @@ public:
 	virtual ~ItaliePresent();
 	virtual int run(sf::RenderWindow &fenetre);
 private:
-	int etape;
+	unsigned int etape;
 };
 
 #endif /* ITALIEPRESENT_H_ */

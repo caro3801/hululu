@@ -11,9 +11,11 @@ using namespace std;
 #include <SFML/System.hpp>
 #include <SFML/Window.hpp>
 #include <SFML/Graphics.hpp>
+#include <SFML/Audio.hpp>
 
 #include "ItaliePresent.h"
 #include "Page.h"
+#include "Musique.h"
 #include "DefineEcrans.h"
 
 ItaliePresent::ItaliePresent() {
@@ -35,30 +37,30 @@ int ItaliePresent::run(sf::RenderWindow &fenetre) {
 	sf::Clock Clock;
 	Clock.Reset();
 
+	vector<Musique *> tabMusic;
+
 	// DEF de la police ////////////////
 	sf::Font cursiveFont;
 	if (!cursiveFont.LoadFromFile("le_voyage_de_barbulle/img/font/Cursive_standard_BOLD.ttf", 50.f))
 		cerr << "Erreur lors du chargement de la police" << endl;
 
-	// ecran de présentation numero 1
-	sf::Sprite present1;
-	present1.SetImage(Ecran::MonManager.GetImage("le_voyage_de_barbulle/img/italie/present1.png"));
-	present1.SetPosition(0.f, 0.f);
-	present1.Resize((fenetre.GetWidth()), (fenetre.GetHeight()));
-
-	// ecran de présentation numero 2
-	sf::Sprite present2;
-	present2.SetImage(Ecran::MonManager.GetImage(
-			"le_voyage_de_barbulle/img/italie/present2.png"));
-	present2.SetPosition(0.f, 0.f);
-	present2.Resize((fenetre.GetWidth()), (fenetre.GetHeight()));
-
-	// ecran de présentation numero 3
-	sf::Sprite present3;
-	present3.SetImage(Ecran::MonManager.GetImage(
-			"le_voyage_de_barbulle/img/italie/present3.png"));
-	present3.SetPosition(0.f, 0.f);
-	present3.Resize((fenetre.GetWidth()), (fenetre.GetHeight()));
+	sf::Sprite background;
+	switch (etape) {
+			case 0:
+				background.SetImage(Ecran::MonManager.GetImage("le_voyage_de_barbulle/img/italie/present1.png"));
+				tabMusic.push_back(new Musique("le_voyage_de_barbulle/music/italie/it1.ogg"));
+				break;
+			case 1:
+				background.SetImage(Ecran::MonManager.GetImage("le_voyage_de_barbulle/img/italie/present2.png"));
+				tabMusic.push_back(new Musique("le_voyage_de_barbulle/music/italie/it2.ogg"));
+				break;
+			case 2:
+				background.SetImage(Ecran::MonManager.GetImage("le_voyage_de_barbulle/img/italie/present3.png"));
+				tabMusic.push_back(new Musique("le_voyage_de_barbulle/music/italie/it3.ogg"));
+				break;
+		}
+	background.SetPosition(0.f, 0.f);
+	background.Resize(fenetre.GetWidth(), fenetre.GetHeight());
 
 	// # création d'une vue sur la fenêtre
 	sf::View vue(sf::FloatRect(0, 0, fenetre.GetWidth(), fenetre.GetHeight()));
@@ -66,7 +68,9 @@ int ItaliePresent::run(sf::RenderWindow &fenetre) {
 	// # Pour que le programme ne se termine pas :)
 	sf::Event event;
 
-	int etapeInitiale = etape;
+	tabMusic[0]->Lecture();
+
+	unsigned int etapeInitiale = etape;
 
 	while (fenetre.IsOpened() && (ecranSuivant == ITALIEPRESENT) && (etapeInitiale == etape) ) {
 
@@ -79,13 +83,12 @@ int ItaliePresent::run(sf::RenderWindow &fenetre) {
 					== sf::Key::Escape)
 				fenetre.Close();
 		}
-
+		// on surveille l'avancement de la lecture
+		if(tabMusic[0]->GetStatus() == sf::Music::Stopped && (etape < 2) )
+				etape++;
 
 		switch (etape) {
 		case 0:
-			fenetre.Draw(present1);
-			pays.dessinerPage(fenetre);
-			fenetre.Display();
 			if (fenetre.GetInput().IsMouseButtonDown(sf::Mouse::Left) && pays.menuActif(fenetre)) {
 				if (pays.getGoClique(fenetre)) {
 					pays.getGo().resetTimer();
@@ -101,9 +104,6 @@ int ItaliePresent::run(sf::RenderWindow &fenetre) {
 			break;
 
 		case 1:
-			fenetre.Draw(present2);
-			pays.dessinerPage(fenetre);
-			fenetre.Display();
 			if (fenetre.GetInput().IsMouseButtonDown(sf::Mouse::Left) && pays.menuActif(fenetre)) {
 				if (pays.getGoClique(fenetre)) {
 					pays.getGo().resetTimer();
@@ -119,9 +119,6 @@ int ItaliePresent::run(sf::RenderWindow &fenetre) {
 
 			break;
 		case 2:
-			fenetre.Draw(present3);
-			pays.dessinerPage(fenetre);
-			fenetre.Display();
 			if (fenetre.GetInput().IsMouseButtonDown(sf::Mouse::Left) && pays.menuActif(fenetre)) {
 				if (pays.getGoClique(fenetre)) {
 					pays.getGo().resetTimer();
@@ -136,7 +133,43 @@ int ItaliePresent::run(sf::RenderWindow &fenetre) {
 			}
 			break;
 		}
-	}
 
+		// PAUSE/PLAY instruction ///////////
+		if(!pays.getPlaying() ) {
+			if(tabMusic[0]->GetStatus() == sf::Music::Paused) {
+				tabMusic[0]->Lecture();
+			}
+		} else {
+			 if(tabMusic[0]->GetStatus() == sf::Music::Playing) {
+				tabMusic[0]->Pause();
+			 }
+		}
+
+		// REPETER instruction ///////////////
+		if(pays.getRepeterClique(fenetre) ) {
+				tabMusic[0]->Stop();
+				tabMusic[0]->Lecture();
+		}
+
+		// MUTE instruction //////////////////
+		if(!pays.getMuting())
+			for(unsigned int i = 0; i < tabMusic.size(); i++)
+				tabMusic[i]->SetVolume(0);
+		else
+			for(unsigned int i = 0; i < tabMusic.size(); i++)
+				tabMusic[i]->SetVolume(100);
+
+		// DESSINS  //////////////////////////
+		fenetre.Draw(background);
+		pays.dessinerPage(fenetre);
+
+		fenetre.Display();
+
+	}
+	// INTERUPTION de toutes les musiques
+	for(unsigned int i = 0; i < tabMusic.size(); i++)
+		tabMusic[i]->Stop();
+
+	// on éteint
 	return ecranSuivant;
 }
