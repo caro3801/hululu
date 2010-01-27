@@ -316,10 +316,10 @@ int JeuItalie::run(sf::RenderWindow &fenetre) {
 	//Bouton////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 	Bouton boutAide;
-	boutAide.initBouton("le_voyage_de_barbulle/img/histoire/bouton_n.png",
-			"le_voyage_de_barbulle/img/histoire/bouton_f.png");
+	boutAide.initBouton("le_voyage_de_barbulle/img/italie/barbulle_italie.png",
+			"le_voyage_de_barbulle/img/italie/barbulle_italie.png");
 	boutAide.redimensionner(0.5);
-	boutAide.placer(300,100);
+	boutAide.placer(erreur.GetPosition().x+erreur.GetSize().x+20,(fenetre.GetHeight()-boutAide.GetSize().y)/2);
 	boutAide.placerTexte(txtAide);
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
