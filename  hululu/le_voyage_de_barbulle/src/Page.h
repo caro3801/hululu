@@ -25,7 +25,7 @@ public:
     inline bool getGoClique(sf::RenderWindow &fenetre) {return go.estClique(fenetre); }
     inline bool getBackClique(sf::RenderWindow &fenetre) {return back.estClique(fenetre); }
     inline bool getMapClique(sf::RenderWindow &fenetre) {return map.estClique(fenetre); }
-    inline bool getRepeter(sf::RenderWindow &fenetre) {return repeter.estClique(fenetre); }
+    inline bool getRepeterClique(sf::RenderWindow &fenetre) {return repeter.estClique(fenetre); }
     inline Bouton getGo() {return go; }
     inline Bouton getBack() {return back; }
     inline Bouton getMap() {return map; }
