@@ -24,6 +24,12 @@ public:
 	virtual int run(sf::RenderWindow &fenetre);
 	bool autoriseBouger(Objet & obj);
 
+
+	bool ZoneWeta(sf::RenderWindow &fenetre,float rapportW, float rapportH);
+	bool ZonePoncho(sf::RenderWindow &fenetre,float rapportW, float rapportH);
+	bool ZoneBlason(sf::RenderWindow &fenetre,float rapportW, float rapportH);
+	bool ZoneLanterne(sf::RenderWindow &fenetre,float rapportW, float rapportH);
+
 	static Objet blason;
 	static Objet lampion;
 	static Objet weta;
