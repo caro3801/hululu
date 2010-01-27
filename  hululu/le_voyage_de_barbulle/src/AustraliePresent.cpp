@@ -168,7 +168,7 @@ int AustraliePresent::run(sf::RenderWindow &fenetre) {
 		}
 
 
-		// PAUSE/PLAY instruction////////////
+		// PAUSE/PLAY instruction ///////////
 		if(!modelePage.getPlaying() ) {
 			if(tabMusic[0]->GetStatus() == sf::Music::Paused) {
 				tabMusic[0]->Lecture();
@@ -178,6 +178,25 @@ int AustraliePresent::run(sf::RenderWindow &fenetre) {
 				tabMusic[0]->Pause();
 			 }
 		}
+// 232, 532, 111
+
+
+
+		// REPETER instruction ///////////////
+		if(modelePage.getRepeterClique(fenetre) ) {
+				tabMusic[0]->Stop();
+				tabMusic[0]->Lecture();
+		}
+
+		// MUTE instruction //////////////////
+		if(!modelePage.getMuting())
+			for(unsigned int i = 0; i < tabMusic.size(); i++)
+				tabMusic[i]->SetVolume(0);
+		else
+			for(unsigned int i = 0; i < tabMusic.size(); i++)
+				tabMusic[i]->SetVolume(100);
+
+
 
 
 		// DESSINS  //////////////////////////
@@ -191,7 +210,7 @@ int AustraliePresent::run(sf::RenderWindow &fenetre) {
 
 	// INTERUPTION de toutes les musiques
 	for(unsigned int i = 0; i < tabMusic.size(); i++)
-		tabMusic[i]->Pause();
+		tabMusic[i]->Stop();
 
 	// on éteint
 
