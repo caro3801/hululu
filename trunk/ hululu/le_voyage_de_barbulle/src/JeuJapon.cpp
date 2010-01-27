@@ -310,14 +310,18 @@ int JeuJapon::run(sf::RenderWindow &fenetre)
 
 	sf::Sprite Sakura;
 	Sakura.SetImage(Ecran::MonManager.GetImage("le_voyage_de_barbulle/img/japon/Sakura.png"));
-	Sakura.SetPosition((fenetre.GetWidth())/9, ((fenetre.GetHeight())/1.3));
-	Sakura.Resize(100, 100);
+	Sakura.SetPosition((fenetre.GetWidth())/9, ((fenetre.GetHeight())/1.35));
+	Sakura.Resize(150, 150);
 
 	sf::Sprite Sakura2;
 	Sakura2.SetImage(Ecran::MonManager.GetImage("le_voyage_de_barbulle/img/japon/Sakura.png"));
-	Sakura2.SetPosition((fenetre.GetWidth())/9, ((fenetre.GetHeight())/30));
-	Sakura2.Resize(100, 100);
+	Sakura2.SetPosition((fenetre.GetWidth())/9, ((fenetre.GetHeight())/11));
+	Sakura2.Resize(80, 80);
 
+	sf::Sprite Sakura3;
+	Sakura3.SetImage(Ecran::MonManager.GetImage("le_voyage_de_barbulle/img/japon/Sakura.png"));
+	Sakura3.SetPosition((fenetre.GetWidth())/6.5, ((fenetre.GetHeight())/15));
+	Sakura3.Resize(40, 40);
 
 	//AIDE //////////////////////////////////////////////////////////////////////////////
 	Bouton Barbulle;
@@ -490,6 +494,7 @@ int JeuJapon::run(sf::RenderWindow &fenetre)
 							fenetre.Draw(Decembre);
 							fenetre.Draw(Sakura);
 							fenetre.Draw(Sakura2);
+							fenetre.Draw(Sakura3);
 							Barbulle.drawMe(fenetre);
 
 
