@@ -35,7 +35,7 @@ TrajetANZ::~TrajetANZ() {
 
 int TrajetANZ::run(sf::RenderWindow &fenetre) {
 
-	int ecranSuivant = TRAGET_ANZ;
+	int ecranSuivant = TRAJET_ANZ;
 	Page modelePage;
 
 	// LISTE musique ////////////////////
@@ -45,7 +45,7 @@ int TrajetANZ::run(sf::RenderWindow &fenetre) {
 
 	// IMAGE DE FONT ////////////////////
 	sf::Sprite background;
-	background.SetImage(Ecran::MonManager.GetImage("le_voyage_de_barbulle/img/australie/kangou.jpg"));
+	background.SetImage(Ecran::MonManager.GetImage("le_voyage_de_barbulle/img/australie/bgBateau.png"));
 	background.SetPosition(0.f, 0.f);
 	background.Resize(fenetre.GetWidth(), fenetre.GetHeight());
 
@@ -56,7 +56,7 @@ int TrajetANZ::run(sf::RenderWindow &fenetre) {
 
 	sf::Event event;
 
-	while (fenetre.IsOpened() && (ecranSuivant == TRAGET_ANZ) )
+	while (fenetre.IsOpened() && (ecranSuivant == TRAJET_ANZ) )
 	{
 		// EVENEMENTS ///////////////////////
 		while (fenetre.GetEvent(event))
@@ -102,7 +102,7 @@ int TrajetANZ::run(sf::RenderWindow &fenetre) {
 
 		// CTRL changement d'écran ////////////
 		if (fenetre.GetInput().IsMouseButtonDown(sf::Mouse::Left) && modelePage.menuActif(fenetre))
-			ecranSuivant = modelePage.changerEcran(fenetre, TRAGET_ANZ, NZ_INTRO, AUSTRALIE_PRESENT) ;
+			ecranSuivant = modelePage.changerEcran(fenetre, TRAJET_ANZ, NZ_INTRO, AUSTRALIE_PRESENT) ;
 
 		fenetre.Display();
 	}

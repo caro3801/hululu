@@ -149,7 +149,7 @@ int NzIntro::run(sf::RenderWindow &fenetre) {
 
 		// CTRL changement d'écran ////////////
 		if (fenetre.GetInput().IsMouseButtonDown(sf::Mouse::Left) && modelePage.menuActif(fenetre))
-			ecranSuivant = modelePage.changerEcran(fenetre, NZ_INTRO, NZ_PRESENT,TRAGET_ANZ) ;
+			ecranSuivant = modelePage.changerEcran(fenetre, NZ_INTRO, NZ_PRESENT,TRAJET_ANZ) ;
 
 		fenetre.Display();
 	}

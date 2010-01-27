@@ -156,7 +156,7 @@ int AustraliePresent::run(sf::RenderWindow &fenetre) {
 					if (modelePage.getGoClique(fenetre)) {
 						modelePage.getGo().resetTimer();
 						_etape=0;
-						ecranSuivant = TRAGET_ANZ;
+						ecranSuivant = TRAJET_ANZ;
 					} else if (modelePage.getBackClique(fenetre)) {
 						modelePage.getBack().resetTimer();
 						_etape--;
