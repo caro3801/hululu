@@ -4,6 +4,7 @@
  *  Created on: 5 déc. 2009
  *      Author: talotte&antho
  */
+#include "PoleSud_Porte.h"
 #include "JeuPerou.h"
 #include "Page.h"
 #include "DefineEcrans.h"
@@ -98,6 +99,7 @@ int JeuPerou::run(sf::RenderWindow &fenetre) {
 	bool mouseMove = false;
 	bool lache = true;
 	bool entree = true;
+	bool boolgagner = false;
 	//IMAGES////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 	// # image de fond
@@ -282,8 +284,10 @@ int JeuPerou::run(sf::RenderWindow &fenetre) {
 			}
 			else
 			{
+			entree = false;
+			 boolgagner=true;
+			}
 
-			entree = false;}
 		}
 
 		if (annuler.estClique(fenetre))
@@ -300,8 +304,12 @@ int JeuPerou::run(sf::RenderWindow &fenetre) {
 			sommeTot =0;
 		}
 
-
-
+		if ( boolgagner)
+		{
+		fenetre.Draw(gagne);
+		PoleSud_Porte::poncho.setTrouve(true);
+		Clock.Reset();
+		}
 
 		fenetre.Display();
 
