@@ -50,22 +50,7 @@ void JeuPerou::creerPieces(sf::RenderWindow &fenetre,
 	val1_3.placer((fenetre.GetWidth() * 10 / 12),
 			(fenetre.GetHeight() * 9 / 11));
 	val1_3.decalageSouris(25.0, 25.0);
-	val2_1.setValeur(2);
-	val2_1.initBouton(piece2_p, piece2);
-	val2_1.redimensionner(0.75);
-	val2_1.placer((fenetre.GetWidth() * 8 / 12), (fenetre.GetHeight() * 7 / 11));
-	val2_1.decalageSouris(25.0, 25.0);
-	val3_1.setValeur(3);
-	val3_1.initBouton(piece3_p, piece3);
-	val3_1.redimensionner(0.75);
-	val3_1.placer((fenetre.GetWidth() * 9 / 12), (fenetre.GetHeight() * 7 / 11));
-	val3_1.decalageSouris(25.0, 25.0);
-	val2_2.setValeur(2);
-	val2_2.initBouton(piece2_p, piece2);
-	val2_2.redimensionner(0.75);
-	val2_2.placer((fenetre.GetWidth() * 10 / 12),
-			(fenetre.GetHeight() * 7 / 11));
-	val2_2.decalageSouris(25.0, 25.0);
+
 	val2_3.setValeur(2);
 	val2_3.initBouton(piece2_p, piece2);
 	val2_3.redimensionner(0.75);
@@ -225,19 +210,10 @@ int total=13;
 		if ((autoriseBouger(val1_3)) && val1_3.estClique(fenetre))
 			val1_3.setABouger(true);
 
-		// -- pieces de 2
-		if ((autoriseBouger(val2_1)) && val2_1.estClique(fenetre))
-			val2_1.setABouger(true);
-
-		if ((autoriseBouger(val2_2)) && val2_2.estClique(fenetre))
-			val2_2.setABouger(true);
 
 		if ((autoriseBouger(val2_3)) && val2_3.estClique(fenetre))
 			val2_3.setABouger(true);
 
-		// -- pieces de 3
-		if ((autoriseBouger(val3_1)) && val3_1.estClique(fenetre))
-			val3_1.setABouger(true);
 
 		if ((autoriseBouger(val3_2)) && val3_2.estClique(fenetre))
 			val3_2.setABouger(true);
@@ -255,17 +231,9 @@ int total=13;
 		val1_3.deplacer(fenetre, mouseMove, lache);
 		val1_3.drawMe(fenetre);
 
-		val2_1.deplacer(fenetre, mouseMove, lache);
-		val2_1.drawMe(fenetre);
-
-		val2_2.deplacer(fenetre, mouseMove, lache);
-		val2_2.drawMe(fenetre);
 
 		val2_3.deplacer(fenetre, mouseMove, lache);
 		val2_3.drawMe(fenetre);
-
-		val3_1.deplacer(fenetre, mouseMove, lache);
-		val3_1.drawMe(fenetre);
 
 		val3_2.deplacer(fenetre, mouseMove, lache);
 		val3_2.drawMe(fenetre);
@@ -276,27 +244,22 @@ int total=13;
 		valider.drawMe(fenetre);
 		fenetre.Draw(texteV);
 		annuler.drawMe(fenetre);
-			fenetre.Draw(texteA);
+		fenetre.Draw(texteA);
 
 		if (valider.estClique(fenetre) && entree) {
 			if (inZone(fenetre, val5_1)) {
 				sommeTot = sommeTot + val5_1.getValeur();
 			}
-			if (inZone(fenetre, val3_1)) {
-				sommeTot += val3_1.getValeur();
-			}
+
 			if (inZone(fenetre, val3_2)) {
 				sommeTot += val3_2.getValeur();
 			}
+
 			if (inZone(fenetre, val2_3)) {
 				sommeTot += val2_3.getValeur();
 			}
-			if (inZone(fenetre, val2_2)) {
-				sommeTot += val2_2.getValeur();
-			}
-			if (inZone(fenetre, val2_1)) {
-				sommeTot += val2_1.getValeur();
-			}
+
+
 			if (inZone(fenetre, val1_3)) {
 				sommeTot += val1_3.getValeur();
 			}
@@ -337,8 +300,8 @@ bool JeuPerou::autoriseBouger(Piece & obj) {
 
 	if (&obj == &val1_1) {
 		if (!(val1_3.estBougeable()) && !(val1_2.estBougeable())
-				&& !(val2_1.estBougeable()) && !(val2_2.estBougeable())
-				&& !(val2_3.estBougeable()) && !(val3_1.estBougeable())
+
+				&& !(val2_3.estBougeable())
 				&& !(val3_2.estBougeable()) && !(val5_1.estBougeable()))
 			return true;
 		else
@@ -347,8 +310,7 @@ bool JeuPerou::autoriseBouger(Piece & obj) {
 
 	else if (&obj == &val1_2) {
 		if (!(val1_1.estBougeable()) && !(val1_3.estBougeable())
-				&& !(val2_1.estBougeable()) && !(val2_2.estBougeable())
-				&& !(val2_3.estBougeable()) && !(val3_1.estBougeable())
+				&& !(val2_3.estBougeable())
 				&& !(val3_2.estBougeable()) && !(val5_1.estBougeable()))
 			return true;
 		else
@@ -357,59 +319,30 @@ bool JeuPerou::autoriseBouger(Piece & obj) {
 
 	else if (&obj == &val1_3) {
 		if (!(val1_1.estBougeable()) && !(val1_2.estBougeable())
-				&& !(val2_1.estBougeable()) && !(val2_2.estBougeable())
-				&& !(val2_3.estBougeable()) && !(val3_1.estBougeable())
+				&& !(val2_3.estBougeable())
 				&& !(val3_2.estBougeable()) && !(val5_1.estBougeable()))
 			return true;
 		else
 			return false;
 	}
 
-	else if (&obj == &val2_1) {
-		if (!(val1_1.estBougeable()) && !(val1_2.estBougeable())
-				&& !(val1_3.estBougeable()) && !(val2_2.estBougeable())
-				&& !(val2_3.estBougeable()) && !(val3_1.estBougeable())
-				&& !(val3_2.estBougeable()) && !(val5_1.estBougeable()))
-			return true;
-		else
-			return false;
-	}
-
-	else if (&obj == &val2_2) {
-		if (!(val1_1.estBougeable()) && !(val1_2.estBougeable())
-				&& !(val1_3.estBougeable()) && !(val2_1.estBougeable())
-				&& !(val2_3.estBougeable()) && !(val3_1.estBougeable())
-				&& !(val3_2.estBougeable()) && !(val5_1.estBougeable()))
-			return true;
-		else
-			return false;
-	}
 
 	else if (&obj == &val2_3) {
 		if (!(val1_1.estBougeable()) && !(val1_2.estBougeable())
-				&& !(val1_3.estBougeable()) && !(val2_1.estBougeable())
-				&& !(val2_2.estBougeable()) && !(val3_1.estBougeable())
+				&& !(val1_3.estBougeable())
 				&& !(val3_2.estBougeable()) && !(val5_1.estBougeable()))
 			return true;
 		else
 			return false;
 	}
 
-	else if (&obj == &val3_1) {
-		if (!(val1_1.estBougeable()) && !(val1_2.estBougeable())
-				&& !(val1_3.estBougeable()) && !(val2_1.estBougeable())
-				&& !(val2_2.estBougeable()) && !(val2_3.estBougeable())
-				&& !(val3_2.estBougeable()) && !(val5_1.estBougeable()))
-			return true;
-		else
-			return false;
-	}
+
 
 	else if (&obj == &val3_2) {
 		if (!(val1_1.estBougeable()) && !(val1_2.estBougeable())
-				&& !(val1_3.estBougeable()) && !(val2_1.estBougeable())
-				&& !(val2_2.estBougeable()) && !(val2_3.estBougeable())
-				&& !(val3_1.estBougeable()) && !(val5_1.estBougeable()))
+				&& !(val1_3.estBougeable())
+				 && !(val2_3.estBougeable())
+				&& !(val5_1.estBougeable()))
 			return true;
 		else
 			return false;
@@ -418,9 +351,9 @@ bool JeuPerou::autoriseBouger(Piece & obj) {
 	else if (&obj == &val5_1)// val5_1
 	{
 		if (!(val1_1.estBougeable()) && !(val1_2.estBougeable())
-				&& !(val1_3.estBougeable()) && !(val2_1.estBougeable())
-				&& !(val2_2.estBougeable()) && !(val2_3.estBougeable())
-				&& !(val3_1.estBougeable()) && !(val3_2.estBougeable()))
+				&& !(val1_3.estBougeable())
+			 && !(val2_3.estBougeable())
+				 && !(val3_2.estBougeable()))
 			return true;
 		else
 			return false;

@@ -39,10 +39,7 @@ private:
 	Piece val1_1;
 	Piece val1_2;
 	Piece val1_3;
-	Piece val2_1;
-	Piece val2_2;
 	Piece val2_3;
-	Piece val3_1;
 	Piece val3_2;
 	Piece val5_1;
 	Piece pieceA;
