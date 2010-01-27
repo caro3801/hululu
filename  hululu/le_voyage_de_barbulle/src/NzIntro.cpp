@@ -36,17 +36,60 @@ int NzIntro::run(sf::RenderWindow &fenetre) {
 	int ecranSuivant = NZ_INTRO;
 	Page modelePage;
 
+	// DEF de la police ////////////////
+	sf::Font cursiveFont;
+	if (!cursiveFont.LoadFromFile("le_voyage_de_barbulle/img/font/Cursive_standard_BOLD.ttf", 50.f))
+		cerr << "Erreur lors du chargement de la police" << endl;
+
 	// LISTE musique ////////////////////
 	vector<Musique *> tabMusic;
 	tabMusic.push_back(new Musique("le_voyage_de_barbulle/music/australie/aust1.ogg"));
 
 
-	// IMAGE DE FONT ////////////////////
+	// ELEMENTS /////////////////////////
+	// -- image de fond
 	sf::Sprite background;
 	background.SetImage(Ecran::MonManager.GetImage("le_voyage_de_barbulle/img/nz/paysage.jpg"));
 	background.SetPosition(0.f, 0.f);
 	background.Resize(fenetre.GetWidth(), fenetre.GetHeight());
 
+	// -- drapeaux
+	sf::Sprite flag;
+	flag.SetImage(Ecran::MonManager.GetImage("le_voyage_de_barbulle/img/nz/flag.png"));
+	float position[2];
+	position[0] = (fenetre.GetWidth()  / 2) - ( flag.GetSize().x / 2);
+	position[1] = (fenetre.GetHeight() / 2) - ( flag.GetSize().y / 2);
+	flag.SetPosition(position[0],position[1]);
+
+
+
+	// -- sous-titre
+	sf::String txtSousTitre("Rencontre avec les maoris");
+	txtSousTitre.SetSize(40.f);
+	txtSousTitre.SetFont(cursiveFont);
+	txtSousTitre.SetColor(sf::Color(179,195,228));
+	position[0] = (fenetre.GetWidth() / 2) - ( txtSousTitre.GetRect().GetWidth() / 2);
+	position[1] -= (30 +  txtSousTitre.GetRect().GetHeight() );
+	txtSousTitre.SetPosition(position[0],position[1]);
+
+	// -- sous-titre OMBRE
+	sf::String txtSousTitreOMBRE;
+	ombreTexte(txtSousTitre, txtSousTitreOMBRE, sf::Color::White, 2, 2);
+
+	// -- titre
+	sf::String txtTitre("Welcome in New-Zeland !");
+	txtTitre.SetSize(50.f);
+	txtTitre.SetFont(cursiveFont);
+	txtTitre.SetColor(sf::Color(179,195,228));
+
+	position[0] = (fenetre.GetWidth() / 2) - ( txtTitre.GetRect().GetWidth() / 2);
+	position[1] -= 60; // sur y, ici il est centré
+
+	txtTitre.SetPosition(position[0],position[1]);
+
+	// -- titre OMBRE
+	sf::String txtTitreOMBRE;
+	ombreTexte(txtTitre, txtTitreOMBRE, sf::Color::White, 2, 2);
 
 	// VUE ///////////////////////
 	sf::View vue(sf::FloatRect(0, 0, fenetre.GetWidth(), fenetre.GetHeight()) );
@@ -95,6 +138,12 @@ int NzIntro::run(sf::RenderWindow &fenetre) {
 
 		// DESSINS  //////////////////////////
 		fenetre.Draw(background);
+
+		fenetre.Draw(flag);
+		fenetre.Draw(txtTitreOMBRE);
+		fenetre.Draw(txtTitre);
+		fenetre.Draw(txtSousTitreOMBRE);
+		fenetre.Draw(txtSousTitre);
 		modelePage.dessinerPage(fenetre);
 
 
