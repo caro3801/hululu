@@ -33,11 +33,12 @@ using namespace std;
 #include "AustralieIntro.h"		// numéro 7
 #include "PoleSud_Porte.h" 		// numero 8
 #include "AustraliePresent.h"	// numero 9
-#include "ItaliePresent.h"
-#include "JeuJapon.h"
-#include "HistoireJapon.h"
-#include "JaponGagne.h"
-#include "Intro.h"//numero14
+#include "ItaliePresent.h"		// numero 10
+#include "JeuJapon.h"			// numero 11
+#include "HistoireJapon.h"		// numero 12
+#include "JaponGagne.h"			// numero 13
+#include "Intro.h"				// numero 14
+#include "TrajetANZ.h"			// numero 15
 
 // PROCEDURE PRINCIPALE/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 int main(int argc, char** argv)
@@ -83,6 +84,8 @@ int main(int argc, char** argv)
     tabEcrans.push_back (&ecran13);
     Intro ecran14;
     tabEcrans.push_back (&ecran14);
+    TrajetANZ ecran15;
+    tabEcrans.push_back (&ecran15);
 
     // # boucle principale, c'est ici que tt commence...
     while ( ecran >= 0 and fenetre.IsOpened() ) // -1 provoque l'arrêt du programme
