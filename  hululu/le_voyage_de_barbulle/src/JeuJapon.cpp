@@ -40,6 +40,7 @@ int JeuJapon::run(sf::RenderWindow &fenetre)
 
 
 
+
 	vector<Carte> tabCarte;
 
 
@@ -210,7 +211,16 @@ int JeuJapon::run(sf::RenderWindow &fenetre)
 	//INSTRUCTION ////////////////////////////////////////////////////////////////////////
 	sf::Sprite Instruction1;
 	Instruction1.SetImage(Ecran::MonManager.GetImage("le_voyage_de_barbulle/img/japon/instruction1.png"));
-	Instruction1.SetPosition((fenetre.GetWidth())/5, ((fenetre.GetHeight())/25));
+	Instruction1.SetPosition((fenetre.GetWidth())/5, ((fenetre.GetHeight())/35));
+
+	sf::Sprite Instruction2;
+	Instruction2.SetImage(Ecran::MonManager.GetImage("le_voyage_de_barbulle/img/japon/instruction2.png"));
+	Instruction2.SetPosition((fenetre.GetWidth())/5, ((fenetre.GetHeight())/35));
+
+	sf::Sprite Instruction3;
+	Instruction3.SetImage(Ecran::MonManager.GetImage("le_voyage_de_barbulle/img/japon/instruction3.png"));
+	Instruction3.SetPosition((fenetre.GetWidth())/5, ((fenetre.GetHeight())/50));
+
 
 
 	//COMPTEUR ///////////////////////////////////////////////////////////////////////////
@@ -245,6 +255,7 @@ int JeuJapon::run(sf::RenderWindow &fenetre)
 	///AFFICHAGE FENETRE////////////////////////////////
 			int nbATrouver=4;
 			int courant=1;
+			bool lu = false;
 
 				while(fenetre.IsOpened() && (ecranSuivant==6))
 					{
@@ -350,18 +361,31 @@ int JeuJapon::run(sf::RenderWindow &fenetre)
 							fenetre.Draw(Decembre);
 							fenetre.Draw(Sakura);
 							fenetre.Draw(Sakura2);
-							fenetre.Draw(Instruction1);
-							//Instructions ///////////////////////////////////////
-							if (pays.getGoClique(fenetre))
-							{
-								cout<<4;
 
+
+							//Instructions ///////////////////////////////////////
+						if (lu==false) {
+							if (Clock.GetElapsedTime()<4){
+								fenetre.Draw(Instruction1);
+								}
+							else if (Clock.GetElapsedTime()<8){
+								fenetre.Draw(Instruction2);
+								}
+							else if (Clock.GetElapsedTime()<12){
+								fenetre.Draw(Instruction3);
+								}
+							else {
+								lu=true;
 							}
+						}
+						if(lu==true){
+							fenetre.Draw(Instruction3);
+						}
 
 							fenetre.Display();
 
 					if (fenetre.GetInput().IsMouseButtonDown(sf::Mouse::Left) && pays.menuActif(fenetre))
-							ecranSuivant=pays.changerEcran(fenetre,JEUJAPON,JEUJAPON,JEUJAPON) ;
+							ecranSuivant=pays.changerEcran(fenetre,JEUJAPON,MAPPEMONDE,HISTOIREJAPON) ;
 
 					if (fenetre.GetInput().IsKeyDown(sf::Key::O))
 							ecranSuivant=JEUJAPON;
