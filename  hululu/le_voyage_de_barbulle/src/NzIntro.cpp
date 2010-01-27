@@ -67,20 +67,20 @@ int NzIntro::run(sf::RenderWindow &fenetre) {
 	sf::String txtSousTitre("Rencontre avec les maoris");
 	txtSousTitre.SetSize(40.f);
 	txtSousTitre.SetFont(cursiveFont);
-	txtSousTitre.SetColor(sf::Color(179,195,228));
+	txtSousTitre.SetColor(sf::Color(0,75,162));
 	position[0] = (fenetre.GetWidth() / 2) - ( txtSousTitre.GetRect().GetWidth() / 2);
 	position[1] -= (30 +  txtSousTitre.GetRect().GetHeight() );
 	txtSousTitre.SetPosition(position[0],position[1]);
 
 	// -- sous-titre OMBRE
 	sf::String txtSousTitreOMBRE;
-	ombreTexte(txtSousTitre, txtSousTitreOMBRE, sf::Color::White, 2, 2);
+	ombreTexte(txtSousTitre, txtSousTitreOMBRE, sf::Color(179,195,228), 2, 2);
 
 	// -- titre
-	sf::String txtTitre("Welcome in New-Zeland !");
+	sf::String txtTitre("Welcome in New-Zealand !");
 	txtTitre.SetSize(50.f);
 	txtTitre.SetFont(cursiveFont);
-	txtTitre.SetColor(sf::Color(179,195,228));
+	txtTitre.SetColor(sf::Color(0,75,162));
 
 	position[0] = (fenetre.GetWidth() / 2) - ( txtTitre.GetRect().GetWidth() / 2);
 	position[1] -= 60; // sur y, ici il est centré
@@ -89,7 +89,7 @@ int NzIntro::run(sf::RenderWindow &fenetre) {
 
 	// -- titre OMBRE
 	sf::String txtTitreOMBRE;
-	ombreTexte(txtTitre, txtTitreOMBRE, sf::Color::White, 2, 2);
+	ombreTexte(txtTitre, txtTitreOMBRE, sf::Color(179,195,228), 2, 2);
 
 	// VUE ///////////////////////
 	sf::View vue(sf::FloatRect(0, 0, fenetre.GetWidth(), fenetre.GetHeight()) );
@@ -149,7 +149,7 @@ int NzIntro::run(sf::RenderWindow &fenetre) {
 
 		// CTRL changement d'écran ////////////
 		if (fenetre.GetInput().IsMouseButtonDown(sf::Mouse::Left) && modelePage.menuActif(fenetre))
-			ecranSuivant = modelePage.changerEcran(fenetre, NZ_INTRO, -1,TRAGET_ANZ) ;
+			ecranSuivant = modelePage.changerEcran(fenetre, NZ_INTRO, NZ_PRESENT,TRAGET_ANZ) ;
 
 		fenetre.Display();
 	}
