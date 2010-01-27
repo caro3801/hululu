@@ -57,6 +57,7 @@ int JaponGagne::run(sf::RenderWindow &fenetre)
 	Sakura2.Resize(100, 100);
 
 	PoleSud_Porte::lampion.initDessin("le_voyage_de_barbulle/img/objets/lampion.png");
+	PoleSud_Porte::lampion.placer((fenetre.GetWidth())/2, ((fenetre.GetHeight())/3));
 
 	////////////////////////////////
 
