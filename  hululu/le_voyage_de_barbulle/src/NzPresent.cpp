@@ -54,7 +54,7 @@ int NzPresent::run(sf::RenderWindow &fenetre) {
 	// ELEMENTS /////////////////////////
 
 	// -- titre
-	sf::String txtTitre("Nouvelle-Zélande");
+	sf::String txtTitre(L"Nouvelle-Zélande");
 	txtTitre.SetSize(40.f);
 	txtTitre.SetFont(cursiveFont);
 	txtTitre.SetColor(sf::Color::White);
@@ -155,7 +155,7 @@ int NzPresent::run(sf::RenderWindow &fenetre) {
 					if (modelePage.getGoClique(fenetre)) {
 						modelePage.getGo().resetTimer();
 						_etape=0;
-						ecranSuivant = -1;
+						ecranSuivant = NZ_JEU;
 					} else if (modelePage.getBackClique(fenetre)) {
 						modelePage.getBack().resetTimer();
 						_etape--;
