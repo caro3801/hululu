@@ -32,18 +32,18 @@ void JeuPerou::placerFond(sf::RenderWindow &fenetre,sf::Image img)
 
 }
 
-void JeuPerou::creerPieces(sf::RenderWindow &fenetre,const std::string & piece1,const std::string & piece2,const std::string & piece3, const std::string & piece5)
+void JeuPerou::creerPieces(sf::RenderWindow &fenetre,const std::string & piece1,const std::string & piece1_p,const std::string & piece2,const std::string & piece2_p,const std::string & piece3,const std::string & piece3_p, const std::string & piece5,const std::string & piece5_p)
 {
 
-	val1_1.setValeur(1); val1_1.initBouton(piece1,piece1); val1_1.redimensionner(0.75); val1_1.placer((fenetre.GetWidth()*8/12),(fenetre.GetHeight()*9/11));val1_1.decalageSouris(val1_1.getTailleX(),val1_1.getTailleY());
-	val1_2.setValeur(1); val1_2.initBouton(piece1,piece1); val1_2.redimensionner(0.75); val1_2.placer((fenetre.GetWidth()*9/12),(fenetre.GetHeight()*9/11));val1_2.decalageSouris(25.0,25.0);
-	val1_3.setValeur(1); val1_3.initBouton(piece1,piece1); val1_3.redimensionner(0.75); val1_3.placer((fenetre.GetWidth()*10/12),(fenetre.GetHeight()*9/11));val1_3.decalageSouris(25.0,25.0);
-	val2_1.setValeur(2); val2_1.initBouton(piece2,piece2); val2_1.redimensionner(0.75); val2_1.placer((fenetre.GetWidth()*8/12),(fenetre.GetHeight()*7/11));val2_1.decalageSouris(25.0,25.0);
-	val3_1.setValeur(3); val3_1.initBouton(piece3,piece3); val3_1.redimensionner(0.75); val3_1.placer((fenetre.GetWidth()*9/12),(fenetre.GetHeight()*7/11));val3_1.decalageSouris(25.0,25.0);
-	val2_2.setValeur(2); val2_2.initBouton(piece2,piece2); val2_2.redimensionner(0.75); val2_2.placer((fenetre.GetWidth()*10/12),(fenetre.GetHeight()*7/11));val2_2.decalageSouris(25.0,25.0);
-	val2_3.setValeur(2); val2_3.initBouton(piece2,piece2); val2_3.redimensionner(0.75); val2_3.placer((fenetre.GetWidth()*10/12),(fenetre.GetHeight()*8/11));val2_3.decalageSouris(25.0,25.0);
-	val5_1.setValeur(5); val5_1.initBouton(piece5,piece5); val5_1.redimensionner(0.75); val5_1.placer((fenetre.GetWidth()*8/12),(fenetre.GetHeight()*8/11));val5_1.decalageSouris(25.0,25.0);
-	val3_2.setValeur(3); val3_2.initBouton(piece3,piece3); val3_2.redimensionner(0.75); val3_2.placer((fenetre.GetWidth()*9/12),(fenetre.GetHeight()*8/11));val3_2.decalageSouris(25.0,25.0);
+	val1_1.setValeur(1); val1_1.initBouton(piece1_p,piece1); val1_1.redimensionner(0.75); val1_1.placer((fenetre.GetWidth()*8/12),(fenetre.GetHeight()*9/11));val1_1.decalageSouris(val1_1.getTailleX(),val1_1.getTailleY());
+	val1_2.setValeur(1); val1_2.initBouton(piece1_p,piece1); val1_2.redimensionner(0.75); val1_2.placer((fenetre.GetWidth()*9/12),(fenetre.GetHeight()*9/11));val1_2.decalageSouris(25.0,25.0);
+	val1_3.setValeur(1); val1_3.initBouton(piece1_p,piece1); val1_3.redimensionner(0.75); val1_3.placer((fenetre.GetWidth()*10/12),(fenetre.GetHeight()*9/11));val1_3.decalageSouris(25.0,25.0);
+	val2_1.setValeur(2); val2_1.initBouton(piece2_p,piece2); val2_1.redimensionner(0.75); val2_1.placer((fenetre.GetWidth()*8/12),(fenetre.GetHeight()*7/11));val2_1.decalageSouris(25.0,25.0);
+	val3_1.setValeur(3); val3_1.initBouton(piece3_p,piece3); val3_1.redimensionner(0.75); val3_1.placer((fenetre.GetWidth()*9/12),(fenetre.GetHeight()*7/11));val3_1.decalageSouris(25.0,25.0);
+	val2_2.setValeur(2); val2_2.initBouton(piece2_p,piece2); val2_2.redimensionner(0.75); val2_2.placer((fenetre.GetWidth()*10/12),(fenetre.GetHeight()*7/11));val2_2.decalageSouris(25.0,25.0);
+	val2_3.setValeur(2); val2_3.initBouton(piece2_p,piece2); val2_3.redimensionner(0.75); val2_3.placer((fenetre.GetWidth()*10/12),(fenetre.GetHeight()*8/11));val2_3.decalageSouris(25.0,25.0);
+	val5_1.setValeur(5); val5_1.initBouton(piece5_p,piece5); val5_1.redimensionner(0.75); val5_1.placer((fenetre.GetWidth()*8/12),(fenetre.GetHeight()*8/11));val5_1.decalageSouris(25.0,25.0);
+	val3_2.setValeur(3); val3_2.initBouton(piece3_p,piece3); val3_2.redimensionner(0.75); val3_2.placer((fenetre.GetWidth()*9/12),(fenetre.GetHeight()*8/11));val3_2.decalageSouris(25.0,25.0);
 }
 
 bool JeuPerou::detectePiecePayes(sf::RenderWindow &fenetre, float posImgX,float posImgY) {
@@ -66,10 +66,21 @@ int JeuPerou::run(sf::RenderWindow &fenetre) {
 	sf::Clock Clock; //Horloge
 	Clock.Reset();
 
+	sf::Font cursiveFont;
+	if (!cursiveFont.LoadFromFile("le_voyage_de_barbulle/img/font/Cursive_standard.ttf", 25.f))
+		cerr << "Erreur lors du chargement de la police" << endl;
+
 	bool mouseMove = false;
 	bool lache = true;
-
-
+	bool dansZoneVal5_1=false;
+	bool dansZoneVal3_1=false;
+	/*bool dansZoneVal3_2=false;
+	bool dansZoneVal2_3=false;
+	bool dansZoneVal2_2=false;s
+	bool dansZoneVal2_1=false;
+	bool dansZoneVal1_3=false;
+	bool dansZoneVal1_2=false;
+	bool dansZoneVal1_1=false;*/
 	//Booléen pour savoir si la souris est en mouvement: utile pour déplacer des objets a la souris
 	//bool detect=false;
 	int total=13;
@@ -82,13 +93,28 @@ int JeuPerou::run(sf::RenderWindow &fenetre) {
 	fond.SetPosition(0.f, 0.f);
 	fond.Resize((fenetre.GetWidth()), (fenetre.GetHeight()));
 
+	// texte du bouton
+	sf::String texteV("Valider");
+	texteV.SetColor(sf::Color::Black);
+	texteV.SetSize(25.f);
+	texteV.SetFont(cursiveFont);
+	texteV.SetColor(sf::Color::Black);
+
+
 	// # création d'une vue sur la fenêtre
 	sf::View vue(sf::FloatRect(0, 0, fenetre.GetWidth(), fenetre.GetHeight()) );
 	fenetre.SetView(vue);
 	Page pays;
+	Bouton valider;
 
+	valider.placerTexte(texteV);
+	valider.initBouton("le_voyage_de_barbulle/img/histoire/bouton_n.png","le_voyage_de_barbulle/img/histoire/bouton_f.png");
+	valider.redimensionner(0.5);
+	valider.placer( (fenetre.GetWidth()/2.3) ,((fenetre.GetHeight())/1.8));
 
-	JeuPerou::creerPieces( fenetre,"le_voyage_de_barbulle/img/sprite/piece_1.png","le_voyage_de_barbulle/img/sprite/piece_2.png","le_voyage_de_barbulle/img/sprite/piece_3.png","le_voyage_de_barbulle/img/sprite/piece_5.png");
+	JeuPerou::creerPieces( fenetre,"le_voyage_de_barbulle/img/sprite/piece_1.png","le_voyage_de_barbulle/img/sprite/piece_1_p.png",
+			"le_voyage_de_barbulle/img/sprite/piece_2.png","le_voyage_de_barbulle/img/sprite/piece_2_p.png","le_voyage_de_barbulle/img/sprite/piece_3.png",
+			"le_voyage_de_barbulle/img/sprite/piece_3_p.png","le_voyage_de_barbulle/img/sprite/piece_5.png","le_voyage_de_barbulle/img/sprite/piece_5_p.png");
 	///TEXTES/////////////////
 	sf::Font MyFont;
 		if (!MyFont.LoadFromFile(
@@ -102,9 +128,8 @@ int JeuPerou::run(sf::RenderWindow &fenetre) {
 		sf::String instructions("Pour voyager en bus tu dois payer ton ticket pour cela, tu dois sélectionner et déplacer les bonnes pieces sur la gauche dans le carré payé",MyFont,40.f);
 		instructions.Move(fenetre.GetWidth() / 2 - gagne.GetRect().Right/2,fenetre.GetHeight() / 2 - gagne.GetRect().Top/2);
 		instructions.SetColor(sf::Color::Black);
-
-	int somme=0;
-
+	int sommeDem=20;
+	int sommeTot=0;
 		///AFFICHAGE FENETRE////////////////////////////////
 		sf::Event event;
 
@@ -159,8 +184,6 @@ int JeuPerou::run(sf::RenderWindow &fenetre) {
 
 			fenetre.Draw(fond);
 			pays.dessinerPage(fenetre);
-
-
 
 			// -- pieces de 1
 
@@ -217,23 +240,119 @@ int JeuPerou::run(sf::RenderWindow &fenetre) {
 			val3_1.deplacer(fenetre,mouseMove,lache);
 			val3_1.drawMe(fenetre);
 
-
 			val3_2.deplacer(fenetre,mouseMove,lache);
 			val3_2.drawMe(fenetre);
 
 			val5_1.deplacer(fenetre,mouseMove,lache);
 			val5_1.drawMe(fenetre);
 
-int sommeb = CalculSomme(somme,val1_1);
-cout <<sommeb;
-		/*	inZoneCalculSomme(fenetre,val1_1,somme);
-			inZoneCalculSomme(fenetre,val1_2,somme);
-			inZoneCalculSomme(fenetre,val1_3,somme);
-			inZoneCalculSomme(fenetre,val2_1,somme);
-			inZoneCalculSomme(fenetre,val2_2,somme);
-			inZoneCalculSomme(fenetre,val2_3,somme);
-			inZoneCalculSomme(fenetre,val3_1,somme);
-			inZoneCalculSomme(fenetre,val3_2,somme);*/
+			valider.drawMe(fenetre);
+			fenetre.Draw(texteV);
+			if (!inZone(fenetre,val5_1)) {
+				dansZoneVal5_1=true;
+			}
+			if (!inZone(fenetre,val3_1)) {
+				dansZoneVal3_1=true;
+			}
+		/*	if (!inZone(fenetre,val3_2)) {
+				dansZoneVal3_2=true;
+			}
+			if (!inZone(fenetre,val2_3)) {
+				dansZoneVal2_3=true;
+			}
+			if (!inZone(fenetre,val2_2)) {
+				dansZoneVal2_2=true;
+			}
+			if (!inZone(fenetre,val2_1)) {
+				dansZoneVal2_1=true;
+			}
+			if (!inZone(fenetre,val1_3)) {
+				dansZoneVal1_3=true;
+			}
+			if (!inZone(fenetre,val1_2)) {
+				dansZoneVal1_2=true;
+			}
+			if (!inZone(fenetre,val1_1)) {
+				dansZoneVal1_1=true;
+			}*/
+
+			if(valider.estClique(fenetre) && dansZoneVal5_1) {
+				cout << "valider";
+				sommeTot += val5_1.getValeur();
+				cout << "ma somme : "<< sommeTot << endl;
+				dansZoneVal5_1=false;
+			}
+
+			if(valider.estClique(fenetre) && dansZoneVal3_1) {
+				cout << "valider";
+				sommeTot += val3_1.getValeur();
+				cout << "ma somme : "<< sommeTot << endl;
+				dansZoneVal3_1=false;
+			}
+		/*	if(valider.estClique(fenetre) && dansZoneVal3_2) {
+				cout << "valider";
+				sommeTot += val3_2.getValeur();
+				cout << "ma somme : "<< sommeTot << endl;
+				dansZoneVal3_2=false;
+			}
+
+			if(valider.estClique(fenetre) && dansZoneVal2_3) {
+				cout << "valider";
+				sommeTot += val2_3.getValeur();
+				cout << "ma somme : "<< sommeTot << endl;
+				dansZoneVal2_3=false;
+			}
+			if(valider.estClique(fenetre) && dansZoneVal2_2) {
+				cout << "valider";
+				sommeTot += val2_2.getValeur();
+				cout << "ma somme : "<< sommeTot << endl;
+				dansZoneVal2_2=false;
+			}
+			if(valider.estClique(fenetre) && dansZoneVal2_1) {
+				cout << "valider";
+				sommeTot += val2_1.getValeur();
+				cout << "ma somme : "<< sommeTot << endl;
+				dansZoneVal2_1=false;
+			}
+			if(valider.estClique(fenetre) && dansZoneVal1_3) {
+				cout << "valider";
+				sommeTot += val1_3.getValeur();
+				cout << "ma somme : "<< sommeTot << endl;
+				dansZoneVal1_3=false;
+			}
+			if(valider.estClique(fenetre) && dansZoneVal1_2) {
+				cout << "valider";
+				sommeTot += val1_2.getValeur();
+				cout << "ma somme : "<< sommeTot << endl;
+				dansZoneVal1_2=false;
+			}
+			if(valider.estClique(fenetre) && dansZoneVal1_1) {
+				cout << "valider";
+				sommeTot += val1_1.getValeur();
+				cout << "ma somme : "<< sommeTot << endl;
+				dansZoneVal1_1=false;
+			}
+*/
+
+
+//				 sommeTot = inZoneCalculeSomme(fenetre,sommeTot,val1_1);
+//				 sommeTot = inZoneCalculeSomme(fenetre,sommeTot,val1_2);
+//				 sommeTot = inZoneCalculeSomme(fenetre,sommeTot,val1_3);
+//				 sommeTot = inZoneCalculeSomme(fenetre,sommeTot,val2_1);
+//				 sommeTot = inZoneCalculeSomme(fenetre,sommeTot,val2_2);
+//				 sommeTot = inZoneCalculeSomme(fenetre,sommeTot,val2_3);
+				/*sommeTot += val3_1.getValeur();
+				sommeTot += val3_2.getValeur();*/
+				//sommeTot=0;
+
+			/*	 cout << "ma somme : "<< sommeTot << endl;
+//				 if (sommeTot>sommeDem)
+//					 sommeTot=0;
+				 dansZoneVal3_2=false;
+				 dansZoneVal3_1=false;
+				 dansZoneVal5_1=false;
+			}*/
+
 
 			if(total== 0)	{
 				fenetre.Draw(gagne);
@@ -328,7 +447,7 @@ bool JeuPerou::autoriseBouger(Piece & obj) {
 					return false;
 		}
 
-	else // val5_1
+	else if(&obj == &val5_1)// val5_1
 	{
 		 if(!(val1_1.estBougeable()) && !(val1_2.estBougeable()) && !(val1_3.estBougeable())
 				&& !(val2_1.estBougeable()) && !(val2_2.estBougeable()) && !(val2_3.estBougeable())
@@ -337,30 +456,31 @@ bool JeuPerou::autoriseBouger(Piece & obj) {
 		else
 				return false;
 	}
-
-
-//		return (  (!(val1_1.estBougeable()) && !(val1_2.estBougeable())) &&
-//			   ( !(val1_3.estBougeable()) && !(val2_1.estBougeable()) ) &&
-//			   ( !(val2_2.estBougeable()) && !(val2_3.estBougeable()) ) &&
-//			  ( !(val3_1.estBougeable()) && !(val3_2.estBougeable())) );
-
+	else
+		return false;
 }
 
 bool JeuPerou::inZone(sf::RenderWindow &fenetre, Piece piece){
-	float rapport = fenetre.GetWidth()/fenetre.GetHeight();
+	float rapportW = fond.GetSize().x/1064;
+	float rapportH = fond.GetSize().y/541;
+	float posY= piece.getPosX();
 	float posX= piece.getPosX();
-	float posY= piece.getPosY();
-	if (posX>=80*rapport && posX<=385*rapport && posY>=357*rapport && posY<=540*rapport)
+	if ((posX>=0 && posX<=600)) {
+		cout <<"ok";
 		return true;
-	else return false;
+	}
+	else
+		return false;
 }
 
-int JeuPerou::CalculSomme(int somme,Piece piece){
-	return somme+piece.getValeur();
-}
 
-void JeuPerou::inZoneCalculSomme(sf::RenderWindow &fenetre, Piece piece,int somme){
-	if (inZone(fenetre,piece))
-		somme=CalculSomme(somme,piece);
-	cout << somme;
+
+int JeuPerou::inZoneCalculeSomme(sf::RenderWindow &fenetre, int somme,Piece piece){
+	if (inZone(fenetre,piece)) {
+		somme=somme+piece.getValeur();
+		cout << piece.getValeur();
+		return somme;
+	}
+	else
+		return somme;
 }

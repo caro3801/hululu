@@ -22,13 +22,12 @@ public:
 	inline bool lance() { return estLance; };
 	void lancer();
 	void placerFond(sf::RenderWindow &fenetre,sf::Image img);
-	void creerPieces(sf::RenderWindow &fenetre,const std::string & piece1,const std::string & piece2,const std::string & piece3, const std::string & piece5);
+	void creerPieces(sf::RenderWindow &fenetre,const std::string & piece1,const std::string & piece1_p,const std::string & piece2,const std::string & piece2_p,const std::string & piece3,const std::string & piece3_p, const std::string & piece5,const std::string & piece5_p);
 	bool detectePiecePayes(sf::RenderWindow &fenetre, float posImgX,float posImgY);
 	virtual int run(sf::RenderWindow &fenetre);
 	bool autoriseBouger(Piece & obj);
 	bool inZone(sf::RenderWindow &fenetre,Piece piece);
-	int CalculSomme(int somme, Piece piece);
-	void inZoneCalculSomme(sf::RenderWindow &fenetre, Piece piece,int somme);
+	int inZoneCalculeSomme(sf::RenderWindow &fenetre, int somme,Piece piece);
 
 private:
 	bool estLance;
