@@ -18,6 +18,9 @@ public:
 	PerouPresent();
 	virtual ~PerouPresent();
 	virtual int run(sf::RenderWindow &fenetre);
+
+protected:
+	unsigned int _etape;
 };
 
 #endif /* PEROUPRESENT_H_ */
