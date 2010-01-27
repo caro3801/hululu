@@ -27,5 +27,6 @@
 #define TRAJET_ANZ 15
 #define NZ_INTRO 16
 #define NZ_PRESENT 17
+#define NZ_JEU 18
 
 #endif /* DEFINEECRANS_H_ */
