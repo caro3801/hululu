@@ -46,7 +46,7 @@ int main(int argc, char** argv)
 	vector<Ecran*> tabEcrans;
 
 
-    int ecran = MENU_0; // ecran en cours (naturellement, on commence par le premier)
+    int ecran = JAPONGAGNE; // ecran en cours (naturellement, on commence par le premier)
 
 
 
