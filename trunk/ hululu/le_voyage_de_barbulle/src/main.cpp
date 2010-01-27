@@ -77,7 +77,8 @@ int main(int argc, char** argv)
     tabEcrans.push_back (&ecran10);
     JeuJapon ecran11;
     tabEcrans.push_back (&ecran11);
-
+    ItaliePresent ecran12;
+     tabEcrans.push_back (&ecran12);
     JaponGagne ecran13;
     tabEcrans.push_back (&ecran13);
     Intro ecran14;
