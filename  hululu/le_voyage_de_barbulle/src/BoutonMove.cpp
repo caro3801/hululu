@@ -52,5 +52,9 @@ void BoutonMove::deplacer(sf::RenderWindow &fenetre, bool mouseMove, bool lache)
 		this->placer(posX, posY);
 	}
 }
+void BoutonMove::plusBouger(bool arret) {
+	//bool arret=true;
+	this->enMouvement=false;
+}
 
 

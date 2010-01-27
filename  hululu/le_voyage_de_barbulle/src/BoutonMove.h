@@ -40,6 +40,7 @@ public:
 	void deplacer(sf::RenderWindow &fenetre, bool mouseMove, bool lache);
 	//déplacer l'objet a ses nouvelles coordonnées : déplacer l'objet si enDeplacement et la souris bouge dans la fenetre, ne rien faire sinon
 	//nouvelles coordonnées : sourisPosition(X,Y) + posSouris(X,Y) (pour le décalage)
+	void plusBouger(bool arret) ;
 
 private:
 	float decalageY; //le décalage en Y de l'objet par rapport a la souris (0 par défaut)
