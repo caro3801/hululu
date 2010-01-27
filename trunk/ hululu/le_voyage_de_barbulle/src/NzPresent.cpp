@@ -99,7 +99,7 @@ int NzPresent::run(sf::RenderWindow &fenetre) {
 
 	tabMusic[0]->Lecture();
 
-	unsigned int etapeInitiale = _etape;
+	signed int etapeInitiale = _etape;
 
 	while (fenetre.IsOpened() && (ecranSuivant == NZ_PRESENT) && (etapeInitiale == _etape) )
 	{
@@ -155,7 +155,7 @@ int NzPresent::run(sf::RenderWindow &fenetre) {
 					if (modelePage.getGoClique(fenetre)) {
 						modelePage.getGo().resetTimer();
 						_etape=0;
-						ecranSuivant = TRAGET_ANZ;
+						ecranSuivant = TRAJET_ANZ;
 					} else if (modelePage.getBackClique(fenetre)) {
 						modelePage.getBack().resetTimer();
 						_etape--;
