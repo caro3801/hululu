@@ -18,10 +18,12 @@ using namespace std;
 #include "TrajetANZ.h"
 #include "DefineEcrans.h"
 
+#include "Person2D.h"
 #include "Bouton.h"
 #include "Page.h"
 #include "Musique.h"
 #include "effetSurTexte.h"
+
 
 TrajetANZ::TrajetANZ() {
 	// TODO Auto-generated constructor stub
@@ -38,6 +40,9 @@ int TrajetANZ::run(sf::RenderWindow &fenetre) {
 	int ecranSuivant = TRAJET_ANZ;
 	Page modelePage;
 
+	sf::Clock clock;
+	clock.Reset();
+
 	// LISTE musique ////////////////////
 	vector<Musique *> tabMusic;
 	tabMusic.push_back(new Musique("le_voyage_de_barbulle/music/australie/aust1.ogg"));
@@ -49,12 +54,18 @@ int TrajetANZ::run(sf::RenderWindow &fenetre) {
 	background.SetPosition(0.f, 0.f);
 	background.Resize(fenetre.GetWidth(), fenetre.GetHeight());
 
+	// BATEAU ////////////////////
+	sf::Sprite bateau;
+	bateau.SetColor(sf::Color(255,255,255,255));
+	bateau.SetPosition(fenetre.GetWidth()-600, 400);
+	bateau.SetImage(Ecran::MonManager.GetImage("le_voyage_de_barbulle/img/australie/bateau_translate.png"));
 
 	// VUE ///////////////////////
 	sf::View vue(sf::FloatRect(0, 0, fenetre.GetWidth(), fenetre.GetHeight()) );
 	fenetre.SetView(vue);
 
 	sf::Event event;
+	int alpha = 255;
 
 	while (fenetre.IsOpened() && (ecranSuivant == TRAJET_ANZ) )
 	{
@@ -69,6 +80,19 @@ int TrajetANZ::run(sf::RenderWindow &fenetre) {
 				fenetre.Close();
 		}
 
+		 if( (bateau.GetPosition().x < fenetre.GetWidth() )
+		 &&  (bateau.GetPosition().y > 0)
+		 && (clock.GetElapsedTime()*1000 > 50) ){
+			 bateau.SetPosition(bateau.GetPosition().x + 6, bateau.GetPosition().y - 4);
+			 bateau.Scale(0.99, 0.99);
+			 if(alpha>0)
+			 {
+				 alpha -= 2;
+				 bateau.SetColor(sf::Color(255,255,255,alpha));
+			 }
+
+			 clock.Reset();
+		 }
 
 		// PAUSE/PLAY instruction ///////////
 		if(!modelePage.getPlaying() ) {
@@ -97,6 +121,7 @@ int TrajetANZ::run(sf::RenderWindow &fenetre) {
 
 		// DESSINS  //////////////////////////
 		fenetre.Draw(background);
+		fenetre.Draw(bateau);
 		modelePage.dessinerPage(fenetre);
 
 
