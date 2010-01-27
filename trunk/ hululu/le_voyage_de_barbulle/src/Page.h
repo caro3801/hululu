@@ -24,23 +24,37 @@ public:
     inline Bouton getPlay() {return play; }
     inline bool getGoClique(sf::RenderWindow &fenetre) {return go.estClique(fenetre); }
     inline bool getBackClique(sf::RenderWindow &fenetre) {return back.estClique(fenetre); }
+    inline bool getMapClique(sf::RenderWindow &fenetre) {return map.estClique(fenetre); }
+    inline bool getRepeter(sf::RenderWindow &fenetre) {return repeter.estClique(fenetre); }
     inline Bouton getGo() {return go; }
     inline Bouton getBack() {return back; }
+    inline Bouton getMap() {return map; }
+    inline Bouton getRepeter() {return repeter; }
 	//A appeler pour passer d'un écran a l'autre lorsqu'on clique sur les fleches
 	//Donner en parametre le numéro de l'ecran courant, celui du suivant et celui d'avant
 	inline bool getPlaying() { return playing; }
 	inline void triggerPlaying() { playing = (playing) ? false : true; }
+	inline bool getMuting() { return muting; }
+	inline void triggerMuting() { muting = (muting) ? false : true; }
 
 private:
-	sf::Sprite font; // font des bouton back'n go
+	sf::Sprite fontNavigation;
+
+	Bouton map; //Retourner en arriere
 	Bouton back; //Retourner en arriere
 	Bouton go; //Aller a l'ecran suivant
+
+
+	sf::Sprite fontMusic;
+
 	Bouton pause; //Pause et Play pour lire les instructions
 	Bouton play; //Fonctionnent ensembles ( play || pause)
 	Bouton mute; //Music pour la musique de fond et Mute pour l'enlever
-	Bouton music; // (music || mute)
-	Bouton menu; //Retourner au menu ( ou mapemonde, a voir)
+	Bouton noMute; // (noMute || mute)
+	Bouton repeter; // repeter les instructions
+
 	bool playing;
+	bool muting;
 };
 
 #endif /* PAGE_H_ */
