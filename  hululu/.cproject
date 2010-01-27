@@ -35,6 +35,7 @@
 <tool id="cdt.managedbuild.tool.gnu.cpp.linker.exe.debug.1853968620" name="GCC C++ Linker" superClass="cdt.managedbuild.tool.gnu.cpp.linker.exe.debug">
 <option id="gnu.cpp.link.option.paths.239951155" name="Library search path (-L)" superClass="gnu.cpp.link.option.paths"/>
 <option id="gnu.cpp.link.option.libs.1814143325" name="Libraries (-l)" superClass="gnu.cpp.link.option.libs" valueType="libs">
+<listOptionValue builtIn="false" value="sfml-audio"/>
 <listOptionValue builtIn="false" value="sfml-graphics"/>
 <listOptionValue builtIn="false" value="sfml-window"/>
 <listOptionValue builtIn="false" value="sfml-system"/>
