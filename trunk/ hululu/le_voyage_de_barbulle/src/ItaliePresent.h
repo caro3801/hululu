@@ -2,23 +2,16 @@
  * ItaliePresent.h
  *
  *  Created on: 26 janv. 2010
- *      Author: caroline
+ *      Author: anthony
  */
-#include <iostream>
-using namespace std;
 
-// LIB SFML/////////////////////////////
+#ifndef ITALIEPRESENT_H_
+#define ITALIEPRESENT_H_
 #include <SFML/System.hpp>
 #include <SFML/Window.hpp>
 #include <SFML/Graphics.hpp>
-
-
-#include "Page.h"
-#include "DefineEcrans.h"
-#ifndef ITALIEPRESENT_H_
-#define ITALIEPRESENT_H_
-
-class ItaliePresent : public Ecran{
+#include "Ecran.h"
+class ItaliePresent : public Ecran {
 public:
 	ItaliePresent();
 	virtual ~ItaliePresent();
