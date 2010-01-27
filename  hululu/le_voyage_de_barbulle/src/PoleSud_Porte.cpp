@@ -76,6 +76,15 @@ int PoleSud_Porte::run(sf::RenderWindow &fenetre) {
 	fond.SetPosition(0.f, 0.f);
 	fond.Resize((fenetre.GetWidth()), (fenetre.GetHeight()));
 
+	sf::Sprite test ;
+	test.SetImage(Ecran::MonManager.GetImage("le_voyage_de_barbulle/img/histoire/test1.png"));
+	test.SetPosition(fenetre.GetWidth()/2, fenetre.GetHeight()/2);
+	sf::Sprite test1 ;
+	test1.SetImage(Ecran::MonManager.GetImage("le_voyage_de_barbulle/img/histoire/test2.png"));
+	test1.SetPosition(fenetre.GetWidth()/2, fenetre.GetHeight()/2);
+	sf::Sprite test2 ;
+	test2.SetImage(Ecran::MonManager.GetImage("le_voyage_de_barbulle/img/histoire/test.png"));
+	test2.SetPosition(fenetre.GetWidth()/2, fenetre.GetHeight()/2);
 	// # images de porte
 	sf::Sprite porte_blason ;
 	porte_blason.SetImage(Ecran::MonManager.GetImage("le_voyage_de_barbulle/img/pole/porte_blason.png"));
@@ -148,9 +157,9 @@ int PoleSud_Porte::run(sf::RenderWindow &fenetre) {
 	lampion.placer(emplacement_vide4.GetPosition().x + 14,emplacement_vide4.GetPosition().y + 9);
 	lampion.decalageSouris(lampion.getTailleX()/2,lampion.getTailleY()/2);
 	//definition zones emplacement vide
-float rapportW = fond.GetSize().x/2000;
-float rapportH = fond.GetSize().y/1614;
-
+ float rapportW = fond.GetSize().x/2000;
+ float rapportH = fond.GetSize().y/1614;
+ int nbObjTrouves = 0;
 
  bool ZoneVideWeta = false;
  bool ZoneVidePoncho = false;
@@ -257,22 +266,27 @@ float rapportH = fond.GetSize().y/1614;
 			dessineBlason=true;
 			blason.setPlace(dessineBlason);
 			blason.plusBouger(true);
-		}
+			nbObjTrouves++;
+			}
 		if( (lampion.enDeplacement(fenetre) && ZoneVideLanterne)) {
 					dessineLampion=true;
 					lampion.setPlace(dessineLampion);
 					lampion.plusBouger(true);
+					nbObjTrouves++;
 				}
 		if( (poncho.enDeplacement(fenetre) && ZoneVidePoncho)) {
 					dessinePoncho=true;
 					poncho.setPlace(dessinePoncho);
 					poncho.plusBouger(true);
+					//Jouer son selon nombre objets : bravo il te reste.. objets  a trouvers
+					nbObjTrouves++;
 				}
 
 		if( (weta.enDeplacement(fenetre) && ZoneVideWeta)) {
 					dessineWeta=true;
 					weta.setPlace(dessineWeta);
 					weta.plusBouger(true);
+					nbObjTrouves++;
 				}
 
 		if(blason.estPlace()) {
@@ -294,6 +308,21 @@ float rapportH = fond.GetSize().y/1614;
 			weta.placer(-100,-100);
 			fenetre.Draw(porte_weta);
 		}
+		if(nbObjTrouves==4) {
+			Clock.Reset();
+			nbObjTrouves++;
+		}
+		if(nbObjTrouves>4 && Clock.GetElapsedTime()<3) {
+			fenetre.Draw(test);
+		}
+		if(nbObjTrouves>4 && Clock.GetElapsedTime()<4 && Clock.GetElapsedTime()>3) {
+			fenetre.Draw(test1);
+		}
+		if(nbObjTrouves>4 && Clock.GetElapsedTime()<5 && Clock.GetElapsedTime()>4) {
+			fenetre.Draw(test2);
+		}
+		if(nbObjTrouves>4 && Clock.GetElapsedTime()>5)
+				return ecranSuivant=GAGNE_JEU;
 
 		fenetre.Display();
 

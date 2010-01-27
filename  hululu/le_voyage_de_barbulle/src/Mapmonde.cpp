@@ -110,44 +110,43 @@ int Mapmonde::run(sf::RenderWindow &fenetre)
 	// FONT/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	// instruction
 	sf::Font MyFont;
-	if (!MyFont.LoadFromFile("le_voyage_de_barbulle/img/font/Cursive_standard.ttf", 25.f))
+	if (!MyFont.LoadFromFile("le_voyage_de_barbulle/img/font/Cursive_standard_BOLD.ttf", 25.f))
 		cerr << "Erreur lors du chargement de la police";
 
 	sf::String text("Fleches haut, bas, gauche et droite pour deplacer le personnage.");
-	text.Move(10, 600);
+	text.Move(fenetre.GetWidth()/10,fenetre.GetHeight()/1.2);
 	text.SetColor(sf::Color::Blue);
 	text.SetSize(25.f);
 	text.SetFont(MyFont);
 
 	//textes pour chacun des pays
-	sf::String texte_canada("Appuyez sur Espace pour aller au Canada",MyFont,18.f);
+	sf::String texte_canada("Appuie sur Espace pour aller au Canada",MyFont,20.f);
 	texte_canada.Move( (fenetre.GetHeight()/3),(fenetre.GetWidth()/3));
 	texte_canada.SetColor(sf::Color::Blue);
 
-	sf::String texte_perou("Appuyez sur Espace pour aller au Perou",MyFont,18.f);
+	sf::String texte_perou("Appuie sur Espace pour aller au Perou",MyFont,20.f);
 	texte_perou.Move( (fenetre.GetHeight()/3),(fenetre.GetWidth()/3));
 	texte_perou.SetColor(sf::Color::Blue);
 
-	sf::String texte_italie("Appuyez sur Espace pour aller en Italie",MyFont,18.f);
+	sf::String texte_italie("Appuie sur Espace pour aller en Italie",MyFont,20.f);
 	texte_italie.Move( (fenetre.GetHeight()/3),(fenetre.GetWidth()/3));
 	texte_italie.SetColor(sf::Color::Blue);
 
-	sf::String texte_tanzanie("Appuyez sur Espace pour aller en Tanzanie",MyFont,18.f);
+	sf::String texte_tanzanie("Appuie sur Espace pour aller en Tanzanie",MyFont,20.f);
 	texte_tanzanie.Move( (fenetre.GetHeight()/3),(fenetre.GetWidth()/3));
 	texte_tanzanie.SetColor(sf::Color::Blue);
 
-	sf::String texte_pole("Appuyez sur Espace pour aller en Antarctique",MyFont,18.f);
+	sf::String texte_pole("Appuie sur Espace pour aller en Antarctique",MyFont,20.f);
 	texte_pole.Move( (fenetre.GetHeight()/3),(fenetre.GetWidth()/3));
 	texte_pole.SetColor(sf::Color::Blue);
 
-	sf::String texte_japon("Appuyez sur Espace pour aller au Japon",MyFont,18.f);
-	texte_japon.Move( (fenetre.GetHeight()/3),(fenetre.GetWidth()/3));
+	sf::String texte_japon("Appuie sur Espace pour aller au Japon",MyFont,20.f);
+	texte_japon.Move( (fenetre.GetWidth()/3),(fenetre.GetHeight()/2));
 	texte_japon.SetColor(sf::Color::Blue);
 
-	sf::String texte_australie("Appuyez sur Espace pour aller en Australie",MyFont,18.f);
-	texte_australie.Move( (fenetre.GetHeight()/3),(fenetre.GetWidth()/3));
+	sf::String texte_australie("Appuie sur Espace pour aller en Australie",MyFont,20.f);
+	texte_australie.Move((fenetre.GetWidth()/3), (fenetre.GetHeight()/2));
 	texte_australie.SetColor(sf::Color::Blue);
-
 
 
 	// # image garçon
@@ -181,7 +180,6 @@ int Mapmonde::run(sf::RenderWindow &fenetre)
 	// # création d'une vue sur la fenêtre
 	sf::View vue(sf::FloatRect(0, 0, fenetre.GetWidth(), fenetre.GetHeight()) );
 	fenetre.SetView(vue);
-
 
 
 	// Pour que le programme ne se termine pas :)
