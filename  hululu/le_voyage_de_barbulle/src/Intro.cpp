@@ -65,25 +65,67 @@ int Intro::run(sf::RenderWindow &fenetre) {
 	txtSousTitre1.SetPosition(position[0],position[1]);
 
 	//ecran2
-	sf::String txtSousTitre2("ce soir là");
+	sf::String txtSousTitre2("soudain");
 	txtSousTitre2.SetSize(40.f);
 	txtSousTitre2.SetFont(cursiveFont);
-	txtSousTitre2.SetColor(sf::Color(255,173,0));
+	txtSousTitre2.SetColor(sf::Color(48,84,163));
 	position[0] = (fenetre.GetWidth() / 2) - ( txtSousTitre2.GetRect().GetWidth() / 2);
 	position[1] = (10 +  txtSousTitre2.GetRect().GetHeight() );
 	txtSousTitre2.SetPosition(position[0],position[1]);
 
 	//ecran3
-	sf::String txtSousTitre3("soudain");
+	sf::String txtSousTitre3("ouah");
 	txtSousTitre2.SetSize(40.f);
 	txtSousTitre2.SetFont(cursiveFont);
-	txtSousTitre2.SetColor(sf::Color(255,173,0));
+	txtSousTitre2.SetColor(sf::Color(48,84,163));
 	position[0] = (fenetre.GetWidth() / 2) - ( txtSousTitre3.GetRect().GetWidth() / 2);
 	position[1] = (10 +  txtSousTitre3.GetRect().GetHeight() );
 	txtSousTitre3.SetPosition(position[0],position[1]);
 
+	//ecran4
+	sf::String txtSousTitre4("Tout à coup");
+	txtSousTitre4.SetSize(40.f);
+	txtSousTitre4.SetFont(cursiveFont);
+	txtSousTitre4.SetColor(sf::Color(48,84,163));
+	position[0] = (fenetre.GetWidth() / 2) - ( txtSousTitre4.GetRect().GetWidth() / 2);
+	position[1] = (10 +  txtSousTitre4.GetRect().GetHeight() );
+	txtSousTitre4.SetPosition(position[0],position[1]);
 
+	//ecran5
+	sf::String txtSousTitre5("Aaaaaahhhh");
+	txtSousTitre5.SetSize(40.f);
+	txtSousTitre5.SetFont(cursiveFont);
+	txtSousTitre5.SetColor(sf::Color(48,84,163));
+	position[0] = (fenetre.GetWidth() / 2) - ( txtSousTitre5.GetRect().GetWidth() / 2);
+	position[1] = (10 +  txtSousTitre5.GetRect().GetHeight() );
+	txtSousTitre5.SetPosition(position[0],position[1]);
 
+	//ecran6
+	sf::String txtSousTitre6("Bonjour");
+	txtSousTitre6.SetSize(40.f);
+	txtSousTitre6.SetFont(cursiveFont);
+	txtSousTitre6.SetColor(sf::Color(48,84,163));
+	position[0] = (fenetre.GetWidth() / 2) - ( txtSousTitre6.GetRect().GetWidth() / 2);
+	position[1] = (10 +  txtSousTitre6.GetRect().GetHeight() );
+	txtSousTitre6.SetPosition(position[0],position[1]);
+
+	//ecran7
+	sf::String txtSousTitre7("Je ne peux pas");
+	txtSousTitre7.SetSize(40.f);
+	txtSousTitre7.SetFont(cursiveFont);
+	txtSousTitre7.SetColor(sf::Color(48,84,163));
+	position[0] = (fenetre.GetWidth() / 2) - ( txtSousTitre7.GetRect().GetWidth() / 2);
+	position[1] = (10 +  txtSousTitre7.GetRect().GetHeight() );
+	txtSousTitre7.SetPosition(position[0],position[1]);
+
+	//ecran8
+	sf::String txtSousTitre8("Ce passage");
+	txtSousTitre8.SetSize(40.f);
+	txtSousTitre8.SetFont(cursiveFont);
+	txtSousTitre8.SetColor(sf::Color(48,84,163));
+	position[0] = (fenetre.GetWidth() / 2) - ( txtSousTitre8.GetRect().GetWidth() / 2);
+	position[1] = (10 +  txtSousTitre8.GetRect().GetHeight() );
+	txtSousTitre8.SetPosition(position[0],position[1]);
 	// # création d'une vue sur la fenêtre
 	sf::View vue(sf::FloatRect(0, 0, fenetre.GetWidth(), fenetre.GetHeight()) );
 	fenetre.SetView(vue);
@@ -153,8 +195,8 @@ int Intro::run(sf::RenderWindow &fenetre) {
 			if (fenetre.GetInput().IsMouseButtonDown(sf::Mouse::Left) && modelePage.menuActif(fenetre)) {
 				if (modelePage.getGoClique(fenetre)) {
 					modelePage.getGo().resetTimer();
-					etape = 0;
-					ecranSuivant = MAPPEMONDE;
+					etape++;
+					ecranSuivant = INTRO_G;
 				} else if (modelePage.getBackClique(fenetre)) {
 					modelePage.getBack().resetTimer();
 					etape--;
@@ -163,13 +205,104 @@ int Intro::run(sf::RenderWindow &fenetre) {
 					ecranSuivant = MAPPEMONDE;
 			}
 			break;
+
+		case 3:
+			fenetre.Draw(accueil);
+			fenetre.Draw(txtSousTitre4);
+			modelePage.dessinerPage(fenetre);
+			fenetre.Display();
+			if (fenetre.GetInput().IsMouseButtonDown(sf::Mouse::Left) && modelePage.menuActif(fenetre)) {
+				if (modelePage.getGoClique(fenetre)) {
+					modelePage.getGo().resetTimer();
+					etape++;
+					ecranSuivant = INTRO_G;
+				} else if (modelePage.getBackClique(fenetre)) {
+					modelePage.getBack().resetTimer();
+					etape--;
+					ecranSuivant = INTRO_G;
+				} else
+					ecranSuivant = MAPPEMONDE;
+			}
+
+			break;
+		case 4:
+			fenetre.Draw(accueil);
+			fenetre.Draw(txtSousTitre5);
+			modelePage.dessinerPage(fenetre);
+			fenetre.Display();
+			if (fenetre.GetInput().IsMouseButtonDown(sf::Mouse::Left) && modelePage.menuActif(fenetre)) {
+				if (modelePage.getGoClique(fenetre)) {
+					modelePage.getGo().resetTimer();
+					etape++;
+					ecranSuivant = INTRO_G;
+				} else if (modelePage.getBackClique(fenetre)) {
+					modelePage.getBack().resetTimer();
+					etape--;
+					ecranSuivant = INTRO_G;
+				} else
+					ecranSuivant = MAPPEMONDE;
+			}
+
+			break;
+		case 5:
+			fenetre.Draw(accueil);
+			fenetre.Draw(txtSousTitre6);
+			modelePage.dessinerPage(fenetre);
+			fenetre.Display();
+			if (fenetre.GetInput().IsMouseButtonDown(sf::Mouse::Left) && modelePage.menuActif(fenetre)) {
+				if (modelePage.getGoClique(fenetre)) {
+					modelePage.getGo().resetTimer();
+					etape++;
+					ecranSuivant = INTRO_G;
+				} else if (modelePage.getBackClique(fenetre)) {
+					modelePage.getBack().resetTimer();
+					etape--;
+					ecranSuivant = INTRO_G;
+				} else
+					ecranSuivant = MAPPEMONDE;
+			}
+
+			break;
+		case 6:
+			fenetre.Draw(accueil);
+			fenetre.Draw(txtSousTitre7);
+			modelePage.dessinerPage(fenetre);
+			fenetre.Display();
+			if (fenetre.GetInput().IsMouseButtonDown(sf::Mouse::Left) && modelePage.menuActif(fenetre)) {
+				if (modelePage.getGoClique(fenetre)) {
+					modelePage.getGo().resetTimer();
+					etape++;
+					ecranSuivant = INTRO_G;
+				} else if (modelePage.getBackClique(fenetre)) {
+					modelePage.getBack().resetTimer();
+					etape--;
+					ecranSuivant = INTRO_G;
+				} else
+					ecranSuivant = MAPPEMONDE;
+			}
+
+			break;
+
+		case 7:
+			fenetre.Draw(accueil);
+			fenetre.Draw(txtSousTitre8);
+			modelePage.dessinerPage(fenetre);
+			fenetre.Display();
+			if (fenetre.GetInput().IsMouseButtonDown(sf::Mouse::Left) && modelePage.menuActif(fenetre)) {
+				if (modelePage.getGoClique(fenetre)) {
+					modelePage.getGo().resetTimer();
+					etape=0;
+					ecranSuivant = MAPPEMONDE;
+				} else if (modelePage.getBackClique(fenetre)) {
+					modelePage.getBack().resetTimer();
+					etape--;
+					ecranSuivant = INTRO_G;
+				} else
+					ecranSuivant = MAPPEMONDE;
+			}
+
+			break;
 		}
-
-
-		// CTRL changement d'écran ////////////
-	//	if (fenetre.GetInput().IsMouseButtonDown(sf::Mouse::Left) && modelePage.menuActif(fenetre))
-	//		ecranSuivant = modelePage.changerEcran(fenetre, INTRO_G, INTRO_G, MAPPEMONDE) ;
-
 	}
 
 	return ecranSuivant;
