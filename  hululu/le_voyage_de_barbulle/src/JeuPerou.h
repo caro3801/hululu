@@ -26,7 +26,9 @@ public:
 	bool detectePiecePayes(sf::RenderWindow &fenetre, float posImgX,float posImgY);
 	virtual int run(sf::RenderWindow &fenetre);
 	bool autoriseBouger(Piece & obj);
-
+	bool inZone(sf::RenderWindow &fenetre,Piece piece);
+	int CalculSomme(int somme, Piece piece);
+	void inZoneCalculSomme(sf::RenderWindow &fenetre, Piece piece,int somme);
 
 private:
 	bool estLance;

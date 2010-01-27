@@ -69,8 +69,9 @@ int JeuPerou::run(sf::RenderWindow &fenetre) {
 	bool mouseMove = false;
 	bool lache = true;
 
+
 	//Booléen pour savoir si la souris est en mouvement: utile pour déplacer des objets a la souris
-	bool detect=false;
+	//bool detect=false;
 	int total=13;
 
 	//IMAGES////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -87,7 +88,7 @@ int JeuPerou::run(sf::RenderWindow &fenetre) {
 	Page pays;
 
 
-	JeuPerou::creerPieces( fenetre,"le_voyage_de_barbulle/img/sprite/piece1.png","le_voyage_de_barbulle/img/sprite/piece2.png","le_voyage_de_barbulle/img/sprite/piece3.png","le_voyage_de_barbulle/img/sprite/piece5.png");
+	JeuPerou::creerPieces( fenetre,"le_voyage_de_barbulle/img/sprite/piece_1.png","le_voyage_de_barbulle/img/sprite/piece_2.png","le_voyage_de_barbulle/img/sprite/piece_3.png","le_voyage_de_barbulle/img/sprite/piece_5.png");
 	///TEXTES/////////////////
 	sf::Font MyFont;
 		if (!MyFont.LoadFromFile(
@@ -101,6 +102,8 @@ int JeuPerou::run(sf::RenderWindow &fenetre) {
 		sf::String instructions("Pour voyager en bus tu dois payer ton ticket pour cela, tu dois sélectionner et déplacer les bonnes pieces sur la gauche dans le carré payé",MyFont,40.f);
 		instructions.Move(fenetre.GetWidth() / 2 - gagne.GetRect().Right/2,fenetre.GetHeight() / 2 - gagne.GetRect().Top/2);
 		instructions.SetColor(sf::Color::Black);
+
+	int somme=0;
 
 		///AFFICHAGE FENETRE////////////////////////////////
 		sf::Event event;
@@ -122,36 +125,35 @@ int JeuPerou::run(sf::RenderWindow &fenetre) {
 				}
 			}
 
-
-			if (fenetre.GetInput().IsMouseButtonDown(sf::Mouse::Left)&&(total>0)) {
-				//Si on clique sur la fenetre, on regarde la position du clic si elle correspond a une des erreurs
-
-				if (!detect && (detectePiecePayes(fenetre, val1_1.GetPosition().x,
-						val1_1.GetPosition().y) || detectePiecePayes(fenetre, val1_2.GetPosition().x,
-						val1_2.GetPosition().y) || detectePiecePayes(fenetre, val1_3.GetPosition().x,
-						val1_3.GetPosition().y))) {
-					detect = true; //piece detectee
-					total = total - 1; //total restan a trouver
-				}
-				if (!detect && (detectePiecePayes(fenetre, val2_1.GetPosition().x,
-						val2_1.GetPosition().y) || detectePiecePayes(fenetre, val2_2.GetPosition().x,
-						val2_2.GetPosition().y) || detectePiecePayes(fenetre, val2_3.GetPosition().x,
-						val2_3.GetPosition().y))) {
-					detect = true; //piece detectee
-					total = total - 2; //total restan a trouver
-				}
-				if (!detect && (detectePiecePayes(fenetre, val3_1.GetPosition().x,
-						val3_1.GetPosition().y) || detectePiecePayes(fenetre, val3_2.GetPosition().x,
-						val3_2.GetPosition().y))) {
-					detect = true; //piece detectee
-					total = total - 3; //total restan a trouver
-				}
-				if (!detect && (detectePiecePayes(fenetre, val5_1.GetPosition().x,
-						val5_1.GetPosition().y))) {
-					detect = true; //piece detectee
-					total = total - 5; //total restan a trouver
-				}
-			}
+//			if (fenetre.GetInput().IsMouseButtonDown(sf::Mouse::Left)&&(total>0)) {
+//				//Si on clique sur la fenetre, on regarde la position du clic si elle correspond a une des erreurs
+//
+//				if (!detect && (detectePiecePayes(fenetre, val1_1.GetPosition().x,
+//						val1_1.GetPosition().y) || detectePiecePayes(fenetre, val1_2.GetPosition().x,
+//						val1_2.GetPosition().y) || detectePiecePayes(fenetre, val1_3.GetPosition().x,
+//						val1_3.GetPosition().y))) {
+//					detect = true; //piece detectee
+//					total = total - 1; //total restan a trouver
+//				}
+//				if (!detect && (detectePiecePayes(fenetre, val2_1.GetPosition().x,
+//						val2_1.GetPosition().y) || detectePiecePayes(fenetre, val2_2.GetPosition().x,
+//						val2_2.GetPosition().y) || detectePiecePayes(fenetre, val2_3.GetPosition().x,
+//						val2_3.GetPosition().y))) {
+//					detect = true; //piece detectee
+//					total = total - 2; //total restan a trouver
+//				}
+//				if (!detect && (detectePiecePayes(fenetre, val3_1.GetPosition().x,
+//						val3_1.GetPosition().y) || detectePiecePayes(fenetre, val3_2.GetPosition().x,
+//						val3_2.GetPosition().y))) {
+//					detect = true; //piece detectee
+//					total = total - 3; //total restan a trouver
+//				}
+//				if (!detect && (detectePiecePayes(fenetre, val5_1.GetPosition().x,
+//						val5_1.GetPosition().y))) {
+//					detect = true; //piece detectee
+//					total = total - 5; //total restan a trouver
+//				}
+//			}
 
 			fenetre.Clear( sf::Color(255, 255, 255) );
 
@@ -162,36 +164,36 @@ int JeuPerou::run(sf::RenderWindow &fenetre) {
 
 			// -- pieces de 1
 
-			if( !(autoriseBouger(val1_1)) && val1_1.estClique(fenetre) ) {
+			if( (autoriseBouger(val1_1)) && val1_1.estClique(fenetre) ) {
 				cout << "deplacer" << endl;
 				val1_1.setABouger(true);
 			}
 
-			if( !(autoriseBouger(val1_2)) && val1_2.estClique(fenetre) )
+			if( (autoriseBouger(val1_2)) && val1_2.estClique(fenetre) )
 				val1_2.setABouger(true);
 
-			if( !(autoriseBouger(val1_3)) && val1_3.estClique(fenetre) )
+			if( (autoriseBouger(val1_3)) && val1_3.estClique(fenetre) )
 				val1_3.setABouger(true);
 
 			// -- pieces de 2
-			if( !(autoriseBouger(val2_1)) && val2_1.estClique(fenetre) )
+			if( (autoriseBouger(val2_1)) && val2_1.estClique(fenetre) )
 				val2_1.setABouger(true);
 
-			if( !(autoriseBouger(val2_2)) && val2_2.estClique(fenetre) )
+			if( (autoriseBouger(val2_2)) && val2_2.estClique(fenetre) )
 				val2_2.setABouger(true);
 
-			if( !(autoriseBouger(val2_3)) && val2_3.estClique(fenetre) )
+			if( (autoriseBouger(val2_3)) && val2_3.estClique(fenetre) )
 				val2_3.setABouger(true);
 
 			// -- pieces de 3
-			if( !(autoriseBouger(val3_1)) && val3_1.estClique(fenetre) )
+			if( (autoriseBouger(val3_1)) && val3_1.estClique(fenetre) )
 				val3_1.setABouger(true);
 
-			if( !(autoriseBouger(val3_2)) && val3_2.estClique(fenetre) )
+			if( (autoriseBouger(val3_2)) && val3_2.estClique(fenetre) )
 				val3_2.setABouger(true);
 
 			// -- piece de 5
-			if( !(autoriseBouger(val5_1)) && val5_1.estClique(fenetre) )
+			if( (autoriseBouger(val5_1)) && val5_1.estClique(fenetre) )
 				val5_1.setABouger(true);
 
 			val1_1.deplacer(fenetre,mouseMove,lache);
@@ -222,6 +224,16 @@ int JeuPerou::run(sf::RenderWindow &fenetre) {
 			val5_1.deplacer(fenetre,mouseMove,lache);
 			val5_1.drawMe(fenetre);
 
+int sommeb = CalculSomme(somme,val1_1);
+cout <<sommeb;
+		/*	inZoneCalculSomme(fenetre,val1_1,somme);
+			inZoneCalculSomme(fenetre,val1_2,somme);
+			inZoneCalculSomme(fenetre,val1_3,somme);
+			inZoneCalculSomme(fenetre,val2_1,somme);
+			inZoneCalculSomme(fenetre,val2_2,somme);
+			inZoneCalculSomme(fenetre,val2_3,somme);
+			inZoneCalculSomme(fenetre,val3_1,somme);
+			inZoneCalculSomme(fenetre,val3_2,somme);*/
 
 			if(total== 0)	{
 				fenetre.Draw(gagne);
@@ -244,96 +256,111 @@ int JeuPerou::run(sf::RenderWindow &fenetre) {
 
 bool JeuPerou::autoriseBouger(Piece & obj) {
 
-	if(&obj == &val1_1)
-		return (  !val1_2.estBougeable()
-			   && !val1_3.estBougeable()
-			   && !val2_1.estBougeable()
-			   && !val2_2.estBougeable()
-			   && !val2_3.estBougeable()
-			   && !val3_1.estBougeable()
-			   && !val3_2.estBougeable()
-			   && !val5_1.estBougeable() );
+	if(&obj == &val1_1) {
+		 if(!(val1_3.estBougeable()) && !(val1_2.estBougeable()) && !(val2_1.estBougeable())
+						&& !(val2_2.estBougeable()) && !(val2_3.estBougeable()) && !(val3_1.estBougeable())
+						&& !(val3_2.estBougeable()) && !(val5_1.estBougeable()))
+					 return true;
+				else
+						return false;
+	}
 
-	else if(&obj == &val1_2)
-		return (  !val1_1.estBougeable()
-			   && !val1_3.estBougeable()
-			   && !val2_1.estBougeable()
-			   && !val2_2.estBougeable()
-			   && !val2_3.estBougeable()
-			   && !val3_1.estBougeable()
-			   && !val3_2.estBougeable()
-			   && !val5_1.estBougeable() );
+	else if(&obj == &val1_2) {
+		 if(!(val1_1.estBougeable()) && !(val1_3.estBougeable()) && !(val2_1.estBougeable())
+						&& !(val2_2.estBougeable()) && !(val2_3.estBougeable()) && !(val3_1.estBougeable())
+						&& !(val3_2.estBougeable()) && !(val5_1.estBougeable()))
+					 return true;
+				else
+						return false;
+	}
 
-	else if(&obj == &val1_3)
-		return (  !val1_1.estBougeable()
-			   && !val1_2.estBougeable()
-			   && !val2_1.estBougeable()
-			   && !val2_2.estBougeable()
-			   && !val2_3.estBougeable()
-			   && !val3_1.estBougeable()
-			   && !val3_2.estBougeable()
-			   && !val5_1.estBougeable() );
+	else if(&obj == &val1_3) {
+		 if(!(val1_1.estBougeable()) && !(val1_2.estBougeable()) && !(val2_1.estBougeable())
+						&& !(val2_2.estBougeable()) && !(val2_3.estBougeable()) && !(val3_1.estBougeable())
+						&& !(val3_2.estBougeable()) && !(val5_1.estBougeable()))
+					 return true;
+				else
+						return false;
+	}
 
-	else if(&obj == &val2_1)
-		return (  !val1_1.estBougeable()
-			   && !val1_2.estBougeable()
-			   && !val1_3.estBougeable()
-			   && !val2_2.estBougeable()
-			   && !val2_3.estBougeable()
-			   && !val3_1.estBougeable()
-			   && !val3_2.estBougeable()
-			   && !val5_1.estBougeable() );
+	else if(&obj == &val2_1) {
+		 if(!(val1_1.estBougeable()) && !(val1_2.estBougeable()) && !(val1_3.estBougeable())
+						&& !(val2_2.estBougeable()) && !(val2_3.estBougeable()) && !(val3_1.estBougeable())
+						&& !(val3_2.estBougeable()) && !(val5_1.estBougeable()))
+					 return true;
+				else
+						return false;
+		}
 
-	else if(&obj == &val2_2)
-		return (  !val1_1.estBougeable()
-			   && !val1_2.estBougeable()
-			   && !val1_3.estBougeable()
-			   && !val2_1.estBougeable()
-			   && !val2_3.estBougeable()
-			   && !val3_1.estBougeable()
-			   && !val3_2.estBougeable()
-			   && !val5_1.estBougeable() );
+	else if(&obj == &val2_2) {
+		 if(!(val1_1.estBougeable()) && !(val1_2.estBougeable()) && !(val1_3.estBougeable())
+						&& !(val2_1.estBougeable()) && !(val2_3.estBougeable()) && !(val3_1.estBougeable())
+						&& !(val3_2.estBougeable()) && !(val5_1.estBougeable()))
+					 return true;
+				else
+						return false;
+	}
 
-	else if(&obj == &val2_3)
-		return (  !val1_1.estBougeable()
-			   && !val1_2.estBougeable()
-			   && !val1_3.estBougeable()
-			   && !val2_1.estBougeable()
-			   && !val2_2.estBougeable()
-			   && !val3_1.estBougeable()
-			   && !val3_2.estBougeable()
-			   && !val5_1.estBougeable() );
+	else if(&obj == &val2_3) {
+		 if(!(val1_1.estBougeable()) && !(val1_2.estBougeable()) && !(val1_3.estBougeable())
+						&& !(val2_1.estBougeable()) && !(val2_2.estBougeable()) && !(val3_1.estBougeable())
+						&& !(val3_2.estBougeable()) && !(val5_1.estBougeable()))
+					 return true;
+				else
+						return false;
+	}
 
-	else if(&obj == &val3_1)
-		return (  !val1_1.estBougeable()
-			   && !val1_2.estBougeable()
-			   && !val1_3.estBougeable()
-			   && !val2_1.estBougeable()
-			   && !val2_2.estBougeable()
-			   && !val2_3.estBougeable()
-			   && !val3_2.estBougeable()
-			   && !val5_1.estBougeable() );
+	else if(&obj == &val3_1) {
+		 if(!(val1_1.estBougeable()) && !(val1_2.estBougeable()) && !(val1_3.estBougeable())
+						&& !(val2_1.estBougeable()) && !(val2_2.estBougeable()) && !(val2_3.estBougeable())
+						&& !(val3_2.estBougeable()) && !(val5_1.estBougeable()))
+					 return true;
+				else
+						return false;
+	}
 
-	else if(&obj == &val3_2)
-		return (  !val1_1.estBougeable()
-			   && !val1_2.estBougeable()
-			   && !val1_3.estBougeable()
-			   && !val2_1.estBougeable()
-			   && !val2_2.estBougeable()
-			   && !val2_3.estBougeable()
-			   && !val3_1.estBougeable()
-			   && !val5_1.estBougeable() );
+	else if(&obj == &val3_2) {
+			 if(!(val1_1.estBougeable()) && !(val1_2.estBougeable()) && !(val1_3.estBougeable())
+					&& !(val2_1.estBougeable()) && !(val2_2.estBougeable()) && !(val2_3.estBougeable())
+					&& !(val3_1.estBougeable()) && !(val5_1.estBougeable()))
+				 return true;
+			else
+					return false;
+		}
 
 	else // val5_1
 	{
-		return (  !val1_1.estBougeable()
-			   && !val1_2.estBougeable()
-			   && !val1_3.estBougeable()
-			   && !val2_1.estBougeable()
-			   && !val2_2.estBougeable()
-			   && !val2_3.estBougeable()
-			   && !val3_1.estBougeable()
-			   && !val3_2.estBougeable() );
+		 if(!(val1_1.estBougeable()) && !(val1_2.estBougeable()) && !(val1_3.estBougeable())
+				&& !(val2_1.estBougeable()) && !(val2_2.estBougeable()) && !(val2_3.estBougeable())
+				&& !(val3_1.estBougeable()) && !(val3_2.estBougeable()))
+			 return true;
+		else
+				return false;
 	}
+
+
+//		return (  (!(val1_1.estBougeable()) && !(val1_2.estBougeable())) &&
+//			   ( !(val1_3.estBougeable()) && !(val2_1.estBougeable()) ) &&
+//			   ( !(val2_2.estBougeable()) && !(val2_3.estBougeable()) ) &&
+//			  ( !(val3_1.estBougeable()) && !(val3_2.estBougeable())) );
+
 }
 
+bool JeuPerou::inZone(sf::RenderWindow &fenetre, Piece piece){
+	float rapport = fenetre.GetWidth()/fenetre.GetHeight();
+	float posX= piece.getPosX();
+	float posY= piece.getPosY();
+	if (posX>=80*rapport && posX<=385*rapport && posY>=357*rapport && posY<=540*rapport)
+		return true;
+	else return false;
+}
+
+int JeuPerou::CalculSomme(int somme,Piece piece){
+	return somme+piece.getValeur();
+}
+
+void JeuPerou::inZoneCalculSomme(sf::RenderWindow &fenetre, Piece piece,int somme){
+	if (inZone(fenetre,piece))
+		somme=CalculSomme(somme,piece);
+	cout << somme;
+}
