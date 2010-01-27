@@ -23,5 +23,6 @@
 #define JEUJAPON 11
 #define ITALIEPRESENT 12
 #define JAPONGAGNE 13
+#define INTRO_G 14
 
 #endif /* DEFINEECRANS_H_ */
