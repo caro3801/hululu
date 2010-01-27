@@ -34,6 +34,7 @@ int JeuJapon::run(sf::RenderWindow &fenetre)
 {
 	/////Déclaration/////////////////////////////
 	sf::Clock Clock; //Horloge
+	sf::Clock Clock2;
 	Clock.Reset();
 	int ecranSuivant = 6; // par défault, celui de l'écran actif
 	Page pays;
@@ -256,6 +257,8 @@ int JeuJapon::run(sf::RenderWindow &fenetre)
 			int nbATrouver=4;
 			int courant=1;
 			bool lu = false;
+			Clock2.Reset();
+
 
 				while(fenetre.IsOpened() && (ecranSuivant==6))
 					{
@@ -365,13 +368,13 @@ int JeuJapon::run(sf::RenderWindow &fenetre)
 
 							//Instructions ///////////////////////////////////////
 						if (lu==false) {
-							if (Clock.GetElapsedTime()<4){
+							if (Clock2.GetElapsedTime()<4){
 								fenetre.Draw(Instruction1);
 								}
-							else if (Clock.GetElapsedTime()<8){
+							else if (Clock2.GetElapsedTime()<8){
 								fenetre.Draw(Instruction2);
 								}
-							else if (Clock.GetElapsedTime()<12){
+							else if (Clock2.GetElapsedTime()<12){
 								fenetre.Draw(Instruction3);
 								}
 							else {
