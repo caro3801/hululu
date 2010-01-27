@@ -80,6 +80,7 @@ int ItaliePresent::run(sf::RenderWindow &fenetre) {
 		switch (etape) {
 		case 0:
 			fenetre.Draw(present1);
+			pays.dessinerPage(fenetre);
 			fenetre.Display();
 			if (fenetre.GetInput().IsMouseButtonDown(sf::Mouse::Left)
 					&& pays.menuActif(fenetre) && Clock.GetElapsedTime() > 1) {
@@ -97,7 +98,7 @@ int ItaliePresent::run(sf::RenderWindow &fenetre) {
 			break;
 		case 1:
 			fenetre.Draw(present2);
-
+			pays.dessinerPage(fenetre);
 			fenetre.Display();
 			if (fenetre.GetInput().IsMouseButtonDown(sf::Mouse::Left)
 					&& pays.menuActif(fenetre) && Clock.GetElapsedTime() > 1) {
@@ -116,6 +117,7 @@ int ItaliePresent::run(sf::RenderWindow &fenetre) {
 			break;
 		case 2:
 			fenetre.Draw(present3);
+			pays.dessinerPage(fenetre);
 			fenetre.Display();
 			if (fenetre.GetInput().IsMouseButtonDown(sf::Mouse::Left)
 					&& pays.menuActif(fenetre) && Clock.GetElapsedTime() > 1) {
