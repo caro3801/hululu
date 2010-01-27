@@ -126,7 +126,7 @@ int ItaliePresent::run(sf::RenderWindow &fenetre) {
 				if (pays.getGoClique(fenetre)) {
 					pays.getGo().resetTimer();
 					etape = 0;
-					ecranSuivant = JEU_ITALIE;
+					ecranSuivant = ITALIEMUSEE;
 				} else if (pays.getBackClique(fenetre)) {
 					pays.getBack().resetTimer();
 					etape--;
