@@ -12,6 +12,7 @@ using namespace std;
 #include <SFML/System.hpp>
 #include <SFML/Window.hpp>
 #include <SFML/Graphics.hpp>
+#include <SFML/Audio.hpp>
 
 
 #include "AustralieIntro.h"
@@ -19,7 +20,7 @@ using namespace std;
 
 #include "Bouton.h"
 #include "Page.h"
-
+#include "Musique.h"
 #include "effetSurTexte.h"
 
 AustralieIntro::AustralieIntro() {
