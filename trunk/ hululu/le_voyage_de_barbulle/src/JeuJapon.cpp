@@ -36,7 +36,7 @@ int JeuJapon::run(sf::RenderWindow &fenetre)
 	sf::Clock Clock; //Horloge
 	sf::Clock Clock2;
 	Clock.Reset();
-	int ecranSuivant = 6; // par défault, celui de l'écran actif
+	int ecranSuivant = JEUJAPON; // par défault, celui de l'écran actif
 	Page pays;
 
 
@@ -343,6 +343,7 @@ int JeuJapon::run(sf::RenderWindow &fenetre)
 								if (courant==12)
 									Decembre.SetImage(Ecran::MonManager.GetImage("le_voyage_de_barbulle/img/japon/12V.png"));
 
+
 								courant++;
 
 							}
@@ -388,7 +389,12 @@ int JeuJapon::run(sf::RenderWindow &fenetre)
 							fenetre.Display();
 
 					if (fenetre.GetInput().IsMouseButtonDown(sf::Mouse::Left) && pays.menuActif(fenetre))
-							ecranSuivant=pays.changerEcran(fenetre,JEUJAPON,MAPPEMONDE,HISTOIREJAPON) ;
+							ecranSuivant=pays.changerEcran(fenetre,JEUJAPON,JEUJAPON,HISTOIREJAPON);
+					if (courant==13){
+						if (fenetre.GetInput().IsMouseButtonDown(sf::Mouse::Left) && pays.menuActif(fenetre))
+							ecranSuivant=pays.changerEcran(fenetre,JEUJAPON,JAPONGAGNE,HISTOIREJAPON);
+					}
+
 
 					if (fenetre.GetInput().IsKeyDown(sf::Key::O))
 							ecranSuivant=JEUJAPON;
