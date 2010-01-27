@@ -98,8 +98,6 @@ int JeuPerou::run(sf::RenderWindow &fenetre) {
 	bool mouseMove = false;
 	bool lache = true;
 	bool entree = true;
-
-int total=13;
 	//IMAGES////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 	// # image de fond
@@ -169,7 +167,7 @@ int total=13;
 			fenetre.GetHeight() / 2 - gagne.GetRect().Top / 2);
 	instructions.SetColor(sf::Color::Black);
 
-	int sommeDem = 20;
+	int sommeDem = 7;
 	int sommeTot = 0;
 	///AFFICHAGE FENETRE////////////////////////////////
 	sf::Event event;
@@ -200,7 +198,6 @@ int total=13;
 		// -- pieces de 1
 
 		if ((autoriseBouger(val1_1)) && val1_1.estClique(fenetre)) {
-			cout << "deplacer" << endl;
 			val1_1.setABouger(true);
 		}
 
@@ -269,20 +266,42 @@ int total=13;
 			if (inZone(fenetre, val1_1)) {
 				sommeTot += val1_1.getValeur();
 			}
-			cout<<sommeTot<<endl;
-			entree = false;
+			cout << sommeTot << endl;
+			if (sommeTot != sommeDem)
+			{
+				val1_1.placer((fenetre.GetWidth() * 8 / 12), (fenetre.GetHeight() * 9 / 11));
+				val1_2.placer((fenetre.GetWidth() * 9 / 12), (fenetre.GetHeight() * 9 / 11));
+				val1_3.placer((fenetre.GetWidth() * 10 / 12),(fenetre.GetHeight() * 9 / 11));
+				val2_3.placer((fenetre.GetWidth() * 10 / 12),(fenetre.GetHeight() * 8 / 11));
+				val5_1.placer((fenetre.GetWidth() * 8 / 12), (fenetre.GetHeight() * 8 / 11));
+				val3_2.placer((fenetre.GetWidth() * 9 / 12), (fenetre.GetHeight() * 8 / 11));
+				mouseMove = false;
+				lache = true;
+				entree = true;
+				sommeTot =0;
+			}
+			else
+			{
+
+			entree = false;}
+		}
+
+		if (annuler.estClique(fenetre))
+		{
+			val1_1.placer((fenetre.GetWidth() * 8 / 12), (fenetre.GetHeight() * 9 / 11));
+			val1_2.placer((fenetre.GetWidth() * 9 / 12), (fenetre.GetHeight() * 9 / 11));
+			val1_3.placer((fenetre.GetWidth() * 10 / 12),(fenetre.GetHeight() * 9 / 11));
+			val2_3.placer((fenetre.GetWidth() * 10 / 12),(fenetre.GetHeight() * 8 / 11));
+			val5_1.placer((fenetre.GetWidth() * 8 / 12), (fenetre.GetHeight() * 8 / 11));
+			val3_2.placer((fenetre.GetWidth() * 9 / 12), (fenetre.GetHeight() * 8 / 11));
+			mouseMove = false;
+			lache = true;
+			entree = true;
+			sommeTot =0;
 		}
 
 
 
-		if (total == 0) {
-			fenetre.Draw(gagne);
-			Clock.Reset();
-		}
-		if (total != 0) {
-			fenetre.Draw(instructions);
-			Clock.Reset();
-		}
 
 		fenetre.Display();
 
@@ -362,8 +381,7 @@ bool JeuPerou::autoriseBouger(Piece & obj) {
 }
 
 bool JeuPerou::inZone(sf::RenderWindow &fenetre, Piece piece) {
-	float rapportW = fenetre.GetWidth() / 1064;
-	float rapportH = fenetre.GetHeight() / 581;
+
 	float posY = piece.getPosY();
 	float posX = piece.getPosX();
 
