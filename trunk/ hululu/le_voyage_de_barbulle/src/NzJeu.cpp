@@ -19,6 +19,7 @@
 #include "effetSurTexte.h"
 
 #include <iostream>
+#include <sstream>
 using namespace std;
 
 NzJeu::NzJeu() {
@@ -41,7 +42,9 @@ int NzJeu::run(sf::RenderWindow &fenetre) {
 
 	// LISTE musique ////////////////////
 	vector<Musique *> tabMusic;
-	tabMusic.push_back(new Musique("le_voyage_de_barbulle/music/nz/splif.ogg"));
+	tabMusic.push_back(new Musique("le_voyage_de_barbulle/music/nz/nzMaori.ogg"));
+	tabMusic[0]->Lecture();
+
 	sf::SoundBuffer buffer;
 	buffer.LoadFromFile("le_voyage_de_barbulle/music/nz/splif.ogg");
 	sf::Sound splif;
@@ -49,11 +52,16 @@ int NzJeu::run(sf::RenderWindow &fenetre) {
 
 	// ELEMENTS /////////////////////////
 
+	sf::Sprite background;
+	background.SetImage(Ecran::MonManager.GetImage("le_voyage_de_barbulle/img/nz/gardeManger.png"));
+	background.SetPosition(0.f, 0.f);
+	background.Resize(fenetre.GetWidth(), fenetre.GetHeight());
+
 	// -- titre
 	sf::String txtTitre("La chasse aux wetas!");
 	txtTitre.SetSize(40.f);
 	txtTitre.SetFont(cursiveFont);
-	txtTitre.SetColor(sf::Color::White);
+	txtTitre.SetColor(sf::Color(189,7,11));
 
 	int position[2];
 	position[0] = 180;
@@ -62,10 +70,35 @@ int NzJeu::run(sf::RenderWindow &fenetre) {
 
 	// -- titre OMBRE
 	sf::String txtTitreOMBRE;
-	ombreTexte(txtTitre, txtTitreOMBRE, sf::Color(0,12,35), 2, 2);
+	ombreTexte(txtTitre, txtTitreOMBRE, sf::Color(94,4,5), 2, 2);
+
+	// -- vieux Maori
+	sf::Sprite maori(Ecran::MonManager.GetImage("le_voyage_de_barbulle/img/nz/maori.png"));
+	float rapport = fenetre.GetWidth() / fenetre.GetHeight();
+	maori.Resize(fenetre.GetWidth()*0.2, fenetre.GetWidth()*0.2*rapport);
+	maori.SetPosition(fenetre.GetWidth()-maori.GetSize().x, fenetre.GetHeight()-maori.GetSize().y );
+
+	// -- bulle du vieu maori
+	sf::Sprite bulle(Ecran::MonManager.GetImage("le_voyage_de_barbulle/img/nz/bulle.png"));
+	bulle.SetPosition(maori.GetPosition().x, maori.GetPosition().y + 40 );
+
+	// -- compteur visuel
+	sf::String txtCompteur("Il te reste 10 wetas a attraper !");
+	txtCompteur.SetFont(cursiveFont);
+	txtCompteur.SetColor(sf::Color(189,7,11));
+	txtCompteur.SetPosition(maori.GetPosition().x -  txtCompteur.GetRect().GetWidth(), maori.GetPosition().y);
+
+	// -- compteur OMBRE
+	sf::String txtCompteurOMBRE;
+	ombreTexte(txtCompteur, txtCompteurOMBRE, sf::Color(94,4,5), 2, 2);
 
 	Bouton weta;
 	weta.initBouton("le_voyage_de_barbulle/img/nz/yeux_weta.png","le_voyage_de_barbulle/img/nz/yeux_weta.png" );
+	weta.placer(-100, -100);
+
+	// -- Weta GEANT !!!
+	sf::Sprite wetaGeant(Ecran::MonManager.GetImage("le_voyage_de_barbulle/img/objets/weta.png"));
+	wetaGeant.SetPosition(fenetre.GetWidth()/2 - wetaGeant.GetSize().x/2, fenetre.GetHeight()- wetaGeant.GetSize().y/2);
 
 	// VUE ///////////////////////
 	sf::View vue(sf::FloatRect(0, 0, fenetre.GetWidth(), fenetre.GetHeight()) );
@@ -76,13 +109,37 @@ int NzJeu::run(sf::RenderWindow &fenetre) {
 	// initialise le timer des wetas
 	sf::Clock clockWeta;
 	clockWeta.Reset();
-	float intervalWeta = sf::Randomizer::Random(2.f, 6.f); // durée entre chaque wéta (change à chaque nouveau wéta)
+
+	float intervalWeta = tabMusic[0]->GetDuration() + 0.5; // durée entre chaque wéta (change à chaque nouveau wéta)
 	int wetaRestant = 10;
 	int numWetaTouche = 0;
 	int numDerWeta = 1;
 
+	int continuer = NZ_JEU;
+
 	while (fenetre.IsOpened() && (ecranSuivant == NZ_JEU) )
 	{
+
+
+		if(weta.estClique(fenetre) && (numWetaTouche != numDerWeta)  && (wetaRestant > 0))
+		{
+			numWetaTouche = numDerWeta;
+			splif.Play();
+			wetaRestant--;
+
+
+			ostringstream imageInt;
+			imageInt << wetaRestant;
+
+			if(wetaRestant > 1)
+				txtCompteur.SetText("Il te reste "+imageInt.str()+" wetas a attraper !");
+			else
+				txtCompteur.SetText("Il te reste "+imageInt.str()+" weta a attraper !");
+
+			txtCompteur.SetPosition(maori.GetPosition().x -  txtCompteur.GetRect().GetWidth(), maori.GetPosition().y);
+			ombreTexte(txtCompteur, txtCompteurOMBRE, sf::Color(94,4,5), 2, 2);
+		}
+
 		// EVENEMENTS ///////////////////////
 		while (fenetre.GetEvent(event))
 		{
@@ -115,11 +172,17 @@ int NzJeu::run(sf::RenderWindow &fenetre) {
 
 		// MUTE instruction //////////////////
 		if(!modelePage.getMuting() )
+		{
 			for(unsigned int i = 0; i < tabMusic.size(); i++)
 				tabMusic[i]->SetVolume(0);
+			splif.SetVolume(0);
+		}
 		else if (tabMusic.size() > 0)
+		{
 			for(unsigned int i = 0; i < tabMusic.size(); i++)
 				tabMusic[i]->SetVolume(100);
+			splif.SetVolume(100);
+		}
 
 
 		if(clockWeta.GetElapsedTime() >= intervalWeta)
@@ -132,37 +195,44 @@ int NzJeu::run(sf::RenderWindow &fenetre) {
 			weta.redimensionner(96,44);
 			weta.redimensionner(scale);
 
-			//float angle = sf::Randomizer::Random((float)0, (float)360);
-			//weta.rotater(angle);
-
-			float x = sf::Randomizer::Random(20.f, 	fenetre.GetWidth() - weta.GetScale().x - 20);
-			float y = sf::Randomizer::Random(20.f, fenetre.GetHeight() - weta.GetScale().y - 20);
+			float x = sf::Randomizer::Random(0.f, 	fenetre.GetWidth() - weta.GetScale().x);
+			float y = sf::Randomizer::Random(40.f, fenetre.GetHeight() - maori.GetSize().y);
 			weta.placer(x, y);
 			numDerWeta++;
 		}
 
 
 		// DESSINS  //////////////////////////
-		fenetre.Clear(sf::Color(0,2,5));
+		fenetre.Clear(sf::Color::Black);
+		fenetre.Draw(background);
 		fenetre.Draw(txtTitreOMBRE);
 		fenetre.Draw(txtTitre);
-		if(numWetaTouche != numDerWeta)
+
+		fenetre.Draw(txtCompteurOMBRE);
+		fenetre.Draw(txtCompteur);
+		fenetre.Draw(bulle);
+
+		fenetre.Draw(maori);
+
+		// GAGNEEEEE ////////////////////////
+		if(wetaRestant == 0)
+		{
+			txtCompteur.SetText(L"Ah ! Me voila débarrassé de ces wetas pour un moment !\nPour te remercier, voici une statuette du Weta Géant !");
+			txtCompteur.SetPosition(maori.GetPosition().x -  txtCompteur.GetRect().GetWidth(), maori.GetPosition().y);
+			ombreTexte(txtCompteur, txtCompteurOMBRE, sf::Color(94,4,5), 2, 2);
+			continuer=MAPPEMONDE;
+			fenetre.Draw(wetaGeant);
+		}
+
+
+		if( (numWetaTouche != numDerWeta) && (wetaRestant > 0) )
 			weta.drawMe(fenetre);
 		modelePage.dessinerPage(fenetre);
 
 
-		if(weta.estClique(fenetre) && (numWetaTouche != numDerWeta))
-		{
-			numWetaTouche = numDerWeta;
-			splif.Play();
-			wetaRestant--;
-			cout << wetaRestant << endl;
-		}
-
-
 		// CTRL changement d'écran ////////////
 		if (fenetre.GetInput().IsMouseButtonDown(sf::Mouse::Left) && modelePage.menuActif(fenetre))
-			ecranSuivant = modelePage.changerEcran(fenetre, NZ_JEU, -1,NZ_PRESENT) ;
+			ecranSuivant = modelePage.changerEcran(fenetre, NZ_JEU, continuer, NZ_PRESENT) ;
 
 		fenetre.Display();
 	}
