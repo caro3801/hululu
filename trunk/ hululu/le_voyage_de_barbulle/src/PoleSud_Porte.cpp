@@ -114,6 +114,22 @@ int PoleSud_Porte::run(sf::RenderWindow &fenetre) {
 	emplacement_vide4.SetImage(Ecran::MonManager.GetImage("le_voyage_de_barbulle/img/pole/emplacement_vide.png"));
 	emplacement_vide4.SetPosition((fenetre.GetWidth()/1.18), fenetre.GetHeight()/10 + ((emplacement_vide2.GetSize().y)*3));
 
+	sf::Sprite emplacement_occupe1 ;
+	emplacement_occupe1.SetImage(Ecran::MonManager.GetImage("le_voyage_de_barbulle/img/pole/emplacement_occupe.png"));
+	emplacement_occupe1.SetPosition((fenetre.GetWidth()/1.18), fenetre.GetHeight()/10 );
+
+	sf::Sprite emplacement_occupe2 ;
+	emplacement_occupe2.SetImage(Ecran::MonManager.GetImage("le_voyage_de_barbulle/img/pole/emplacement_occupe.png"));
+	emplacement_occupe2.SetPosition((fenetre.GetWidth()/1.18), fenetre.GetHeight()/10 + ((emplacement_vide2.GetSize().y)));
+
+	sf::Sprite emplacement_occupe3 ;
+	emplacement_occupe3.SetImage(Ecran::MonManager.GetImage("le_voyage_de_barbulle/img/pole/emplacement_occupe.png"));
+	emplacement_occupe3.SetPosition((fenetre.GetWidth()/1.18), fenetre.GetHeight()/10 + ((emplacement_vide2.GetSize().y)*2));
+
+	sf::Sprite emplacement_occupe4 ;
+	emplacement_occupe4.SetImage(Ecran::MonManager.GetImage("le_voyage_de_barbulle/img/pole/emplacement_occupe.png"));
+	emplacement_occupe4.SetPosition((fenetre.GetWidth()/1.18), fenetre.GetHeight()/10 + ((emplacement_vide2.GetSize().y)*3));
+
 	poncho.initBouton("le_voyage_de_barbulle/img/objets/poncho_emplacement.png","le_voyage_de_barbulle/img/objets/poncho_a.png");
 	poncho.placer(emplacement_vide1.GetPosition().x + 5,emplacement_vide1.GetPosition().y + 2);
 	poncho.decalageSouris(poncho.getTailleX()/2,poncho.getTailleY()/2);
@@ -151,7 +167,6 @@ float rapportH = fond.GetSize().y/1614;
 	fenetre.SetView(vue);
 
 	////////////////////////////////
-	chrome://ubufox/content/startpage.html
 	while(fenetre.IsOpened())
 	{
 
@@ -175,9 +190,25 @@ float rapportH = fond.GetSize().y/1614;
 		if(!poncho.getTrouve()) {
 			fenetre.Draw(emplacement_vide1);
 		}
-		fenetre.Draw(emplacement_vide2);
-		fenetre.Draw(emplacement_vide3);
-		fenetre.Draw(emplacement_vide4);
+		else
+			fenetre.Draw(emplacement_occupe1);
+
+		if(!weta.getTrouve()) {
+			fenetre.Draw(emplacement_vide2);
+		}
+		else
+			fenetre.Draw(emplacement_occupe2);
+
+		if(!blason.getTrouve()) {
+			fenetre.Draw(emplacement_vide3);
+		}
+		else
+				fenetre.Draw(emplacement_occupe3);
+		if(!lampion.getTrouve()) {
+			fenetre.Draw(emplacement_vide4);
+		}
+		else
+			fenetre.Draw(emplacement_occupe4);
 
 		ZoneVideWeta = ZoneWeta(fenetre,rapportW, rapportH);
 		ZoneVidePoncho = ZonePoncho(fenetre,rapportW, rapportH);
@@ -201,23 +232,23 @@ float rapportH = fond.GetSize().y/1614;
 			PoleSud_Porte::lampion.setABouger(true);
 		}
 
-		if( !(poncho.estPlace())) {
+		if( !(poncho.estPlace()) && poncho.getTrouve()) {
 			PoleSud_Porte::poncho.deplacer(fenetre,mouseMove,lache);
 			cout << "coucou"<< endl;
 			cout << poncho.getPosX() << endl;
 			PoleSud_Porte::poncho.drawMe(fenetre);
 		}
 
-		if( !(weta.estPlace())) {
+		if( !(weta.estPlace()) && weta.getTrouve()) {
 			PoleSud_Porte::weta.deplacer(fenetre,mouseMove,lache);
 			PoleSud_Porte::weta.drawMe(fenetre);
 		}
-		if( !(lampion.estPlace())) {
+		if( !(lampion.estPlace()) && lampion.getTrouve()) {
 			PoleSud_Porte::lampion.deplacer(fenetre,mouseMove,lache);
 			PoleSud_Porte::lampion.drawMe(fenetre);
 		}
 
-		if( !(blason.estPlace())) {
+		if( !(blason.estPlace()) && blason.getTrouve()) {
 			PoleSud_Porte::blason.deplacer(fenetre,mouseMove,lache);
 			PoleSud_Porte::blason.drawMe(fenetre);
 			}
