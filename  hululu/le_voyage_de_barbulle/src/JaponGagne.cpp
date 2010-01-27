@@ -58,7 +58,7 @@ int JaponGagne::run(sf::RenderWindow &fenetre)
 
 	sf::Sprite Sakura2;
 	Sakura2.SetImage(Ecran::MonManager.GetImage("le_voyage_de_barbulle/img/japon/Sakura.png"));
-	Sakura2.SetPosition((fenetre.GetWidth())/9, ((fenetre.GetHeight())/30));
+	Sakura2.SetPosition((fenetre.GetWidth())/7, ((fenetre.GetHeight())/30));
 	Sakura2.Resize(100, 100);
 
 
