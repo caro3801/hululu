@@ -30,5 +30,5 @@
 #define NZ_JEU 18
 #define ITALIEMUSEE 19
 #define PEROUPRESENT 20
-
+#define GAGNE_JEU 21
 #endif /* DEFINEECRANS_H_ */
