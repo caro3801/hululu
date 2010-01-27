@@ -97,7 +97,7 @@ int main(int argc, char** argv)
     NzJeu ecran18;
     tabEcrans.push_back (&ecran18);
     ItalieMusee ecran19;
-    tabEcrans.push_back (&ecran19);
+    tabEcrans.push_back (&ecran19);       //ita
 
     // # boucle principale, c'est ici que tt commence...
     while ( ecran >= 0 and fenetre.IsOpened() ) // -1 provoque l'arrêt du programme
