@@ -20,7 +20,7 @@ public:
 	virtual ~Intro();
 	virtual int run(sf::RenderWindow &fenetre);
 private:
-	int etape;
+	unsigned int etape;
 };
 
 #endif /* INTRO_H_ */
