@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="flag_maori_svg" width="1080" height="600">
+<desc>Flag of Maori</desc>
+<g transform="scale(1)">
+<rect height="600" width="1080" fill="#fff"/>
+<path d="M 0,80 h300 a135,135 0 0,1 0,270 h780 v-400 h-1080 z" fill="#000"/>
+<path d="M 0,190 h300 a80,80 0 0,1 0,160 a55,55 0 0,0 0,-110 a110,110 0 0,0 0,220 h780 v175 h-1080 z" fill="#f80804"/>
+</g>
+</svg>
