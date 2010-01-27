@@ -18,7 +18,7 @@ class NzJeu : public Ecran{
 public:
 	NzJeu();
 	virtual ~NzJeu();
-	inline int run(sf::RenderWindow &fenetre) { return 0; }
+	int run(sf::RenderWindow &fenetre);
 };
 
 #endif /* NZJEU_H_ */
