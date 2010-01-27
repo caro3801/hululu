@@ -8,6 +8,10 @@
 #include "JaponGagne.h"
 #include <iostream>
 #include <sstream>
+#include <SFML/System.hpp>
+#include <SFML/Window.hpp>
+#include <SFML/Graphics.hpp>
+#include <SFML/Audio.hpp>
 using namespace std;
 
 #include "JeuJapon.h"
@@ -40,6 +44,7 @@ int JaponGagne::run(sf::RenderWindow &fenetre)
 	Page pays;
 
 
+
 	// FONT//////////////////////////////////////////////////////////////////////////
 	sf::Event event;
 
@@ -56,8 +61,39 @@ int JaponGagne::run(sf::RenderWindow &fenetre)
 	Sakura2.SetPosition((fenetre.GetWidth())/9, ((fenetre.GetHeight())/30));
 	Sakura2.Resize(100, 100);
 
+
+	sf::Sprite Sakura3;
+	Sakura3.SetImage(Ecran::MonManager.GetImage("le_voyage_de_barbulle/img/japon/Sakura.png"));
+	Sakura3.SetPosition((fenetre.GetWidth())/2, ((fenetre.GetHeight())/9));
+	Sakura3.Resize(200, 200);
+
+	sf::Sprite Barbulle;
+	Barbulle.SetImage(Ecran::MonManager.GetImage("le_voyage_de_barbulle/img/japon/barbulle_japon.png"));
+	Barbulle.SetPosition((fenetre.GetWidth())/6.5, ((fenetre.GetHeight())/8));
+	Barbulle.Scale(0.75, 0.75);
+
+	//Objet gagné /////////////////////////////////////////////////////////////////////////////
+
 	//PoleSud_Porte::lampion.initDessin("le_voyage_de_barbulle/img/objets/lampion.png");
-	PoleSud_Porte::lampion.placer((fenetre.GetWidth())/2, ((fenetre.GetHeight())/3));
+//=======
+//	//PoleSud_Porte::lampion.initDessin("le_voyage_de_barbulle/img/objets/lampion.png");
+//>>>>>>> .r191
+	PoleSud_Porte::lampion.placer((fenetre.GetWidth())/1.3, ((fenetre.GetHeight())/4));
+
+
+
+	// FONT/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+		// instruction
+		sf::Font MyFont;
+		if (!MyFont.LoadFromFile("le_voyage_de_barbulle/img/font/Cursive_standard.ttf", 80.f))
+		cerr << "Erreur lors du chargement de la police";
+
+	//Texte//////////////////////////////////////////////////////////////////////////////////////
+	sf::String text(L"Bravo, tu as trouvé un Objet.");
+	text.Move((fenetre.GetWidth())/30, ((fenetre.GetHeight())/1.9));
+	text.SetColor(sf::Color::Color(120,15,0));
+	text.SetSize(80.f);
+	text.SetFont(MyFont);
 
 	////////////////////////////////
 
@@ -76,13 +112,17 @@ int JaponGagne::run(sf::RenderWindow &fenetre)
 
 					fenetre.Draw(Sakura);
 					fenetre.Draw(Sakura2);
+					fenetre.Draw(Sakura3);
+					fenetre.Draw(Barbulle);
+					fenetre.Draw(text);
 					pays.dessinerPage(fenetre);
-		//			PoleSud_Porte::lampion.dessinerObjet(fenetre);
+					PoleSud_Porte::lampion.dessinerObjet(fenetre);
 					fenetre.Display();
 
 					if (fenetre.GetInput().IsMouseButtonDown(sf::Mouse::Left) && pays.menuActif(fenetre) )
-						ecranSuivant=pays.changerEcran(fenetre,JAPON,HISTOIREJAPON,MAPPEMONDE) ; //ecranSuivant = HistoireJapon (5), ecranCourant = Japon (3),
+						ecranSuivant=pays.changerEcran(fenetre,JAPONGAGNE,MAPPEMONDE,JAPONGAGNE) ; //ecranSuivant = HistoireJapon (5), ecranCourant = Japon (3),
 																			   //ecranPrecedent = Mapmonde (1)
+
 					if (fenetre.GetInput().IsKeyDown(sf::Key::O))
 						ecranSuivant=MAPPEMONDE;
 

@@ -32,7 +32,7 @@ HistoireJapon::~HistoireJapon() {
 
 int HistoireJapon::run(sf::RenderWindow &fenetre) {
 
-	int ecranSuivant = 5;
+	int ecranSuivant = HISTOIREJAPON;
 	sf::Clock Clock;
 	Clock.Reset();
 	Page pays;
