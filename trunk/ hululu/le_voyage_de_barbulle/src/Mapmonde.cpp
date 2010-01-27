@@ -12,11 +12,13 @@ using namespace std;
 #include <SFML/System.hpp>
 #include <SFML/Window.hpp>
 #include <SFML/Graphics.hpp>
+#include <SFML/Audio.hpp>
 
 #include "Mapmonde.h"
 #include "Person2D.h"
 #include "Collision.h"
 #include "Bouton.h"
+#include "Musique.h"
 
 #include "DefineEcrans.h"
 
@@ -179,6 +181,8 @@ int Mapmonde::run(sf::RenderWindow &fenetre)
 	// # création d'une vue sur la fenêtre
 	sf::View vue(sf::FloatRect(0, 0, fenetre.GetWidth(), fenetre.GetHeight()) );
 	fenetre.SetView(vue);
+
+
 
 	// Pour que le programme ne se termine pas :)
 	sf::Event event;
