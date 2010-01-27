@@ -57,7 +57,7 @@ int NzPresent::run(sf::RenderWindow &fenetre) {
 	sf::String txtTitre("Nouvelle-Zélande");
 	txtTitre.SetSize(40.f);
 	txtTitre.SetFont(cursiveFont);
-	txtTitre.SetColor(sf::Color(255,173,0));
+	txtTitre.SetColor(sf::Color::White);
 
 	int position[2];
 	position[0] = 180;
@@ -66,24 +66,24 @@ int NzPresent::run(sf::RenderWindow &fenetre) {
 
 	// -- titre OMBRE
 	sf::String txtTitreOMBRE;
-	ombreTexte(txtTitre, txtTitreOMBRE, sf::Color(70, 40, 0), 2, 2);
+	ombreTexte(txtTitre, txtTitreOMBRE, sf::Color::Black, 2, 2);
 
 	// IMAGE DE FONT ////////////////////
 	sf::Sprite background;
 	switch (_etape) {
 		case 0:
-			background.SetImage(Ecran::MonManager.GetImage("le_voyage_de_barbulle/img/australie/presentation1.png"));
-			tabMusic.push_back(new Musique("le_voyage_de_barbulle/music/australie/aust1.ogg"));
+			background.SetImage(Ecran::MonManager.GetImage("le_voyage_de_barbulle/img/nz/presentation1.png"));
+			tabMusic.push_back(new Musique("le_voyage_de_barbulle/music/nz/nz1.ogg"));
 			break;
 
 		case 1:
-			background.SetImage(Ecran::MonManager.GetImage("le_voyage_de_barbulle/img/australie/presentation2.png"));
-			tabMusic.push_back(new Musique("le_voyage_de_barbulle/music/australie/aust2.ogg"));
+			background.SetImage(Ecran::MonManager.GetImage("le_voyage_de_barbulle/img/nz/presentation2.png"));
+			tabMusic.push_back(new Musique("le_voyage_de_barbulle/music/nz/nz2.ogg"));
 			break;
 
 		case 2:
-			background.SetImage(Ecran::MonManager.GetImage("le_voyage_de_barbulle/img/australie/presentation3.png"));
-			tabMusic.push_back(new Musique("le_voyage_de_barbulle/music/australie/aust3.ogg"));
+			background.SetImage(Ecran::MonManager.GetImage("le_voyage_de_barbulle/img/nz/presentation3.png"));
+			tabMusic.push_back(new Musique("le_voyage_de_barbulle/music/nz/nz3.ogg"));
 			break;
 	}
 
@@ -125,10 +125,10 @@ int NzPresent::run(sf::RenderWindow &fenetre) {
 					if (modelePage.getGoClique(fenetre)) {
 						modelePage.getGo().resetTimer();
 						_etape++;
-						ecranSuivant = AUSTRALIE_PRESENT;
+						ecranSuivant = NZ_PRESENT;
 					} else if (modelePage.getBackClique(fenetre)) {
 						modelePage.getBack().resetTimer();
-						ecranSuivant = AUSTRALIE_INTRO;
+						ecranSuivant = NZ_INTRO;
 					} else
 						ecranSuivant = MAPPEMONDE;
 				}
@@ -140,11 +140,11 @@ int NzPresent::run(sf::RenderWindow &fenetre) {
 					if (modelePage.getGoClique(fenetre)) {
 						modelePage.getGo().resetTimer();
 						_etape++;
-						ecranSuivant = AUSTRALIE_PRESENT;
+						ecranSuivant = NZ_PRESENT;
 					} else if (modelePage.getBackClique(fenetre)) {
 						modelePage.getBack().resetTimer();
 						_etape--;
-						ecranSuivant = AUSTRALIE_PRESENT;
+						ecranSuivant = NZ_PRESENT;
 					} else
 						ecranSuivant = MAPPEMONDE;
 				}
@@ -155,11 +155,11 @@ int NzPresent::run(sf::RenderWindow &fenetre) {
 					if (modelePage.getGoClique(fenetre)) {
 						modelePage.getGo().resetTimer();
 						_etape=0;
-						ecranSuivant = TRAJET_ANZ;
+						ecranSuivant = -1;
 					} else if (modelePage.getBackClique(fenetre)) {
 						modelePage.getBack().resetTimer();
 						_etape--;
-						ecranSuivant = AUSTRALIE_PRESENT;
+						ecranSuivant = NZ_PRESENT;
 					} else
 						ecranSuivant = MAPPEMONDE;
 				}
