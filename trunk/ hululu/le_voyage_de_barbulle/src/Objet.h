@@ -25,9 +25,12 @@ public:
 	void dessinerDansSac(); //Pole : dessiner l'objet dans la case correspondante
 	void emplacementPorte(); //Afficher l'emplacement de l'objet sur la porte
 	void dessinerSurPorte(); //Dessiner l'image correspondant a l'objet (porte_weta, porte_lampion,..)
+	void dessinerObjet(sf::RenderWindow& fenetre);
+	void initDessin(const std::string &img1);
 private:
 	string nom; //weta, poncho, blason, lampion
 	bool trouve; //objet trouvé ou non, initialisé a faux
+	sf::Sprite image;
 };
 
 #endif /* OBJET_H_ */

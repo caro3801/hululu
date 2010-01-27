@@ -19,6 +19,7 @@ using namespace std;
 #include "AccueilPays.h"
 #include "DefineEcrans.h"
 #include <vector>
+#include "PoleSud_Porte.h"
 
 #include "Carte.h"
 
@@ -45,6 +46,18 @@ int JaponGagne::run(sf::RenderWindow &fenetre)
 	sf::View vue(sf::FloatRect(0, 0, fenetre.GetWidth(), fenetre.GetHeight()) );
 	fenetre.SetView(vue);
 
+	sf::Sprite Sakura;
+	Sakura.SetImage(Ecran::MonManager.GetImage("le_voyage_de_barbulle/img/japon/Sakura.png"));
+	Sakura.SetPosition((fenetre.GetWidth())/9, ((fenetre.GetHeight())/1.3));
+	Sakura.Resize(400, 400);
+
+	sf::Sprite Sakura2;
+	Sakura2.SetImage(Ecran::MonManager.GetImage("le_voyage_de_barbulle/img/japon/Sakura.png"));
+	Sakura2.SetPosition((fenetre.GetWidth())/9, ((fenetre.GetHeight())/30));
+	Sakura2.Resize(100, 100);
+
+	PoleSud_Porte::lampion.initDessin("le_voyage_de_barbulle/img/objets/lampion.png");
+
 	////////////////////////////////
 
 				while(fenetre.IsOpened() && (ecranSuivant == JAPONGAGNE))
@@ -60,7 +73,10 @@ int JaponGagne::run(sf::RenderWindow &fenetre)
 
 					fenetre.Clear(sf::Color(255, 200, 122));
 
+					fenetre.Draw(Sakura);
+					fenetre.Draw(Sakura2);
 					pays.dessinerPage(fenetre);
+					PoleSud_Porte::lampion.dessinerObjet(fenetre);
 					fenetre.Display();
 
 					if (fenetre.GetInput().IsMouseButtonDown(sf::Mouse::Left) && pays.menuActif(fenetre) )

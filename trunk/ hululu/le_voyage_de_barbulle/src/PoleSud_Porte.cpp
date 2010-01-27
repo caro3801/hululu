@@ -70,7 +70,6 @@ int PoleSud_Porte::run(sf::RenderWindow &fenetre) {
 	lampion.placer(400,400);
 	lampion.initBouton("le_voyage_de_barbulle/img/objets/lampion.png","le_voyage_de_barbulle/img/objets/lampion.png");
 	lampion.decalageSouris(lampion.getTailleX()/2,lampion.getTailleY()/2);
-
 	// FONT/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	sf::Event event;
 
