@@ -42,6 +42,7 @@ using namespace std;
 #include "NzIntro.h"			// numero 16
 #include "NzPresent.h"			// numero 17
 #include "NzJeu.h"			// numero 18
+#include "ItalieMusee.h"			// numero 19
 
 // PROCEDURE PRINCIPALE/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 int main(int argc, char** argv)
@@ -49,7 +50,7 @@ int main(int argc, char** argv)
 
 	// # Vecteur contenant les adresses des variables-écran
 	vector<Ecran*> tabEcrans;
-    int ecran = JEU_PEROU;
+    int ecran = MENU_0;
 
     // # création de la fenêtre
     sf::RenderWindow fenetre(sf::VideoMode::GetMode(0), "Le voyage de Barbule", sf::Style::Fullscreen);
@@ -95,7 +96,8 @@ int main(int argc, char** argv)
     tabEcrans.push_back (&ecran17);
     NzJeu ecran18;
     tabEcrans.push_back (&ecran18);
-
+    NzJeu ecran19;
+      tabEcrans.push_back (&ecran19);
 
     // # boucle principale, c'est ici que tt commence...
     while ( ecran >= 0 and fenetre.IsOpened() ) // -1 provoque l'arrêt du programme
