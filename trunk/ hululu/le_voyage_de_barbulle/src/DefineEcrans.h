@@ -29,5 +29,6 @@
 #define NZ_PRESENT 17
 #define NZ_JEU 18
 #define ITALIEMUSEE 19
+#define PEROUPRESENT 20
 
 #endif /* DEFINEECRANS_H_ */
