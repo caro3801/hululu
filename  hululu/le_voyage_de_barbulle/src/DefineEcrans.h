@@ -24,7 +24,7 @@
 #define ITALIEPRESENT 12
 #define JAPONGAGNE 13
 #define INTRO_G 14
-#define TRAGET_ANZ 15
+#define TRAJET_ANZ 15
 #define NZ_INTRO 16
 #define NZ_PRESENT 17
 
