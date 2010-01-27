@@ -107,6 +107,7 @@ int AustraliePresent::run(sf::RenderWindow &fenetre) {
 		}
 
 
+		// PAUSE/PLAY instruction////////////
 		if(!modelePage.getPlaying() ) {
 			if(tabMusic[0]->GetStatus() != sf::Music::Playing) {
 				tabMusic[0]->Lecture();
@@ -132,6 +133,10 @@ int AustraliePresent::run(sf::RenderWindow &fenetre) {
 			ecranSuivant = modelePage.changerEcran(fenetre, AUSTRALIE_PRESENT, AUSTRALIE_PRESENT, AUSTRALIE_INTRO) ;
 
 	}
+
+	// INTERUPTION de toutes les musiques
+	for(int i = 0; i < tabMusic.size(); i++)
+		tabMusic[i]->Pause();
 
 	// on éteint
 
