@@ -19,7 +19,6 @@ using namespace std;
 PoleSud_Porte::PoleSud_Porte() {
 
 }
-
 PoleSud_Porte::~PoleSud_Porte() {
 }
 
@@ -34,6 +33,7 @@ bool PoleSud_Porte::ZoneWeta(sf::RenderWindow &fenetre,float rapportW, float rap
 	if (posX>=(522*rapportW) && posX<=(730*rapportW) && posY>=(370*rapportH) && posY<=(480*rapportH))
 		return true;
 	else return false;
+
 }
 bool PoleSud_Porte::ZonePoncho(sf::RenderWindow &fenetre,float rapportW, float rapportH){
 	float posX = fenetre.GetInput().GetMouseX();
@@ -151,7 +151,7 @@ float rapportH = fond.GetSize().y/1614;
 	fenetre.SetView(vue);
 
 	////////////////////////////////
-
+	chrome://ubufox/content/startpage.html
 	while(fenetre.IsOpened())
 	{
 
@@ -172,7 +172,9 @@ float rapportH = fond.GetSize().y/1614;
 		fenetre.Clear(sf::Color(255, 255, 255));
 		fenetre.Draw(fond);
 		pays.dessinerPage(fenetre);
-		fenetre.Draw(emplacement_vide1);
+		if(!poncho.getTrouve()) {
+			fenetre.Draw(emplacement_vide1);
+		}
 		fenetre.Draw(emplacement_vide2);
 		fenetre.Draw(emplacement_vide3);
 		fenetre.Draw(emplacement_vide4);
@@ -187,7 +189,7 @@ float rapportH = fond.GetSize().y/1614;
 			PoleSud_Porte::poncho.setABouger(true);
 		}
 
-		if(  PoleSud_Porte::weta.estClique(fenetre) ) {
+		if( PoleSud_Porte::weta.estClique(fenetre) ) {
 			PoleSud_Porte::weta.setABouger(true);
 		}
 
@@ -201,6 +203,8 @@ float rapportH = fond.GetSize().y/1614;
 
 		if( !(poncho.estPlace())) {
 			PoleSud_Porte::poncho.deplacer(fenetre,mouseMove,lache);
+			cout << "coucou"<< endl;
+			cout << poncho.getPosX() << endl;
 			PoleSud_Porte::poncho.drawMe(fenetre);
 		}
 

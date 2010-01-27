@@ -27,7 +27,7 @@ public:
 	void dessinerSurPorte(); //Dessiner l'image correspondant a l'objet (porte_weta, porte_lampion,..)
 	void dessinerObjet(sf::RenderWindow& fenetre);
 	void initDessin(const std::string &img1);
-	void placer(float x, float y);
+	void placerDessin(float x, float y);
 	void setPlace(bool placeObj);
 	bool estPlace(); //Dessiner l'image correspondant a l'objet (porte_weta, porte_lampion,..)
 private:

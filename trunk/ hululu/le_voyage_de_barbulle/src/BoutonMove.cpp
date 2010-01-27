@@ -50,6 +50,7 @@ void BoutonMove::deplacer(sf::RenderWindow &fenetre, bool mouseMove, bool lache)
 	if(enMouvement && mouseMove) {
 		posX = sourisPositionX(fenetre) - decalageX;
 		posY = sourisPositionY(fenetre) - decalageY;
+		cout << "appelé" << endl;
 		this->placer(posX, posY);
 	}
 }
