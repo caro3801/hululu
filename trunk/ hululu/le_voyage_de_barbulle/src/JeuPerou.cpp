@@ -131,18 +131,30 @@ int total=13;
 	texteV.SetFont(cursiveFont);
 	texteV.SetColor(sf::Color::Black);
 
+	sf::String texteA("Annuler");
+	texteA.SetColor(sf::Color::Black);
+	texteA.SetSize(25.f);
+	texteA.SetFont(cursiveFont);
+	texteA.SetColor(sf::Color::Black);
+
 	// # création d'une vue sur la fenêtre
 	sf::View vue(sf::FloatRect(0, 0, fenetre.GetWidth(), fenetre.GetHeight()));
 	fenetre.SetView(vue);
 	Page pays;
 	Bouton valider;
 
-	valider.placerTexte(texteV);
 	valider.initBouton("le_voyage_de_barbulle/img/histoire/bouton_n.png",
 			"le_voyage_de_barbulle/img/histoire/bouton_f.png");
 	valider.redimensionner(0.5);
-	valider.placer((fenetre.GetWidth() / 2.3), ((fenetre.GetHeight()) / 1.8));
+	valider.placer((fenetre.GetWidth() / 2.3), ((fenetre.GetHeight()) / 1.6));
+	valider.placerTexte(texteV);
 
+	Bouton annuler;
+	annuler.initBouton("le_voyage_de_barbulle/img/histoire/bouton_n.png",
+				"le_voyage_de_barbulle/img/histoire/bouton_f.png");
+	annuler.redimensionner(0.5);
+	annuler.placer((fenetre.GetWidth() / 2.3), ((fenetre.GetHeight()) / 1.3));
+	annuler.placerTexte(texteA);
 	JeuPerou::creerPieces(fenetre,
 			"le_voyage_de_barbulle/img/sprite/piece_1.png",
 			"le_voyage_de_barbulle/img/sprite/piece_1_p.png",
@@ -263,7 +275,8 @@ int total=13;
 
 		valider.drawMe(fenetre);
 		fenetre.Draw(texteV);
-
+		annuler.drawMe(fenetre);
+			fenetre.Draw(texteA);
 
 		if (valider.estClique(fenetre) && entree) {
 			if (inZone(fenetre, val5_1)) {
