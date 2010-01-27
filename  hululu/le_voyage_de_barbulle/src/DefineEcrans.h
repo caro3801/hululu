@@ -22,5 +22,6 @@
 #define HISTOIREJAPON 10
 #define JEUJAPON 11
 #define ITALIEPRESENT 12
+#define JAPONGAGNE 13
 
 #endif /* DEFINEECRANS_H_ */
