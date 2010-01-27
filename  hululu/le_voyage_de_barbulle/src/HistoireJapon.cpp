@@ -11,6 +11,7 @@ using namespace std;
 #include <SFML/System.hpp>
 #include <SFML/Window.hpp>
 #include <SFML/Graphics.hpp>
+#include <SFML/Audio.hpp>
 
 #include "HistoireJapon.h"
 #include "Person2D.h"
@@ -19,11 +20,17 @@ using namespace std;
 #include "AccueilPays.h"
 #include "Page.h"
 #include "DefineEcrans.h"
+#include "Page.h"
+#include "Musique.h"
+#include "effetSurTexte.h"
+
+#include <iostream>
+using namespace std;
 
 
 HistoireJapon::HistoireJapon() {
 	// TODO Auto-generated constructor stub
-
+	_etape = 0;
 }
 
 HistoireJapon::~HistoireJapon() {
@@ -37,62 +44,78 @@ int HistoireJapon::run(sf::RenderWindow &fenetre) {
 	Clock.Reset();
 	Page pays;
 
-	//IMAGES////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-
-	// # image de fond
-		sf::Sprite fond ;
-		fond.SetImage(Ecran::MonManager.GetImage("le_voyage_de_barbulle/img/japon/japon_fond.png"));
-		fond.SetPosition(0.f, 0.f);
-		fond.Resize((fenetre.GetWidth()), (fenetre.GetHeight()));
-
-
-		// FONT/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	vector<Musique *> tabMusic;
 
 
 
-		sf::Event event;
+	// DEF de la police ////////////////
+	sf::Font cursiveFont;
+	if (!cursiveFont.LoadFromFile("le_voyage_de_barbulle/img/font/Cursive_standard_BOLD.ttf", 50.f))
+		cerr << "Erreur lors du chargement de la police" << endl;
+	// FONT/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+	// # titre
+		sf::String txtTitre("Japon");
+		txtTitre.SetSize(40.f);
+		txtTitre.SetFont(cursiveFont);
+		txtTitre.SetColor(sf::Color(220,15,0));
+		txtTitre.SetPosition(fenetre.GetWidth()/7,0);
+
+	// # titre OMBRE
+		sf::String txtTitreOMBRE;
+		ombreTexte(txtTitre, txtTitreOMBRE, sf::Color(70, 40, 0), 2, 2);
+
+
+		// IMAGE DE FONT ////////////////////
+
+			sf::Sprite background;
+			switch (_etape) {
+				case 0:
+					background.SetImage(Ecran::MonManager.GetImage("le_voyage_de_barbulle/img/japon/presJapon1.png"));
+					tabMusic.push_back(new Musique("le_voyage_de_barbulle/music/japon/jap1.ogg"));
+					break;
+
+				case 1:
+					background.SetImage(Ecran::MonManager.GetImage("le_voyage_de_barbulle/img/japon/presJapon2.png"));
+					tabMusic.push_back(new Musique("le_voyage_de_barbulle/music/japon/jap2.ogg"));
+					break;
+
+				case 2:
+					background.SetImage(Ecran::MonManager.GetImage("le_voyage_de_barbulle/img/japon/presJapon3.png"));
+					tabMusic.push_back(new Musique("le_voyage_de_barbulle/music/japon/jap3.ogg"));
+					break;
+
+				case 3:
+					background.SetImage(Ecran::MonManager.GetImage("le_voyage_de_barbulle/img/japon/presJapon3.png"));
+					tabMusic.push_back(new Musique("le_voyage_de_barbulle/music/japon/jap4.ogg"));
+					break;
+
+				case 4:
+					background.SetImage(Ecran::MonManager.GetImage("le_voyage_de_barbulle/img/japon/presJapon3.png"));
+					tabMusic.push_back(new Musique("le_voyage_de_barbulle/music/japon/jap5.ogg"));
+					break;
+
+			}
+
+			background.SetPosition(0.f, 0.f);
+			background.Resize(fenetre.GetWidth(), fenetre.GetHeight());
+
+
+			sf::Event event;
 
 		// # création d'une vue sur la fenêtre
 		sf::View vue(sf::FloatRect(0, 0, fenetre.GetWidth(), fenetre.GetHeight()) );
 		fenetre.SetView(vue);
 
-	// # image de l'instruction
-		sf::Sprite fondinst ;
-		fondinst.SetImage(Ecran::MonManager.GetImage("le_voyage_de_barbulle/img/japon/fondhistoire1.png"));
-		fondinst.SetPosition(fenetre.GetWidth()*0.06, fenetre.GetHeight()*0.06);
-
-
-	// # image garçon
-
-			sf::Image garcon_img;
-			if (!garcon_img.LoadFromFile("le_voyage_de_barbulle/img/sprite/sprite_g_walk_petit.png"))
-				cerr << "Erreur lors du chargement de l'image.";
-
-
-	// SPRITES/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-	Person2D garcon_sp(50.f, 100.f, fenetre.GetWidth()/15, 6, 4); // le personnage parcours 1/10 de la largeur de la fenêtre à chaque pas
-	garcon_sp.SetColor(sf::Color(255, 255, 255, 255));
-
-	// positione le garçon dans le vide horizontalement, à gauche de la fenêtre
-	// mais au centre, verticalement
-	garcon_sp.SetPosition(fenetre.GetWidth()+100, ( fenetre.GetHeight() - garcon_sp.getHeightCase() ) / 2.f);
-
-	// charge l'image
-	garcon_sp.SetImage(Ecran::MonManager.GetImage("le_voyage_de_barbulle/img/sprite/sprite_g_walk_petit.png")); // la taille du personnage dépend de la fenêtre
-	//garcon_sp.Resize(fenetre.GetWidth()/3, fenetre.GetHeight()/2); /* on ne redimensione pas avec le même indice
-																		 //   * puisque le sprite à 6 cases en largeur
-																		 //   * et 4 en hauteur */
-
-	// clipage du sprite
-	// c-à-d on n'affiche que les parties du sprite qui nous intérèssent
-	garcon_sp.initClip();
 
 
 	///AFFICHAGE FENETRE////////////////////////////////
 
-			while(fenetre.IsOpened())
+		tabMusic[0]->Lecture();
+
+		unsigned int etapeInitiale = _etape;
+
+			while(fenetre.IsOpened()&&(ecranSuivant == HISTOIREJAPON) && (etapeInitiale == _etape))
 				{
 					while (fenetre.GetEvent(event)) {
 							    // # Instanciation de tous les écrans fermeture de la fenetre
@@ -101,45 +124,138 @@ int HistoireJapon::run(sf::RenderWindow &fenetre) {
 									fenetre.Close();
 								else if (event.Type==sf::Event::KeyReleased && event.Key.Code == sf::Key::Escape)
 									fenetre.Close();
+
+							}
+					// on surveille l'avancement de la lecture
+							if(tabMusic[0]->GetStatus() == sf::Music::Stopped && (_etape < 4) )
+									_etape++;
+
+							switch(_etape) {
+								case 0:
+									if (fenetre.GetInput().IsMouseButtonDown(sf::Mouse::Left) && pays.menuActif(fenetre)) {
+										if (pays.getGoClique(fenetre)) {
+											pays.getGo().resetTimer();
+											_etape++;
+											ecranSuivant = HISTOIREJAPON;
+										} else if (pays.getBackClique(fenetre)) {
+											pays.getBack().resetTimer();
+											ecranSuivant = JAPON;
+										} else
+											ecranSuivant = MAPPEMONDE;
+									}
+									break;
+
+
+								case 1:
+									if (fenetre.GetInput().IsMouseButtonDown(sf::Mouse::Left) && pays.menuActif(fenetre)) {
+										if (pays.getGoClique(fenetre)) {
+											pays.getGo().resetTimer();
+											_etape++;
+											ecranSuivant = HISTOIREJAPON;
+										} else if (pays.getBackClique(fenetre)) {
+											pays.getBack().resetTimer();
+											_etape--;
+											ecranSuivant = HISTOIREJAPON;
+										} else
+											ecranSuivant = MAPPEMONDE;
+									}
+									break;
+
+								case 2:
+									if (fenetre.GetInput().IsMouseButtonDown(sf::Mouse::Left) && pays.menuActif(fenetre)) {
+										if (pays.getGoClique(fenetre)) {
+											pays.getGo().resetTimer();
+											_etape=0;
+											ecranSuivant = JEUJAPON;
+										} else if (pays.getBackClique(fenetre)) {
+											pays.getBack().resetTimer();
+											_etape--;
+											ecranSuivant = HISTOIREJAPON;
+										} else
+											ecranSuivant = MAPPEMONDE;
+									}
+									break;
+
+								case 3:
+									if (fenetre.GetInput().IsMouseButtonDown(sf::Mouse::Left) && pays.menuActif(fenetre)) {
+										if (pays.getGoClique(fenetre)) {
+											pays.getGo().resetTimer();
+											_etape=0;
+											ecranSuivant = JEUJAPON;
+										} else if (pays.getBackClique(fenetre)) {
+											pays.getBack().resetTimer();
+											_etape--;
+											ecranSuivant = HISTOIREJAPON;
+										} else
+											ecranSuivant = MAPPEMONDE;
+									}
+									break;
+
+								case 4:
+									if (fenetre.GetInput().IsMouseButtonDown(sf::Mouse::Left) && pays.menuActif(fenetre)) {
+										if (pays.getGoClique(fenetre)) {
+											pays.getGo().resetTimer();
+											_etape=0;
+											ecranSuivant = JEUJAPON;
+										} else if (pays.getBackClique(fenetre)) {
+											pays.getBack().resetTimer();
+											_etape--;
+											ecranSuivant = HISTOIREJAPON;
+										} else
+											ecranSuivant = MAPPEMONDE;
+									}
+									break;
+
+
 							}
 
-					fenetre.Clear(sf::Color(255, 255, 255));
 
-					fenetre.Draw(fond);
-					fenetre.Draw(garcon_sp);
-					fenetre.Draw(fondinst);
+							// PAUSE/PLAY instruction ///////////
+							if(!pays.getPlaying() ) {
+								if(tabMusic[0]->GetStatus() == sf::Music::Paused) {
+									tabMusic[0]->Lecture();
+								}
+							} else {
+								 if(tabMusic[0]->GetStatus() == sf::Music::Playing) {
+									tabMusic[0]->Pause();
+								 }
+							}
+
+
+
+
+							// REPETER instruction ///////////////
+							if(pays.getRepeterClique(fenetre) ) {
+									tabMusic[0]->Stop();
+									tabMusic[0]->Lecture();
+							}
+
+							// MUTE instruction //////////////////
+							if(!pays.getMuting())
+								for(unsigned int i = 0; i < tabMusic.size(); i++)
+									tabMusic[i]->SetVolume(0);
+							else
+								for(unsigned int i = 0; i < tabMusic.size(); i++)
+									tabMusic[i]->SetVolume(100);
+
+
+
+
+					fenetre.Clear(sf::Color(255, 255, 255));
+					fenetre.Draw(background);
+					fenetre.Draw(txtTitreOMBRE);
+					fenetre.Draw(txtTitre);
 					pays.dessinerPage(fenetre);
 					fenetre.Display();
 
 
 
 
-					// ANIMATIONS //////////////////////////////////////////
-							// # on avance le bonhome vers la droite pour commencer
-							 if( ( garcon_sp.GetPosition().x > fenetre.GetWidth() - 50.f) and not garcon_sp.inMoveTo(Person2D::LEFT) ) { // initialise le mouvement
-									garcon_sp.walk(Person2D::LEFT, 450);
-							 }
-							 else if(garcon_sp.inMoveTo(Person2D::LEFT)) {// poursuit le mouvement
-									garcon_sp.walk(Person2D::LEFT, 450);
-							 }
-							 //déplacement vers la gauche
-							 if( (fenetre.GetInput().IsKeyDown(sf::Key::Left)) || ( garcon_sp.inMoveTo(Person2D::LEFT) ) ) {
-							 			garcon_sp.walk(Person2D::LEFT, 450);
-							 }
-							 //déplacement vers la droite
-							 if( (fenetre.GetInput().IsKeyDown(sf::Key::Right)) || ( garcon_sp.inMoveTo(Person2D::RIGHT) ) ) {
-							 			garcon_sp.walk(Person2D::RIGHT, 450);
-							 }
-
-				//dessin de la fenêtre
-				if (fenetre.GetInput().IsMouseButtonDown(sf::Mouse::Left) && pays.menuActif(fenetre) && Clock.GetElapsedTime() > 1)
-					return ecranSuivant=pays.changerEcran(fenetre,HISTOIREJAPON,JEUJAPON,JAPON) ; //ecranSuivant = HistoireJapon (5), ecranCourant = Japon (3),
-							 																		   //ecranPrecedent = Mapmonde (1)
-				if (fenetre.GetInput().IsKeyDown(sf::Key::O))
-							 		return ecranSuivant=HISTOIREJAPON;
-				if ((fenetre.GetInput().IsKeyDown(sf::Key::Space)))
-									return (ecranSuivant=HISTOIREJAPON);
 				}
+			// INTERUPTION de toutes les musiques
+			for(unsigned int i = 0; i < tabMusic.size(); i++)
+						tabMusic[i]->Stop();
+
 	return ecranSuivant;
 
 }
