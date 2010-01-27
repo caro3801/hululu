@@ -118,7 +118,7 @@ int Perou::run(sf::RenderWindow &fenetre) {
 				 fenetre.Display();
 
 				 if (fenetre.GetInput().IsMouseButtonDown(sf::Mouse::Left) && pays.menuActif(fenetre))
-				 			return ecranSuivant=pays.changerEcran(fenetre,5,6,1) ; //ecranSuivant = jeuPerou (5), ecranCourant = Perou (4),
+				 			return ecranSuivant=pays.changerEcran(fenetre,PEROU,PEROUPRESENT,MAPPEMONDE) ; //ecranSuivant = jeuPerou (5), ecranCourant = Perou (4),
 				 																   //ecranPrecedent = Mapemonde (1)
 
 			}
