@@ -22,8 +22,7 @@
 using namespace std;
 
 AustraliePresent::AustraliePresent() {
-	// TODO Auto-generated constructor stub
-
+	_etape = 0;
 }
 
 AustraliePresent::~AustraliePresent() {
@@ -48,6 +47,10 @@ int AustraliePresent::run(sf::RenderWindow &fenetre) {
 	sf::Clock Clock;
 	Clock.Reset();
 
+
+
+	vector<Musique *> tabMusic;
+
 	// ELEMENTS /////////////////////////
 
 	// -- titre
@@ -65,20 +68,28 @@ int AustraliePresent::run(sf::RenderWindow &fenetre) {
 	sf::String txtTitreOMBRE;
 	ombreTexte(txtTitre, txtTitreOMBRE, sf::Color(70, 40, 0), 2, 2);
 
-	// -- cadre présentation
-	sf::Sprite presentation;
-	presentation.SetImage(Ecran::MonManager.GetImage("le_voyage_de_barbulle/img/australie/presentation.png"));
-	position[0] -= 60;
-	position[1] += txtTitre.GetRect().GetHeight() + 10;
-	presentation.SetPosition(position[0],position[1]);
-	float indice = presentation.GetSize().y / presentation.GetSize().x;
-	presentation.Resize(fenetre.GetWidth()*0.40, fenetre.GetWidth()*0.40*indice);
-
 	// IMAGE DE FONT ////////////////////
-	sf::Sprite backgroundKangoo;
-	backgroundKangoo.SetImage(Ecran::MonManager.GetImage("le_voyage_de_barbulle/img/australie/kangou.jpg"));
-	backgroundKangoo.SetPosition(0.f, 0.f);
-	backgroundKangoo.Resize(fenetre.GetWidth(), fenetre.GetHeight());
+
+	sf::Sprite background;
+	switch (_etape) {
+		case 0:
+			background.SetImage(Ecran::MonManager.GetImage("le_voyage_de_barbulle/img/australie/presentation1.png"));
+			tabMusic.push_back(new Musique("le_voyage_de_barbulle/music/australie/aust1.ogg"));
+			break;
+
+		case 1:
+			background.SetImage(Ecran::MonManager.GetImage("le_voyage_de_barbulle/img/australie/presentation2.png"));
+			tabMusic.push_back(new Musique("le_voyage_de_barbulle/music/australie/aust2.ogg"));
+			break;
+
+		case 2:
+			background.SetImage(Ecran::MonManager.GetImage("le_voyage_de_barbulle/img/australie/presentation3.png"));
+			tabMusic.push_back(new Musique("le_voyage_de_barbulle/music/australie/aust3.ogg"));
+			break;
+	}
+
+	background.SetPosition(0.f, 0.f);
+	background.Resize(fenetre.GetWidth(), fenetre.GetHeight());
 
 	sf::Event event;
 
@@ -87,12 +98,11 @@ int AustraliePresent::run(sf::RenderWindow &fenetre) {
 	fenetre.SetView(vue);
 
 
-	vector<Musique *> tabMusic;
-	tabMusic.push_back(new Musique("le_voyage_de_barbulle/music/divers/Epoq-Lepidoptera.ogg"));
 	tabMusic[0]->Lecture();
 
+	unsigned int etapeInitiale = _etape;
 
-	while (fenetre.IsOpened() && (ecranSuivant == AUSTRALIE_PRESENT) )
+	while (fenetre.IsOpened() && (ecranSuivant == AUSTRALIE_PRESENT) && (etapeInitiale == _etape) )
 	{
 
 		// EVENEMENTS ///////////////////////
@@ -106,10 +116,61 @@ int AustraliePresent::run(sf::RenderWindow &fenetre) {
 				fenetre.Close();
 		}
 
+		// on surveille l'avancement de la lecture
+		if(tabMusic[0]->GetStatus() == sf::Music::Stopped && (_etape < 2) )
+				_etape++;
+
+		switch(_etape) {
+			case 0:
+				if (fenetre.GetInput().IsMouseButtonDown(sf::Mouse::Left) && modelePage.menuActif(fenetre)) {
+					if (modelePage.getGoClique(fenetre)) {
+						modelePage.getGo().resetTimer();
+						_etape++;
+						ecranSuivant = AUSTRALIE_PRESENT;
+					} else if (modelePage.getBackClique(fenetre)) {
+						modelePage.getBack().resetTimer();
+						ecranSuivant = AUSTRALIE_INTRO;
+					} else
+						ecranSuivant = MAPPEMONDE;
+				}
+				break;
+
+
+			case 1:
+				if (fenetre.GetInput().IsMouseButtonDown(sf::Mouse::Left) && modelePage.menuActif(fenetre)) {
+					if (modelePage.getGoClique(fenetre)) {
+						modelePage.getGo().resetTimer();
+						_etape++;
+						ecranSuivant = AUSTRALIE_PRESENT;
+					} else if (modelePage.getBackClique(fenetre)) {
+						modelePage.getBack().resetTimer();
+						_etape--;
+						ecranSuivant = AUSTRALIE_PRESENT;
+					} else
+						ecranSuivant = MAPPEMONDE;
+				}
+				break;
+
+			case 2:
+				if (fenetre.GetInput().IsMouseButtonDown(sf::Mouse::Left) && modelePage.menuActif(fenetre)) {
+					if (modelePage.getGoClique(fenetre)) {
+						modelePage.getGo().resetTimer();
+						_etape=0;
+						ecranSuivant = AUSTRALIE_PRESENT;
+					} else if (modelePage.getBackClique(fenetre)) {
+						modelePage.getBack().resetTimer();
+						_etape--;
+						ecranSuivant = AUSTRALIE_PRESENT;
+					} else
+						ecranSuivant = MAPPEMONDE;
+				}
+				break;
+		}
+
 
 		// PAUSE/PLAY instruction////////////
 		if(!modelePage.getPlaying() ) {
-			if(tabMusic[0]->GetStatus() != sf::Music::Playing) {
+			if(tabMusic[0]->GetStatus() == sf::Music::Paused) {
 				tabMusic[0]->Lecture();
 			}
 		} else {
@@ -120,18 +181,12 @@ int AustraliePresent::run(sf::RenderWindow &fenetre) {
 
 
 		// DESSINS  //////////////////////////
-		fenetre.Draw(backgroundKangoo);
+		fenetre.Draw(background);
 		fenetre.Draw(txtTitreOMBRE);
 		fenetre.Draw(txtTitre);
-		fenetre.Draw(presentation);
 		modelePage.dessinerPage(fenetre);
 
 		fenetre.Display();
-
-		// CTRL changement d'écran ////////////
-		if (fenetre.GetInput().IsMouseButtonDown(sf::Mouse::Left) && modelePage.menuActif(fenetre))
-			ecranSuivant = modelePage.changerEcran(fenetre, AUSTRALIE_PRESENT, AUSTRALIE_PRESENT, AUSTRALIE_INTRO) ;
-
 	}
 
 	// INTERUPTION de toutes les musiques

@@ -20,6 +20,8 @@ public:
 	AustraliePresent();
 	virtual ~AustraliePresent();
 	virtual int run(sf::RenderWindow &fenetre);
+protected:
+	unsigned int _etape;
 };
 
 #endif /* AUSTRALIEPRESENT_H_ */
