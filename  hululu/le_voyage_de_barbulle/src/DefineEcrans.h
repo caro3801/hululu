@@ -26,5 +26,6 @@
 #define INTRO_G 14
 #define TRAGET_ANZ 15
 #define NZ_INTRO 16
+#define NZ_PRESENT 17
 
 #endif /* DEFINEECRANS_H_ */
