@@ -119,7 +119,7 @@ int Intro::run(sf::RenderWindow &fenetre) {
 					ecranSuivant = INTRO_G;
 				} else if (modelePage.getBackClique(fenetre)) {
 					modelePage.getBack().resetTimer();
-					ecranSuivant = PEROU;
+					ecranSuivant = MENU_0;
 
 				} else
 					ecranSuivant = MAPPEMONDE;
