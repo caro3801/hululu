@@ -135,7 +135,7 @@ int AustraliePresent::run(sf::RenderWindow &fenetre) {
 	}
 
 	// INTERUPTION de toutes les musiques
-	for(int i = 0; i < tabMusic.size(); i++)
+	for(unsigned int i = 0; i < tabMusic.size(); i++)
 		tabMusic[i]->Pause();
 
 	// on éteint

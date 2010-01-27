@@ -37,14 +37,12 @@ int ItaliePresent::run(sf::RenderWindow &fenetre) {
 
 	// DEF de la police ////////////////
 	sf::Font cursiveFont;
-	if (!cursiveFont.LoadFromFile(
-			"le_voyage_de_barbulle/img/font/Cursive_standard_BOLD.ttf", 50.f))
+	if (!cursiveFont.LoadFromFile("le_voyage_de_barbulle/img/font/Cursive_standard_BOLD.ttf", 50.f))
 		cerr << "Erreur lors du chargement de la police" << endl;
 
 	// ecran de présentation numero 1
 	sf::Sprite present1;
-	present1.SetImage(Ecran::MonManager.GetImage(
-			"le_voyage_de_barbulle/img/italie/present1.png"));
+	present1.SetImage(Ecran::MonManager.GetImage("le_voyage_de_barbulle/img/italie/present1.png"));
 	present1.SetPosition(0.f, 0.f);
 	present1.Resize((fenetre.GetWidth()), (fenetre.GetHeight()));
 
@@ -67,7 +65,11 @@ int ItaliePresent::run(sf::RenderWindow &fenetre) {
 	fenetre.SetView(vue);
 	// # Pour que le programme ne se termine pas :)
 	sf::Event event;
-	while (fenetre.IsOpened()) {
+
+	int etapeInitiale = etape;
+
+	while (fenetre.IsOpened() && (ecranSuivant == ITALIEPRESENT) && (etapeInitiale == etape) ) {
+
 		while (fenetre.GetEvent(event)) {
 			// # Instanciation de tous les éc fermeture de la fenetre
 			// si echap ou fermeture manuelle
@@ -77,41 +79,42 @@ int ItaliePresent::run(sf::RenderWindow &fenetre) {
 					== sf::Key::Escape)
 				fenetre.Close();
 		}
+
+
 		switch (etape) {
 		case 0:
 			fenetre.Draw(present1);
 			pays.dessinerPage(fenetre);
 			fenetre.Display();
-			if (fenetre.GetInput().IsMouseButtonDown(sf::Mouse::Left)
-					&& pays.menuActif(fenetre) && Clock.GetElapsedTime() > 1) {
+			if (fenetre.GetInput().IsMouseButtonDown(sf::Mouse::Left) && pays.menuActif(fenetre)) {
 				if (pays.getGoClique(fenetre)) {
 					pays.getGo().resetTimer();
 					etape++;
-					return ITALIEPRESENT;
+					ecranSuivant = ITALIEPRESENT;
+
 				} else if (pays.getBackClique(fenetre)) {
 					pays.getBack().resetTimer();
-					etape--;
-					return ITALIE;
+					ecranSuivant = ITALIE;
 				} else
-					return ITALIEPRESENT;
+					ecranSuivant = MAPPEMONDE;
 			}
 			break;
+
 		case 1:
 			fenetre.Draw(present2);
 			pays.dessinerPage(fenetre);
 			fenetre.Display();
-			if (fenetre.GetInput().IsMouseButtonDown(sf::Mouse::Left)
-					&& pays.menuActif(fenetre) && Clock.GetElapsedTime() > 1) {
+			if (fenetre.GetInput().IsMouseButtonDown(sf::Mouse::Left) && pays.menuActif(fenetre)) {
 				if (pays.getGoClique(fenetre)) {
 					pays.getGo().resetTimer();
 					etape++;
-					return ITALIEPRESENT;
+					ecranSuivant = ITALIEPRESENT;
 				} else if (pays.getBackClique(fenetre)) {
 					pays.getBack().resetTimer();
 					etape--;
-					return ITALIEPRESENT;
+					ecranSuivant = ITALIEPRESENT;
 				} else
-					return ITALIEPRESENT;
+					ecranSuivant = MAPPEMONDE;
 			}
 
 			break;
@@ -119,30 +122,21 @@ int ItaliePresent::run(sf::RenderWindow &fenetre) {
 			fenetre.Draw(present3);
 			pays.dessinerPage(fenetre);
 			fenetre.Display();
-			if (fenetre.GetInput().IsMouseButtonDown(sf::Mouse::Left)
-					&& pays.menuActif(fenetre) && Clock.GetElapsedTime() > 1) {
+			if (fenetre.GetInput().IsMouseButtonDown(sf::Mouse::Left) && pays.menuActif(fenetre)) {
 				if (pays.getGoClique(fenetre)) {
 					pays.getGo().resetTimer();
-					etape++;
-					return JEU_ITALIE;
+					etape = 0;
+					ecranSuivant = JEU_ITALIE;
 				} else if (pays.getBackClique(fenetre)) {
 					pays.getBack().resetTimer();
 					etape--;
-					return ITALIEPRESENT;
+					ecranSuivant = ITALIEPRESENT;
 				} else
-					return ITALIEPRESENT;
+					ecranSuivant = MAPPEMONDE;
 			}
 			break;
-
-		default:
-
-			fenetre.Display();
-			if (fenetre.GetInput().IsMouseButtonDown(sf::Mouse::Left)
-					&& pays.menuActif(fenetre) && Clock.GetElapsedTime() > 1) {
-				return ecranSuivant = pays.changerEcran(fenetre, ITALIEPRESENT,
-						JEU_ITALIE, ITALIE);
-			}
 		}
 	}
+
 	return ecranSuivant;
 }
