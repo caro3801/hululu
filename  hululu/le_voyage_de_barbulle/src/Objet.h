@@ -24,12 +24,17 @@ public:
 	inline bool getTrouve() { return this->trouve; } //objet trouvé ou non, oui a la fin d'un jeu réussi
 	void dessinerDansSac(); //Pole : dessiner l'objet dans la case correspondante
 	void emplacementPorte(); //Afficher l'emplacement de l'objet sur la porte
+	void dessinerSurPorte(); //Dessiner l'image correspondant a l'objet (porte_weta, porte_lampion,..)
+	void dessinerObjet(sf::RenderWindow& fenetre);
+	void initDessin(const std::string &img1);
+	void placer(float x, float y);
 	void setPlace(bool placeObj);
 	bool estPlace(); //Dessiner l'image correspondant a l'objet (porte_weta, porte_lampion,..)
 private:
 	string nom; //weta, poncho, blason, lampion
 	bool trouve; //objet trouvé ou non, initialisé a faux
 	bool place ;
+	sf::Sprite image;
 };
 
 #endif /* OBJET_H_ */
