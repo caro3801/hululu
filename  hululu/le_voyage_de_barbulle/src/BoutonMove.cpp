@@ -12,6 +12,7 @@ BoutonMove::BoutonMove() : Bouton() {
 	this->decalageY=0;
 	this->decalageX=0;
 	this->enMouvement=false;
+	this->aBouger=false;
 }
 
 BoutonMove::~BoutonMove() {
