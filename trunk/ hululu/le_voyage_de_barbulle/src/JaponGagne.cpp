@@ -74,10 +74,7 @@ int JaponGagne::run(sf::RenderWindow &fenetre)
 
 	//Objet gagné /////////////////////////////////////////////////////////////////////////////
 
-	//PoleSud_Porte::lampion.initDessin("le_voyage_de_barbulle/img/objets/lampion.png");
-//=======
-//	//PoleSud_Porte::lampion.initDessin("le_voyage_de_barbulle/img/objets/lampion.png");
-//>>>>>>> .r191
+	PoleSud_Porte::lampion.initDessin("le_voyage_de_barbulle/img/objets/lampion.png");
 	PoleSud_Porte::lampion.placer((fenetre.GetWidth())/1.3, ((fenetre.GetHeight())/4));
 
 
