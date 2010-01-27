@@ -18,6 +18,9 @@ public:
 	HistoireJapon();
 	virtual ~HistoireJapon();
 	virtual int run(sf::RenderWindow &fenetre);
+
+protected:
+	unsigned int _etape;
 };
 
 #endif /* JAPON_H_ */
