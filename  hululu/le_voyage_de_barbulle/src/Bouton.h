@@ -29,6 +29,7 @@ public:
 	void drawMe(sf::RenderWindow & fenetre);
 	bool pretACliquer();
 	void resetTimer();
+	inline void rotater(float angle) { spriten.SetRotation(angle);spritef.SetRotation(angle); }
 
 protected:
 
