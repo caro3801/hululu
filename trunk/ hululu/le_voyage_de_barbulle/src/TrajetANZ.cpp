@@ -40,7 +40,7 @@ int TrajetANZ::run(sf::RenderWindow &fenetre) {
 
 	// LISTE musique ////////////////////
 	vector<Musique *> tabMusic;
-	//tabMusic.push_back(new Musique("le_voyage_de_barbulle/music/australie/aust1.ogg"));
+	tabMusic.push_back(new Musique("le_voyage_de_barbulle/music/australie/aust1.ogg"));
 
 
 	// IMAGE DE FONT ////////////////////
@@ -98,6 +98,11 @@ int TrajetANZ::run(sf::RenderWindow &fenetre) {
 		// DESSINS  //////////////////////////
 		fenetre.Draw(background);
 		modelePage.dessinerPage(fenetre);
+
+
+		// CTRL changement d'écran ////////////
+		if (fenetre.GetInput().IsMouseButtonDown(sf::Mouse::Left) && modelePage.menuActif(fenetre))
+			ecranSuivant = modelePage.changerEcran(fenetre, TRAGET_ANZ, NZ_INTRO, AUSTRALIE_PRESENT) ;
 
 		fenetre.Display();
 	}
