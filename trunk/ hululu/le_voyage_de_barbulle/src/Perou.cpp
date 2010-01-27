@@ -18,6 +18,7 @@ using namespace std;
 #include "JeuPerou.h"
 #include "Page.h"
 #include "AccueilPays.h"
+#include "DefineEcrans.h"
 
 // WIKI SFML //////////////////////////
 #include "Bouton.h"
@@ -33,7 +34,7 @@ Perou::~Perou() {
 
 int Perou::run(sf::RenderWindow &fenetre) {
 
-	int ecranSuivant = 5;
+	int ecranSuivant = PEROU;
 	sf::Clock Clock; //Horloge
 	Clock.Reset();
 	AccueilPays PerouAccueil(fenetre,"le_voyage_de_barbulle/img/sprite/piece5.png","le_voyage_de_barbulle/img/perou/Drapeau_Debut.png","Amerique du Sud et Perou","El Perudo, el pais de los Incas",sf::Color::Blue,sf::Color::Blue);

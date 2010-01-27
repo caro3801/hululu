@@ -421,7 +421,7 @@ int JeuItalie::run(sf::RenderWindow &fenetre) {
 			Clock.Reset();
 		}
 
-		while (nbATrouver == 0) {
+	/*	while (nbATrouver == 0) {
 			fenetre.Display();
 			if(Clock.GetElapsedTime() > 5) {
 				objetGagne=true;
@@ -429,7 +429,7 @@ int JeuItalie::run(sf::RenderWindow &fenetre) {
 				nbATrouver++;
 				ecranSuivant = MAPPEMONDE;
 			}
-		}
+		}*/
 
 		fenetre.Display();
 		if (fenetre.GetInput().IsMouseButtonDown(sf::Mouse::Left) && pays.menuActif(fenetre) )
