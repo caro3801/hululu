@@ -94,9 +94,10 @@ int PerouGagne::run(sf::RenderWindow &fenetre)
 				fenetre.Draw(Lama);
 				fenetre.Draw(Barbulle);
 				fenetre.Draw(text);
-				pays.dessinerPage(fenetre);
 				PoleSud_Porte::poncho.setTrouve(true);
 				PoleSud_Porte::poncho.dessinerObjet(fenetre);
+
+				pays.dessinerPage(fenetre);
 				fenetre.Display();
 
 				if (fenetre.GetInput().IsMouseButtonDown(sf::Mouse::Left) && pays.menuActif(fenetre) )

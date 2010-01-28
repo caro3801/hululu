@@ -242,19 +242,6 @@ int JeuJapon::run(sf::RenderWindow &fenetre)
 	tabMusic[2]->ChargerFichier();
 
 
-//	sf::Sprite Instruction1;
-//	Instruction1.SetImage(Ecran::MonManager.GetImage("le_voyage_de_barbulle/img/japon/instruction1.png"));
-//	Instruction1.SetPosition((fenetre.GetWidth())/5, ((fenetre.GetHeight())/35));
-//
-//
-//	sf::Sprite Instruction2;
-//	Instruction2.SetImage(Ecran::MonManager.GetImage("le_voyage_de_barbulle/img/japon/instruction2.png"));
-//	Instruction2.SetPosition((fenetre.GetWidth())/5, ((fenetre.GetHeight())/35));
-//
-//	sf::Sprite Instruction3;
-//	Instruction3.SetImage(Ecran::MonManager.GetImage("le_voyage_de_barbulle/img/japon/instruction3.png"));
-//	Instruction3.SetPosition((fenetre.GetWidth())/5, ((fenetre.GetHeight())/50));
-
 	// FONT/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	// instruction
 	sf::Font MyFont;
@@ -262,8 +249,10 @@ int JeuJapon::run(sf::RenderWindow &fenetre)
 	cerr << "Erreur lors du chargement de la police";
 
 	//Texte//////////////////////////////////////////////////////////////////////////////////////
+	float topAide = (fenetre.GetHeight()/8)+600 ;
+
 		sf::String text1(L"Oiseau blanc et noir, haut perché avec fierté, j'annonce janvier.");
-		text1.Move((fenetre.GetWidth())/2, ((fenetre.GetHeight())/25));
+		text1.Move((fenetre.GetWidth())/2, topAide+20);
 		text1.SetColor(sf::Color::Color(120,15,0));
 		text1.SetSize(20.f);
 		text1.SetFont(MyFont);
@@ -365,14 +354,15 @@ int JeuJapon::run(sf::RenderWindow &fenetre)
 	Sakura3.Resize(40, 40);
 
 	//AIDE //////////////////////////////////////////////////////////////////////////////
+
 	Bouton Barbulle;
 	Barbulle.initBouton("le_voyage_de_barbulle/img/japon/barbulle_japon.png","le_voyage_de_barbulle/img/japon/barbulle_japon.png" );
 	Barbulle.redimensionner(0.2);
-	Barbulle.placer((fenetre.GetWidth())/1.15, ((fenetre.GetHeight())/70));
+	Barbulle.placer((fenetre.GetWidth())/1.15,topAide);
 
 	sf::Sprite Aide;
 	Aide.SetImage(Ecran::MonManager.GetImage("le_voyage_de_barbulle/img/japon/barbulle_aide.png"));
-	Aide.SetPosition((fenetre.GetWidth())/1.06, ((fenetre.GetHeight())/70));
+	Aide.SetPosition((fenetre.GetWidth())/1.06, topAide);
 	Aide.Resize(60, 60);
 
 
@@ -535,47 +525,45 @@ int JeuJapon::run(sf::RenderWindow &fenetre)
 
 
 
-						pays.dessinerPage(fenetre);
-						fenetre.Draw(nbCarte);
-						fenetre.Draw(Janvier);
-						fenetre.Draw(Fevrier);
-						fenetre.Draw(Mars);
-						fenetre.Draw(Avril);
-						fenetre.Draw(Mai);
-						fenetre.Draw(Juin);
-						fenetre.Draw(Juillet);
-						fenetre.Draw(Aout);
-						fenetre.Draw(Septembre);
-						fenetre.Draw(Octobre);
-						fenetre.Draw(Novembre);
-						fenetre.Draw(Decembre);
-						fenetre.Draw(Sakura);
-						fenetre.Draw(Sakura2);
-						fenetre.Draw(Sakura3);
-						fenetre.Draw(Aide);
-						fenetre.Draw(compteur);
-						Barbulle.drawMe(fenetre);
+					fenetre.Draw(nbCarte);
+					fenetre.Draw(Janvier);
+					fenetre.Draw(Fevrier);
+					fenetre.Draw(Mars);
+					fenetre.Draw(Avril);
+					fenetre.Draw(Mai);
+					fenetre.Draw(Juin);
+					fenetre.Draw(Juillet);
+					fenetre.Draw(Aout);
+					fenetre.Draw(Septembre);
+					fenetre.Draw(Octobre);
+					fenetre.Draw(Novembre);
+					fenetre.Draw(Decembre);
+					fenetre.Draw(Sakura);
+					fenetre.Draw(Sakura2);
+					fenetre.Draw(Sakura3);
+					fenetre.Draw(Aide);
+					fenetre.Draw(compteur);
 
 
 
 
-						if (Clock2.GetElapsedTime() < tabMusic[0]->GetDuration() ){
-							fenetre.Draw(inst1);
-							_etape = 0;
-						}
-						else if (Clock2.GetElapsedTime() < (tabMusic[0]->GetDuration() + tabMusic[1]->GetDuration()) ){
-							fenetre.Draw(inst2);
-							_etape = 1;
-						}
-						else
-						{
-							fenetre.Draw(inst3);
-							_etape = 2;
-						}
+					if (Clock2.GetElapsedTime() < tabMusic[0]->GetDuration() ){
+						fenetre.Draw(inst1);
+						_etape = 0;
+					}
+					else if (Clock2.GetElapsedTime() < (tabMusic[0]->GetDuration() + tabMusic[1]->GetDuration()) ){
+						fenetre.Draw(inst2);
+						_etape = 1;
+					}
+					else
+					{
+						fenetre.Draw(inst3);
+						_etape = 2;
+					}
 
-						if (Clock2.GetElapsedTime() < (tabMusic[0]->GetDuration() + tabMusic[1]->GetDuration() + tabMusic[2]->GetDuration()) )
-							if( tabMusic[_etape]->GetStatus() == sf::Music::Stopped)
-								tabMusic[_etape]->Lecture();
+					if (Clock2.GetElapsedTime() < (tabMusic[0]->GetDuration() + tabMusic[1]->GetDuration() + tabMusic[2]->GetDuration()) )
+						if( tabMusic[_etape]->GetStatus() == sf::Music::Stopped)
+							tabMusic[_etape]->Lecture();
 
 
 					if (fenetre.GetInput().IsMouseButtonDown(sf::Mouse::Left) && pays.menuActif(fenetre) && courant!=13)
@@ -593,9 +581,6 @@ int JeuJapon::run(sf::RenderWindow &fenetre)
 							ecranSuivant=JEUJAPON;
 
 
-					fenetre.Display();
-
-
 
 					// REPETER instruction ///////////////
 					if(pays.getRepeterClique(fenetre) ) {
@@ -611,6 +596,9 @@ int JeuJapon::run(sf::RenderWindow &fenetre)
 						for(unsigned int i = 0; i < tabMusic.size(); i++)
 							tabMusic[i]->SetVolume(100);
 
+					Barbulle.drawMe(fenetre);
+					pays.dessinerPage(fenetre);
+					fenetre.Display();
 
 				}
 
