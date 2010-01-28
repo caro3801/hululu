@@ -101,6 +101,9 @@ int JeuPerou::run(sf::RenderWindow &fenetre) {
 	int ecranSuivant = JEU_PEROU;
 	sf::Clock Clock; //Horloge
 	Clock.Reset();
+	sf::Clock Clock2; //Horloge
+	Clock2.Reset();
+
 
 	sf::Font cursiveFont;
 	if (!cursiveFont.LoadFromFile(
@@ -346,9 +349,11 @@ int JeuPerou::run(sf::RenderWindow &fenetre) {
 		Clock.Reset();
 		}
 
-		if (boolErreur)
+		if (boolErreur && (Clock2.GetElapsedTime()<2))
 		{
 			fenetre.Draw(erreur);
+
+			boolErreur = false;
 		}
 		fenetre.Display();
 
