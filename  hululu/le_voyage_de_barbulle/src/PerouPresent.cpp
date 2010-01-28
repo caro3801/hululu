@@ -71,12 +71,12 @@ int PerouPresent::run(sf::RenderWindow &fenetre){
 			sf::Sprite background;
 			switch (_etape) {
 				case 0:
-					background.SetImage(Ecran::MonManager.GetImage("le_voyage_de_barbulle/img/perou/presPerou01.png"));
+					background.SetImage(Ecran::MonManager.GetImage("le_voyage_de_barbulle/img/perou/presPerou1.png"));
 					tabMusic.push_back(new Musique("le_voyage_de_barbulle/music/perou/per2.ogg"));
 					break;
 
 				case 1:
-					background.SetImage(Ecran::MonManager.GetImage("le_voyage_de_barbulle/img/perou/presPerou02.png"));
+					background.SetImage(Ecran::MonManager.GetImage("le_voyage_de_barbulle/img/perou/presPerou2.png"));
 					tabMusic.push_back(new Musique("le_voyage_de_barbulle/music/perou/per3.ogg"));
 					break;
 			}

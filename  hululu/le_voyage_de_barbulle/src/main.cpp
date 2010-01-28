@@ -44,6 +44,7 @@ using namespace std;
 #include "NzJeu.h"			// numero 18
 #include "ItalieMusee.h"			// numero 19
 #include "PerouPresent.h"
+#include "GagneJeu.h"	//numero 21
 
 // PROCEDURE PRINCIPALE/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 int main(int argc, char** argv)
@@ -101,7 +102,8 @@ int main(int argc, char** argv)
     tabEcrans.push_back (&ecran19);  //ita
     PerouPresent ecran20;
     tabEcrans.push_back (&ecran20);
-
+    GagneJeu ecran21;
+    tabEcrans.push_back (&ecran21);
     // # boucle principale, c'est ici que tt commence...
     while ( ecran >= 0 and fenetre.IsOpened() ) // -1 provoque l'arrêt du programme
         ecran = tabEcrans[ecran]->run(fenetre);
