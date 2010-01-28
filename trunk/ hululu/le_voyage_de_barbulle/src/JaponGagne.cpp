@@ -75,7 +75,7 @@ int JaponGagne::run(sf::RenderWindow &fenetre)
 	//Objet gagné /////////////////////////////////////////////////////////////////////////////
 
 	PoleSud_Porte::lampion.initDessin("le_voyage_de_barbulle/img/objets/lampion.png");
-	PoleSud_Porte::lampion.placer((fenetre.GetWidth())/1.3, ((fenetre.GetHeight())/4));
+	PoleSud_Porte::lampion.placerDessin((fenetre.GetWidth())/1.3, ((fenetre.GetHeight())/4));
 
 
 
@@ -104,6 +104,8 @@ int JaponGagne::run(sf::RenderWindow &fenetre)
 						else if (event.Type==sf::Event::KeyReleased && event.Key.Code == sf::Key::Escape)
 							fenetre.Close();
 					}
+
+
 
 					fenetre.Clear(sf::Color(255, 200, 122));
 
