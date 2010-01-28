@@ -89,7 +89,7 @@ int HistoireJapon::run(sf::RenderWindow &fenetre) {
 					break;
 
 				case 4:
-					background.SetImage(Ecran::MonManager.GetImage("le_voyage_de_barbulle/img/japon/presJapon3.png"));
+					background.SetImage(Ecran::MonManager.GetImage("le_voyage_de_barbulle/img/japon/presJapon1.png"));
 					tabMusic.push_back(new Musique("le_voyage_de_barbulle/music/japon/jap5.ogg"));
 					break;
 
