@@ -109,10 +109,7 @@ int JeuPerou::run(sf::RenderWindow &fenetre) {
 	fond.SetPosition(0.f, 0.f);
 	fond.Resize((fenetre.GetWidth()), (fenetre.GetHeight()));
 
-	sf::Sprite chauffeur;
-	chauffeur.SetImage(Ecran::MonManager.GetImage(
-			"le_voyage_de_barbulle/img/perou/chauffeur_parle.png"));
-	chauffeur.SetPosition(fenetre.GetWidth() *8/ 100,fenetre.GetHeight()/100); //positionnement du cauffeur
+
 	// texte du bouton
 	sf::String texteV("Valider");
 	texteV.SetColor(sf::Color::Black);
@@ -250,7 +247,8 @@ int JeuPerou::run(sf::RenderWindow &fenetre) {
 		annuler.drawMe(fenetre);
 		fenetre.Draw(texteA);
 
-		if (valider.estClique(fenetre) && entree) {
+		if (valider.estClique(fenetre) && entree && !val1_1.estClique(fenetre)&& !val1_2.estClique(fenetre)
+				&& !val1_3.estClique(fenetre) && !val2_3.estClique(fenetre)&& !val3_2.estClique(fenetre)&& !val5_1.estClique(fenetre)) {
 			if (inZone(fenetre, val5_1)) {
 				sommeTot = sommeTot + val5_1.getValeur();
 			}
@@ -295,7 +293,8 @@ int JeuPerou::run(sf::RenderWindow &fenetre) {
 
 		}
 
-		if (annuler.estClique(fenetre))
+		if (annuler.estClique(fenetre) && !val1_1.estClique(fenetre)&& !val1_2.estClique(fenetre)
+				&& !val1_3.estClique(fenetre) && !val2_3.estClique(fenetre)&& !val3_2.estClique(fenetre)&& !val5_1.estClique(fenetre))
 		{
 			val1_1.placer((fenetre.GetWidth() * 8 / 12), (fenetre.GetHeight() * 9 / 11));
 			val1_2.placer((fenetre.GetWidth() * 9 / 12), (fenetre.GetHeight() * 9 / 11));
