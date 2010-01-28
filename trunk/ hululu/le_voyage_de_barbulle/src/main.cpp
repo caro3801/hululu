@@ -53,8 +53,12 @@ int main(int argc, char** argv)
 
 	// # Vecteur contenant les adresses des variables-écran
 	vector<Ecran*> tabEcrans;
-    int ecran = MENU_0;
+    int ecran = POLESUD_PORTE;
 
+    PoleSud_Porte::blason.setTrouve(true);
+    PoleSud_Porte::weta.setTrouve(true);
+    PoleSud_Porte::lampion.setTrouve(true);
+    PoleSud_Porte::poncho.setTrouve(true);
     // # création de la fenêtre
     sf::RenderWindow fenetre(sf::VideoMode::GetMode(0), "Le voyage de Barbule", sf::Style::Fullscreen);
 	fenetre.SetFramerateLimit(60); //limite la génération d'images a 60/s

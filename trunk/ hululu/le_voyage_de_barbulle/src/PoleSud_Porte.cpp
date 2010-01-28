@@ -404,7 +404,7 @@ int PoleSud_Porte::run(sf::RenderWindow &fenetre) {
 
 	// ANIMATION /////////////////////////
 	if(nbObjTrouves == 4) {
-		vue.Zoom(1.001f);
+		vue.Zoom(1.001f + 0.009*fenetre.GetFrameTime());
 	}
 
 	// REPETER instruction ///////////////
