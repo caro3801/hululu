@@ -11,6 +11,7 @@
 #include <SFML/System.hpp>
 #include <SFML/Window.hpp>
 #include <SFML/Graphics.hpp>
+#include <SFML/Audio.hpp>
 #include "Ecran.h"
 
 class GagneJeu : public Ecran {
@@ -18,7 +19,8 @@ public:
 	GagneJeu();
 	virtual ~GagneJeu();
 	virtual int run(sf::RenderWindow &fenetre);
-
+private:
+	unsigned int etape;
 };
 
 #endif /* GAGNEJEU_H_ */
