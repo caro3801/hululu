@@ -37,35 +37,35 @@ void JeuPerou::creerPieces(sf::RenderWindow &fenetre,
 
 	val1_1.setValeur(1);
 	val1_1.initBouton(piece1_p, piece1);
-	val1_1.redimensionner(0.75);
+	val1_1.redimensionner(0.65);
 	val1_1.placer((fenetre.GetWidth() * 8 / 12), (fenetre.GetHeight() * 9 / 11));
 	val1_1.decalageSouris(val1_1.getTailleX(), val1_1.getTailleY());
 	val1_2.setValeur(1);
 	val1_2.initBouton(piece1_p, piece1);
-	val1_2.redimensionner(0.75);
+	val1_2.redimensionner(0.65);
 	val1_2.placer((fenetre.GetWidth() * 9 / 12), (fenetre.GetHeight() * 9 / 11));
 	val1_2.decalageSouris(25.0, 25.0);
 	val1_3.setValeur(1);
 	val1_3.initBouton(piece1_p, piece1);
-	val1_3.redimensionner(0.75);
+	val1_3.redimensionner(0.65);
 	val1_3.placer((fenetre.GetWidth() * 10 / 12),
 			(fenetre.GetHeight() * 9 / 11));
 	val1_3.decalageSouris(25.0, 25.0);
 
 	val2_3.setValeur(2);
 	val2_3.initBouton(piece2_p, piece2);
-	val2_3.redimensionner(0.75);
+	val2_3.redimensionner(0.65);
 	val2_3.placer((fenetre.GetWidth() * 10 / 12),
 			(fenetre.GetHeight() * 8 / 11));
 	val2_3.decalageSouris(25.0, 25.0);
 	val5_1.setValeur(5);
 	val5_1.initBouton(piece5_p, piece5);
-	val5_1.redimensionner(0.75);
+	val5_1.redimensionner(0.65);
 	val5_1.placer((fenetre.GetWidth() * 8 / 12), (fenetre.GetHeight() * 8 / 11));
 	val5_1.decalageSouris(25.0, 25.0);
 	val3_2.setValeur(3);
 	val3_2.initBouton(piece3_p, piece3);
-	val3_2.redimensionner(0.75);
+	val3_2.redimensionner(0.65);
 	val3_2.placer((fenetre.GetWidth() * 9 / 12), (fenetre.GetHeight() * 8 / 11));
 	val3_2.decalageSouris(25.0, 25.0);
 }
@@ -113,7 +113,7 @@ int JeuPerou::run(sf::RenderWindow &fenetre) {
 
 	sf::Sprite inst;
 	inst.SetImage(Ecran::MonManager.GetImage("le_voyage_de_barbulle/img/perou/instruction.png"));
-	inst.SetPosition((fenetre.GetWidth())*10/20, ((fenetre.GetHeight())/20));
+	inst.SetPosition((fenetre.GetWidth())*8/20, ((fenetre.GetHeight())*2/20));
 
 	// texte du bouton
 	sf::String texteV("Valider");
@@ -313,21 +313,10 @@ int JeuPerou::run(sf::RenderWindow &fenetre) {
 			entree = true;
 			sommeTot =0;
 		}
-		/*Bouton go;
-		Bouton back;
-		back = pays.getBack();
-		go = pays.getGo();
-		if ((back.estClique(fenetre))
-		&& !val1_1.estClique(fenetre)&& !val1_2.estClique(fenetre)&& !val1_3.estClique(fenetre) && !val2_3.estClique(fenetre)&& !val3_2.estClique(fenetre)&& !val5_1.estClique(fenetre));*/
-
-
-		/*if ((pays.getBackClique(fenetre) || pays.getGoClique(fenetre) || pays.getMapClique(fenetre) || pays.getRepeterClique(fenetre))
-				&& !val1_1.estClique(fenetre)&& !val1_2.estClique(fenetre)&& !val1_3.estClique(fenetre) && !val2_3.estClique(fenetre)&& !val3_2.estClique(fenetre)&& !val5_1.estClique(fenetre))
-			;*/
 
 		if ( boolgagner)
 		{
-		fenetre.Draw(gagne);
+		ecranSuivant = PEROUGAGNE;
 		PoleSud_Porte::poncho.setTrouve(true);
 		Clock.Reset();
 		}
@@ -336,8 +325,7 @@ int JeuPerou::run(sf::RenderWindow &fenetre) {
 
 		if (fenetre.GetInput().IsMouseButtonDown(sf::Mouse::Left)
 				&& pays.menuActif(fenetre)&& !val1_1.estClique(fenetre)&& !val1_2.estClique(fenetre)&& !val1_3.estClique(fenetre) && !val2_3.estClique(fenetre)&& !val3_2.estClique(fenetre)&& !val5_1.estClique(fenetre))
-			ecranSuivant = pays.changerEcran(fenetre, JEU_PEROU, JEU_PEROU,
-					PEROU);
+			ecranSuivant = pays.changerEcran(fenetre, JEU_PEROU, JEU_PEROU,PEROU);
 	}
 
 	return ecranSuivant;
