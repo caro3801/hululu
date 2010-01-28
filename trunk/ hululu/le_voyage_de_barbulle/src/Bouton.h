@@ -30,7 +30,7 @@ public:
 	bool pretACliquer();
 	void resetTimer();
 	inline void rotater(float angle) { spriten.SetRotation(angle);spritef.SetRotation(angle); }
-
+	void SetAlpha(int valeur);
 protected:
 
 	sf::Sprite spriten ;

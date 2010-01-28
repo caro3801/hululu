@@ -78,6 +78,9 @@ int PoleSud_Porte::run(sf::RenderWindow &fenetre) {
 	sf::Clock clockAnimation;
 	clockAnimation.Reset();
 
+	sf::Clock clockTremble;
+	clockTremble.Reset();
+
 	bool mouseMove = false;
 	bool lache = true;
 
@@ -265,9 +268,6 @@ int PoleSud_Porte::run(sf::RenderWindow &fenetre) {
 			fenetre.Draw(porte_weta);
 		}
 
-
-		pays.dessinerPage(fenetre);
-
 		if (!poncho.getTrouve()) {
 			fenetre.Draw(emplacement_vide1);
 		} else
@@ -338,8 +338,7 @@ int PoleSud_Porte::run(sf::RenderWindow &fenetre) {
 			tabMusic[0]->Stop();
 			if(nbObjTrouves < tabMusic.size())
 				tabMusic[nbObjTrouves]->Stop();
-			else
-				clockAnimation.Reset();
+			clockAnimation.Reset();
 			nbObjTrouves++;
 
 			if (nbObjTrouves < tabMusic.size())
@@ -354,8 +353,7 @@ int PoleSud_Porte::run(sf::RenderWindow &fenetre) {
 			tabMusic[0]->Stop();
 			if(nbObjTrouves < tabMusic.size())
 				tabMusic[nbObjTrouves]->Stop();
-			else
-				clockAnimation.Reset();
+			clockAnimation.Reset();
 			nbObjTrouves++;
 
 			if(nbObjTrouves < tabMusic.size())
@@ -371,16 +369,14 @@ int PoleSud_Porte::run(sf::RenderWindow &fenetre) {
 			tabMusic[0]->Stop();
 			if(nbObjTrouves < tabMusic.size())
 				tabMusic[nbObjTrouves]->Stop();
-			else
-				clockAnimation.Reset();
+			clockAnimation.Reset();
 			nbObjTrouves++;
 
 			if(nbObjTrouves < tabMusic.size())
 				tabMusic[nbObjTrouves]->Lecture();
-			else
-				clockAnimation.Reset();
 		}
 
+		pays.dessinerPage(fenetre);
 		fenetre.Display();
 
 		if (fenetre.GetInput().IsMouseButtonDown(sf::Mouse::Left) && pays.menuActif(fenetre))
@@ -404,20 +400,43 @@ int PoleSud_Porte::run(sf::RenderWindow &fenetre) {
 
 		// ANIMATION /////////////////////////
 		if(nbObjTrouves == 4) {
-			//vue.Zoom(1.001f + 0.009*fenetre.GetFrameTime());
-			if(clockAnimation.GetElapsedTime() > 0.100) {
-				float x;
-				do {
-					x = sf::Randomizer::Random(-20.f, 20.f);
-				} while( (vue.GetRect().Left + x < 20) && (vue.GetRect().Left + x > 20) );
 
-				float y;
-				do {
-					y = sf::Randomizer::Random(-20.f, 20.f);
-				} while( (vue.GetRect().Top + y < 20) && (vue.GetRect().Top + y > 20) );
+			// zooom
+			if(clockAnimation.GetElapsedTime() < 4)
+				vue.Zoom(1.001f + 0.009*fenetre.GetFrameTime());
 
-				vue.Move(x, y);
-				clockAnimation.Reset();
+			if(clockTremble.GetElapsedTime() > 0.100)
+			{
+				int alpha = pays.getAlpha()-10;
+				// fondu sur les éléments
+				if(alpha >= 0 )
+				{
+					pays.setAlpha(alpha);
+					emplacement_occupe1.SetColor( sf::Color(255, 255, 255, alpha) );
+					emplacement_occupe2.SetColor( sf::Color(255, 255, 255, alpha) );
+					emplacement_occupe3.SetColor( sf::Color(255, 255, 255, alpha) );
+					emplacement_occupe4.SetColor( sf::Color(255, 255, 255, alpha) );
+				}
+				else
+					pays.setAlpha(0);
+
+				// tremblement
+				if( (clockAnimation.GetElapsedTime() > 4) && (clockAnimation.GetElapsedTime() < 10) )
+				{
+						float x;
+						do {
+							x = sf::Randomizer::Random(-10.f, 10.f);
+						} while( (vue.GetCenter().x + x < -10) && (vue.GetCenter().x + x > 10) );
+
+						float y;
+						do {
+							y = sf::Randomizer::Random(-10.f, 10.f);
+						} while( (vue.GetCenter().y + y < -10) && (vue.GetCenter().y + y > 10) );
+						vue.Move(x, y);
+
+
+					clockTremble.Reset();
+				}
 			}
 		}
 

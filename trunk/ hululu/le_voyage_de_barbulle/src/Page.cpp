@@ -15,6 +15,7 @@ using namespace std;
 Page::Page() {
 	playing = false;
 	muting = true;
+	alpha = 255;
 }
 
 Page::~Page() {
@@ -155,5 +156,18 @@ int Page::changerEcran(sf::RenderWindow &fenetre, int cour, int suiv, int prec) 
 		return cour;
 }
 
+void Page::setAlpha(int valeur) {
 
+	alpha = valeur;
+
+	fontMusic.SetColor(sf::Color(255,255,255, valeur));
+	map.SetAlpha(valeur);
+	back.SetAlpha(valeur);
+	go.SetAlpha(valeur);
+	pause.SetAlpha(valeur);
+	play.SetAlpha(valeur);
+	mute.SetAlpha(valeur);
+	noMute.SetAlpha(valeur);
+	repeter.SetAlpha(valeur);
+}
 

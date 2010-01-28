@@ -31,6 +31,7 @@ void BoutonMove::setABouger(bool bouger) {
 	this->aBouger=bouger;
 }
 bool BoutonMove::estBougeable() {
+
 	return this->aBouger ;
 }
 void BoutonMove::deplacer(sf::RenderWindow &fenetre, bool mouseMove, bool lache) {
