@@ -50,14 +50,14 @@ int PerouGagne::run(sf::RenderWindow &fenetre)
 //	Sakura.Resize(400, 400);
 
 	sf::Sprite Barbulle;
-	Barbulle.SetImage(Ecran::MonManager.GetImage("le_voyage_de_barbulle/img/japon/barbulle_japon.png"));
+	Barbulle.SetImage(Ecran::MonManager.GetImage("le_voyage_de_barbulle/img/perou/monstre_perou.png"));
 	Barbulle.SetPosition((fenetre.GetWidth())/6.5, ((fenetre.GetHeight())/8));
 	Barbulle.Scale(0.75, 0.75);
 
 	//Objet gagné /////////////////////////////////////////////////////////////////////////////
 
 	PoleSud_Porte::poncho.initDessin("le_voyage_de_barbulle/img/objets/poncho.png");
-	PoleSud_Porte::poncho.placerDessin((fenetre.GetWidth())/2, ((fenetre.GetHeight())/4));
+	PoleSud_Porte::poncho.placerDessin((fenetre.GetWidth())*13/20, ((fenetre.GetHeight()*1/100)));
 
 
 
