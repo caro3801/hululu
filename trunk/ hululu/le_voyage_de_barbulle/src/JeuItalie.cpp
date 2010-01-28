@@ -503,7 +503,7 @@ int JeuItalie::run(sf::RenderWindow &fenetre) {
 
 		fenetre.Display();
 		if (fenetre.GetInput().IsMouseButtonDown(sf::Mouse::Left) && pays.menuActif(fenetre) )
-					ecranSuivant=pays.changerEcran(fenetre,JEU_ITALIE,JEU_ITALIE,ITALIEMUSEE) ;
+					ecranSuivant=pays.changerEcran(fenetre,JEU_ITALIE,ITALIEGAGNE,ITALIEMUSEE) ;
 	}
 
 	return ecranSuivant;
