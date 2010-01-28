@@ -10,13 +10,15 @@ using namespace std;
 // LIB SFML/////////////////////////////
 #include <SFML/System.hpp>
 #include <SFML/Window.hpp>
-#include <SFML/Graphics.hpp>
+#include <SFML/Graphics.hpp>#include <SFML/Audio.hpp>
+
 // WIKI SFML //////////////////////////
 #include "Italie.h"
 #include "Bouton.h"
 #include "AccueilPays.h"
 #include "Page.h"
 #include "DefineEcrans.h"
+#include "Musique.h"
 
 
 ImageManager Ecran::MonManager; //a ne definir qu'une seule fois dans tout le programme
@@ -36,6 +38,8 @@ int Italie::run(sf::RenderWindow &fenetre) {
 	//IMAGES/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	Page pays;
 
+	vector<Musique *> tabMusic;
+
 	// FONT/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 	sf::Font cursiveFont;
@@ -45,7 +49,7 @@ int Italie::run(sf::RenderWindow &fenetre) {
 	AccueilPays italie(fenetre,"le_voyage_de_barbulle/img/accueil/italie.png","le_voyage_de_barbulle/img/italie/italie_fond.png","Europe et Italie","L'art de l'entourloupe",sf::Color::Green,sf::Color::Red);
 		italie.mettrePolice(cursiveFont, 40,30);
 		italie.initAccueil(fenetre);
-
+	tabMusic.push_back(new Musique("le_voyage_de_barbulle/music/italie/itbienv.ogg"));
 	sf::Event event;
 
 	// # création d'une vue sur la fenêtre - !! Puisqu'une vue a été créee sur l'ecran précédent (Mapemonde) obligé de recréer une vue
@@ -57,8 +61,9 @@ int Italie::run(sf::RenderWindow &fenetre) {
 	sf::View vue(sf::FloatRect(0, 0, fenetre.GetWidth(), fenetre.GetHeight()) );
 	fenetre.SetView(vue);
 	////////////////////////////////
+	tabMusic[0]->Lecture();
 
-	while(fenetre.IsOpened())
+	while(fenetre.IsOpened() && (ecranSuivant == ITALIE))
 	{
 		while (fenetre.GetEvent(event)) {
 				    // # Instanciation de tous les éc fermeture de la fenetre
@@ -73,10 +78,38 @@ int Italie::run(sf::RenderWindow &fenetre) {
 		pays.dessinerPage(fenetre);
 		fenetre.Display();
 		if (fenetre.GetInput().IsMouseButtonDown(sf::Mouse::Left) && pays.menuActif(fenetre) && Clock.GetElapsedTime() > 1)
-			return ecranSuivant=pays.changerEcran(fenetre,ITALIE,ITALIEPRESENT,MAPPEMONDE) ; //ecranSuivant = jeuItalie (4), ecranCourant = Italie (2),
+			ecranSuivant=pays.changerEcran(fenetre,ITALIE,ITALIEPRESENT,MAPPEMONDE) ; //ecranSuivant = jeuItalie (4), ecranCourant = Italie (2),
 																   //ecranPrecedent = Mapmonde (1)
 
+		// PAUSE/PLAY instruction ///////////
+		if(!pays.getPlaying() ) {
+			if(tabMusic[0]->GetStatus() == sf::Music::Paused) {
+				tabMusic[0]->Lecture();
+			}
+		} else {
+			 if(tabMusic[0]->GetStatus() == sf::Music::Playing) {
+				tabMusic[0]->Pause();
+			 }
+		}
+
+		// REPETER instruction ///////////////
+		if(pays.getRepeterClique(fenetre) ) {
+				tabMusic[0]->Stop();
+				tabMusic[0]->Lecture();
+		}
+
+		// MUTE instruction //////////////////
+		if(!pays.getMuting())
+			for(unsigned int i = 0; i < tabMusic.size(); i++)
+				tabMusic[i]->SetVolume(0);
+		else
+			for(unsigned int i = 0; i < tabMusic.size(); i++)
+				tabMusic[i]->SetVolume(100);
+
 	}
+	// INTERUPTION de toutes les musiques
+	for(unsigned int i = 0; i < tabMusic.size(); i++)
+		tabMusic[i]->Stop();
 
 	return ecranSuivant;
 
