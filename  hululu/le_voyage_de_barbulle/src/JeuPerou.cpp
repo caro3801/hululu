@@ -18,6 +18,7 @@
 #include "Musique.h"
 #include "effetSurTexte.h"
 #include "PoleSud_Porte.h"
+#include "Page.h"
 
 #include <iostream>
 #include <sstream>
@@ -104,6 +105,9 @@ int JeuPerou::run(sf::RenderWindow &fenetre) {
 	sf::Clock Clock2; //Horloge
 	Clock2.Reset();
 
+
+	vector<Musique *> tabMusic;
+	tabMusic.push_back(new Musique("le_voyage_de_barbulle/music/perou/perInst.ogg"));
 
 	sf::Font cursiveFont;
 	if (!cursiveFont.LoadFromFile(
@@ -206,6 +210,8 @@ int JeuPerou::run(sf::RenderWindow &fenetre) {
 	///AFFICHAGE FENETRE////////////////////////////////
 	sf::Event event;
 
+	tabMusic[0]->Lecture();
+
 	while (fenetre.IsOpened() && (ecranSuivant == JEU_PEROU)) {
 
 		while (fenetre.GetEvent(event)) {
@@ -222,6 +228,31 @@ int JeuPerou::run(sf::RenderWindow &fenetre) {
 					&& (event.MouseButton.Button == sf::Mouse::Left)) {
 				lache = true;
 			}
+
+			// PAUSE/PLAY instruction ///////////
+			if(!pays.getPlaying() ) {
+				if(tabMusic[0]->GetStatus() == sf::Music::Paused) {
+					tabMusic[0]->Lecture();
+				}
+			} else {
+				 if(tabMusic[0]->GetStatus() == sf::Music::Playing) {
+					tabMusic[0]->Pause();
+				 }
+			}
+
+			// REPETER instruction ///////////////
+			if(pays.getRepeterClique(fenetre) ) {
+					tabMusic[0]->Stop();
+					tabMusic[0]->Lecture();
+			}
+
+			// MUTE instruction //////////////////
+			if(!pays.getMuting())
+				for(unsigned int i = 0; i < tabMusic.size(); i++)
+					tabMusic[i]->SetVolume(0);
+			else
+				for(unsigned int i = 0; i < tabMusic.size(); i++)
+					tabMusic[i]->SetVolume(100);
 		}
 
 		fenetre.Clear(sf::Color(255, 255, 255));
@@ -361,6 +392,9 @@ int JeuPerou::run(sf::RenderWindow &fenetre) {
 				&& pays.menuActif(fenetre)&& !val1_1.estClique(fenetre)&& !val1_2.estClique(fenetre)&& !val1_3.estClique(fenetre) && !val2_3.estClique(fenetre)&& !val3_2.estClique(fenetre)&& !val5_1.estClique(fenetre))
 			ecranSuivant = pays.changerEcran(fenetre, JEU_PEROU, JEU_PEROU,PEROU);
 	}
+	// INTERUPTION de toutes les musiques
+	for(unsigned int i = 0; i < tabMusic.size(); i++)
+		tabMusic[i]->Stop();
 
 	return ecranSuivant;
 
