@@ -39,7 +39,14 @@ int Japon::run(sf::RenderWindow &fenetre) {
 
 	//IMAGES/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	Page pays;
-	AccueilPays japon(fenetre,"le_voyage_de_barbulle/img/accueil/japon.png", "le_voyage_de_barbulle/img/accueil/fondaccueil.png", "Bienvenue au Japon","日本へようこそ", sf::Color::Red,sf::Color::Red);
+
+	sf::Font cursiveFont;
+	if (!cursiveFont.LoadFromFile("le_voyage_de_barbulle/img/font/Cursive_standard_BOLD.ttf", 50.f))
+		cerr << "Erreur lors du chargement de la police" << endl;
+
+
+	AccueilPays japon(fenetre,"le_voyage_de_barbulle/img/accueil/japon.png", "le_voyage_de_barbulle/img/japon/japon.jpg", "Bienvenue au Japon","日本へようこそ", sf::Color::White,sf::Color::White);
+	japon.mettrePolice(cursiveFont, 40,30);
 	japon.initAccueil(fenetre);
 	// SPRITES/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
