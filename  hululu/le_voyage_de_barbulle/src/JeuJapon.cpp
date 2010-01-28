@@ -4,6 +4,12 @@
  *  Created on: 15 déc. 2009
  *      Author: pollet
  */
+// LIB SFML/////////////////////////////
+#include <SFML/System.hpp>
+#include <SFML/Window.hpp>
+#include <SFML/Graphics.hpp>
+#include <SFML/Audio.hpp>
+
 #include <iostream>
 #include <sstream>
 using namespace std;
@@ -16,13 +22,16 @@ using namespace std;
 #include "Bouton.h"
 #include "AccueilPays.h"
 #include "DefineEcrans.h"
+#include "Musique.h"
 #include <vector>
+#include "effetSurTexte.h"
 
 #include "Carte.h"
 
 
 JeuJapon::JeuJapon() {
 	// TODO Auto-generated constructor stub
+	_etape = 0;
 }
 
 JeuJapon::~JeuJapon() {
@@ -33,15 +42,16 @@ JeuJapon::~JeuJapon() {
 int JeuJapon::run(sf::RenderWindow &fenetre)
 {
 	/////Déclaration/////////////////////////////
+
 	sf::Clock Clock; //Horloge
 	sf::Clock Clock2;
 	Clock.Reset();
+	Clock2.Reset();
+
 	int ecranSuivant = JEUJAPON; // par défault, celui de l'écran actif
 	Page pays;
 
-
-
-
+	vector<Musique *> tabMusic;
 	vector<Carte> tabCarte;
 
 
@@ -74,7 +84,7 @@ int JeuJapon::run(sf::RenderWindow &fenetre)
 	tabCarte.push_back(Carte("le_voyage_de_barbulle/img/japon/hanafuda_06-03.png","le_voyage_de_barbulle/img/japon/hanafuda_06-03C.png", 6, 3, 1) );
 	tabCarte.push_back(Carte("le_voyage_de_barbulle/img/japon/hanafuda_11-04.png","le_voyage_de_barbulle/img/japon/hanafuda_11-04C.png", 11, 4, 1) );
 	tabCarte.push_back(Carte("le_voyage_de_barbulle/img/japon/hanafuda_01-02.png","le_voyage_de_barbulle/img/japon/hanafuda_01-02C.png", 1, 2, 1) );
-	tabCarte.push_back(Carte("le_voyage_de_barbulle/img/japon/hanafuda_09-01.png","le_voyage_de_barbulle/img/japon/hanafuda_09-01C.png", 9, 4, 1) );
+	tabCarte.push_back(Carte("le_voyage_de_barbulle/img/japon/hanafuda_09-04.png","le_voyage_de_barbulle/img/japon/hanafuda_09-04C.png", 9, 4, 1) );
 	tabCarte.push_back(Carte("le_voyage_de_barbulle/img/japon/hanafuda_08-02.png","le_voyage_de_barbulle/img/japon/hanafuda_08-02C.png", 8, 2, 1) );
 	tabCarte.push_back(Carte("le_voyage_de_barbulle/img/japon/hanafuda_07-01.png","le_voyage_de_barbulle/img/japon/hanafuda_07-01C.png", 7, 1, 1) );
 	tabCarte.push_back(Carte("le_voyage_de_barbulle/img/japon/hanafuda_02-01.png","le_voyage_de_barbulle/img/japon/hanafuda_02-01C.png", 2, 1, 1) );
@@ -210,17 +220,40 @@ int JeuJapon::run(sf::RenderWindow &fenetre)
 	E+=60;
 
 	//INSTRUCTION ////////////////////////////////////////////////////////////////////////
-	sf::Sprite Instruction1;
-	Instruction1.SetImage(Ecran::MonManager.GetImage("le_voyage_de_barbulle/img/japon/instruction1.png"));
-	Instruction1.SetPosition((fenetre.GetWidth())/5, ((fenetre.GetHeight())/35));
 
-	sf::Sprite Instruction2;
-	Instruction2.SetImage(Ecran::MonManager.GetImage("le_voyage_de_barbulle/img/japon/instruction2.png"));
-	Instruction2.SetPosition((fenetre.GetWidth())/5, ((fenetre.GetHeight())/35));
 
-	sf::Sprite Instruction3;
-	Instruction3.SetImage(Ecran::MonManager.GetImage("le_voyage_de_barbulle/img/japon/instruction3.png"));
-	Instruction3.SetPosition((fenetre.GetWidth())/5, ((fenetre.GetHeight())/50));
+	sf::Sprite inst1;
+	sf::Sprite inst2;
+
+	inst1.SetImage(Ecran::MonManager.GetImage("le_voyage_de_barbulle/img/japon/instruction1.png"));
+	inst1.SetPosition((fenetre.GetWidth())/5, ((fenetre.GetHeight())/35));
+	tabMusic.push_back(new Musique("le_voyage_de_barbulle/music/japon/jap8.ogg"));
+	tabMusic[0]->ChargerFichier();
+
+	inst2.SetImage(Ecran::MonManager.GetImage("le_voyage_de_barbulle/img/japon/instruction2.png"));
+	inst2.SetPosition((fenetre.GetWidth())/5, ((fenetre.GetHeight())/35));
+	tabMusic.push_back(new Musique("le_voyage_de_barbulle/music/japon/jap9.ogg"));
+	tabMusic[1]->ChargerFichier();
+
+	sf::Sprite inst3;
+	inst3.SetImage(Ecran::MonManager.GetImage("le_voyage_de_barbulle/img/japon/instruction3.png"));
+	inst3.SetPosition((fenetre.GetWidth())/5, ((fenetre.GetHeight())/35));
+	tabMusic.push_back(new Musique("le_voyage_de_barbulle/music/japon/jap8.ogg"));
+	tabMusic[2]->ChargerFichier();
+
+
+//	sf::Sprite Instruction1;
+//	Instruction1.SetImage(Ecran::MonManager.GetImage("le_voyage_de_barbulle/img/japon/instruction1.png"));
+//	Instruction1.SetPosition((fenetre.GetWidth())/5, ((fenetre.GetHeight())/35));
+//
+//
+//	sf::Sprite Instruction2;
+//	Instruction2.SetImage(Ecran::MonManager.GetImage("le_voyage_de_barbulle/img/japon/instruction2.png"));
+//	Instruction2.SetPosition((fenetre.GetWidth())/5, ((fenetre.GetHeight())/35));
+//
+//	sf::Sprite Instruction3;
+//	Instruction3.SetImage(Ecran::MonManager.GetImage("le_voyage_de_barbulle/img/japon/instruction3.png"));
+//	Instruction3.SetPosition((fenetre.GetWidth())/5, ((fenetre.GetHeight())/50));
 
 	// FONT/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	// instruction
@@ -229,10 +262,10 @@ int JeuJapon::run(sf::RenderWindow &fenetre)
 	cerr << "Erreur lors du chargement de la police";
 
 	//Texte//////////////////////////////////////////////////////////////////////////////////////
-		sf::String text1(L"11111111111");
-		text1.Move((fenetre.GetWidth())/2, ((fenetre.GetHeight())/70));
+		sf::String text1(L"Oiseau blanc et noir, haut perché avec fierté, j'annonce janvier.");
+		text1.Move((fenetre.GetWidth())/2, ((fenetre.GetHeight())/25));
 		text1.SetColor(sf::Color::Color(120,15,0));
-		text1.SetSize(40.f);
+		text1.SetSize(20.f);
 		text1.SetFont(MyFont);
 
 		sf::String text2(L"22222222222222222");
@@ -283,13 +316,13 @@ int JeuJapon::run(sf::RenderWindow &fenetre)
 		text9.SetSize(40.f);
 		text9.SetFont(MyFont);
 
-		sf::String text10(L"1110000000000");
+		sf::String text10(L"Feuilles qui tombent, nouveau recommencement, rouge orange.");
 		text10.Move((fenetre.GetWidth())/2, ((fenetre.GetHeight())/70));
 		text10.SetColor(sf::Color::Color(120,15,0));
 		text10.SetSize(40.f);
 		text10.SetFont(MyFont);
 
-		sf::String text11(L"11_11");
+		sf::String text11(L"De cette fin d'année, différente des autres, j'ouvre sur le froid.");
 		text11.Move((fenetre.GetWidth())/2, ((fenetre.GetHeight())/70));
 		text11.SetColor(sf::Color::Color(120,15,0));
 		text11.SetSize(40.f);
@@ -327,7 +360,7 @@ int JeuJapon::run(sf::RenderWindow &fenetre)
 	Bouton Barbulle;
 	Barbulle.initBouton("le_voyage_de_barbulle/img/japon/barbulle_japon.png","le_voyage_de_barbulle/img/japon/barbulle_japon.png" );
 	Barbulle.redimensionner(0.2);
-	Barbulle.placer((fenetre.GetWidth())/1.2, ((fenetre.GetHeight())/70));
+	Barbulle.placer((fenetre.GetWidth())/1.15, ((fenetre.GetHeight())/70));
 
 
 
@@ -342,183 +375,191 @@ int JeuJapon::run(sf::RenderWindow &fenetre)
 
 
 
-	///AFFICHAGE FENETRE////////////////////////////////
+			///AFFICHAGE FENETRE////////////////////////////////
 			int nbATrouver=4;
 			int courant=1;
-			bool lu = false;
-			Clock2.Reset();
 
 
-				while(fenetre.IsOpened() && (ecranSuivant==JEUJAPON))
-					{
-						while (fenetre.GetEvent(event)) {
-								    // # Instanciation de tous les écrans fermeture de la fenetre
-									// si echap ou fermeture manuelle
-									if (event.Type == sf::Event::Closed)
-										fenetre.Close();
-									else if (event.Type==sf::Event::KeyReleased && event.Key.Code == sf::Key::Escape)
-										fenetre.Close();
-								}
+				while(fenetre.IsOpened() && (ecranSuivant==JEUJAPON)) {
+					while (fenetre.GetEvent(event)) {
+							// # Instanciation de tous les écrans fermeture de la fenetre
+							// si echap ou fermeture manuelle
+							if (event.Type == sf::Event::Closed)
+								fenetre.Close();
+							else if (event.Type==sf::Event::KeyReleased && event.Key.Code == sf::Key::Escape)
+								fenetre.Close();
+					}
 
-							fenetre.Clear(sf::Color(255, 200, 122));
-
-
-							int l=0;
+					fenetre.Clear(sf::Color(255, 200, 122));
 
 
-							while (l<48){
-								if(tabCarte[l].estClique(fenetre)){
-									// la carte est cliquée
-									if (tabCarte[l].getMois()==courant && tabCarte[l].getEtat()==1 && courant!=13){
-										tabCarte[l].changerEtat(); // on change son état
-
-										//je décrémente le compteur
-											std::ostringstream compteur;
-											nbATrouver--;
-											// on récupère le nombre d'erreur a trouver dans le flux
-											compteur << nbATrouver;
-											// on en extrait une chaîne de caractères
-											std::string Texte = compteur.str();
-											nbCarte.SetText(Texte);
-											Clock.Reset();
-
-										}
+					int l=0;
 
 
-								}
+					while (l<48){
+						if(tabCarte[l].estClique(fenetre)){
+							// la carte est cliquée
+							if (tabCarte[l].getMois()==courant && tabCarte[l].getEtat()==1 && courant!=13){
+								tabCarte[l].changerEtat(); // on change son état
 
+								//je décrémente le compteur
+									std::ostringstream compteur;
+									nbATrouver--;
+									// on récupère le nombre d'erreur a trouver dans le flux
+									compteur << nbATrouver;
+										// on en extrait une chaîne de caractères
+										std::string Texte = compteur.str();
+										nbCarte.SetText(Texte);
+										Clock.Reset();
 
-								tabCarte[l].carteVisible().drawMe(fenetre);
-
-								l++;
+									}
 
 
 							}
 
-							if(Barbulle.estClique(fenetre)){
-									if(courant==1){
-										fenetre.Draw(text1);
-									}
-									if(courant==2){
-										fenetre.Draw(text2);
-									}
-									if(courant==3){
-										fenetre.Draw(text3);
-									}
-									if(courant==4){
-										fenetre.Draw(text4);
-									}
-									if(courant==5){
-										fenetre.Draw(text5);
-									}
-									if(courant==6){
-										fenetre.Draw(text6);
-									}
-									if(courant==7){
-										fenetre.Draw(text7);
-									}
-									if(courant==8){
-										fenetre.Draw(text8);
-									}
-									if(courant==9){
-										fenetre.Draw(text9);
-									}
-									if(courant==10){
-										fenetre.Draw(text10);
-									}
-									if(courant==11){
-										fenetre.Draw(text11);
-									}
-									if(courant==12){
-										fenetre.Draw(text12);
-									}
-							}
 
-							if(nbATrouver==0 && Clock.GetElapsedTime()<4)
-							{
-							fenetre.Draw(Bravo);
-							}
-							else if(nbATrouver==0 && courant!=13){
-								Clock.Reset();
-								nbATrouver=4;
-								std::ostringstream compteur;
-								// on récupère le nombre d'erreur a trouver dans le flux
-								compteur << nbATrouver;
-								// on en extrait une chaîne de caractères
-								std::string Texte = compteur.str();
-								nbCarte.SetText(Texte);
-								if (courant==1)
-									Janvier.SetImage(Ecran::MonManager.GetImage("le_voyage_de_barbulle/img/japon/01V.png"));
-								if (courant==2)
-									Fevrier.SetImage(Ecran::MonManager.GetImage("le_voyage_de_barbulle/img/japon/02V.png"));
-								if (courant==3)
-									Mars.SetImage(Ecran::MonManager.GetImage("le_voyage_de_barbulle/img/japon/03V.png"));
-								if (courant==4)
-									Avril.SetImage(Ecran::MonManager.GetImage("le_voyage_de_barbulle/img/japon/04V.png"));
-								if (courant==5)
-									Mai.SetImage(Ecran::MonManager.GetImage("le_voyage_de_barbulle/img/japon/05V.png"));
-								if (courant==6)
-									Juin.SetImage(Ecran::MonManager.GetImage("le_voyage_de_barbulle/img/japon/06V.png"));
-								if (courant==7)
-									Juillet.SetImage(Ecran::MonManager.GetImage("le_voyage_de_barbulle/img/japon/07V.png"));
-								if (courant==8)
-									Aout.SetImage(Ecran::MonManager.GetImage("le_voyage_de_barbulle/img/japon/08V.png"));
-								if (courant==9)
-									Septembre.SetImage(Ecran::MonManager.GetImage("le_voyage_de_barbulle/img/japon/09V.png"));
-								if (courant==10)
-									Octobre.SetImage(Ecran::MonManager.GetImage("le_voyage_de_barbulle/img/japon/10V.png"));
-								if (courant==11)
-									Novembre.SetImage(Ecran::MonManager.GetImage("le_voyage_de_barbulle/img/japon/11V.png"));
-								if (courant==12)
-									Decembre.SetImage(Ecran::MonManager.GetImage("le_voyage_de_barbulle/img/japon/12V.png"));
+							tabCarte[l].carteVisible().drawMe(fenetre);
+
+							l++;
 
 
-								courant++;
-
-							}
-
-
-							pays.dessinerPage(fenetre);
-							fenetre.Draw(nbCarte);
-							fenetre.Draw(Janvier);
-							fenetre.Draw(Fevrier);
-							fenetre.Draw(Mars);
-							fenetre.Draw(Avril);
-							fenetre.Draw(Mai);
-							fenetre.Draw(Juin);
-							fenetre.Draw(Juillet);
-							fenetre.Draw(Aout);
-							fenetre.Draw(Septembre);
-							fenetre.Draw(Octobre);
-							fenetre.Draw(Novembre);
-							fenetre.Draw(Decembre);
-							fenetre.Draw(Sakura);
-							fenetre.Draw(Sakura2);
-							fenetre.Draw(Sakura3);
-							Barbulle.drawMe(fenetre);
-
-
-
-							//Instructions ///////////////////////////////////////
-						if (lu==false) {
-							if (Clock2.GetElapsedTime()<4){
-								fenetre.Draw(Instruction1);
-								}
-							else if (Clock2.GetElapsedTime()<8){
-								fenetre.Draw(Instruction2);
-								}
-							else if (Clock2.GetElapsedTime()<12){
-								fenetre.Draw(Instruction3);
-								}
-							else {
-								lu=true;
-							}
-						}
-						if(lu==true){
-							fenetre.Draw(Instruction3);
 						}
 
-							fenetre.Display();
+						if(Barbulle.estClique(fenetre)){
+								if(courant==1){
+									fenetre.Draw(text1);
+								}
+								if(courant==2){
+									fenetre.Draw(text2);
+								}
+								if(courant==3){
+									fenetre.Draw(text3);
+								}
+								if(courant==4){
+									fenetre.Draw(text4);
+								}
+								if(courant==5){
+									fenetre.Draw(text5);
+								}
+								if(courant==6){
+									fenetre.Draw(text6);
+								}
+								if(courant==7){
+									fenetre.Draw(text7);
+								}
+								if(courant==8){
+									fenetre.Draw(text8);
+								}
+								if(courant==9){
+									fenetre.Draw(text9);
+								}
+								if(courant==10){
+									fenetre.Draw(text10);
+								}
+								if(courant==11){
+									fenetre.Draw(text11);
+								}
+								if(courant==12){
+									fenetre.Draw(text12);
+								}
+						}
+
+						if(nbATrouver==0 && Clock.GetElapsedTime()<4)
+						{
+						fenetre.Draw(Bravo);
+						}
+						else if(nbATrouver==0 && courant!=13){
+							Clock.Reset();
+							nbATrouver=4;
+							std::ostringstream compteur;
+							// on récupère le nombre d'erreur a trouver dans le flux
+							compteur << nbATrouver;
+							// on en extrait une chaîne de caractères
+							std::string Texte = compteur.str();
+							nbCarte.SetText(Texte);
+							if (courant==1)
+								Janvier.SetImage(Ecran::MonManager.GetImage("le_voyage_de_barbulle/img/japon/01V.png"));
+							if (courant==2)
+								Fevrier.SetImage(Ecran::MonManager.GetImage("le_voyage_de_barbulle/img/japon/02V.png"));
+							if (courant==3)
+								Mars.SetImage(Ecran::MonManager.GetImage("le_voyage_de_barbulle/img/japon/03V.png"));
+							if (courant==4)
+								Avril.SetImage(Ecran::MonManager.GetImage("le_voyage_de_barbulle/img/japon/04V.png"));
+							if (courant==5)
+								Mai.SetImage(Ecran::MonManager.GetImage("le_voyage_de_barbulle/img/japon/05V.png"));
+							if (courant==6)
+								Juin.SetImage(Ecran::MonManager.GetImage("le_voyage_de_barbulle/img/japon/06V.png"));
+							if (courant==7)
+								Juillet.SetImage(Ecran::MonManager.GetImage("le_voyage_de_barbulle/img/japon/07V.png"));
+							if (courant==8)
+								Aout.SetImage(Ecran::MonManager.GetImage("le_voyage_de_barbulle/img/japon/08V.png"));
+							if (courant==9)
+								Septembre.SetImage(Ecran::MonManager.GetImage("le_voyage_de_barbulle/img/japon/09V.png"));
+							if (courant==10)
+								Octobre.SetImage(Ecran::MonManager.GetImage("le_voyage_de_barbulle/img/japon/10V.png"));
+							if (courant==11)
+								Novembre.SetImage(Ecran::MonManager.GetImage("le_voyage_de_barbulle/img/japon/11V.png"));
+							if (courant==12)
+								Decembre.SetImage(Ecran::MonManager.GetImage("le_voyage_de_barbulle/img/japon/12V.png"));
+
+
+							courant++;
+
+						}
+
+
+						// PAUSE/PLAY instruction ///////////
+						if(!pays.getPlaying() ) {
+							if(tabMusic[_etape]->GetStatus() == sf::Music::Paused) {
+								tabMusic[_etape]->Lecture();
+							}
+						} else {
+							 if(tabMusic[_etape]->GetStatus() == sf::Music::Playing) {
+								tabMusic[_etape]->Pause();
+							 }
+						}
+
+
+
+
+						pays.dessinerPage(fenetre);
+						fenetre.Draw(nbCarte);
+						fenetre.Draw(Janvier);
+						fenetre.Draw(Fevrier);
+						fenetre.Draw(Mars);
+						fenetre.Draw(Avril);
+						fenetre.Draw(Mai);
+						fenetre.Draw(Juin);
+						fenetre.Draw(Juillet);
+						fenetre.Draw(Aout);
+						fenetre.Draw(Septembre);
+						fenetre.Draw(Octobre);
+						fenetre.Draw(Novembre);
+						fenetre.Draw(Decembre);
+						fenetre.Draw(Sakura);
+						fenetre.Draw(Sakura2);
+						fenetre.Draw(Sakura3);
+						Barbulle.drawMe(fenetre);
+
+
+
+						cout << tabMusic[0]->GetDuration();
+
+						if (Clock2.GetElapsedTime() < tabMusic[0]->GetDuration() ){
+							fenetre.Draw(inst1);
+							_etape = 0;
+						}
+						else if (Clock2.GetElapsedTime() < (tabMusic[0]->GetDuration() + tabMusic[1]->GetDuration()) ){
+							fenetre.Draw(inst2);
+							_etape = 1;
+						}
+						else {
+							fenetre.Draw(inst3);
+							_etape = 2;
+						}
+
+						if( tabMusic[_etape]->GetStatus() == sf::Music::Stopped)
+							tabMusic[_etape]->Lecture();
 
 					if (fenetre.GetInput().IsMouseButtonDown(sf::Mouse::Left) && pays.menuActif(fenetre) && courant!=13)
 							ecranSuivant=pays.changerEcran(fenetre,JEUJAPON,JEUJAPON,HISTOIREJAPON);
@@ -535,8 +576,31 @@ int JeuJapon::run(sf::RenderWindow &fenetre)
 							ecranSuivant=JEUJAPON;
 
 
+					fenetre.Display();
 
+
+
+					// REPETER instruction ///////////////
+					if(pays.getRepeterClique(fenetre) ) {
+							tabMusic[_etape]->Stop();
+							tabMusic[_etape]->Lecture();
 					}
-				return ecranSuivant;
+
+					// MUTE instruction //////////////////
+					if(!pays.getMuting())
+						for(unsigned int i = 0; i < tabMusic.size(); i++)
+							tabMusic[i]->SetVolume(0);
+					else
+						for(unsigned int i = 0; i < tabMusic.size(); i++)
+							tabMusic[i]->SetVolume(100);
+
+
+				}
+
+			// INTERUPTION de toutes les musiques
+			for(unsigned int i = 0; i < tabMusic.size(); i++)
+						tabMusic[i]->Stop();
+
+			return ecranSuivant;
 }
 

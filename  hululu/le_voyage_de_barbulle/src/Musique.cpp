@@ -27,3 +27,9 @@ void Musique::Lecture()
 	}
 	else this->Play();
 }
+
+void Musique::ChargerFichier()
+{
+	this->OpenFromFile(_chemin);
+}
+
