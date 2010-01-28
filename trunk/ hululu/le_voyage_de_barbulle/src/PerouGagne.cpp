@@ -7,6 +7,8 @@
 #include <SFML/System.hpp>
 #include <SFML/Window.hpp>
 #include <SFML/Graphics.hpp>
+#include <SFML/Audio.hpp>
+
 #include "Ecran.h"
 
 #include "PerouGagne.h"
@@ -15,6 +17,7 @@
 #include "AccueilPays.h"
 #include "DefineEcrans.h"
 #include "PoleSud_Porte.h"
+#include "Musique.h"
 
 PerouGagne::PerouGagne() {
 	// TODO Auto-generated constructor stub
@@ -32,7 +35,8 @@ int PerouGagne::run(sf::RenderWindow &fenetre)
 	Clock.Reset();
 	Page pays;
 
-
+	vector<Musique *> tabMusic;
+	tabMusic.push_back(new Musique("le_voyage_de_barbulle/music/divers/bravo.ogg"));
 
 	// FONT//////////////////////////////////////////////////////////////////////////
 	sf::Event event;
@@ -71,7 +75,7 @@ int PerouGagne::run(sf::RenderWindow &fenetre)
 	text.SetFont(MyFont);
 
 	////////////////////////////////
-
+		tabMusic[0]->Lecture();
 			while(fenetre.IsOpened() && (ecranSuivant == PEROUGAGNE))
 			{
 				while (fenetre.GetEvent(event)) {
@@ -101,9 +105,35 @@ int PerouGagne::run(sf::RenderWindow &fenetre)
 
 				if (fenetre.GetInput().IsKeyDown(sf::Key::O))
 					ecranSuivant=MAPPEMONDE;
-
+			// PAUSE/PLAY instruction ///////////
+			if(!pays.getPlaying() ) {
+				if(tabMusic[0]->GetStatus() == sf::Music::Paused) {
+					tabMusic[0]->Lecture();
+				}
+			} else {
+				 if(tabMusic[0]->GetStatus() == sf::Music::Playing) {
+					tabMusic[0]->Pause();
+				 }
 			}
 
+			// REPETER instruction ///////////////
+			if(pays.getRepeterClique(fenetre) ) {
+					tabMusic[0]->Stop();
+					tabMusic[0]->Lecture();
+			}
+
+			// MUTE instruction //////////////////
+			if(!pays.getMuting())
+				for(unsigned int i = 0; i < tabMusic.size(); i++)
+					tabMusic[i]->SetVolume(0);
+			else
+				for(unsigned int i = 0; i < tabMusic.size(); i++)
+					tabMusic[i]->SetVolume(100);
+
+			}
+		// INTERUPTION de toutes les musiques
+		for(unsigned int i = 0; i < tabMusic.size(); i++)
+			tabMusic[i]->Stop();
 
 
 	return ecranSuivant;
