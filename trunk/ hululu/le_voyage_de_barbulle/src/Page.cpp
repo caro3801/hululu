@@ -161,6 +161,7 @@ void Page::setAlpha(int valeur) {
 	alpha = valeur;
 
 	fontMusic.SetColor(sf::Color(255,255,255, valeur));
+	fontNavigation.SetColor(sf::Color(255,255,255, valeur));
 	map.SetAlpha(valeur);
 	back.SetAlpha(valeur);
 	go.SetAlpha(valeur);

@@ -77,7 +77,7 @@ int TestDeplacer::run(sf::RenderWindow &fenetre) {
 		if (fenetre.GetInput().IsKeyDown(sf::Key::O))
 			return ecranSuivant=4;
 
-		piece5.deplacer(fenetre,mouseMove);
+	//	piece5.deplacer(fenetre,mouseMove);
 
 		fenetre.Clear(sf::Color(255, 255, 255));
 		pays.dessinerPage(fenetre);
