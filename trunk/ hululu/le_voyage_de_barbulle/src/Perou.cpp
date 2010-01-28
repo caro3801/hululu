@@ -37,7 +37,11 @@ int Perou::run(sf::RenderWindow &fenetre) {
 	int ecranSuivant = PEROU;
 	sf::Clock Clock; //Horloge
 	Clock.Reset();
-	AccueilPays PerouAccueil(fenetre,"le_voyage_de_barbulle/img/sprite/piece5.png","le_voyage_de_barbulle/img/perou/Drapeau_Debut.png","Amerique du Sud et Perou","El Perudo, el pais de los Incas",sf::Color::Blue,sf::Color::Blue);
+	sf::Font cursiveFont;
+	if (!cursiveFont.LoadFromFile("le_voyage_de_barbulle/img/font/Cursive_standard_BOLD.ttf", 50.f))
+		cerr << "Erreur lors du chargement de la police" << endl;
+
+	AccueilPays PerouAccueil(fenetre,"le_voyage_de_barbulle/img/perou/drapPerou.jpg","le_voyage_de_barbulle/img/perou/titicaca.jpg","Amerique du Sud et Perou","A la rencontre des Incas",sf::Color::Red,sf::Color::Red);
 	PerouAccueil.initAccueil(fenetre);
 	//IMAGES////////////////////////////////////////////////////////////////////////////////////////////////////////////
 

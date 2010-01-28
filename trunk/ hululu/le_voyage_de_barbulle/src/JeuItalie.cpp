@@ -14,6 +14,7 @@ using namespace std;
 #include "PoleSud_Porte.h"
 #include "Objet.h"
 #include "DefineEcrans.h"
+#include "Musique.h"
 #include "effetSurTexte.h"
 JeuItalie::JeuItalie() {
 }
@@ -309,6 +310,8 @@ int JeuItalie::run(sf::RenderWindow &fenetre) {
 	int nbATrouver = 7; //Le nombre d'erreurs a trouver est de 7 au départ
 	Page pays; //Declaration d'une Page pays qui servira a afficher les menus music et menu
 
+	vector<Musique *> tabMusic;
+	tabMusic.push_back(new Musique("le_voyage_de_barbulle/music/italie/itInstr.ogg"));
 
 	//SPRITES////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	//float rapport= fenetre.GetHeight()/fenetre.GetWidth();
@@ -398,7 +401,7 @@ int JeuItalie::run(sf::RenderWindow &fenetre) {
 
 	sf::String ombreGagne;
 	ombreTexte(gagne, ombreGagne, sf::Color::Black, 2, 2);
-
+	
 	//Bouton////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 	Bouton boutAide;
@@ -419,6 +422,7 @@ int JeuItalie::run(sf::RenderWindow &fenetre) {
 
 	// # Pour que le programme ne se termine pas :)
 	sf::Event event;
+	tabMusic[0]->Lecture();
 	while (fenetre.IsOpened() && (ecranSuivant == JEU_ITALIE) )
 	{
 
@@ -436,7 +440,6 @@ int JeuItalie::run(sf::RenderWindow &fenetre) {
 		fenetre.Draw(fond);
 		fenetre.Draw(titre);
 		boutAide.drawMe(fenetre);
-
 			fenetre.Draw(original);//Image d'origine
 			fenetre.Draw(legendeOriginal);
 		fenetre.Draw(erreur); //Image d'erreur
@@ -502,15 +505,40 @@ int JeuItalie::run(sf::RenderWindow &fenetre) {
 		dessineMarque(fenetre, er1, er2, er3, er4, er5, er6, er7,
 				erreur.GetPosition().x, erreur.GetPosition().y);
 		if(nbATrouver == 0)	{
-
 			fenetre.Draw(ombreGagne);
 			fenetre.Draw(gagne);
-
 			PoleSud_Porte::blason.setTrouve(true);
 			if (fenetre.GetInput().IsMouseButtonDown(sf::Mouse::Left) && pays.menuActif(fenetre) )
 								ecranSuivant=pays.changerEcran(fenetre,JEU_ITALIE,ITALIEGAGNE,ITALIEMUSEE) ;
 			Clock.Reset();
 		}
+
+
+		// PAUSE/PLAY instruction ///////////
+		if(!pays.getPlaying() ) {
+			if(tabMusic[0]->GetStatus() == sf::Music::Paused) {
+				tabMusic[0]->Lecture();
+			}
+		} else {
+			 if(tabMusic[0]->GetStatus() == sf::Music::Playing) {
+				tabMusic[0]->Pause();
+			 }
+		}
+
+		// REPETER instruction ///////////////
+		if(pays.getRepeterClique(fenetre) ) {
+				tabMusic[0]->Stop();
+				tabMusic[0]->Lecture();
+		}
+
+		// MUTE instruction //////////////////
+		if(!pays.getMuting())
+			for(unsigned int i = 0; i < tabMusic.size(); i++)
+				tabMusic[i]->SetVolume(0);
+		else
+			for(unsigned int i = 0; i < tabMusic.size(); i++)
+				tabMusic[i]->SetVolume(100);
+
 
 		fenetre.Display();
 		if (nbATrouver==0)
@@ -524,6 +552,10 @@ int JeuItalie::run(sf::RenderWindow &fenetre) {
 						ecranSuivant=pays.changerEcran(fenetre,JEU_ITALIE,JEU_ITALIE,ITALIEMUSEE) ;
 		}
 	}
+	// INTERUPTION de toutes les musiques
+	for(unsigned int i = 0; i < tabMusic.size(); i++)
+		tabMusic[i]->Stop();
+
 
 	return ecranSuivant;
 }
