@@ -408,12 +408,12 @@ int PoleSud_Porte::run(sf::RenderWindow &fenetre) {
 			if(clockAnimation.GetElapsedTime() > 0.100) {
 				float x;
 				do {
-					float x = sf::Randomizer::Random(-20.f, 20.f);
+					x = sf::Randomizer::Random(-20.f, 20.f);
 				} while( (vue.GetRect().Left + x < 20) && (vue.GetRect().Left + x > 20) );
 
 				float y;
 				do {
-					float y = sf::Randomizer::Random(-20.f, 20.f);
+					y = sf::Randomizer::Random(-20.f, 20.f);
 				} while( (vue.GetRect().Top + y < 20) && (vue.GetRect().Top + y > 20) );
 
 				vue.Move(x, y);
