@@ -24,7 +24,7 @@ using namespace std;
 
 int Menu_0::run(sf::RenderWindow &fenetre)
 {
-	int ecranSuivant = POLESUD_PORTE;
+	int ecranSuivant = MENU_0;
 	sf::Clock Clock;
 
 	// DEF de la police par défaut
