@@ -344,76 +344,90 @@ int PoleSud_Porte::run(sf::RenderWindow &fenetre) {
 
 			if (nbObjTrouves < tabMusic.size())
 				tabMusic[nbObjTrouves]->Lecture();
-	}
+		}
 
-	if( (lampion.enDeplacement(fenetre) && ZoneVideLanterne)) {
-		dessineLampion=true;
-		lampion.setPlace(dessineLampion);
-		lampion.plusBouger(true);
+		if( (lampion.enDeplacement(fenetre) && ZoneVideLanterne)) {
+			dessineLampion=true;
+			lampion.setPlace(dessineLampion);
+			lampion.plusBouger(true);
 
-		tabMusic[0]->Stop();
-		if(nbObjTrouves < tabMusic.size())
-			tabMusic[nbObjTrouves]->Stop();
-		else
-			clockAnimation.Reset();
-		nbObjTrouves++;
+			tabMusic[0]->Stop();
+			if(nbObjTrouves < tabMusic.size())
+				tabMusic[nbObjTrouves]->Stop();
+			else
+				clockAnimation.Reset();
+			nbObjTrouves++;
 
-		if(nbObjTrouves < tabMusic.size())
-			tabMusic[nbObjTrouves]->Lecture();
-	}
+			if(nbObjTrouves < tabMusic.size())
+				tabMusic[nbObjTrouves]->Lecture();
+		}
 
-	if( (poncho.enDeplacement(fenetre) && ZoneVidePoncho)) {
-		dessinePoncho=true;
-		poncho.setPlace(dessinePoncho);
-		poncho.plusBouger(true);
-		//Jouer son selon nombre objets : bravo il te reste.. objets  a trouvers
+		if( (poncho.enDeplacement(fenetre) && ZoneVidePoncho)) {
+			dessinePoncho=true;
+			poncho.setPlace(dessinePoncho);
+			poncho.plusBouger(true);
+			//Jouer son selon nombre objets : bravo il te reste.. objets  a trouvers
 
-		tabMusic[0]->Stop();
-		if(nbObjTrouves < tabMusic.size())
-			tabMusic[nbObjTrouves]->Stop();
-		else
-			clockAnimation.Reset();
-		nbObjTrouves++;
+			tabMusic[0]->Stop();
+			if(nbObjTrouves < tabMusic.size())
+				tabMusic[nbObjTrouves]->Stop();
+			else
+				clockAnimation.Reset();
+			nbObjTrouves++;
 
-		if(nbObjTrouves < tabMusic.size())
-			tabMusic[nbObjTrouves]->Lecture();
-		else
-			clockAnimation.Reset();
-	}
+			if(nbObjTrouves < tabMusic.size())
+				tabMusic[nbObjTrouves]->Lecture();
+			else
+				clockAnimation.Reset();
+		}
 
-	fenetre.Display();
+		fenetre.Display();
 
-	if (fenetre.GetInput().IsMouseButtonDown(sf::Mouse::Left) && pays.menuActif(fenetre))
-		ecranSuivant=pays.changerEcran(fenetre,POLESUD_PORTE,POLESUD_PORTE,MAPPEMONDE);
+		if (fenetre.GetInput().IsMouseButtonDown(sf::Mouse::Left) && pays.menuActif(fenetre))
+			ecranSuivant=pays.changerEcran(fenetre,POLESUD_PORTE,POLESUD_PORTE,MAPPEMONDE);
 
-	// PAUSE/PLAY instruction ///////////
-	if(!pays.getPlaying() ) {
-		if(nbObjTrouves < tabMusic.size())
-			if(tabMusic[nbObjTrouves]->GetStatus() == sf::Music::Paused) {
+		// PAUSE/PLAY instruction ///////////
+		if(!pays.getPlaying() ) {
+			if(nbObjTrouves < tabMusic.size())
+				if(tabMusic[nbObjTrouves]->GetStatus() == sf::Music::Paused) {
+					tabMusic[nbObjTrouves]->Lecture();
+				}
+		}
+		else {
+
+			if(nbObjTrouves < tabMusic.size())
+				if(tabMusic[nbObjTrouves]->GetStatus() == sf::Music::Playing) {
+					tabMusic[nbObjTrouves]->Pause();
+				}
+		}
+
+
+		// ANIMATION /////////////////////////
+		if(nbObjTrouves == 4) {
+			//vue.Zoom(1.001f + 0.009*fenetre.GetFrameTime());
+			if(clockAnimation.GetElapsedTime() > 0.100) {
+				float x;
+				do {
+					float x = sf::Randomizer::Random(-20.f, 20.f);
+				} while( (vue.GetRect().Left + x < 20) && (vue.GetRect().Left + x > 20) );
+
+				float y;
+				do {
+					float y = sf::Randomizer::Random(-20.f, 20.f);
+				} while( (vue.GetRect().Top + y < 20) && (vue.GetRect().Top + y > 20) );
+
+				vue.Move(x, y);
+				clockAnimation.Reset();
+			}
+		}
+
+		// REPETER instruction ///////////////
+		if(pays.getRepeterClique(fenetre) ) {
+
+			if(nbObjTrouves < tabMusic.size()) {
+				tabMusic[nbObjTrouves]->Stop();
 				tabMusic[nbObjTrouves]->Lecture();
 			}
-	}
-	else {
-
-		if(nbObjTrouves < tabMusic.size())
-			if(tabMusic[nbObjTrouves]->GetStatus() == sf::Music::Playing) {
-				tabMusic[nbObjTrouves]->Pause();
-			}
-	}
-
-
-	// ANIMATION /////////////////////////
-	if(nbObjTrouves == 4) {
-		vue.Zoom(1.001f + 0.009*fenetre.GetFrameTime());
-	}
-
-	// REPETER instruction ///////////////
-	if(pays.getRepeterClique(fenetre) ) {
-
-		if(nbObjTrouves < tabMusic.size()) {
-			tabMusic[nbObjTrouves]->Stop();
-			tabMusic[nbObjTrouves]->Lecture();
-		}
 	}
 
 	// MUTE instruction //////////////////
