@@ -399,7 +399,6 @@ int JeuItalie::run(sf::RenderWindow &fenetre) {
 	sf::String ombreGagne;
 	ombreTexte(gagne, ombreGagne, sf::Color::Black, 2, 2);
 
-	sf::String txtAide("Aide",MyFont,25.f);
 	//Bouton////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 	Bouton boutAide;
@@ -437,7 +436,7 @@ int JeuItalie::run(sf::RenderWindow &fenetre) {
 		fenetre.Draw(fond);
 		fenetre.Draw(titre);
 		boutAide.drawMe(fenetre);
-			fenetre.Draw(txtAide);
+
 			fenetre.Draw(original);//Image d'origine
 			fenetre.Draw(legendeOriginal);
 		fenetre.Draw(erreur); //Image d'erreur
