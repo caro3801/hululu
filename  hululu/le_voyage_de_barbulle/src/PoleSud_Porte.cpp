@@ -15,6 +15,7 @@ using namespace std;
 #include "Page.h"
 #include "Bouton.h"
 #include "Objet.h"
+#include "DefineEcrans.h"
 
 PoleSud_Porte::PoleSud_Porte() {
 	this->etape = 0;
@@ -462,9 +463,13 @@ int PoleSud_Porte::run(sf::RenderWindow &fenetre) {
 					fenetre.Draw(fonduEnFermeture);
 					alpha = fonduEnFermeture.GetColor().a + 10.f;
 					if(alpha < 255)
-						fonduEnFermeture.SetColor(sf::Color(0, 0, 0, alpha));
+						fonduEnFermeture.SetColor(sf::Color(255, 255, 255, alpha));
 					else
-						fonduEnFermeture.SetColor(sf::Color(0, 0, 0, 255));
+					{
+						fonduEnFermeture.SetColor(sf::Color(255, 255,255, 255));
+						if( clockAnimation.GetElapsedTime() > 13 )
+							ecranSuivant = GAGNE_JEU;
+					}
 				}
 			}
 
