@@ -39,7 +39,7 @@ int GagneJeu::run(sf::RenderWindow &fenetre) {
 		if (!cursiveFont.LoadFromFile("le_voyage_de_barbulle/img/font/Cursive_standard.ttf", 50.f))
 					cerr << "Erreur lors du chargement de la police" << endl;
 
-	sf::String text("Bravo, tu as ajoute tous les objets ! \n Je vais pouvoir rentrer chez moi ! \n Merci !");
+	sf::String text(L"Bravo, tu as ajoute tous les objets ! \n Je vais pouvoir rentrer chez moi ! \n Merci !");
 	text.Move(fenetre.GetWidth()/10,fenetre.GetHeight()/1.8);
 	text.SetColor(sf::Color::Blue);
 	text.SetSize(22.f);
