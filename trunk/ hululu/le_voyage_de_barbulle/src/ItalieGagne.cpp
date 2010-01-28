@@ -50,15 +50,20 @@ int ItalieGagne::run(sf::RenderWindow &fenetre)
 
 	sf::Sprite Barbulle;
 	Barbulle.SetImage(Ecran::MonManager.GetImage("le_voyage_de_barbulle/img/italie/barbulle_italie.png"));
-	Barbulle.SetPosition((fenetre.GetWidth())/6.5, ((fenetre.GetHeight())/8));
+	Barbulle.SetPosition((fenetre.GetWidth())/1.4, ((fenetre.GetHeight())/1.7));
 	Barbulle.Scale(0.75, 0.75);
 
+
+	sf::Sprite Explication;
+		Explication.SetImage(Ecran::MonManager.GetImage("le_voyage_de_barbulle/img/italie/explication.png"));
+		Explication.SetPosition((fenetre.GetWidth())/1.8, ((fenetre.GetHeight())/30));
 	tabMusic.push_back(new Musique("le_voyage_de_barbulle/music/divers/bravo.ogg"));
 
 	//Objet gagné /////////////////////////////////////////////////////////////////////////////
 
 	PoleSud_Porte::blason.initDessin("le_voyage_de_barbulle/img/objets/blason.png");
-	PoleSud_Porte::blason.placerDessin((fenetre.GetWidth())/2, ((fenetre.GetHeight())/4));
+
+	PoleSud_Porte::blason.placerDessin(fenetre.GetWidth()/2-164, (fenetre.GetHeight()/2-160));
 
 
 
@@ -69,8 +74,9 @@ int ItalieGagne::run(sf::RenderWindow &fenetre)
 	cerr << "Erreur lors du chargement de la police";
 
 	//Texte//////////////////////////////////////////////////////////////////////////////////////
+
 	sf::String text(L"Bravo, tu as trouvé un Objet.");
-	text.Move((fenetre.GetWidth())/30, ((fenetre.GetHeight())/1.9));
+	text.Move((fenetre.GetWidth())/30, ((fenetre.GetHeight())/1.5));
 	text.SetColor(sf::Color::Color(120,15,0));
 	text.SetSize(80.f);
 	text.SetFont(MyFont);
@@ -95,6 +101,7 @@ int ItalieGagne::run(sf::RenderWindow &fenetre)
 				fenetre.Draw(Conservateur);
 				fenetre.Draw(Barbulle);
 				fenetre.Draw(text);
+				fenetre.Draw(Explication);
 				pays.dessinerPage(fenetre);
 				PoleSud_Porte::blason.setTrouve(true);
 				PoleSud_Porte::blason.dessinerObjet(fenetre);
