@@ -268,25 +268,25 @@ int JeuJapon::run(sf::RenderWindow &fenetre)
 		text1.SetSize(20.f);
 		text1.SetFont(MyFont);
 
-		sf::String text2(L"22222222222222222");
-		text2.Move((fenetre.GetWidth())/2, ((fenetre.GetHeight())/70));
+		sf::String text2(L"Froid vigoureux, petites fleurs timides, s'accrochent aux branches.");
+		text2.Move((fenetre.GetWidth())/2.03, ((fenetre.GetHeight())/25));
 		text2.SetColor(sf::Color::Color(120,15,0));
 		text2.SetSize(20.f);
 		text2.SetFont(MyFont);
 
-		sf::String text3(L"33333333333333333333");
-		text3.Move((fenetre.GetWidth())/2, ((fenetre.GetHeight())/70));
+		sf::String text3(L"Au revoir hiver, renouveau rose et rouge, bientôt le printemps.");
+		text3.Move((fenetre.GetWidth())/2, ((fenetre.GetHeight())/25));
 		text3.SetColor(sf::Color::Color(120,15,0));
 		text3.SetSize(20.f);
 		text3.SetFont(MyFont);
 
-		sf::String text4(L"444444444444444444444");
+		sf::String text4(L"Avril menaçant, simplicité tombante, de fleurs violettes.");
 		text4.Move((fenetre.GetWidth())/2, ((fenetre.GetHeight())/70));
 		text4.SetColor(sf::Color::Color(120,15,0));
 		text4.SetSize(20.f);
 		text4.SetFont(MyFont);
 
-		sf::String text5(L"5555555555555555555");
+		sf::String text5(L"Mai doux et frais, prémices des jolies jours, tiges jaïssent.");
 		text5.Move((fenetre.GetWidth())/2, ((fenetre.GetHeight())/70));
 		text5.SetColor(sf::Color::Color(120,15,0));
 		text5.SetSize(20.f);
@@ -304,7 +304,7 @@ int JeuJapon::run(sf::RenderWindow &fenetre)
 		text7.SetSize(20.f);
 		text7.SetFont(MyFont);
 
-		sf::String text8(L"Terre déserte, Rien ne pousse en ce mois, le soleil est grand.");
+		sf::String text8(L"Terre déserte, rien ne pousse en ce mois, le soleil est grand.");
 		text8.Move((fenetre.GetWidth())/2, ((fenetre.GetHeight())/70));
 		text8.SetColor(sf::Color::Color(120,15,0));
 		text8.SetSize(20.f);
@@ -464,7 +464,7 @@ int JeuJapon::run(sf::RenderWindow &fenetre)
 								}
 						}
 
-						if(nbATrouver==0 && Clock.GetElapsedTime()<4)
+						if(nbATrouver==0 && Clock.GetElapsedTime()<3)
 						{
 						fenetre.Draw(Bravo);
 						}
@@ -543,7 +543,6 @@ int JeuJapon::run(sf::RenderWindow &fenetre)
 
 
 
-						cout << tabMusic[0]->GetDuration();
 
 						if (Clock2.GetElapsedTime() < tabMusic[0]->GetDuration() ){
 							fenetre.Draw(inst1);
