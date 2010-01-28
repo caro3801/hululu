@@ -109,6 +109,10 @@ int JeuPerou::run(sf::RenderWindow &fenetre) {
 	fond.SetPosition(0.f, 0.f);
 	fond.Resize((fenetre.GetWidth()), (fenetre.GetHeight()));
 
+	sf::Sprite chauffeur;
+	chauffeur.SetImage(Ecran::MonManager.GetImage(
+			"le_voyage_de_barbulle/img/perou/chauffeur_parle.png"));
+	chauffeur.SetPosition(fenetre.GetWidth() *8/ 100,0); //positionnement du cauffeur
 	// texte du bouton
 	sf::String texteV("Valider");
 	texteV.SetColor(sf::Color::Black);
@@ -195,6 +199,7 @@ int JeuPerou::run(sf::RenderWindow &fenetre) {
 		fenetre.Clear(sf::Color(255, 255, 255));
 
 		fenetre.Draw(fond);
+		fenetre.Draw(chauffeur);
 		pays.dessinerPage(fenetre);
 
 		// -- pieces de 1
