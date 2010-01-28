@@ -47,6 +47,7 @@ void JeuPerou::creerPieces(sf::RenderWindow &fenetre,
 		const std::string & piece3, const std::string & piece3_p,
 		const std::string & piece5, const std::string & piece5_p) {
 
+
 	val1_1.setValeur(1);
 	val1_1.initBouton(piece1_p, piece1);
 	val1_1.redimensionner(0.65);
@@ -102,8 +103,10 @@ int JeuPerou::run(sf::RenderWindow &fenetre) {
 	int ecranSuivant = JEU_PEROU;
 	sf::Clock Clock; //Horloge
 	Clock.Reset();
+
 	sf::Clock Clock2; //Horloge
 	Clock2.Reset();
+
 
 
 	vector<Musique *> tabMusic;
@@ -198,6 +201,8 @@ int JeuPerou::run(sf::RenderWindow &fenetre) {
 			fenetre.GetHeight() / 2 - gagne.GetRect().Top / 2);
 	gagne.SetColor(sf::Color::Blue);
 
+
+
 	sf::String
 			instructions(
 					"Pour voyager en bus tu dois payer ton ticket pour cela, tu dois sélectionner et déplacer les bonnes pieces sur la gauche dans le carré payé",
@@ -207,27 +212,27 @@ int JeuPerou::run(sf::RenderWindow &fenetre) {
 	instructions.SetColor(sf::Color::Black);
 
 
+
 	///AFFICHAGE FENETRE////////////////////////////////
 	sf::Event event;
 
 	tabMusic[0]->Lecture();
 
-	while (fenetre.IsOpened() && (ecranSuivant == JEU_PEROU)) {
+	while (fenetre.IsOpened() && (ecranSuivant == JEU_PEROU) ) {
 
 		while (fenetre.GetEvent(event)) {
 			// # Instanciation de tous les éc fermeture de la fenetre
 			// si echap ou fermeture manuelle
 			if (event.Type == sf::Event::Closed)
-				fenetre.Close();
-			else if (event.Type == sf::Event::KeyReleased && event.Key.Code
-					== sf::Key::Escape)
-				fenetre.Close();
+				ecranSuivant = -1;
+			else if (event.Type == sf::Event::KeyReleased && event.Key.Code == sf::Key::Escape)
+				ecranSuivant = -1;
 			else if (event.Type == sf::Event::MouseMoved)
 				mouseMove = true;
-			else if (event.Type == sf::Event::MouseButtonPressed
-					&& (event.MouseButton.Button == sf::Mouse::Left)) {
+			else if (event.Type == sf::Event::MouseButtonPressed && (event.MouseButton.Button == sf::Mouse::Left))
 				lache = true;
-			}
+		}
+
 
 			// PAUSE/PLAY instruction ///////////
 			if(!pays.getPlaying() ) {
@@ -253,7 +258,7 @@ int JeuPerou::run(sf::RenderWindow &fenetre) {
 			else
 				for(unsigned int i = 0; i < tabMusic.size(); i++)
 					tabMusic[i]->SetVolume(100);
-		}
+
 
 		fenetre.Clear(sf::Color(255, 255, 255));
 
@@ -347,7 +352,12 @@ int JeuPerou::run(sf::RenderWindow &fenetre) {
 				lache = true;
 				entree = true;
 				sommeTot =0;
-				boolErreur = true;
+
+				if(!boolErreur)
+				{
+					boolErreur = true;
+					Clock2.Reset();
+				}
 			}
 			else
 			{
@@ -357,9 +367,7 @@ int JeuPerou::run(sf::RenderWindow &fenetre) {
 
 		}
 
-		if (annuler.estClique(fenetre) && !boolgagner && !val1_1.estClique(fenetre)&& !val1_2.estClique(fenetre)
-				&& !val1_3.estClique(fenetre) && !val2_3.estClique(fenetre)&& !val3_2.estClique(fenetre)&& !val5_1.estClique(fenetre)
-				)
+		if (annuler.estClique(fenetre) && !boolgagner && !val1_1.estClique(fenetre)&& !val1_2.estClique(fenetre) && !val1_3.estClique(fenetre) && !val2_3.estClique(fenetre)&& !val3_2.estClique(fenetre)&& !val5_1.estClique(fenetre))
 		{
 			val1_1.placer((fenetre.GetWidth() * 8 / 12), (fenetre.GetHeight() * 9 / 11));
 			val1_2.placer((fenetre.GetWidth() * 9 / 12), (fenetre.GetHeight() * 9 / 11));
@@ -375,23 +383,23 @@ int JeuPerou::run(sf::RenderWindow &fenetre) {
 
 		if ( boolgagner)
 		{
-		ecranSuivant = PEROUGAGNE;
-		PoleSud_Porte::poncho.setTrouve(true);
-		Clock.Reset();
+			ecranSuivant = PEROUGAGNE;
+			PoleSud_Porte::poncho.setTrouve(true);
+			Clock.Reset();
 		}
 
-		if (boolErreur && (Clock2.GetElapsedTime()<2))
-		{
+		if (boolErreur && (Clock2.GetElapsedTime()<5))
 			fenetre.Draw(erreur);
-
+		else
 			boolErreur = false;
-		}
+
 		fenetre.Display();
 
 		if (fenetre.GetInput().IsMouseButtonDown(sf::Mouse::Left)
 				&& pays.menuActif(fenetre)&& !val1_1.estClique(fenetre)&& !val1_2.estClique(fenetre)&& !val1_3.estClique(fenetre) && !val2_3.estClique(fenetre)&& !val3_2.estClique(fenetre)&& !val5_1.estClique(fenetre))
 			ecranSuivant = pays.changerEcran(fenetre, JEU_PEROU, JEU_PEROU,PEROU);
 	}
+
 	// INTERUPTION de toutes les musiques
 	for(unsigned int i = 0; i < tabMusic.size(); i++)
 		tabMusic[i]->Stop();
