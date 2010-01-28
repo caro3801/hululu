@@ -164,11 +164,14 @@ int ItaliePresent::run(sf::RenderWindow &fenetre) {
 		pays.dessinerPage(fenetre);
 
 		fenetre.Display();
-
 	}
 	// INTERUPTION de toutes les musiques
 	for(unsigned int i = 0; i < tabMusic.size(); i++)
 		tabMusic[i]->Stop();
+
+	if(ecranSuivant != ITALIEPRESENT)
+		etape = 0;
+
 
 	// on éteint
 	return ecranSuivant;
