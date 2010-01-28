@@ -9,8 +9,10 @@
 #include <SFML/System.hpp>
 #include <SFML/Window.hpp>
 #include <SFML/Graphics.hpp>
-#include "Ecran.h"
+#include <SFML/Audio.hpp>
 
+#include "Ecran.h"
+#include "Musique.h"
 #include "Page.h"
 #include "Bouton.h"
 #include "AccueilPays.h"
@@ -34,7 +36,7 @@ int ItalieGagne::run(sf::RenderWindow &fenetre)
 	Clock.Reset();
 	Page pays;
 
-
+	vector<Musique *> tabMusic;
 
 	// FONT//////////////////////////////////////////////////////////////////////////
 	sf::Event event;
@@ -46,11 +48,12 @@ int ItalieGagne::run(sf::RenderWindow &fenetre)
 	Conservateur.SetImage(Ecran::MonManager.GetImage("le_voyage_de_barbulle/img/italie/conservateur_content.png"));
 	Conservateur.SetPosition((fenetre.GetWidth()/30), ((fenetre.GetHeight())/30));
 
-
 	sf::Sprite Barbulle;
 	Barbulle.SetImage(Ecran::MonManager.GetImage("le_voyage_de_barbulle/img/italie/barbulle_italie.png"));
 	Barbulle.SetPosition((fenetre.GetWidth())/6.5, ((fenetre.GetHeight())/8));
 	Barbulle.Scale(0.75, 0.75);
+
+	tabMusic.push_back(new Musique("le_voyage_de_barbulle/music/divers/bravo.ogg"));
 
 	//Objet gagné /////////////////////////////////////////////////////////////////////////////
 
@@ -73,6 +76,7 @@ int ItalieGagne::run(sf::RenderWindow &fenetre)
 	text.SetFont(MyFont);
 
 	////////////////////////////////
+	tabMusic[0]->Lecture();
 
 			while(fenetre.IsOpened() && (ecranSuivant == ITALIEGAGNE))
 			{
@@ -88,7 +92,6 @@ int ItalieGagne::run(sf::RenderWindow &fenetre)
 
 
 				fenetre.Clear(sf::Color(76,100,255));
-
 				fenetre.Draw(Conservateur);
 				fenetre.Draw(Barbulle);
 				fenetre.Draw(text);
@@ -104,9 +107,44 @@ int ItalieGagne::run(sf::RenderWindow &fenetre)
 				if (fenetre.GetInput().IsKeyDown(sf::Key::O))
 					ecranSuivant=MAPPEMONDE;
 
+				// PAUSE/PLAY instruction ///////////
+				if(!pays.getPlaying() ) {
+					if(tabMusic[0]->GetStatus() == sf::Music::Paused) {
+						tabMusic[0]->Lecture();
+					}
+				} else {
+					 if(tabMusic[0]->GetStatus() == sf::Music::Playing) {
+						tabMusic[0]->Pause();
+					 }
+				}
+		// 232, 532, 111
+
+
+
+				// REPETER instruction ///////////////
+				if(pays.getRepeterClique(fenetre) ) {
+						tabMusic[0]->Stop();
+						tabMusic[0]->Lecture();
+				}
+
+				// MUTE instruction //////////////////
+				if(!pays.getMuting())
+					for(unsigned int i = 0; i < tabMusic.size(); i++)
+						tabMusic[i]->SetVolume(0);
+				else
+					for(unsigned int i = 0; i < tabMusic.size(); i++)
+						tabMusic[i]->SetVolume(100);
+
+
+
+
 			}
 
+			// INTERUPTION de toutes les musiques
+			for(unsigned int i = 0; i < tabMusic.size(); i++)
+				tabMusic[i]->Stop();
 
+			// on éteint
 
-	return ecranSuivant;
+			return ecranSuivant;
 }
