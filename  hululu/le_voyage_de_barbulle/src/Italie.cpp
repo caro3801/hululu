@@ -10,7 +10,8 @@ using namespace std;
 // LIB SFML/////////////////////////////
 #include <SFML/System.hpp>
 #include <SFML/Window.hpp>
-#include <SFML/Graphics.hpp>#include <SFML/Audio.hpp>
+#include <SFML/Graphics.hpp>
+#include <SFML/Audio.hpp>
 
 // WIKI SFML //////////////////////////
 #include "Italie.h"
