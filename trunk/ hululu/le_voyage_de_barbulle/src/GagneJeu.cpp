@@ -28,6 +28,7 @@ int GagneJeu::run(sf::RenderWindow &fenetre) {
 
 	int ecranSuivant = GAGNE_JEU;
 	sf::Clock Clock;
+	sf::Clock clockwait;
 	Clock.Reset();
 
 	//IMAGES/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -125,8 +126,10 @@ int GagneJeu::run(sf::RenderWindow &fenetre) {
 		fenetre.Clear(sf::Color(255, 255, 255));
 		fenetre.Draw(text);
 		fenetre.Draw(monstre);
-		pays.dessinerPage(fenetre);
+		pays.dessinerPage(fenetre);clockwait.Reset();
 		fenetre.Display();
+		if (fenetre.GetInput().IsMouseButtonDown(sf::Mouse::Left) && pays.menuActif(fenetre))
+					ecranSuivant = pays.changerEcran(fenetre, GAGNE_JEU, MAPPEMONDE,POLESUD_PORTE ) ;
 
 
 	}
