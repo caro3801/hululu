@@ -331,6 +331,11 @@ int JeuItalie::run(sf::RenderWindow &fenetre) {
 	//original.Resize((fenetre.GetWidth()/2) * (772/1036),  (fenetre.GetHeight()/2)*(772/1036));
 	//else
 	//original.Resize(fenetre.GetWidth()/2,((fenetre.GetWidth()/2) *(1036/772)));
+	sf::Sprite titre; //L'image comportant les instructions
+		titre.SetImage(Ecran::MonManager.GetImage(
+				"le_voyage_de_barbulle/img/italie/titrejeu.png"));
+		titre.SetScale(0.75,0.75);
+		titre.SetPosition(fenetre.GetWidth()/2-titre.GetSize().x/2,0); // placement de l'image erronée en fonction de l'originale
 
 	sf::Sprite erreur; //L'image comportant les Erreurs
 	erreur.SetImage(Ecran::MonManager.GetImage(
@@ -347,10 +352,10 @@ int JeuItalie::run(sf::RenderWindow &fenetre) {
 	//erreur.Resize( erreur.GetSize().x*rapport, erreur.GetSize().y*rapport);
 	sf::Sprite instructions; //L'image comportant les instructions
 	instructions.SetImage(Ecran::MonManager.GetImage(
-			"le_voyage_de_barbulle/img/italie/er1.png"));
+			"le_voyage_de_barbulle/img/italie/bulle1.png"));
 	instructions.SetPosition(original.GetPosition().x
 			- instructions.GetSize().x - 20, fenetre.GetHeight() / 2
-			- instructions.GetSize().y / 2); // placement de l'image erronée en fonction de l'originale
+			- instructions.GetSize().y / 2-20); // placement de l'image erronée en fonction de l'originale
 
 	//TEXTES/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -359,11 +364,7 @@ int JeuItalie::run(sf::RenderWindow &fenetre) {
 			"le_voyage_de_barbulle/img/font/Cursive_standard.ttf", 50))
 		cerr << "Erreur lors du chargement de la police";
 
-	sf::String titre(
-			"Jeu des 7 Erreurs: \n L'Annonciation de Botticelli (1967)",
-			MyFont, 30.f); //Titre
-	titre.Move(fenetre.GetWidth() / 3, 60.f);
-	titre.SetColor(sf::Color::Blue);
+
 
 	sf::String legendeOriginal("Tableau Original", MyFont, 30.f);
 	legendeOriginal.Move(original.GetPosition().x + original.GetSize().x / 2
@@ -394,11 +395,10 @@ int JeuItalie::run(sf::RenderWindow &fenetre) {
 	//Bouton////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 	Bouton boutAide;
-	boutAide.initBouton("le_voyage_de_barbulle/img/italie/barbulle_italie.png",
-			"le_voyage_de_barbulle/img/italie/barbulle_italie.png");
+	boutAide.initBouton("le_voyage_de_barbulle/img/italie/barbulleAide.png",
+			"le_voyage_de_barbulle/img/italie/barbulleAide.png");
 	boutAide.redimensionner(0.5);
-	boutAide.placer(erreur.GetPosition().x+erreur.GetSize().x+20,(fenetre.GetHeight()-boutAide.GetSize().y)/2);
-	boutAide.placerTexte(txtAide);
+	boutAide.placer(erreur.GetPosition().x+erreur.GetSize().x+20,(fenetre.GetHeight()/1.4));
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
@@ -472,7 +472,8 @@ int JeuItalie::run(sf::RenderWindow &fenetre) {
 
 
 		fenetre.Draw(jeu);
-		fenetre.Draw(instructions);pays.dessinerPage(fenetre);
+		fenetre.Draw(instructions);
+		pays.dessinerPage(fenetre);
 
 		//Ecrire les instructions : "Cliquez sur l'image fausse pour trouver les erreurs..."
 
