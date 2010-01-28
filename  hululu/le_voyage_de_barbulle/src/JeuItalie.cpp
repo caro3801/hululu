@@ -14,6 +14,7 @@ using namespace std;
 #include "PoleSud_Porte.h"
 #include "Objet.h"
 #include "DefineEcrans.h"
+#include "effetSurTexte.h"
 JeuItalie::JeuItalie() {
 }
 
@@ -364,9 +365,13 @@ int JeuItalie::run(sf::RenderWindow &fenetre) {
 			"le_voyage_de_barbulle/img/font/Cursive_standard.ttf", 50))
 		cerr << "Erreur lors du chargement de la police";
 
+	sf::Font MyFontB;
+		if (!MyFontB.LoadFromFile(
+				"le_voyage_de_barbulle/img/font/Cursive_standard_BOLD.ttf", 50))
+			cerr << "Erreur lors du chargement de la police";
 
 
-	sf::String legendeOriginal("Tableau Original", MyFont, 30.f);
+	sf::String legendeOriginal("Tableau de Gauche", MyFont, 30.f);
 	legendeOriginal.Move(original.GetPosition().x + original.GetSize().x / 2
 			- legendeOriginal.GetRect().GetWidth() / 2,
 			original.GetPosition().y - 30);
@@ -385,11 +390,14 @@ int JeuItalie::run(sf::RenderWindow &fenetre) {
 	nbErreurs.Move(jeu.GetRect().Right, jeu.GetPosition().y);
 	nbErreurs.SetColor(sf::Color::White);
 
-	sf::String gagne("Tu as gagne !",MyFont,40.f);
+	sf::String gagne("Tu as gagne !",MyFontB,40.f);
 	float originalbottom=original.GetPosition().y+original.GetSize().y;
 	float diff= (jeu.GetPosition().y -originalbottom)/2;
-	gagne.Move(fenetre.GetWidth() / 2 - gagne.GetRect().Right/2,originalbottom+diff);
+	gagne.Move(fenetre.GetWidth() / 2 - gagne.GetRect().Right/2,originalbottom+diff-gagne.GetSize()/2);
 	gagne.SetColor(sf::Color::Green);
+
+	sf::String ombreGagne;
+	ombreTexte(gagne, ombreGagne, sf::Color::Black, 2, 2);
 
 	sf::String txtAide("Aide",MyFont,25.f);
 	//Bouton////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -495,16 +503,27 @@ int JeuItalie::run(sf::RenderWindow &fenetre) {
 		dessineMarque(fenetre, er1, er2, er3, er4, er5, er6, er7,
 				erreur.GetPosition().x, erreur.GetPosition().y);
 		if(nbATrouver == 0)	{
+
+			fenetre.Draw(ombreGagne);
 			fenetre.Draw(gagne);
+
 			PoleSud_Porte::blason.setTrouve(true);
+			if (fenetre.GetInput().IsMouseButtonDown(sf::Mouse::Left) && pays.menuActif(fenetre) )
+								ecranSuivant=pays.changerEcran(fenetre,JEU_ITALIE,ITALIEGAGNE,ITALIEMUSEE) ;
 			Clock.Reset();
 		}
 
-
-
 		fenetre.Display();
+		if (nbATrouver==0)
+		{
 		if (fenetre.GetInput().IsMouseButtonDown(sf::Mouse::Left) && pays.menuActif(fenetre) )
 					ecranSuivant=pays.changerEcran(fenetre,JEU_ITALIE,ITALIEGAGNE,ITALIEMUSEE) ;
+		}
+		else
+		{
+			if (fenetre.GetInput().IsMouseButtonDown(sf::Mouse::Left) && pays.menuActif(fenetre) )
+						ecranSuivant=pays.changerEcran(fenetre,JEU_ITALIE,JEU_ITALIE,ITALIEMUSEE) ;
+		}
 	}
 
 	return ecranSuivant;
