@@ -110,7 +110,7 @@ int JeuPerou::run(sf::RenderWindow &fenetre) {
 
 
 	vector<Musique *> tabMusic;
-	tabMusic.push_back(new Musique("le_voyage_de_barbulle/music/perou/perInst.ogg"));
+	tabMusic.push_back(new Musique("le_voyage_de_barbulle/music/perou/instPerou.ogg"));
 
 	sf::Font cursiveFont;
 	if (!cursiveFont.LoadFromFile(
