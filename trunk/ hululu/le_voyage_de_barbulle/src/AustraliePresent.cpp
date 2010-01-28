@@ -88,6 +88,8 @@ int AustraliePresent::run(sf::RenderWindow &fenetre) {
 			break;
 	}
 
+
+
 	background.SetPosition(0.f, 0.f);
 	background.Resize(fenetre.GetWidth(), fenetre.GetHeight());
 

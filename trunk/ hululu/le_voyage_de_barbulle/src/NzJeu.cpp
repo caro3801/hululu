@@ -44,7 +44,11 @@ int NzJeu::run(sf::RenderWindow &fenetre) {
 	// LISTE musique ////////////////////
 	vector<Musique *> tabMusic;
 	tabMusic.push_back(new Musique("le_voyage_de_barbulle/music/nz/nzMaori.ogg"));
+	tabMusic.push_back(new Musique("le_voyage_de_barbulle/music/nz/nuit.ogg"));
+	tabMusic.push_back(new Musique("le_voyage_de_barbulle/music/nz/nzmerci.ogg"));
 	tabMusic[0]->Lecture();
+	tabMusic[1]->Lecture();
+
 
 	sf::SoundBuffer buffer;
 	buffer.LoadFromFile("le_voyage_de_barbulle/music/nz/splif.ogg");
@@ -74,7 +78,7 @@ int NzJeu::run(sf::RenderWindow &fenetre) {
 	ombreTexte(txtTitre, txtTitreOMBRE, sf::Color(94,4,5), 2, 2);
 
 	// -- vieux Maori
-	sf::Sprite maori(Ecran::MonManager.GetImage("le_voyage_de_barbulle/img/nz/maori.png"));
+	sf::Sprite maori(Ecran::MonManager.GetImage("le_voyage_de_barbulle/img/nz/maori_new.png"));
 	float rapport = fenetre.GetWidth() / fenetre.GetHeight();
 	maori.Resize(fenetre.GetWidth()*0.2, fenetre.GetWidth()*0.2*rapport);
 	maori.SetPosition(fenetre.GetWidth()-maori.GetSize().x, fenetre.GetHeight()-maori.GetSize().y );
@@ -99,7 +103,7 @@ int NzJeu::run(sf::RenderWindow &fenetre) {
 
 	// -- Weta GEANT !!!
 	sf::Sprite wetaGeant(Ecran::MonManager.GetImage("le_voyage_de_barbulle/img/objets/weta.png"));
-	wetaGeant.SetPosition(fenetre.GetWidth()/2 - wetaGeant.GetSize().x/2, fenetre.GetHeight()- wetaGeant.GetSize().y/2);
+	wetaGeant.SetPosition(fenetre.GetWidth()/2 - wetaGeant.GetSize().x/2, fenetre.GetHeight()/2- wetaGeant.GetSize().y/2);
 
 	// VUE ///////////////////////
 	sf::View vue(sf::FloatRect(0, 0, fenetre.GetWidth(), fenetre.GetHeight()) );
@@ -139,6 +143,9 @@ int NzJeu::run(sf::RenderWindow &fenetre) {
 
 			txtCompteur.SetPosition(maori.GetPosition().x -  txtCompteur.GetRect().GetWidth(), maori.GetPosition().y);
 			ombreTexte(txtCompteur, txtCompteurOMBRE, sf::Color(94,4,5), 2, 2);
+
+			tabMusic[2]->Lecture();
+
 		}
 
 		// EVENEMENTS ///////////////////////
@@ -218,11 +225,13 @@ int NzJeu::run(sf::RenderWindow &fenetre) {
 		// GAGNEEEEE ////////////////////////
 		if(wetaRestant == 0)
 		{
+			maori.SetImage(Ecran::MonManager.GetImage("le_voyage_de_barbulle/img/nz/maori_new.png"));
 			txtCompteur.SetText(L"Ah ! Me voila débarrassé de ces wetas pour un moment !\nPour te remercier, voici une statuette du Weta Géant !");
 			txtCompteur.SetPosition(maori.GetPosition().x -  txtCompteur.GetRect().GetWidth(), maori.GetPosition().y);
 			ombreTexte(txtCompteur, txtCompteurOMBRE, sf::Color(94,4,5), 2, 2);
 			continuer=MAPPEMONDE;
 			PoleSud_Porte::weta.setTrouve(true);
+
 			fenetre.Draw(wetaGeant);
 		}
 
@@ -239,5 +248,8 @@ int NzJeu::run(sf::RenderWindow &fenetre) {
 		fenetre.Display();
 	}
 
+	// INTERUPTION de toutes les musiques
+	for(unsigned int i = 0; i < tabMusic.size(); i++)
+		tabMusic[i]->Stop();
 	return ecranSuivant;
 }
