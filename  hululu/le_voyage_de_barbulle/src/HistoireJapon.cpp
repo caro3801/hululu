@@ -24,8 +24,6 @@ using namespace std;
 #include "Musique.h"
 #include "effetSurTexte.h"
 
-#include <iostream>
-using namespace std;
 
 
 HistoireJapon::HistoireJapon() {
