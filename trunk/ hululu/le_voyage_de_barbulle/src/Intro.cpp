@@ -87,7 +87,7 @@ int Intro::run(sf::RenderWindow &fenetre) {
 			tabMusic.push_back(new Musique("le_voyage_de_barbulle/music/intro/ouipage8.ogg"));
 			break;
 	}
-	background.SetPosition((fenetre.GetWidth()/30), (fenetre.GetHeight()/15));
+	background.SetPosition(0.f,0.f);
 	background.Resize((fenetre.GetWidth()), (fenetre.GetHeight()));
 
 	// # création d'une vue sur la fenêtre
