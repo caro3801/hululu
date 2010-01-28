@@ -143,7 +143,7 @@ int JeuPerou::run(sf::RenderWindow &fenetre) {
 	ostringstream imageInt;
 	imageInt << sommeDem;
 
-	sf::String erreur("Le compte de "+imageInt.str()+" Nuevos Soles n'est pas bon!");
+	sf::String erreur("Le compte de "+imageInt.str()+" Nouveaux Sols n'est pas bon!");
 	erreur.Move((fenetre.GetWidth())*33/80, ((fenetre.GetHeight())*9/20));
 	erreur.SetColor(sf::Color::Color(120,15,0));
 	erreur.SetSize(30.f);
