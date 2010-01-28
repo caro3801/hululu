@@ -271,67 +271,67 @@ int JeuJapon::run(sf::RenderWindow &fenetre)
 		sf::String text2(L"22222222222222222");
 		text2.Move((fenetre.GetWidth())/2, ((fenetre.GetHeight())/70));
 		text2.SetColor(sf::Color::Color(120,15,0));
-		text2.SetSize(40.f);
+		text2.SetSize(20.f);
 		text2.SetFont(MyFont);
 
 		sf::String text3(L"33333333333333333333");
 		text3.Move((fenetre.GetWidth())/2, ((fenetre.GetHeight())/70));
 		text3.SetColor(sf::Color::Color(120,15,0));
-		text3.SetSize(40.f);
+		text3.SetSize(20.f);
 		text3.SetFont(MyFont);
 
 		sf::String text4(L"444444444444444444444");
 		text4.Move((fenetre.GetWidth())/2, ((fenetre.GetHeight())/70));
 		text4.SetColor(sf::Color::Color(120,15,0));
-		text4.SetSize(40.f);
+		text4.SetSize(20.f);
 		text4.SetFont(MyFont);
 
 		sf::String text5(L"5555555555555555555");
 		text5.Move((fenetre.GetWidth())/2, ((fenetre.GetHeight())/70));
 		text5.SetColor(sf::Color::Color(120,15,0));
-		text5.SetSize(40.f);
+		text5.SetSize(20.f);
 		text5.SetFont(MyFont);
 
 		sf::String text6(L"66666666666666666");
 		text6.Move((fenetre.GetWidth())/2, ((fenetre.GetHeight())/70));
 		text6.SetColor(sf::Color::Color(120,15,0));
-		text6.SetSize(40.f);
+		text6.SetSize(20.f);
 		text6.SetFont(MyFont);
 
 		sf::String text7(L"77777777777777777");
 		text7.Move((fenetre.GetWidth())/2, ((fenetre.GetHeight())/70));
 		text7.SetColor(sf::Color::Color(120,15,0));
-		text7.SetSize(40.f);
+		text7.SetSize(20.f);
 		text7.SetFont(MyFont);
 
-		sf::String text8(L"8888888888888");
+		sf::String text8(L"Terre déserte, Rien ne pousse en ce mois, le soleil est grand.");
 		text8.Move((fenetre.GetWidth())/2, ((fenetre.GetHeight())/70));
 		text8.SetColor(sf::Color::Color(120,15,0));
-		text8.SetSize(40.f);
+		text8.SetSize(20.f);
 		text8.SetFont(MyFont);
 
 		sf::String text9(L"9999999999999");
 		text9.Move((fenetre.GetWidth())/2, ((fenetre.GetHeight())/70));
 		text9.SetColor(sf::Color::Color(120,15,0));
-		text9.SetSize(40.f);
+		text9.SetSize(20.f);
 		text9.SetFont(MyFont);
 
 		sf::String text10(L"Feuilles qui tombent, nouveau recommencement, rouge orange.");
 		text10.Move((fenetre.GetWidth())/2, ((fenetre.GetHeight())/70));
 		text10.SetColor(sf::Color::Color(120,15,0));
-		text10.SetSize(40.f);
+		text10.SetSize(20.f);
 		text10.SetFont(MyFont);
 
 		sf::String text11(L"De cette fin d'année, différente des autres, j'ouvre sur le froid.");
 		text11.Move((fenetre.GetWidth())/2, ((fenetre.GetHeight())/70));
 		text11.SetColor(sf::Color::Color(120,15,0));
-		text11.SetSize(40.f);
+		text11.SetSize(20.f);
 		text11.SetFont(MyFont);
 
 		sf::String text12(L"1212121212");
 		text12.Move((fenetre.GetWidth())/2, ((fenetre.GetHeight())/70));
 		text12.SetColor(sf::Color::Color(120,15,0));
-		text12.SetSize(40.f);
+		text12.SetSize(20.f);
 		text12.SetFont(MyFont);
 
 
