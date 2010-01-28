@@ -148,8 +148,8 @@ void JeuItalie::dessineMarque(sf::RenderWindow &fenetre, bool er1, bool er2,
 		er1.SetImage(Ecran::MonManager.GetImage(
 				"le_voyage_de_barbulle/img/italie/er1.png"));
 		er1.Resize(
-				2.5 * er1.GetSize().x * er1.GetSize().x / fenetre.GetWidth(),
-				1.25 * er1.GetSize().y * er1.GetSize().y / fenetre.GetHeight());
+				2 * er1.GetSize().x * er1.GetSize().x / fenetre.GetWidth(),
+				er1.GetSize().y * er1.GetSize().y / fenetre.GetHeight());
 
 		er1.SetPosition(posImgX, posImgY);
 		fenetre.Draw(er1);
@@ -159,8 +159,8 @@ void JeuItalie::dessineMarque(sf::RenderWindow &fenetre, bool er1, bool er2,
 		er2.SetImage(Ecran::MonManager.GetImage(
 				"le_voyage_de_barbulle/img/italie/er2.png"));
 		er2.Resize(
-				2.5 * er2.GetSize().x * er2.GetSize().x / fenetre.GetWidth(),
-				1.25 * er2.GetSize().y * er2.GetSize().y / fenetre.GetHeight());
+				2 * er2.GetSize().x * er2.GetSize().x / fenetre.GetWidth(),
+				er2.GetSize().y * er2.GetSize().y / fenetre.GetHeight());
 		er2.SetPosition(posImgX, posImgY);
 		fenetre.Draw(er2);
 	}
@@ -169,8 +169,8 @@ void JeuItalie::dessineMarque(sf::RenderWindow &fenetre, bool er1, bool er2,
 		er3.SetImage(Ecran::MonManager.GetImage(
 				"le_voyage_de_barbulle/img/italie/er3.png"));
 		er3.Resize(
-				2.5 * er3.GetSize().x * er3.GetSize().x / fenetre.GetWidth(),
-				1.25 * er3.GetSize().y * er3.GetSize().y / fenetre.GetHeight());
+				2 * er3.GetSize().x * er3.GetSize().x / fenetre.GetWidth(),
+				  er3.GetSize().y * er3.GetSize().y / fenetre.GetHeight());
 		er3.SetPosition(posImgX, posImgY);
 		fenetre.Draw(er3);
 	}
@@ -179,8 +179,8 @@ void JeuItalie::dessineMarque(sf::RenderWindow &fenetre, bool er1, bool er2,
 		er4.SetImage(Ecran::MonManager.GetImage(
 				"le_voyage_de_barbulle/img/italie/er4.png"));
 		er4.Resize(
-				2.5 * er4.GetSize().x * er4.GetSize().x / fenetre.GetWidth(),
-				1.25 * er4.GetSize().y * er4.GetSize().y / fenetre.GetHeight());
+				2 * er4.GetSize().x * er4.GetSize().x / fenetre.GetWidth(),
+				er4.GetSize().y * er4.GetSize().y / fenetre.GetHeight());
 		er4.SetPosition(posImgX, posImgY);
 		fenetre.Draw(er4);
 	}
@@ -189,8 +189,8 @@ void JeuItalie::dessineMarque(sf::RenderWindow &fenetre, bool er1, bool er2,
 		er5.SetImage(Ecran::MonManager.GetImage(
 				"le_voyage_de_barbulle/img/italie/er5.png"));
 		er5.Resize(
-				2.5 * er5.GetSize().x * er5.GetSize().x / fenetre.GetWidth(),
-				1.25 * er5.GetSize().y * er5.GetSize().y / fenetre.GetHeight());
+				2 * er5.GetSize().x * er5.GetSize().x / fenetre.GetWidth(),
+				er5.GetSize().y * er5.GetSize().y / fenetre.GetHeight());
 		er5.SetPosition(posImgX, posImgY);
 		fenetre.Draw(er5);
 	}
@@ -199,8 +199,8 @@ void JeuItalie::dessineMarque(sf::RenderWindow &fenetre, bool er1, bool er2,
 		er6.SetImage(Ecran::MonManager.GetImage(
 				"le_voyage_de_barbulle/img/italie/er6.png"));
 		er6.Resize(
-				2.5 * er6.GetSize().x * er6.GetSize().x / fenetre.GetWidth(),
-				1.25 * er6.GetSize().y * er6.GetSize().y / fenetre.GetHeight());
+				2 * er6.GetSize().x * er6.GetSize().x / fenetre.GetWidth(),
+				er6.GetSize().y * er6.GetSize().y / fenetre.GetHeight());
 		er6.SetPosition(posImgX, posImgY);
 		fenetre.Draw(er6);
 	}
@@ -209,8 +209,8 @@ void JeuItalie::dessineMarque(sf::RenderWindow &fenetre, bool er1, bool er2,
 		er7.SetImage(Ecran::MonManager.GetImage(
 				"le_voyage_de_barbulle/img/italie/er7.png"));
 		er7.Resize(
-				2.5 * er7.GetSize().x * er7.GetSize().x / fenetre.GetWidth(),
-				1.25 * er7.GetSize().y * er7.GetSize().y / fenetre.GetHeight());
+				2 * er7.GetSize().x * er7.GetSize().x / fenetre.GetWidth(),
+				er7.GetSize().y * er7.GetSize().y / fenetre.GetHeight());
 		er7.SetPosition(posImgX, posImgY);
 		fenetre.Draw(er7);
 	}
@@ -232,8 +232,8 @@ void JeuItalie::afficherAide(sf::RenderWindow &fenetre, bool er1, bool er2,
 		sf::Sprite aide2;
 		aide2.SetImage(Ecran::MonManager.GetImage(
 				"le_voyage_de_barbulle/img/italie/aide2.png"));
-		aide2.Resize(2.5 * aide2.GetSize().x * aide2.GetSize().x
-				/ fenetre.GetWidth(), 1.25 * aide2.GetSize().y
+		aide2.Resize(2 * aide2.GetSize().x * aide2.GetSize().x
+				/ fenetre.GetWidth(), aide2.GetSize().y
 				* aide2.GetSize().y / fenetre.GetHeight());
 		aide2.SetPosition(posImgX, posImgY);
 		fenetre.Draw(aide2);
@@ -244,8 +244,8 @@ void JeuItalie::afficherAide(sf::RenderWindow &fenetre, bool er1, bool er2,
 		sf::Sprite aide3;
 		aide3.SetImage(Ecran::MonManager.GetImage(
 				"le_voyage_de_barbulle/img/italie/aide3.png"));
-		aide3.Resize(2.5 * aide3.GetSize().x * aide3.GetSize().x
-				/ fenetre.GetWidth(), 1.25 * aide3.GetSize().y
+		aide3.Resize(2 * aide3.GetSize().x * aide3.GetSize().x
+				/ fenetre.GetWidth(), aide3.GetSize().y
 				* aide3.GetSize().y / fenetre.GetHeight());
 		aide3.SetPosition(posImgX, posImgY);
 		fenetre.Draw(aide3);
@@ -254,8 +254,8 @@ void JeuItalie::afficherAide(sf::RenderWindow &fenetre, bool er1, bool er2,
 		sf::Sprite aide4;
 		aide4.SetImage(Ecran::MonManager.GetImage(
 				"le_voyage_de_barbulle/img/italie/aide4.png"));
-		aide4.Resize(2.5 * aide4.GetSize().x * aide4.GetSize().x
-				/ fenetre.GetWidth(), 1.25 * aide4.GetSize().y
+		aide4.Resize(2 * aide4.GetSize().x * aide4.GetSize().x
+				/ fenetre.GetWidth(), aide4.GetSize().y
 				* aide4.GetSize().y / fenetre.GetHeight());
 		aide4.SetPosition(posImgX, posImgY);
 		fenetre.Draw(aide4);
@@ -264,8 +264,8 @@ void JeuItalie::afficherAide(sf::RenderWindow &fenetre, bool er1, bool er2,
 		sf::Sprite aide5;
 		aide5.SetImage(Ecran::MonManager.GetImage(
 				"le_voyage_de_barbulle/img/italie/aide5.png"));
-		aide5.Resize(2.5 * aide5.GetSize().x * aide5.GetSize().x
-				/ fenetre.GetWidth(), 1.25 * aide5.GetSize().y
+		aide5.Resize(2 * aide5.GetSize().x * aide5.GetSize().x
+				/ fenetre.GetWidth(), aide5.GetSize().y
 				* aide5.GetSize().y / fenetre.GetHeight());
 		aide5.SetPosition(posImgX, posImgY);
 
@@ -275,8 +275,8 @@ void JeuItalie::afficherAide(sf::RenderWindow &fenetre, bool er1, bool er2,
 		sf::Sprite aide6;
 		aide6.SetImage(Ecran::MonManager.GetImage(
 				"le_voyage_de_barbulle/img/italie/aide6.png"));
-		aide6.Resize(2.5 * aide6.GetSize().x * aide6.GetSize().x
-				/ fenetre.GetWidth(), 1.25 * aide6.GetSize().y
+		aide6.Resize(2 * aide6.GetSize().x * aide6.GetSize().x
+				/ fenetre.GetWidth(), aide6.GetSize().y
 				* aide6.GetSize().y / fenetre.GetHeight());
 
 		aide6.SetPosition(posImgX, posImgY);
@@ -286,8 +286,8 @@ void JeuItalie::afficherAide(sf::RenderWindow &fenetre, bool er1, bool er2,
 		sf::Sprite aide7;
 		aide7.SetImage(Ecran::MonManager.GetImage(
 				"le_voyage_de_barbulle/img/italie/aide7.png"));
-		aide7.Resize(2.5 * aide7.GetSize().x * aide7.GetSize().x
-				/ fenetre.GetWidth(), 1.25 * aide7.GetSize().y
+		aide7.Resize(2 * aide7.GetSize().x * aide7.GetSize().x
+				/ fenetre.GetWidth(), aide7.GetSize().y
 				* aide7.GetSize().y / fenetre.GetHeight());
 		aide7.SetPosition(posImgX, posImgY);
 		fenetre.Draw(aide7);
@@ -324,10 +324,13 @@ int JeuItalie::run(sf::RenderWindow &fenetre) {
 	sf::Sprite original; //L'image originale
 	original.SetImage(Ecran::MonManager.GetImage(
 			"le_voyage_de_barbulle/img/italie/7erreurs_originalp.png"));
-	float sizeXO = 2.5 * original.GetSize().x * original.GetSize().x
+	float sizeXO = 2*original.GetSize().x * original.GetSize().x
 			/ fenetre.GetWidth();
-	float sizeYO = 1.25 * original.GetSize().y * original.GetSize().y
+	float sizeYO = original.GetSize().y * original.GetSize().y
 			/ fenetre.GetHeight();
+	cout<<fenetre.GetWidth()<<","<<fenetre.GetHeight()<<endl;
+	cout<<original.GetSize().x<<","<<original.GetSize().y<<endl;
+	cout<<sizeXO<<","<<sizeYO<<endl;
 	original.Resize(sizeXO, sizeYO);
 	original.SetPosition(fenetre.GetWidth() / 2 - original.GetSize().x - 10,
 			(fenetre.GetHeight() - original.GetSize().y) / 2); // positionement de l'image originale
@@ -345,9 +348,9 @@ int JeuItalie::run(sf::RenderWindow &fenetre) {
 	erreur.SetImage(Ecran::MonManager.GetImage(
 			"le_voyage_de_barbulle/img/italie/7erreurs_fautep.png"));
 	sf::Vector2f vectorSize(erreur.GetSize().x,erreur.GetSize().y);
-	float sizeXE = 2.5 * erreur.GetSize().x * erreur.GetSize().x
+	float sizeXE = 2 * erreur.GetSize().x * erreur.GetSize().x
 			/ fenetre.GetWidth();
-	float sizeYE = 1.25 * erreur.GetSize().y * erreur.GetSize().y
+	float sizeYE = erreur.GetSize().y * erreur.GetSize().y
 			/ fenetre.GetHeight();
 	erreur.Resize(sizeXE, sizeYE);
 	erreur.SetPosition(fenetre.GetWidth() / 2 + 10, (fenetre.GetHeight()
