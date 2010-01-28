@@ -17,6 +17,7 @@
 #include "Page.h"
 #include "Musique.h"
 #include "effetSurTexte.h"
+#include "PoleSud_Porte.h"
 
 #include <iostream>
 #include <sstream>
