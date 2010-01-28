@@ -36,6 +36,8 @@ public:
 	inline void triggerPlaying() { playing = (playing) ? false : true; }
 	inline bool getMuting() { return muting; }
 	inline void triggerMuting() { muting = (muting) ? false : true; }
+	void setAlpha(int valeur);
+	inline int getAlpha() { return alpha;}
 
 private:
 	sf::Sprite fontNavigation;
@@ -55,6 +57,8 @@ private:
 
 	bool playing;
 	bool muting;
+
+	int alpha;
 };
 
 #endif /* PAGE_H_ */

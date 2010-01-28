@@ -65,3 +65,8 @@ bool Bouton::pretACliquer() {
 	else
 		return false;
 }
+
+void Bouton::SetAlpha(int valeur) {
+	spritef.SetColor(sf::Color(255,255,255, valeur));
+	spriten.SetColor(sf::Color(255,255,255, valeur));
+}
