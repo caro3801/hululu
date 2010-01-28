@@ -43,7 +43,7 @@ private:
 	Piece val3_2;
 	Piece val5_1;
 	Piece pieceA;
-	sf::Sprite chauffeur;
+	sf::Sprite instruction;
 };
 
 #endif /* JEUPEROU_H_ */
