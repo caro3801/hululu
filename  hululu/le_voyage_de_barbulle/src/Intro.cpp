@@ -60,7 +60,7 @@ int Intro::run(sf::RenderWindow &fenetre) {
 			break;
 		case 1:
 			background.SetImage(Ecran::MonManager.GetImage("le_voyage_de_barbulle/img/intro/intro2.png"));
-			tabMusic.push_back(new Musique("le_voyage_de_barbulle/music/intro/page2.ogg"));
+			tabMusic.push_back(new Musique("le_voyage_de_barbulle/music/intro/intro2.ogg"));
 			break;
 		case 2:
 			background.SetImage(Ecran::MonManager.GetImage("le_voyage_de_barbulle/img/intro/intro3.png"));
@@ -84,7 +84,7 @@ int Intro::run(sf::RenderWindow &fenetre) {
 			break;
 		case 7:
 			background.SetImage(Ecran::MonManager.GetImage("le_voyage_de_barbulle/img/intro/intro8.png"));
-			tabMusic.push_back(new Musique("le_voyage_de_barbulle/music/intro/ouipage8.ogg"));
+			tabMusic.push_back(new Musique("le_voyage_de_barbulle/music/intro/intro8.ogg"));
 			break;
 	}
 
