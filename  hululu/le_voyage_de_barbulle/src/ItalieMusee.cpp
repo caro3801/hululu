@@ -92,7 +92,8 @@ int ItalieMusee::run(sf::RenderWindow &fenetre) {
 	fenetre.Draw(fond);
 	pays.dessinerPage(fenetre);
 	fenetre.Display();
-
+	if (fenetre.GetInput().IsMouseButtonDown(sf::Mouse::Left) && pays.menuActif(fenetre) )
+						ecranSuivant=pays.changerEcran(fenetre,ITALIEMUSEE,JEU_ITALIE,ITALIEPRESENT) ;
 //		if (fenetre.GetInput().IsMouseButtonDown(sf::Mouse::Left)	&& pays.menuActif(fenetre))
 //			ecranSuivant = pays.changerEcran(fenetre, ITALIEMUSEE, JEU_ITALIE,
 //					ITALIEPRESENT);

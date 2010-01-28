@@ -20,14 +20,17 @@ JeuItalie::JeuItalie() {
 JeuItalie::~JeuItalie() {
 }
 
-bool JeuItalie::erreur1Trouvee(sf::RenderWindow &fenetre, float posImgX,
-		float posImgY) {
+bool JeuItalie::erreur1Trouvee(sf::RenderWindow &fenetre,float rapX,float rapY,sf::Sprite imgEResize) {
 	//Retourne Vrai si l'erreur 1 est cliquée, faux sinon
+float posImgX=imgEResize.GetPosition().x;
+float posImgY=imgEResize.GetPosition().y;
+float posX = fenetre.GetInput().GetMouseX(); //On récupere la position de la souris lors du clic
+float posY = fenetre.GetInput().GetMouseY();
 
-	float posX = fenetre.GetInput().GetMouseX(); //On récupere la position de la souris lors du clic
-	float posY = fenetre.GetInput().GetMouseY();
-	if ((posX >= (110.f + posImgX)) && (posX <= (120.f + posImgX)) && (posY
-			>= (147 + posImgY)) && (posY <= (162 + posImgY)))
+	if 		((posX >= (posImgX+110*rapX))		&& (posX<= (120*rapX  + posImgX))
+			&& (posY>=(147*rapY + posImgY))
+			&& (posY<=(162*rapY + posImgY)))
+
 		//Si position souris entre 113 + posImgX et 122 +posImgX en X et entre 154 + posImgY et 160 + posImgY en Y
 		// Soit si la position de la souris est dans le cercle de l'erreur
 		return true; //L'erreur est trouvée
@@ -41,78 +44,93 @@ bool JeuItalie::erreur1Trouvee(sf::RenderWindow &fenetre, float posImgX,
 //erreur6=	370,513
 //erreur7=	119,396
 
-bool JeuItalie::erreur2Trouvee(sf::RenderWindow &fenetre, float posImgX,
-		float posImgY) {
+bool JeuItalie::erreur2Trouvee(sf::RenderWindow &fenetre,float rapX,float rapY,sf::Sprite imgEResize) {
 	//Retourne Vrai si l'erreur 2 est cliquée, faux sinon
-
+	float posImgX=imgEResize.GetPosition().x;
+	float posImgY=imgEResize.GetPosition().y;
 	float posX = fenetre.GetInput().GetMouseX();
 	float posY = fenetre.GetInput().GetMouseY();
-	if( ((posX >= (30.f + posImgX)) && (posX <= (46.f + posImgX)) && (posY >= (270.f + posImgY)) && (posY <= (278.f + posImgY)))
-			|| ((posX >= (42.f + posImgX)) && (posX <= (60.f + posImgX)) && (posY >= (260.f + posImgY)) && (posY <= (270.f + posImgY))))
+	if (((posX >= (30.f*rapX + posImgX)) && (posX <= (46.f*rapX + posImgX)) && (posY
+			>= (270.f*rapY + posImgY)) && (posY <= (278.f*rapY + posImgY))) || ((posX
+			>= (42.f*rapX + posImgX)) && (posX <= (60.f*rapX + posImgX)) && (posY
+			>= (260.f*rapY + posImgY)) && (posY <= (270.f*rapY + posImgY))))
 
 		return true; //L'erreur est trouvée
 	else
 		return false; //L'erreur n'est pas trouvée
 }
 
-bool JeuItalie::erreur3Trouvee(sf::RenderWindow &fenetre, float posImgX,
-		float posImgY) {
+
+bool JeuItalie::erreur3Trouvee(sf::RenderWindow &fenetre,float rapX,float rapY,sf::Sprite imgEResize) {
 	//Retourne Vrai si l'erreur 3 est cliquée, faux sinon
-
+	float posImgX=imgEResize.GetPosition().x;
+	float posImgY=imgEResize.GetPosition().y;
 	float posX = fenetre.GetInput().GetMouseX();
 	float posY = fenetre.GetInput().GetMouseY();
-	if ((posX >= (82.f + posImgX)) && (posX <= (104.f + posImgX)) && (posY
-			>= (310.f + posImgY)) && (posY <= (330.f + posImgY)))
+	if ((posX >= (82.f*rapX + posImgX)) && (posX <= (104.f*rapX + posImgX)) && (posY
+			>= (310.f*rapY + posImgY)) && (posY <= (330.f*rapY + posImgY)))
 		return true;
 	else
 		return false;
 }
 
-bool JeuItalie::erreur4Trouvee(sf::RenderWindow &fenetre, float posImgX,
-		float posImgY) {
+bool JeuItalie::erreur4Trouvee(sf::RenderWindow &fenetre,float rapX,float rapY,sf::Sprite imgEResize) {
 	//Retourne Vrai si l'erreur 4 est cliquée, faux sinon
+	float posImgX=imgEResize.GetPosition().x;
+	float posImgY=imgEResize.GetPosition().y;
 	float posX = fenetre.GetInput().GetMouseX();
 	float posY = fenetre.GetInput().GetMouseY();
-	if ((posX >= (308.f + posImgX)) && (posX <= (322.f + posImgX)) && (posY
-			>= (105.f + posImgY)) && (posY <= (126.f + posImgY)))
+	if ((posX >= (308.f*rapX + posImgX)) && (posX <= (322.f*rapX + posImgX)) && (posY
+			>= (105.f*rapY + posImgY)) && (posY <= (126.f*rapY + posImgY)))
 		return true;
 	else
 		return false;
 }
 
-bool JeuItalie::erreur5Trouvee(sf::RenderWindow &fenetre, float posImgX,
-		float posImgY) {
+bool JeuItalie::erreur5Trouvee(sf::RenderWindow &fenetre,float rapX,float rapY,sf::Sprite imgEResize) {
 	//Retourne Vrai si l'erreur 1 est cliquée, faux sinon
+	float posImgX=imgEResize.GetPosition().x;
+	float posImgY=imgEResize.GetPosition().y;
 	float posX = fenetre.GetInput().GetMouseX();
 	float posY = fenetre.GetInput().GetMouseY();
-	if (((posX >= (377.f + posImgX)) && (posX <= (386.f + posImgX)) && (posY	>= (162.f + posImgY)) && (posY <= (180.f + posImgY)))
-			|| ((posX >= (384.f + posImgX)) && (posX <= (392.f + posImgX)) && (posY	>= (142.f + posImgY)) && (posY <= (164.f + posImgY)))
-					|| ((posX >= (390.f + posImgX)) && (posX <= (398.f + posImgX)) && (posY	>= (124.f + posImgY)) && (posY <= (144.f + posImgY)))
-							|| ((posX >= (397.f + posImgX)) && (posX <= (405.f + posImgX)) && (posY	>= (107.f + posImgY)) && (posY <= (126.f + posImgY))))
+	if (((posX >= (377.f*rapX + posImgX)) && (posX <= (386.f*rapX + posImgX)) && (posY
+			>= (162.f*rapY + posImgY)) && (posY <= (180.f*rapY + posImgY))) || ((posX
+			>= (384.f*rapX + posImgX)) && (posX <= (392.f*rapX + posImgX)) && (posY
+			>= (142.f*rapY + posImgY)) && (posY <= (164.f*rapY + posImgY))) || ((posX
+			>= (390.f*rapX + posImgX)) && (posX <= (398.f*rapX + posImgX)) && (posY
+			>= (124.f*rapY + posImgY)) && (posY <= (144.f*rapY + posImgY))) || ((posX
+			>= (397.f*rapX + posImgX)) && (posX <= (405.f*rapX + posImgX)) && (posY
+			>= (107.f*rapY + posImgY)) && (posY <= (126.f*rapY + posImgY)))){
+				return true;
+	}
+		 //L'erreur est trouvée
+	else
+		return false; //L'erreur n'est pas trouvée
+}
+
+bool JeuItalie::erreur6Trouvee(sf::RenderWindow &fenetre,float rapX,float rapY,sf::Sprite imgEResize) {
+	//Retourne Vrai si l'erreur 1 est cliquée, faux sinon
+	float posImgX=imgEResize.GetPosition().x;
+	float posImgY=imgEResize.GetPosition().y;
+	float posX = fenetre.GetInput().GetMouseX();
+	float posY = fenetre.GetInput().GetMouseY();
+	if ((posX >= (361.f*rapX + posImgX)) && (posX <= (377.f*rapX + posImgX)) && (posY
+			>= (510*rapY + posImgY)) && (posY <= (522*rapY + posImgY)))
 		return true; //L'erreur est trouvée
 	else
 		return false; //L'erreur n'est pas trouvée
 }
 
-bool JeuItalie::erreur6Trouvee(sf::RenderWindow &fenetre, float posImgX,
-		float posImgY) {
+bool JeuItalie::erreur7Trouvee(sf::RenderWindow &fenetre,float rapX,float rapY,sf::Sprite imgEResize) {
 	//Retourne Vrai si l'erreur 1 est cliquée, faux sinon
+	float posImgX=imgEResize.GetPosition().x;
+	float posImgY=imgEResize.GetPosition().y;
 	float posX = fenetre.GetInput().GetMouseX();
 	float posY = fenetre.GetInput().GetMouseY();
-	if ((posX >= (361.f + posImgX)) && (posX <= (377.f + posImgX)) && (posY
-			>= (510 + posImgY)) && (posY <= (522 + posImgY)))
-		return true; //L'erreur est trouvée
-	else
-		return false; //L'erreur n'est pas trouvée
-}
-
-bool JeuItalie::erreur7Trouvee(sf::RenderWindow &fenetre, float posImgX,
-		float posImgY) {
-	//Retourne Vrai si l'erreur 1 est cliquée, faux sinon
-	float posX = fenetre.GetInput().GetMouseX();
-	float posY = fenetre.GetInput().GetMouseY();
-	if (((posX >= (111.f + posImgX)) && (posX <= (118.f + posImgX)) && (posY	>= (395 + posImgY)) && (posY <= (408 + posImgY)))
-			||((posX >= (114.f + posImgX)) && (posX <= (122.f + posImgX)) && (posY	>= (387 + posImgY)) && (posY <= (397 + posImgY))))
+	if (((posX >= (111.f*rapX + posImgX)) && (posX <= (118.f*rapX + posImgX)) && (posY
+			>= (395*rapY + posImgY)) && (posY <= (408*rapY + posImgY))) || ((posX
+			>= (114.f*rapX + posImgX)) && (posX <= (122.f*rapX + posImgX)) && (posY
+			>= (387*rapY + posImgY)) && (posY <= (397*rapY + posImgY))))
 		return true; //L'erreur est trouvée
 	else
 		return false; //L'erreur n'est pas trouvée
@@ -127,6 +145,10 @@ void JeuItalie::dessineMarque(sf::RenderWindow &fenetre, bool er1, bool er2,
 		sf::Sprite er1;
 		er1.SetImage(Ecran::MonManager.GetImage(
 				"le_voyage_de_barbulle/img/italie/er1.png"));
+		er1.Resize(
+				2.5 * er1.GetSize().x * er1.GetSize().x / fenetre.GetWidth(),
+				1.25 * er1.GetSize().y * er1.GetSize().y / fenetre.GetHeight());
+
 		er1.SetPosition(posImgX, posImgY);
 		fenetre.Draw(er1);
 	}
@@ -134,6 +156,9 @@ void JeuItalie::dessineMarque(sf::RenderWindow &fenetre, bool er1, bool er2,
 		sf::Sprite er2;
 		er2.SetImage(Ecran::MonManager.GetImage(
 				"le_voyage_de_barbulle/img/italie/er2.png"));
+		er2.Resize(
+				2.5 * er2.GetSize().x * er2.GetSize().x / fenetre.GetWidth(),
+				1.25 * er2.GetSize().y * er2.GetSize().y / fenetre.GetHeight());
 		er2.SetPosition(posImgX, posImgY);
 		fenetre.Draw(er2);
 	}
@@ -141,6 +166,9 @@ void JeuItalie::dessineMarque(sf::RenderWindow &fenetre, bool er1, bool er2,
 		sf::Sprite er3;
 		er3.SetImage(Ecran::MonManager.GetImage(
 				"le_voyage_de_barbulle/img/italie/er3.png"));
+		er3.Resize(
+				2.5 * er3.GetSize().x * er3.GetSize().x / fenetre.GetWidth(),
+				1.25 * er3.GetSize().y * er3.GetSize().y / fenetre.GetHeight());
 		er3.SetPosition(posImgX, posImgY);
 		fenetre.Draw(er3);
 	}
@@ -148,6 +176,9 @@ void JeuItalie::dessineMarque(sf::RenderWindow &fenetre, bool er1, bool er2,
 		sf::Sprite er4;
 		er4.SetImage(Ecran::MonManager.GetImage(
 				"le_voyage_de_barbulle/img/italie/er4.png"));
+		er4.Resize(
+				2.5 * er4.GetSize().x * er4.GetSize().x / fenetre.GetWidth(),
+				1.25 * er4.GetSize().y * er4.GetSize().y / fenetre.GetHeight());
 		er4.SetPosition(posImgX, posImgY);
 		fenetre.Draw(er4);
 	}
@@ -155,6 +186,9 @@ void JeuItalie::dessineMarque(sf::RenderWindow &fenetre, bool er1, bool er2,
 		sf::Sprite er5;
 		er5.SetImage(Ecran::MonManager.GetImage(
 				"le_voyage_de_barbulle/img/italie/er5.png"));
+		er5.Resize(
+				2.5 * er5.GetSize().x * er5.GetSize().x / fenetre.GetWidth(),
+				1.25 * er5.GetSize().y * er5.GetSize().y / fenetre.GetHeight());
 		er5.SetPosition(posImgX, posImgY);
 		fenetre.Draw(er5);
 	}
@@ -162,6 +196,9 @@ void JeuItalie::dessineMarque(sf::RenderWindow &fenetre, bool er1, bool er2,
 		sf::Sprite er6;
 		er6.SetImage(Ecran::MonManager.GetImage(
 				"le_voyage_de_barbulle/img/italie/er6.png"));
+		er6.Resize(
+				2.5 * er6.GetSize().x * er6.GetSize().x / fenetre.GetWidth(),
+				1.25 * er6.GetSize().y * er6.GetSize().y / fenetre.GetHeight());
 		er6.SetPosition(posImgX, posImgY);
 		fenetre.Draw(er6);
 	}
@@ -169,6 +206,9 @@ void JeuItalie::dessineMarque(sf::RenderWindow &fenetre, bool er1, bool er2,
 		sf::Sprite er7;
 		er7.SetImage(Ecran::MonManager.GetImage(
 				"le_voyage_de_barbulle/img/italie/er7.png"));
+		er7.Resize(
+				2.5 * er7.GetSize().x * er7.GetSize().x / fenetre.GetWidth(),
+				1.25 * er7.GetSize().y * er7.GetSize().y / fenetre.GetHeight());
 		er7.SetPosition(posImgX, posImgY);
 		fenetre.Draw(er7);
 	}
@@ -176,20 +216,23 @@ void JeuItalie::dessineMarque(sf::RenderWindow &fenetre, bool er1, bool er2,
 
 void JeuItalie::afficherAide(sf::RenderWindow &fenetre, bool er1, bool er2,
 		bool er3, bool er4, bool er5, bool er6, bool er7, float posImgX,
-		float posImgY) {
+		float posImgY, float tailleX, float tailleY) {
 
 	if (!er1) {
 		sf::Sprite aide1;
 		aide1.SetImage(Ecran::MonManager.GetImage(
 				"le_voyage_de_barbulle/img/italie/aide1.png"));
+		aide1.Resize(tailleX, tailleY);
 		aide1.SetPosition(posImgX, posImgY);
 		fenetre.Draw(aide1);
-
 
 	} else if (!er2) {
 		sf::Sprite aide2;
 		aide2.SetImage(Ecran::MonManager.GetImage(
 				"le_voyage_de_barbulle/img/italie/aide2.png"));
+		aide2.Resize(2.5 * aide2.GetSize().x * aide2.GetSize().x
+				/ fenetre.GetWidth(), 1.25 * aide2.GetSize().y
+				* aide2.GetSize().y / fenetre.GetHeight());
 		aide2.SetPosition(posImgX, posImgY);
 		fenetre.Draw(aide2);
 
@@ -199,6 +242,9 @@ void JeuItalie::afficherAide(sf::RenderWindow &fenetre, bool er1, bool er2,
 		sf::Sprite aide3;
 		aide3.SetImage(Ecran::MonManager.GetImage(
 				"le_voyage_de_barbulle/img/italie/aide3.png"));
+		aide3.Resize(2.5 * aide3.GetSize().x * aide3.GetSize().x
+				/ fenetre.GetWidth(), 1.25 * aide3.GetSize().y
+				* aide3.GetSize().y / fenetre.GetHeight());
 		aide3.SetPosition(posImgX, posImgY);
 		fenetre.Draw(aide3);
 
@@ -206,6 +252,9 @@ void JeuItalie::afficherAide(sf::RenderWindow &fenetre, bool er1, bool er2,
 		sf::Sprite aide4;
 		aide4.SetImage(Ecran::MonManager.GetImage(
 				"le_voyage_de_barbulle/img/italie/aide4.png"));
+		aide4.Resize(2.5 * aide4.GetSize().x * aide4.GetSize().x
+				/ fenetre.GetWidth(), 1.25 * aide4.GetSize().y
+				* aide4.GetSize().y / fenetre.GetHeight());
 		aide4.SetPosition(posImgX, posImgY);
 		fenetre.Draw(aide4);
 
@@ -213,13 +262,21 @@ void JeuItalie::afficherAide(sf::RenderWindow &fenetre, bool er1, bool er2,
 		sf::Sprite aide5;
 		aide5.SetImage(Ecran::MonManager.GetImage(
 				"le_voyage_de_barbulle/img/italie/aide5.png"));
+		aide5.Resize(2.5 * aide5.GetSize().x * aide5.GetSize().x
+				/ fenetre.GetWidth(), 1.25 * aide5.GetSize().y
+				* aide5.GetSize().y / fenetre.GetHeight());
 		aide5.SetPosition(posImgX, posImgY);
+
 		fenetre.Draw(aide5);
 
 	} else if (!er6) {
 		sf::Sprite aide6;
 		aide6.SetImage(Ecran::MonManager.GetImage(
 				"le_voyage_de_barbulle/img/italie/aide6.png"));
+		aide6.Resize(2.5 * aide6.GetSize().x * aide6.GetSize().x
+				/ fenetre.GetWidth(), 1.25 * aide6.GetSize().y
+				* aide6.GetSize().y / fenetre.GetHeight());
+
 		aide6.SetPosition(posImgX, posImgY);
 		fenetre.Draw(aide6);
 
@@ -227,6 +284,9 @@ void JeuItalie::afficherAide(sf::RenderWindow &fenetre, bool er1, bool er2,
 		sf::Sprite aide7;
 		aide7.SetImage(Ecran::MonManager.GetImage(
 				"le_voyage_de_barbulle/img/italie/aide7.png"));
+		aide7.Resize(2.5 * aide7.GetSize().x * aide7.GetSize().x
+				/ fenetre.GetWidth(), 1.25 * aide7.GetSize().y
+				* aide7.GetSize().y / fenetre.GetHeight());
 		aide7.SetPosition(posImgX, posImgY);
 		fenetre.Draw(aide7);
 
@@ -238,12 +298,12 @@ int JeuItalie::run(sf::RenderWindow &fenetre) {
 
 	sf::Clock Clock; //Horloge
 	int ecranSuivant = 4; // par défault, celui de l'écran actif
-	bool er1= false;
-	bool er2= false;   //booléens indiquant si les erreurs ont été trouvées
+	bool er1 = false;
+	bool er2 = false; //booléens indiquant si les erreurs ont été trouvées
 	bool er3 = false; //déclarés en plusieurs fois sinon certains sont a true dès le départ ..
 	bool er4 = false;
 	bool er5 = false;
-	bool er6= false;
+	bool er6 = false;
 	bool er7 = false;
 	int nbATrouver = 7; //Le nombre d'erreurs a trouver est de 7 au départ
 	Page pays; //Declaration d'une Page pays qui servira a afficher les menus music et menu
@@ -251,16 +311,20 @@ int JeuItalie::run(sf::RenderWindow &fenetre) {
 
 	//SPRITES////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	//float rapport= fenetre.GetHeight()/fenetre.GetWidth();
-	sf::Sprite  fond; //L'image comportant les Erreurs
-		fond.SetImage(Ecran::MonManager.GetImage(
-				"le_voyage_de_barbulle/img/italie/JeuMusee.png"));
-		fond.SetPosition(0.f,0.f);
-		fond.Resize(fenetre.GetWidth(),fenetre.GetHeight());
-
+	sf::Sprite fond; //L'image comportant les Erreurs
+	fond.SetImage(Ecran::MonManager.GetImage(
+			"le_voyage_de_barbulle/img/italie/JeuMusee.png"));
+	fond.SetPosition(0.f, 0.f);
+	fond.Resize(fenetre.GetWidth(), fenetre.GetHeight());
 
 	sf::Sprite original; //L'image originale
 	original.SetImage(Ecran::MonManager.GetImage(
 			"le_voyage_de_barbulle/img/italie/7erreurs_originalp.png"));
+	float sizeXO = 2.5 * original.GetSize().x * original.GetSize().x
+			/ fenetre.GetWidth();
+	float sizeYO = 1.25 * original.GetSize().y * original.GetSize().y
+			/ fenetre.GetHeight();
+	original.Resize(sizeXO, sizeYO);
 	original.SetPosition(fenetre.GetWidth() / 2 - original.GetSize().x - 10,
 			(fenetre.GetHeight() - original.GetSize().y) / 2); // positionement de l'image originale
 	//if(rapport > (fenetre.GetHeight()/fenetre.GetWidth()))
@@ -271,14 +335,22 @@ int JeuItalie::run(sf::RenderWindow &fenetre) {
 	sf::Sprite erreur; //L'image comportant les Erreurs
 	erreur.SetImage(Ecran::MonManager.GetImage(
 			"le_voyage_de_barbulle/img/italie/7erreurs_fautep.png"));
+	sf::Vector2f vectorSize(erreur.GetSize().x,erreur.GetSize().y);
+	float sizeXE = 2.5 * erreur.GetSize().x * erreur.GetSize().x
+			/ fenetre.GetWidth();
+	float sizeYE = 1.25 * erreur.GetSize().y * erreur.GetSize().y
+			/ fenetre.GetHeight();
+	erreur.Resize(sizeXE, sizeYE);
 	erreur.SetPosition(fenetre.GetWidth() / 2 + 10, (fenetre.GetHeight()
 			- original.GetSize().y) / 2); // placement de l'image erronée en fonction de l'originale
 
 	//erreur.Resize( erreur.GetSize().x*rapport, erreur.GetSize().y*rapport);
 	sf::Sprite instructions; //L'image comportant les instructions
-		instructions.SetImage(Ecran::MonManager.GetImage(
-				"le_voyage_de_barbulle/img/italie/er1.png"));
-		instructions.SetPosition(original.GetPosition().x - instructions.GetSize().x-20, fenetre.GetHeight()/2- instructions.GetSize().y/2); // placement de l'image erronée en fonction de l'originale
+	instructions.SetImage(Ecran::MonManager.GetImage(
+			"le_voyage_de_barbulle/img/italie/er1.png"));
+	instructions.SetPosition(original.GetPosition().x
+			- instructions.GetSize().x - 20, fenetre.GetHeight() / 2
+			- instructions.GetSize().y / 2); // placement de l'image erronée en fonction de l'originale
 
 	//TEXTES/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -352,59 +424,56 @@ int JeuItalie::run(sf::RenderWindow &fenetre) {
 			else if (event.Type == sf::Event::KeyReleased && event.Key.Code
 					== sf::Key::Escape)
 				fenetre.Close();
+		///On dessine sur la fenetre
+		fenetre.Clear();
+		fenetre.Draw(fond);
+		fenetre.Draw(titre);
+		boutAide.drawMe(fenetre);
+			fenetre.Draw(txtAide);
+			fenetre.Draw(original);//Image d'origine
+			fenetre.Draw(legendeOriginal);
+		fenetre.Draw(erreur); //Image d'erreur
+		fenetre.Draw(legendeErreur);
 		if (fenetre.GetInput().IsMouseButtonDown(sf::Mouse::Left)) {
 			//Si on clique sur la fenetre, on regarde la position du clic si elle correspond a une des erreurs
 
-			if (!er1 && erreur1Trouvee(fenetre, erreur.GetPosition().x,
-					erreur.GetPosition().y)) {
+			float rapportX=erreur.GetSize().x/vectorSize.x;
+			float rapportY=erreur.GetSize().y/vectorSize.y;
+
+			if (!er1 && erreur1Trouvee(fenetre,rapportX,rapportY,erreur)) {
 				er1 = true; //Erreur 1 trouvée
 				nbATrouver = nbATrouver - 1; //Une erreur en moins reste a trouver
 			}
-			if (!er2 && erreur2Trouvee(fenetre, erreur.GetPosition().x,
-					erreur.GetPosition().y)) {
+			if (!er2 && erreur2Trouvee(fenetre,rapportX,rapportY,erreur)) {
 				er2 = true; //Erreur 1 trouvée
 				nbATrouver = nbATrouver - 1; //Une erreur en moins reste a trouver
 			}
-			if (!er3 && erreur3Trouvee(fenetre, erreur.GetPosition().x,
-					erreur.GetPosition().y)) {
+			if (!er3 && erreur3Trouvee(fenetre,rapportX,rapportY,erreur)) {
 				er3 = true; //Erreur 1 trouvée
 				nbATrouver = nbATrouver - 1; //Une erreur en moins reste a trouver
 			}
-			if (!er4 && erreur4Trouvee(fenetre, erreur.GetPosition().x,
-					erreur.GetPosition().y)) {
+			if (!er4 && erreur4Trouvee(fenetre,rapportX,rapportY,erreur)) {
 				er4 = true; //Erreur 1 trouvée
 				nbATrouver = nbATrouver - 1; //Une erreur en moins reste a trouver
 			}
-			if (!er5 && erreur5Trouvee(fenetre, erreur.GetPosition().x,
-					erreur.GetPosition().y)) {
+			if (!er5 && erreur5Trouvee(fenetre,rapportX,rapportY,erreur)) {
 				er5 = true; //Erreur 1 trouvée
 				nbATrouver = nbATrouver - 1; //Une erreur en moins reste a trouver
 			}
-			if (!er6 && erreur6Trouvee(fenetre, erreur.GetPosition().x,
-					erreur.GetPosition().y)) {
+			if (!er6 && erreur6Trouvee(fenetre,rapportX,rapportY,erreur)) {
 				er6 = true; //Erreur 1 trouvée
 				nbATrouver = nbATrouver - 1; //Une erreur en moins reste a trouver
 			}
-			if (!er7 && erreur7Trouvee(fenetre, erreur.GetPosition().x,
-					erreur.GetPosition().y)) {
+			if (!er7 && erreur7Trouvee(fenetre,rapportX,rapportY,erreur)) {
 				er7 = true; //Erreur 1 trouvée
 				nbATrouver = nbATrouver - 1; //Une erreur en moins reste a trouver
 			}
 		}
 
-		///On dessine sur la fenetre
-		fenetre.Clear();
 
-		fenetre.Draw(fond);
-		fenetre.Draw(titre);
-		boutAide.drawMe(fenetre);
-		fenetre.Draw(txtAide);
-		fenetre.Draw(original);//Image d'origine
-		fenetre.Draw(legendeOriginal);
-		fenetre.Draw(erreur); //Image d'erreur
-		fenetre.Draw(legendeErreur);
 		fenetre.Draw(jeu);
 		fenetre.Draw(instructions);pays.dessinerPage(fenetre);
+
 		//Ecrire les instructions : "Cliquez sur l'image fausse pour trouver les erreurs..."
 
 		//convertir nbAtrouver en string avec la fonction ostringstream
@@ -419,7 +488,7 @@ int JeuItalie::run(sf::RenderWindow &fenetre) {
 		nbErreurs.SetSize(35.f);
 		fenetre.Draw(nbErreurs);
 		if (boutAide.estClique(fenetre)) {
-			afficherAide(fenetre, er1, er2, er3, er4, er5, er6, er7,erreur.GetPosition().x, erreur.GetPosition().y);
+			afficherAide(fenetre, er1, er2, er3, er4, er5, er6, er7,erreur.GetPosition().x, erreur.GetPosition().y,erreur.GetSize().x,erreur.GetSize().y);
 
 		}
 		dessineMarque(fenetre, er1, er2, er3, er4, er5, er6, er7,
