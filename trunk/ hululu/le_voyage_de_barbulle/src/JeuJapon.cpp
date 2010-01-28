@@ -238,7 +238,7 @@ int JeuJapon::run(sf::RenderWindow &fenetre)
 	sf::Sprite inst3;
 	inst3.SetImage(Ecran::MonManager.GetImage("le_voyage_de_barbulle/img/japon/instruction3.png"));
 	inst3.SetPosition((fenetre.GetWidth())/5, ((fenetre.GetHeight())/35));
-	tabMusic.push_back(new Musique("le_voyage_de_barbulle/music/japon/jap8.ogg"));
+	tabMusic.push_back(new Musique("le_voyage_de_barbulle/music/japon/japInst.ogg"));
 	tabMusic[2]->ChargerFichier();
 
 
@@ -281,55 +281,55 @@ int JeuJapon::run(sf::RenderWindow &fenetre)
 		text3.SetFont(MyFont);
 
 		sf::String text4(L"Avril menaçant, simplicité tombante, de fleurs violettes.");
-		text4.Move((fenetre.GetWidth())/2, ((fenetre.GetHeight())/70));
+		text4.Move((fenetre.GetWidth())/2, ((fenetre.GetHeight())/25));
 		text4.SetColor(sf::Color::Color(120,15,0));
 		text4.SetSize(20.f);
 		text4.SetFont(MyFont);
 
 		sf::String text5(L"Mai doux et frais, prémices des jolies jours, tiges jaïssent.");
-		text5.Move((fenetre.GetWidth())/2, ((fenetre.GetHeight())/70));
+		text5.Move((fenetre.GetWidth())/2, ((fenetre.GetHeight())/25));
 		text5.SetColor(sf::Color::Color(120,15,0));
 		text5.SetSize(20.f);
 		text5.SetFont(MyFont);
 
-		sf::String text6(L"66666666666666666");
-		text6.Move((fenetre.GetWidth())/2, ((fenetre.GetHeight())/70));
+		sf::String text6(L"Un bouton rouge, grandit et s'épanouit, début de l'été.");
+		text6.Move((fenetre.GetWidth())/2, ((fenetre.GetHeight())/25));
 		text6.SetColor(sf::Color::Color(120,15,0));
 		text6.SetSize(20.f);
 		text6.SetFont(MyFont);
 
-		sf::String text7(L"77777777777777777");
-		text7.Move((fenetre.GetWidth())/2, ((fenetre.GetHeight())/70));
+		sf::String text7(L"Des feuilles fines, ondulant tout simplement, la chaleur monte.");
+		text7.Move((fenetre.GetWidth())/2, ((fenetre.GetHeight())/25));
 		text7.SetColor(sf::Color::Color(120,15,0));
 		text7.SetSize(20.f);
 		text7.SetFont(MyFont);
 
 		sf::String text8(L"Terre déserte, rien ne pousse en ce mois, le soleil est grand.");
-		text8.Move((fenetre.GetWidth())/2, ((fenetre.GetHeight())/70));
+		text8.Move((fenetre.GetWidth())/2, ((fenetre.GetHeight())/25));
 		text8.SetColor(sf::Color::Color(120,15,0));
 		text8.SetSize(20.f);
 		text8.SetFont(MyFont);
 
-		sf::String text9(L"9999999999999");
-		text9.Move((fenetre.GetWidth())/2, ((fenetre.GetHeight())/70));
+		sf::String text9(L"Derniers jours de beaux, jaune orange rayonnant, les couleurs changeant.");
+		text9.Move((fenetre.GetWidth())/3.7, ((fenetre.GetHeight())/25));
 		text9.SetColor(sf::Color::Color(120,15,0));
 		text9.SetSize(20.f);
 		text9.SetFont(MyFont);
 
 		sf::String text10(L"Feuilles qui tombent, nouveau recommencement, rouge orange.");
-		text10.Move((fenetre.GetWidth())/2, ((fenetre.GetHeight())/70));
+		text10.Move((fenetre.GetWidth())/2, ((fenetre.GetHeight())/25));
 		text10.SetColor(sf::Color::Color(120,15,0));
 		text10.SetSize(20.f);
 		text10.SetFont(MyFont);
 
 		sf::String text11(L"De cette fin d'année, différente des autres, j'ouvre sur le froid.");
-		text11.Move((fenetre.GetWidth())/2, ((fenetre.GetHeight())/70));
+		text11.Move((fenetre.GetWidth())/2, ((fenetre.GetHeight())/25));
 		text11.SetColor(sf::Color::Color(120,15,0));
 		text11.SetSize(20.f);
 		text11.SetFont(MyFont);
 
-		sf::String text12(L"1212121212");
-		text12.Move((fenetre.GetWidth())/2, ((fenetre.GetHeight())/70));
+		sf::String text12(L"Il ne t'en reste plus que quatre !!!");
+		text12.Move((fenetre.GetWidth())/2, ((fenetre.GetHeight())/25));
 		text12.SetColor(sf::Color::Color(120,15,0));
 		text12.SetSize(20.f);
 		text12.SetFont(MyFont);
@@ -341,9 +341,17 @@ int JeuJapon::run(sf::RenderWindow &fenetre)
 	nbCarte.Move((fenetre.GetWidth())/4, (fenetre.GetHeight())/1.25);
 	nbCarte.SetColor(sf::Color::Color(120,15,0));
 
+	sf::String compteur(L"Nombre de carte(s) à trouver : ");
+	compteur.Move((fenetre.GetWidth())/6, ((fenetre.GetHeight())/1.35));
+	compteur.SetColor(sf::Color::Color(120,15,0));
+	compteur.SetSize(25.f);
+	compteur.SetFont(MyFont);
+
+
+	//FLEURS //////////////////////////////////////////////////////////////////////////////
 	sf::Sprite Sakura;
 	Sakura.SetImage(Ecran::MonManager.GetImage("le_voyage_de_barbulle/img/japon/Sakura.png"));
-	Sakura.SetPosition((fenetre.GetWidth())/9, ((fenetre.GetHeight())/1.35));
+	Sakura.SetPosition((fenetre.GetWidth())/12, ((fenetre.GetHeight())/1.35));
 	Sakura.Resize(150, 150);
 
 	sf::Sprite Sakura2;
@@ -361,6 +369,11 @@ int JeuJapon::run(sf::RenderWindow &fenetre)
 	Barbulle.initBouton("le_voyage_de_barbulle/img/japon/barbulle_japon.png","le_voyage_de_barbulle/img/japon/barbulle_japon.png" );
 	Barbulle.redimensionner(0.2);
 	Barbulle.placer((fenetre.GetWidth())/1.15, ((fenetre.GetHeight())/70));
+
+	sf::Sprite Aide;
+	Aide.SetImage(Ecran::MonManager.GetImage("le_voyage_de_barbulle/img/japon/barbulle_aide.png"));
+	Aide.SetPosition((fenetre.GetWidth())/1.06, ((fenetre.GetHeight())/70));
+	Aide.Resize(60, 60);
 
 
 
@@ -539,6 +552,8 @@ int JeuJapon::run(sf::RenderWindow &fenetre)
 						fenetre.Draw(Sakura);
 						fenetre.Draw(Sakura2);
 						fenetre.Draw(Sakura3);
+						fenetre.Draw(Aide);
+						fenetre.Draw(compteur);
 						Barbulle.drawMe(fenetre);
 
 
