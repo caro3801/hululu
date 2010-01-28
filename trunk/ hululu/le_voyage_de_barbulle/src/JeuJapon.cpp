@@ -123,27 +123,27 @@ int JeuJapon::run(sf::RenderWindow &fenetre)
 		i++;
 		}
 		else if (i>7 and i<16){
-		tabCarte[i].placer((fenetre.GetWidth()/2)+R2, (fenetre.GetHeight()/8)+100);
+		tabCarte[i].placer((fenetre.GetWidth()/2)+R2, (fenetre.GetHeight()/8)+80);
 		R2=R2+70;
 		i++;
 		}
 		else if (i>15 and i<24){
-		tabCarte[i].placer((fenetre.GetWidth()/2)+R3, (fenetre.GetHeight()/8)+200);
+		tabCarte[i].placer((fenetre.GetWidth()/2)+R3, (fenetre.GetHeight()/8)+180);
 		R3=R3+70;
 		i++;
 		}
 		else if (i>23 and i<32){
-		tabCarte[i].placer((fenetre.GetWidth()/2)+R4, (fenetre.GetHeight()/8)+300);
+		tabCarte[i].placer((fenetre.GetWidth()/2)+R4, (fenetre.GetHeight()/8)+280);
 		R4=R4+70;
 		i++;
 		}
 		else if (i>31 and i<40){
-		tabCarte[i].placer((fenetre.GetWidth()/2)+R5, (fenetre.GetHeight()/8)+400);
+		tabCarte[i].placer((fenetre.GetWidth()/2)+R5, (fenetre.GetHeight()/8)+380);
 		R5=R5+70;
 		i++;
 		}
 		else {
-		tabCarte[i].placer((fenetre.GetWidth()/2)+R6, (fenetre.GetHeight()/8)+500);
+		tabCarte[i].placer((fenetre.GetWidth()/2)+R6, (fenetre.GetHeight()/8)+480);
 		R6=R6+70;
 		i++;
 		}
@@ -249,7 +249,7 @@ int JeuJapon::run(sf::RenderWindow &fenetre)
 		cerr << "Erreur lors du chargement de la police";
 
 	//Texte//////////////////////////////////////////////////////////////////////////////////////
-	float topAide = (fenetre.GetHeight()/8)+600 ;
+	float topAide = (fenetre.GetHeight()/8)+580 ;
 
 		sf::String text1(L"Oiseau blanc et noir, haut perché avec fierté, j'annonce janvier.");
 		text1.Move((fenetre.GetWidth())/2, topAide+20);
