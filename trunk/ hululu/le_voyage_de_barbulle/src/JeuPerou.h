@@ -44,6 +44,7 @@ private:
 	Piece val5_1;
 	Piece pieceA;
 	sf::Sprite inst;
+	sf::String erreur;
 };
 
 #endif /* JEUPEROU_H_ */

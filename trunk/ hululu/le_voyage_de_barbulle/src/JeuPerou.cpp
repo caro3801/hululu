@@ -4,10 +4,21 @@
  *  Created on: 5 déc. 2009
  *      Author: talotte&antho
  */
+#include <SFML/System.hpp>
+#include <SFML/Window.hpp>
+#include <SFML/Graphics.hpp>
+#include <SFML/Audio.hpp>
+
 #include "PoleSud_Porte.h"
 #include "JeuPerou.h"
-#include "Page.h"
 #include "DefineEcrans.h"
+
+#include "Bouton.h"
+#include "Page.h"
+#include "Musique.h"
+#include "effetSurTexte.h"
+#include "PoleSud_Porte.h"
+
 #include <iostream>
 #include <sstream>
 using namespace std;
@@ -100,6 +111,9 @@ int JeuPerou::run(sf::RenderWindow &fenetre) {
 	bool lache = true;
 	bool entree = true;
 	bool boolgagner = false;
+	bool boolErreur = false;
+	int sommeDem = 7;
+	int sommeTot = 0;
 	//IMAGES////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 	// # image de fond
@@ -110,10 +124,20 @@ int JeuPerou::run(sf::RenderWindow &fenetre) {
 	fond.Resize((fenetre.GetWidth()), (fenetre.GetHeight()));
 
 	//INSTRUCTION ////////////////////////////////////////////////////////////////////////
-
 	sf::Sprite inst;
 	inst.SetImage(Ecran::MonManager.GetImage("le_voyage_de_barbulle/img/perou/instruction.png"));
 	inst.SetPosition((fenetre.GetWidth())*8/20, ((fenetre.GetHeight())*2/20));
+
+	// texte erreur
+
+	ostringstream imageInt;
+	imageInt << sommeDem;
+
+	sf::String erreur("Le compte de "+imageInt.str()+" Nuevos Soles n'est pas bon!");
+	erreur.Move((fenetre.GetWidth())*33/80, ((fenetre.GetHeight())*9/20));
+	erreur.SetColor(sf::Color::Color(120,15,0));
+	erreur.SetSize(30.f);
+	erreur.SetFont(cursiveFont);
 
 	// texte du bouton
 	sf::String texteV("Valider");
@@ -175,8 +199,7 @@ int JeuPerou::run(sf::RenderWindow &fenetre) {
 			fenetre.GetHeight() / 2 - gagne.GetRect().Top / 2);
 	instructions.SetColor(sf::Color::Black);
 
-	int sommeDem = 7;
-	int sommeTot = 0;
+
 	///AFFICHAGE FENETRE////////////////////////////////
 	sf::Event event;
 
@@ -290,6 +313,7 @@ int JeuPerou::run(sf::RenderWindow &fenetre) {
 				lache = true;
 				entree = true;
 				sommeTot =0;
+				boolErreur = true;
 			}
 			else
 			{
@@ -322,6 +346,10 @@ int JeuPerou::run(sf::RenderWindow &fenetre) {
 		Clock.Reset();
 		}
 
+		if (boolErreur)
+		{
+			fenetre.Draw(erreur);
+		}
 		fenetre.Display();
 
 		if (fenetre.GetInput().IsMouseButtonDown(sf::Mouse::Left)
