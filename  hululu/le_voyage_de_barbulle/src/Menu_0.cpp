@@ -20,10 +20,11 @@ using namespace std;
 #include "Bouton.h"
 #include "Person2D.h"
 #include "DefineEcrans.h"
+#include "PoleSud_Porte.h"
 
 int Menu_0::run(sf::RenderWindow &fenetre)
 {
-	int ecranSuivant = MENU_0;
+	int ecranSuivant = POLESUD_PORTE;
 	sf::Clock Clock;
 
 	// DEF de la police par défaut
@@ -178,5 +179,11 @@ int Menu_0::run(sf::RenderWindow &fenetre)
 
 		// CLIQUE SUR continuer ///////////////////////////////
 	}
+
+	PoleSud_Porte::weta.setTrouve(true);
+	PoleSud_Porte::poncho.setTrouve(true);
+	PoleSud_Porte::blason.setTrouve(true);
+	PoleSud_Porte::lampion.setTrouve(true);
+
 	return ecranSuivant;
 }
