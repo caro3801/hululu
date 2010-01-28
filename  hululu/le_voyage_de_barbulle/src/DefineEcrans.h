@@ -31,4 +31,5 @@
 #define ITALIEMUSEE 19
 #define PEROUPRESENT 20
 #define GAGNE_JEU 21
+#define PEROUGAGNE 22
 #endif /* DEFINEECRANS_H_ */
