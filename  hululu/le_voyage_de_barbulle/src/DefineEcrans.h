@@ -32,4 +32,5 @@
 #define PEROUPRESENT 20
 #define GAGNE_JEU 21
 #define PEROUGAGNE 22
+#define ITALIEGAGNE 23
 #endif /* DEFINEECRANS_H_ */
