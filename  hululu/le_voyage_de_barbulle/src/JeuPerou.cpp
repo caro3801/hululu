@@ -196,7 +196,6 @@ int JeuPerou::run(sf::RenderWindow &fenetre) {
 		fenetre.Clear(sf::Color(255, 255, 255));
 
 		fenetre.Draw(fond);
-		fenetre.Draw(chauffeur);
 		pays.dessinerPage(fenetre);
 
 		// -- pieces de 1
@@ -293,7 +292,7 @@ int JeuPerou::run(sf::RenderWindow &fenetre) {
 
 		}
 
-		if (annuler.estClique(fenetre) && !val1_1.estClique(fenetre)&& !val1_2.estClique(fenetre)
+		if (annuler.estClique(fenetre) && !boolgagner && !val1_1.estClique(fenetre)&& !val1_2.estClique(fenetre)
 				&& !val1_3.estClique(fenetre) && !val2_3.estClique(fenetre)&& !val3_2.estClique(fenetre)&& !val5_1.estClique(fenetre))
 		{
 			val1_1.placer((fenetre.GetWidth() * 8 / 12), (fenetre.GetHeight() * 9 / 11));

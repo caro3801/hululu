@@ -553,13 +553,16 @@ int JeuJapon::run(sf::RenderWindow &fenetre)
 							fenetre.Draw(inst2);
 							_etape = 1;
 						}
-						else {
+						else
+						{
 							fenetre.Draw(inst3);
 							_etape = 2;
 						}
 
-						if( tabMusic[_etape]->GetStatus() == sf::Music::Stopped)
-							tabMusic[_etape]->Lecture();
+						if (Clock2.GetElapsedTime() < (tabMusic[0]->GetDuration() + tabMusic[1]->GetDuration() + tabMusic[2]->GetDuration()) )
+							if( tabMusic[_etape]->GetStatus() == sf::Music::Stopped)
+								tabMusic[_etape]->Lecture();
+
 
 					if (fenetre.GetInput().IsMouseButtonDown(sf::Mouse::Left) && pays.menuActif(fenetre) && courant!=13)
 							ecranSuivant=pays.changerEcran(fenetre,JEUJAPON,JEUJAPON,HISTOIREJAPON);
