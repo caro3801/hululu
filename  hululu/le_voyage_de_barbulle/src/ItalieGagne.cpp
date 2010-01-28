@@ -44,8 +44,8 @@ int ItalieGagne::run(sf::RenderWindow &fenetre)
 
 	sf::Sprite Conservateur;
 	Conservateur.SetImage(Ecran::MonManager.GetImage("le_voyage_de_barbulle/img/italie/conservateur_content.png"));
-	Conservateur.SetPosition((fenetre.GetWidth())/9, ((fenetre.GetHeight())/2));
-//	Sakura.Resize(400, 400);
+	Conservateur.SetPosition((fenetre.GetWidth()/30), ((fenetre.GetHeight())/30));
+
 
 	sf::Sprite Barbulle;
 	Barbulle.SetImage(Ecran::MonManager.GetImage("le_voyage_de_barbulle/img/italie/barbulle_italie.png"));
@@ -87,7 +87,7 @@ int ItalieGagne::run(sf::RenderWindow &fenetre)
 
 
 
-				fenetre.Clear(sf::Color(255, 200, 122));
+				fenetre.Clear(sf::Color(76,100,255));
 
 				fenetre.Draw(Conservateur);
 				fenetre.Draw(Barbulle);
