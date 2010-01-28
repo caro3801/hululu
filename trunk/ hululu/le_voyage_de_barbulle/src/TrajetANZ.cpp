@@ -43,8 +43,6 @@ int TrajetANZ::run(sf::RenderWindow &fenetre) {
 	sf::Clock clock, clockSuivant;
 	clock.Reset(); clockSuivant.Reset();
 
-
-
 	// DEF de la police ////////////////
 	sf::Font cursiveFont;
 	if (!cursiveFont.LoadFromFile("le_voyage_de_barbulle/img/font/Cursive_standard.ttf", 50.f))
@@ -64,7 +62,7 @@ int TrajetANZ::run(sf::RenderWindow &fenetre) {
 
 	// LISTE musique ////////////////////
 	vector<Musique *> tabMusic;
-
+	tabMusic.push_back(new Musique("le_voyage_de_barbulle/music/australie/austBoat.ogg"));
 
 	// IMAGE DE FONT ////////////////////
 	sf::Sprite background;
@@ -84,6 +82,8 @@ int TrajetANZ::run(sf::RenderWindow &fenetre) {
 
 	sf::Event event;
 	int alpha = 255;
+
+	tabMusic[0]->Lecture();
 
 	while (fenetre.IsOpened() && (ecranSuivant == TRAJET_ANZ) )
 	{
@@ -158,6 +158,10 @@ int TrajetANZ::run(sf::RenderWindow &fenetre) {
 
 		fenetre.Display();
 	}
+	// INTERUPTION de toutes les musiques
+	for(unsigned int i = 0; i < tabMusic.size(); i++)
+		tabMusic[i]->Stop();
 
+	// on éteint
 	return ecranSuivant;
 }

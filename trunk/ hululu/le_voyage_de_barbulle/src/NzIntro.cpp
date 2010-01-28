@@ -43,7 +43,7 @@ int NzIntro::run(sf::RenderWindow &fenetre) {
 
 	// LISTE musique ////////////////////
 	vector<Musique *> tabMusic;
-	//tabMusic.push_back(new Musique("le_voyage_de_barbulle/music/australie/aust1.ogg"));
+	tabMusic.push_back(new Musique("le_voyage_de_barbulle/music/nz/nzBienv.ogg"));
 
 
 	// ELEMENTS /////////////////////////
@@ -96,6 +96,7 @@ int NzIntro::run(sf::RenderWindow &fenetre) {
 	fenetre.SetView(vue);
 
 	sf::Event event;
+	tabMusic[0]->Lecture();
 
 	while (fenetre.IsOpened() && (ecranSuivant == NZ_INTRO) )
 	{
@@ -153,6 +154,10 @@ int NzIntro::run(sf::RenderWindow &fenetre) {
 
 		fenetre.Display();
 	}
+
+	// INTERUPTION de toutes les musiques
+	for(unsigned int i = 0; i < tabMusic.size(); i++)
+		tabMusic[i]->Stop();
 
 	return ecranSuivant;
 }

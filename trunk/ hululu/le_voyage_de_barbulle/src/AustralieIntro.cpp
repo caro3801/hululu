@@ -49,6 +49,7 @@ int AustralieIntro::run(sf::RenderWindow &fenetre) {
 	sf::Clock Clock;
 	Clock.Reset();
 
+	vector<Musique *> tabMusic;
 	// ELEMENTS /////////////////////////
 	// -- drapeaux
 	sf::Sprite flag;
@@ -92,11 +93,15 @@ int AustralieIntro::run(sf::RenderWindow &fenetre) {
 	background.SetPosition(0.f, 0.f);
 	background.Resize(fenetre.GetWidth(), fenetre.GetHeight());
 
+	tabMusic.push_back(new Musique("le_voyage_de_barbulle/music/australie/austBienv.ogg"));
+
 	sf::Event event;
 
 	// # création d'une vue sur la fenêtre
 	sf::View vue(sf::FloatRect(0, 0, fenetre.GetWidth(), fenetre.GetHeight()) );
 	fenetre.SetView(vue);
+
+	tabMusic[0]->Lecture();
 
 	while (fenetre.IsOpened() && (ecranSuivant == AUSTRALIE_INTRO) )
 	{
@@ -112,6 +117,32 @@ int AustralieIntro::run(sf::RenderWindow &fenetre) {
 				fenetre.Close();
 		}
 
+		// PAUSE/PLAY instruction ///////////
+		if(!modelePage.getPlaying() ) {
+			if(tabMusic[0]->GetStatus() == sf::Music::Paused) {
+				tabMusic[0]->Lecture();
+			}
+		} else {
+			 if(tabMusic[0]->GetStatus() == sf::Music::Playing) {
+				tabMusic[0]->Pause();
+			 }
+		}
+
+
+
+		// REPETER instruction ///////////////
+		if(modelePage.getRepeterClique(fenetre) ) {
+				tabMusic[0]->Stop();
+				tabMusic[0]->Lecture();
+		}
+
+		// MUTE instruction //////////////////
+		if(!modelePage.getMuting())
+			for(unsigned int i = 0; i < tabMusic.size(); i++)
+				tabMusic[i]->SetVolume(0);
+		else
+			for(unsigned int i = 0; i < tabMusic.size(); i++)
+				tabMusic[i]->SetVolume(100);
 
 		// DESSINS  //////////////////////////
 		fenetre.Draw(background);
@@ -129,6 +160,11 @@ int AustralieIntro::run(sf::RenderWindow &fenetre) {
 			ecranSuivant = modelePage.changerEcran(fenetre, AUSTRALIE_INTRO, AUSTRALIE_PRESENT, MAPPEMONDE) ;
 
 	}
+	// INTERUPTION de toutes les musiques
+	for(unsigned int i = 0; i < tabMusic.size(); i++)
+		tabMusic[i]->Stop();
+
+	// on éteint
 
 	return ecranSuivant;
 }
