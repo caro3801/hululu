@@ -19,6 +19,9 @@ public:
 	JeuJapon();
 	virtual ~JeuJapon();
 	virtual int run(sf::RenderWindow &fenetre);
+
+protected:
+	unsigned int _etape;
 };
 
 #endif /* JEUJAPON_H_ */

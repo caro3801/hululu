@@ -22,6 +22,7 @@ public:
 	Musique(string chemin);
 	virtual ~Musique();
 	void Lecture();
+	void ChargerFichier();
 
 protected:
 	string _chemin;
