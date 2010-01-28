@@ -118,7 +118,7 @@ int JeuJapon::run(sf::RenderWindow &fenetre)
 
 	while (i<48){
 		if (i<8){
-		tabCarte[i].placer((fenetre.GetWidth()/2)+R1, (fenetre.GetHeight()/8));
+		tabCarte[i].placer((fenetre.GetWidth()/2)+R1, -20+(fenetre.GetHeight()/8));
 		R1=R1+70;
 		i++;
 		}
@@ -246,7 +246,7 @@ int JeuJapon::run(sf::RenderWindow &fenetre)
 	// instruction
 	sf::Font MyFont;
 	if (!MyFont.LoadFromFile("le_voyage_de_barbulle/img/font/Cursive_standard.ttf", 40.f))
-	cerr << "Erreur lors du chargement de la police";
+		cerr << "Erreur lors du chargement de la police";
 
 	//Texte//////////////////////////////////////////////////////////////////////////////////////
 	float topAide = (fenetre.GetHeight()/8)+600 ;
@@ -258,67 +258,67 @@ int JeuJapon::run(sf::RenderWindow &fenetre)
 		text1.SetFont(MyFont);
 
 		sf::String text2(L"Froid vigoureux, petites fleurs timides, s'accrochent aux branches.");
-		text2.Move((fenetre.GetWidth())/2.03, ((fenetre.GetHeight())/25));
+		text2.Move((fenetre.GetWidth())/2.03,  topAide+20);
 		text2.SetColor(sf::Color::Color(120,15,0));
 		text2.SetSize(20.f);
 		text2.SetFont(MyFont);
 
 		sf::String text3(L"Au revoir hiver, renouveau rose et rouge, bientôt le printemps.");
-		text3.Move((fenetre.GetWidth())/2, ((fenetre.GetHeight())/25));
+		text3.Move((fenetre.GetWidth())/2, topAide+20);
 		text3.SetColor(sf::Color::Color(120,15,0));
 		text3.SetSize(20.f);
 		text3.SetFont(MyFont);
 
 		sf::String text4(L"Avril menaçant, simplicité tombante, de fleurs violettes.");
-		text4.Move((fenetre.GetWidth())/2, ((fenetre.GetHeight())/25));
+		text4.Move((fenetre.GetWidth())/2,  topAide+20);
 		text4.SetColor(sf::Color::Color(120,15,0));
 		text4.SetSize(20.f);
 		text4.SetFont(MyFont);
 
 		sf::String text5(L"Mai doux et frais, prémices des jolies jours, tiges jaïssent.");
-		text5.Move((fenetre.GetWidth())/2, ((fenetre.GetHeight())/25));
+		text5.Move((fenetre.GetWidth())/2,  topAide+20);
 		text5.SetColor(sf::Color::Color(120,15,0));
 		text5.SetSize(20.f);
 		text5.SetFont(MyFont);
 
 		sf::String text6(L"Un bouton rouge, grandit et s'épanouit, début de l'été.");
-		text6.Move((fenetre.GetWidth())/2, ((fenetre.GetHeight())/25));
+		text6.Move((fenetre.GetWidth())/2,  topAide+20);
 		text6.SetColor(sf::Color::Color(120,15,0));
 		text6.SetSize(20.f);
 		text6.SetFont(MyFont);
 
 		sf::String text7(L"Des feuilles fines, ondulant tout simplement, la chaleur monte.");
-		text7.Move((fenetre.GetWidth())/2, ((fenetre.GetHeight())/25));
+		text7.Move((fenetre.GetWidth())/2,  topAide+20);
 		text7.SetColor(sf::Color::Color(120,15,0));
 		text7.SetSize(20.f);
 		text7.SetFont(MyFont);
 
 		sf::String text8(L"Terre déserte, rien ne pousse en ce mois, le soleil est grand.");
-		text8.Move((fenetre.GetWidth())/2, ((fenetre.GetHeight())/25));
+		text8.Move((fenetre.GetWidth())/2,  topAide+20);
 		text8.SetColor(sf::Color::Color(120,15,0));
 		text8.SetSize(20.f);
 		text8.SetFont(MyFont);
 
 		sf::String text9(L"Derniers jours de beaux, jaune orange rayonnant, les couleurs changeant.");
-		text9.Move((fenetre.GetWidth())/3.7, ((fenetre.GetHeight())/25));
+		text9.Move((fenetre.GetWidth())/2.2,  topAide+20);
 		text9.SetColor(sf::Color::Color(120,15,0));
 		text9.SetSize(20.f);
 		text9.SetFont(MyFont);
 
 		sf::String text10(L"Feuilles qui tombent, nouveau recommencement, rouge orange.");
-		text10.Move((fenetre.GetWidth())/2, ((fenetre.GetHeight())/25));
+		text10.Move((fenetre.GetWidth())/2,  topAide+20);
 		text10.SetColor(sf::Color::Color(120,15,0));
 		text10.SetSize(20.f);
 		text10.SetFont(MyFont);
 
 		sf::String text11(L"De cette fin d'année, différente des autres, j'ouvre sur le froid.");
-		text11.Move((fenetre.GetWidth())/2, ((fenetre.GetHeight())/25));
+		text11.Move((fenetre.GetWidth())/2,  topAide+20);
 		text11.SetColor(sf::Color::Color(120,15,0));
 		text11.SetSize(20.f);
 		text11.SetFont(MyFont);
 
 		sf::String text12(L"Il ne t'en reste plus que quatre !!!");
-		text12.Move((fenetre.GetWidth())/2, ((fenetre.GetHeight())/25));
+		text12.Move((fenetre.GetWidth())/2,  topAide+20);
 		text12.SetColor(sf::Color::Color(120,15,0));
 		text12.SetSize(20.f);
 		text12.SetFont(MyFont);
