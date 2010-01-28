@@ -221,6 +221,7 @@ int NzJeu::run(sf::RenderWindow &fenetre) {
 			txtCompteur.SetPosition(maori.GetPosition().x -  txtCompteur.GetRect().GetWidth(), maori.GetPosition().y);
 			ombreTexte(txtCompteur, txtCompteurOMBRE, sf::Color(94,4,5), 2, 2);
 			continuer=MAPPEMONDE;
+			PoleSud_Porte::weta.setTrouve(true);
 			fenetre.Draw(wetaGeant);
 		}
 
