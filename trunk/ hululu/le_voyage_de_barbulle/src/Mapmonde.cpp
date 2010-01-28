@@ -112,7 +112,7 @@ int Mapmonde::run(sf::RenderWindow &fenetre)
 
 	//textes pour chacun des pays
 	sf::String texte_canada("Canada: ce pays n'est encore pas disponible...",MyFont,20.f);
-	texte_canada.Move(canada_a.GetPosition().x - texte_canada.GetRect().GetWidth()/2  , canada_a.GetPosition().y - 30);
+	texte_canada.Move(canada_a.GetPosition().x - texte_canada.GetRect().GetWidth()/2 + 60, canada_a.GetPosition().y - 30);
 	texte_canada.SetColor(sf::Color(40,66,89));
 
 	//.Move(.GetPosition().x - texte_.GetRect().GetWidth()/2  , .GetPosition().y - 30);
@@ -197,6 +197,34 @@ int Mapmonde::run(sf::RenderWindow &fenetre)
 		 }
 
 
+		 if( ( garcon_sp.GetPosition().x > fenetre.GetWidth()-garcon_sp.GetSize().x) and not garcon_sp.inMoveTo(Person2D::LEFT) ) { // initialise le mouvement
+				garcon_sp.walk(Person2D::LEFT, 450);
+				barbule_sp.walk(Person2D::LEFT, 450);
+		 }
+		 else if(garcon_sp.inMoveTo(Person2D::LEFT)) {
+				garcon_sp.walk(Person2D::LEFT, 450);
+				barbule_sp.walk(Person2D::LEFT, 450);
+		 }
+
+		 if( ( garcon_sp.GetPosition().y < 0.f) and not garcon_sp.inMoveTo(Person2D::BOTTOM) ) { // initialise le mouvement
+				garcon_sp.walk(Person2D::BOTTOM, 450);
+				barbule_sp.walk(Person2D::BOTTOM, 450);
+		 }
+		 else if(garcon_sp.inMoveTo(Person2D::BOTTOM)) {
+				garcon_sp.walk(Person2D::BOTTOM, 450);
+				barbule_sp.walk(Person2D::BOTTOM, 450);
+		 }
+
+		 if( ( garcon_sp.GetPosition().y > fenetre.GetWidth()-garcon_sp.GetSize().y) and not garcon_sp.inMoveTo(Person2D::TOP) ) { // initialise le mouvement
+				garcon_sp.walk(Person2D::TOP, 450);
+				barbule_sp.walk(Person2D::TOP, 450);
+		 }
+		 else if(garcon_sp.inMoveTo(Person2D::TOP)) {
+				garcon_sp.walk(Person2D::TOP, 450);
+				barbule_sp.walk(Person2D::TOP, 450);
+		 }
+
+
 		if( (fenetre.GetInput().IsKeyDown(sf::Key::Left)) || ( garcon_sp.inMoveTo(Person2D::LEFT) ) ) {
 			garcon_sp.walk(Person2D::LEFT, 450);
 			barbule_sp.walk(Person2D::LEFT, 450);
@@ -213,7 +241,7 @@ int Mapmonde::run(sf::RenderWindow &fenetre)
 		if( (fenetre.GetInput().IsKeyDown(sf::Key::Right)) || ( garcon_sp.inMoveTo(Person2D::RIGHT) ) ) {
 			garcon_sp.walk(Person2D::RIGHT, 450);
 			barbule_sp.walk(Person2D::RIGHT, 450);
-			derriere=true;
+			derriere=false;
 			colj=Collision::cercleTest(garcon_sp,japon_a);
 			colc=Collision::cercleTest(garcon_sp,canada_a);
 			colt=Collision::cercleTest(garcon_sp,tanzanie_a);
@@ -239,7 +267,7 @@ int Mapmonde::run(sf::RenderWindow &fenetre)
 		if( (fenetre.GetInput().IsKeyDown(sf::Key::Down)) || ( garcon_sp.inMoveTo(Person2D::BOTTOM) ) ) {
 			garcon_sp.walk(Person2D::BOTTOM, 450);
 			barbule_sp.walk(Person2D::BOTTOM, 450);
-			derriere=false;
+			derriere=true;
 			colj=Collision::cercleTest(garcon_sp,japon_a);
 			colc=Collision::cercleTest(garcon_sp,canada_a);
 			colt=Collision::cercleTest(garcon_sp,tanzanie_a);
