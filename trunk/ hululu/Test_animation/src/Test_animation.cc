@@ -201,6 +201,8 @@ int main()
 			perou.placerFond(&fenetre,fondPerou);
 		}
 
+
+
 		fenetre.Display();
 
 	}
