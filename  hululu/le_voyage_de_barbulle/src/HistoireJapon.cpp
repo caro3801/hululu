@@ -69,7 +69,7 @@ int HistoireJapon::run(sf::RenderWindow &fenetre) {
 			sf::Sprite background;
 			switch (_etape) {
 				case 0:
-					background.SetImage(Ecran::MonManager.GetImage("le_voyage_de_barbulle/img/japon/presJapon1.png"));
+					background.SetImage(Ecran::MonManager.GetImage("le_voyage_de_barbulle/img/japon/presJapon3.png"));
 					tabMusic.push_back(new Musique("le_voyage_de_barbulle/music/japon/jap1.ogg"));
 					break;
 
@@ -79,12 +79,12 @@ int HistoireJapon::run(sf::RenderWindow &fenetre) {
 					break;
 
 				case 2:
-					background.SetImage(Ecran::MonManager.GetImage("le_voyage_de_barbulle/img/japon/presJapon3.png"));
+					background.SetImage(Ecran::MonManager.GetImage("le_voyage_de_barbulle/img/japon/presJapon1.png"));
 					tabMusic.push_back(new Musique("le_voyage_de_barbulle/music/japon/jap3.ogg"));
 					break;
 
 				case 3:
-					background.SetImage(Ecran::MonManager.GetImage("le_voyage_de_barbulle/img/japon/presJapon3.png"));
+					background.SetImage(Ecran::MonManager.GetImage("le_voyage_de_barbulle/img/japon/presJapon1.png"));
 					tabMusic.push_back(new Musique("le_voyage_de_barbulle/music/japon/jap4.ogg"));
 					break;
 
