@@ -22,6 +22,7 @@ using namespace std;
 #include "Page.h"
 
 #include "effetSurTexte.h"
+#include "Person2D.h"
 
 Intro::Intro() {
 	this->etape = 0;
@@ -51,7 +52,6 @@ int Intro::run(sf::RenderWindow &fenetre) {
 
 	// ELEMENTS /////////////////////////
 	sf::Sprite background;
-
 
 	switch (etape) {
 		case 0:
@@ -97,7 +97,23 @@ int Intro::run(sf::RenderWindow &fenetre) {
 	sf::View vue(sf::FloatRect(0, 0, fenetre.GetWidth(), fenetre.GetHeight()) );
 	fenetre.SetView(vue);
 
+
 	tabMusic[0]->Lecture();
+	if(etape < 3)
+	{
+		tabMusic.push_back(new Musique("le_voyage_de_barbulle/music/nz/nuit.ogg"));
+		tabMusic[1]->Lecture();
+	}
+	// # Sprite animées
+	Person2D garcon_sp(100.f, 200.f, fenetre.GetWidth()/15, 6, 4);	garcon_sp.SetImage(Ecran::MonManager.GetImage("le_voyage_de_barbulle/img/sprite/sprite_g_walk_petit.png")); // la taille du personnage dépend de la fenêtre
+	garcon_sp.SetImage(Ecran::MonManager.GetImage("le_voyage_de_barbulle/img/sprite/sprite_g_walk_v04.png")); // la taille du personnage dépend de la fenêtre
+	garcon_sp.initClip();
+	garcon_sp.SetPosition(-100.f, fenetre.GetHeight()*0.5);
+
+	Person2D barbule_sp(100.f, 200.f, fenetre.GetWidth()/15, 6, 4);
+	barbule_sp.SetImage(Ecran::MonManager.GetImage("le_voyage_de_barbulle/img/sprite/sprite_monstre_v01.png"));
+	barbule_sp.initClip();
+	barbule_sp.SetPosition(fenetre.GetWidth(), garcon_sp.GetPosition().y);
 
 	// # Pour que le programme ne se termine pas :)
 	sf::Event event;
@@ -120,6 +136,11 @@ int Intro::run(sf::RenderWindow &fenetre) {
 		// on surveille l'avancement de la lecture
 		if(tabMusic[0]->GetStatus() == sf::Music::Stopped && (etape < 7) )
 			etape++;
+
+
+		//Dessin
+		fenetre.Clear(sf::Color(255, 255, 255));
+		fenetre.Draw(background);
 
 		switch (etape) {
 		case 0:
@@ -197,6 +218,21 @@ int Intro::run(sf::RenderWindow &fenetre) {
 
 			break;
 		case 5:
+
+			// anime barbule et le garcon
+			 if( ( garcon_sp.GetPosition().x < 50.f) and not garcon_sp.inMoveTo(Person2D::RIGHT) )
+					garcon_sp.walk(Person2D::RIGHT, 450);
+			 else if(garcon_sp.inMoveTo(Person2D::RIGHT))
+					garcon_sp.walk(Person2D::RIGHT, 450);
+
+			 if( ( barbule_sp.GetPosition().x > fenetre.GetWidth()-300.f) and not barbule_sp.inMoveTo(Person2D::RIGHT) )
+					barbule_sp.walk(Person2D::LEFT, 450);
+			 else if(barbule_sp.inMoveTo(Person2D::RIGHT))
+					barbule_sp.walk(Person2D::LEFT, 450);
+
+			fenetre.Draw(garcon_sp);
+			fenetre.Draw(barbule_sp);
+
 			if (fenetre.GetInput().IsMouseButtonDown(sf::Mouse::Left) && modelePage.menuActif(fenetre)) {
 				if (modelePage.getGoClique(fenetre)) {
 					modelePage.getGo().resetTimer();
@@ -212,6 +248,8 @@ int Intro::run(sf::RenderWindow &fenetre) {
 
 			break;
 		case 6:
+
+
 			if (fenetre.GetInput().IsMouseButtonDown(sf::Mouse::Left) && modelePage.menuActif(fenetre)) {
 				if (modelePage.getGoClique(fenetre)) {
 					modelePage.getGo().resetTimer();
@@ -269,9 +307,7 @@ int Intro::run(sf::RenderWindow &fenetre) {
 		else
 			for(unsigned int i = 0; i < tabMusic.size(); i++)
 				tabMusic[i]->SetVolume(100);
-		//Dessin
-		fenetre.Clear(sf::Color(255, 255, 255));
-		fenetre.Draw(background);
+
 		modelePage.dessinerPage(fenetre);
 		fenetre.Display();
 	}

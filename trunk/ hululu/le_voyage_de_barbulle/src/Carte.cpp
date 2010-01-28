@@ -24,6 +24,7 @@ void Carte::create(std::string actif, std::string passif, int mois, int numero, 
 	this->mois = mois;
 	this->numero = numero;
 	this->etat = 1;
+
 	//actif 1 // passif 0
 }
 
