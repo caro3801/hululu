@@ -202,6 +202,10 @@ int JeuPerou::run(sf::RenderWindow &fenetre) {
 
 		fenetre.Draw(fond);
 		fenetre.Draw(inst);
+		valider.drawMe(fenetre);
+		fenetre.Draw(texteV);
+		annuler.drawMe(fenetre);
+		fenetre.Draw(texteA);
 		pays.dessinerPage(fenetre);
 
 		// -- pieces de 1
@@ -247,10 +251,7 @@ int JeuPerou::run(sf::RenderWindow &fenetre) {
 		val5_1.deplacer(fenetre, mouseMove, lache);
 		val5_1.drawMe(fenetre);
 
-		valider.drawMe(fenetre);
-		fenetre.Draw(texteV);
-		annuler.drawMe(fenetre);
-		fenetre.Draw(texteA);
+
 
 		if (valider.estClique(fenetre) && entree && !val1_1.estClique(fenetre)&& !val1_2.estClique(fenetre)
 				&& !val1_3.estClique(fenetre) && !val2_3.estClique(fenetre)&& !val3_2.estClique(fenetre)&& !val5_1.estClique(fenetre)) {
