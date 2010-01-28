@@ -109,7 +109,6 @@ int JeuPerou::run(sf::RenderWindow &fenetre) {
 	fond.SetPosition(0.f, 0.f);
 	fond.Resize((fenetre.GetWidth()), (fenetre.GetHeight()));
 
-
 	// texte du bouton
 	sf::String texteV("Valider");
 	texteV.SetColor(sf::Color::Black);
@@ -293,7 +292,8 @@ int JeuPerou::run(sf::RenderWindow &fenetre) {
 		}
 
 		if (annuler.estClique(fenetre) && !boolgagner && !val1_1.estClique(fenetre)&& !val1_2.estClique(fenetre)
-				&& !val1_3.estClique(fenetre) && !val2_3.estClique(fenetre)&& !val3_2.estClique(fenetre)&& !val5_1.estClique(fenetre))
+				&& !val1_3.estClique(fenetre) && !val2_3.estClique(fenetre)&& !val3_2.estClique(fenetre)&& !val5_1.estClique(fenetre)
+				)
 		{
 			val1_1.placer((fenetre.GetWidth() * 8 / 12), (fenetre.GetHeight() * 9 / 11));
 			val1_2.placer((fenetre.GetWidth() * 9 / 12), (fenetre.GetHeight() * 9 / 11));
@@ -306,6 +306,17 @@ int JeuPerou::run(sf::RenderWindow &fenetre) {
 			entree = true;
 			sommeTot =0;
 		}
+		/*Bouton go;
+		Bouton back;
+		back = pays.getBack();
+		go = pays.getGo();
+		if ((back.estClique(fenetre))
+		&& !val1_1.estClique(fenetre)&& !val1_2.estClique(fenetre)&& !val1_3.estClique(fenetre) && !val2_3.estClique(fenetre)&& !val3_2.estClique(fenetre)&& !val5_1.estClique(fenetre));*/
+
+
+		/*if ((pays.getBackClique(fenetre) || pays.getGoClique(fenetre) || pays.getMapClique(fenetre) || pays.getRepeterClique(fenetre))
+				&& !val1_1.estClique(fenetre)&& !val1_2.estClique(fenetre)&& !val1_3.estClique(fenetre) && !val2_3.estClique(fenetre)&& !val3_2.estClique(fenetre)&& !val5_1.estClique(fenetre))
+			;*/
 
 		if ( boolgagner)
 		{
@@ -317,7 +328,7 @@ int JeuPerou::run(sf::RenderWindow &fenetre) {
 		fenetre.Display();
 
 		if (fenetre.GetInput().IsMouseButtonDown(sf::Mouse::Left)
-				&& pays.menuActif(fenetre))
+				&& pays.menuActif(fenetre)&& !val1_1.estClique(fenetre)&& !val1_2.estClique(fenetre)&& !val1_3.estClique(fenetre) && !val2_3.estClique(fenetre)&& !val3_2.estClique(fenetre)&& !val5_1.estClique(fenetre))
 			ecranSuivant = pays.changerEcran(fenetre, JEU_PEROU, JEU_PEROU,
 					PEROU);
 	}
