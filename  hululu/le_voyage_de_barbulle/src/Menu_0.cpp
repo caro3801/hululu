@@ -21,6 +21,7 @@ using namespace std;
 #include "Person2D.h"
 #include "DefineEcrans.h"
 #include "PoleSud_Porte.h"
+#include "Musique.h"
 
 int Menu_0::run(sf::RenderWindow &fenetre)
 {
@@ -32,6 +33,8 @@ int Menu_0::run(sf::RenderWindow &fenetre)
 	if (!cursiveFont.LoadFromFile("le_voyage_de_barbulle/img/font/Cursive_standard_BOLD.ttf", 25.f))
 		cerr << "Erreur lors du chargement de la police" << endl;
 
+
+	Musique musicNuit("le_voyage_de_barbulle/music/nz/nuit.ogg");
 
 	// DEF du bouton "nouvelle partie" ////////////
 
@@ -173,6 +176,7 @@ int Menu_0::run(sf::RenderWindow &fenetre)
 		// CLIQUE SUR nouvelle partie ///////////////////////////////
 		if(boutNouvPartie.estClique(fenetre)) {
 			Clock.Reset();
+			musicNuit.Lecture();
 			ecranSuivant = INTRO_G;
 		}
 

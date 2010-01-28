@@ -34,7 +34,6 @@ int Mapmonde::run(sf::RenderWindow &fenetre)
 	bool coli = false;
 	bool colpo = false;
 	bool cola = false; //Pour gerer les collisions de
-															//chaque pays
 
 	// SPRITES/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -43,23 +42,26 @@ int Mapmonde::run(sf::RenderWindow &fenetre)
 	SpriteCarte.SetPosition(0.f, 0.f);
 	SpriteCarte.Resize(fenetre.GetWidth(), fenetre.GetHeight());
 
+	sf::Sprite titre(Ecran::MonManager.GetImage("le_voyage_de_barbulle/img/histoire/titreMap.png"));
+	titre.SetPosition(fenetre.GetWidth()/2 - titre.GetSize().x/2, 0.f);
+
 	// # image de marque pays canada non actif
 	sf::Sprite canada_na(Ecran::MonManager.GetImage("le_voyage_de_barbulle/img/histoire/marque_pays.png"));
-	canada_na.SetPosition(((70*SpriteCarte.GetSize().x)/1000),((146*SpriteCarte.GetSize().y)/650));
-	//canada_na.Resize(30,30);
+	canada_na.SetPosition(((90*SpriteCarte.GetSize().x)/1000),((146*SpriteCarte.GetSize().y)/650));
+
 	// # image de marque pays canada actif
 	sf::Sprite canada_a(Ecran::MonManager.GetImage("le_voyage_de_barbulle/img/histoire/marque_pays_a.png"));
-	canada_a.SetPosition(((70*SpriteCarte.GetSize().x)/1000),((146*SpriteCarte.GetSize().y)/650));
-	//canada_a.Resize(30,30);
+	canada_a.SetPosition(((90*SpriteCarte.GetSize().x)/1000),((146*SpriteCarte.GetSize().y)/650));
+
 
 	// # image de marque pays japon non actif
 	sf::Sprite japon_na(Ecran::MonManager.GetImage("le_voyage_de_barbulle/img/histoire/marque_pays.png"));
 	japon_na.SetPosition(((840*SpriteCarte.GetSize().x)/1000),((170*SpriteCarte.GetSize().y)/650));
-	//japon_na.Resize(30,30);
+
 	// # image de marque pays japon actif
 	sf::Sprite japon_a(Ecran::MonManager.GetImage("le_voyage_de_barbulle/img/histoire/marque_pays_a.png"));
 	japon_a.SetPosition(((840*SpriteCarte.GetSize().x)/1000),((170*SpriteCarte.GetSize().y)/650));
-	//japon_a.Resize(30,30);
+
 
 	// # image de marque pays tanzanie non actif
 	sf::Sprite tanzanie_na(Ecran::MonManager.GetImage("le_voyage_de_barbulle/img/histoire/marque_pays.png"));
@@ -74,38 +76,33 @@ int Mapmonde::run(sf::RenderWindow &fenetre)
 	sf::Sprite australie_na(Ecran::MonManager.GetImage("le_voyage_de_barbulle/img/histoire/marque_pays.png"));
 	australie_na.SetPosition(((878*SpriteCarte.GetSize().x)/1000),((485*SpriteCarte.GetSize().y)/650));
 
-	//australie_na.Resize(30,30);
 	// # image de marque pays australie actif
 	sf::Sprite australie_a(Ecran::MonManager.GetImage("le_voyage_de_barbulle/img/histoire/marque_pays_a.png"));
 	australie_a.SetPosition(((878*SpriteCarte.GetSize().x)/1000),((485*SpriteCarte.GetSize().y)/650));
-	//australie_a.Resize(30,30);
 
 	// # image de marque pays perou non actif
 	sf::Sprite perou_na(Ecran::MonManager.GetImage("le_voyage_de_barbulle/img/histoire/marque_pays.png"));
 	perou_na.SetPosition(((151*SpriteCarte.GetSize().x)/1000),((369*SpriteCarte.GetSize().y)/650));
-	//perou_na.Resize(30,30);
+
 	// # image de marque pays perou actif
 	sf::Sprite perou_a(Ecran::MonManager.GetImage("le_voyage_de_barbulle/img/histoire/marque_pays_a.png"));
 	perou_a.SetPosition(((151*SpriteCarte.GetSize().x)/1000),((369*SpriteCarte.GetSize().y)/650));
-	//perou_a.Resize(30,30);
 
 	// # image de marque pays  italie non actif
 	sf::Sprite italie_na(Ecran::MonManager.GetImage("le_voyage_de_barbulle/img/histoire/marque_pays.png"));
 	italie_na.SetPosition(((475*SpriteCarte.GetSize().x)/1000),((175*SpriteCarte.GetSize().y)/650));
-	//italie_na.Resize(30,30);
+
 	// # image de marque pays  italie actif
 	sf::Sprite italie_a(Ecran::MonManager.GetImage("le_voyage_de_barbulle/img/histoire/marque_pays_a.png"));
 	italie_a.SetPosition(((475*SpriteCarte.GetSize().x)/1000),((175*SpriteCarte.GetSize().y)/650));
-	//italie_a.Resize(30,30);
 
 	// # image de marque pays pole non actif
 	sf::Sprite pole_na(Ecran::MonManager.GetImage("le_voyage_de_barbulle/img/histoire/marque_pays.png"));
-	pole_na.SetPosition(((620*SpriteCarte.GetSize().x)/1000),((570*SpriteCarte.GetSize().y)/650));
-	//pole_na.Resize(30,30);
+	pole_na.SetPosition(((620*SpriteCarte.GetSize().x)/1000), SpriteCarte.GetSize().y - 80 );
+
 	// # image de marque pays pole actif
 	sf::Sprite pole_a(Ecran::MonManager.GetImage("le_voyage_de_barbulle/img/histoire/marque_pays_a.png"));
-	pole_a.SetPosition(((620*SpriteCarte.GetSize().x)/1000),((570*SpriteCarte.GetSize().y)/650));
-	//pole_a.Resize(30,30);
+	pole_a.SetPosition(((620*SpriteCarte.GetSize().x)/1000), SpriteCarte.GetSize().y - 80);
 
 	// FONT/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	// instruction
@@ -113,45 +110,39 @@ int Mapmonde::run(sf::RenderWindow &fenetre)
 	if (!MyFont.LoadFromFile("le_voyage_de_barbulle/img/font/Cursive_standard_BOLD.ttf", 25.f))
 		cerr << "Erreur lors du chargement de la police";
 
-	sf::String text("Fleches haut, bas, gauche et droite pour deplacer le personnage.");
-	text.Move(fenetre.GetWidth()/10,fenetre.GetHeight()/1.2);
-	text.SetColor(sf::Color::Blue);
-	text.SetSize(25.f);
-	text.SetFont(MyFont);
-
 	//textes pour chacun des pays
-	sf::String texte_canada("Appuie sur Espace pour aller au Canada",MyFont,20.f);
-	texte_canada.Move( (fenetre.GetHeight()/3),(fenetre.GetWidth()/3));
-	texte_canada.SetColor(sf::Color::Blue);
+	sf::String texte_canada("Canada: ce pays n'est encore pas disponible...",MyFont,20.f);
+	texte_canada.Move(canada_a.GetPosition().x - texte_canada.GetRect().GetWidth()/2  , canada_a.GetPosition().y - 30);
+	texte_canada.SetColor(sf::Color(40,66,89));
+
+	//.Move(.GetPosition().x - texte_.GetRect().GetWidth()/2  , .GetPosition().y - 30);
 
 	sf::String texte_perou("Appuie sur Espace pour aller au Perou",MyFont,20.f);
-	texte_perou.Move( (fenetre.GetHeight()/3),(fenetre.GetWidth()/3));
-	texte_perou.SetColor(sf::Color::Blue);
+	texte_perou.Move(perou_a.GetPosition().x - texte_perou.GetRect().GetWidth()/2  , perou_a.GetPosition().y + 30);
+	texte_perou.SetColor(sf::Color(40,66,89));
 
 	sf::String texte_italie("Appuie sur Espace pour aller en Italie",MyFont,20.f);
-	texte_italie.Move( (fenetre.GetHeight()/3),(fenetre.GetWidth()/3));
-	texte_italie.SetColor(sf::Color::Blue);
+	texte_italie.Move(italie_a.GetPosition().x - texte_italie.GetRect().GetWidth()/2  , italie_a.GetPosition().y - 30);
+	texte_italie.SetColor(sf::Color(40,66,89));
 
-	sf::String texte_tanzanie("Appuie sur Espace pour aller en Tanzanie",MyFont,20.f);
-	texte_tanzanie.Move( (fenetre.GetHeight()/3),(fenetre.GetWidth()/3));
-	texte_tanzanie.SetColor(sf::Color::Blue);
+	sf::String texte_tanzanie("Tanzanie: ce pays n'est pas encore disponible...", MyFont,20.f);
+	texte_tanzanie.Move(tanzanie_a.GetPosition().x - texte_tanzanie.GetRect().GetWidth()/2  , tanzanie_a.GetPosition().y + 30);
+	texte_tanzanie.SetColor(sf::Color(40,66,89));
 
 	sf::String texte_pole("Appuie sur Espace pour aller en Antarctique",MyFont,20.f);
-	texte_pole.Move( (fenetre.GetHeight()/3),(fenetre.GetWidth()/3));
-	texte_pole.SetColor(sf::Color::Blue);
+	texte_pole.Move(pole_a.GetPosition().x - texte_pole.GetRect().GetWidth()/2 -20  , pole_a.GetPosition().y + 30);
+	texte_pole.SetColor(sf::Color(40,66,89));
 
 	sf::String texte_japon("Appuie sur Espace pour aller au Japon",MyFont,20.f);
-	texte_japon.Move( (fenetre.GetWidth()/3),(fenetre.GetHeight()/2));
-	texte_japon.SetColor(sf::Color::Blue);
+	texte_japon.Move(japon_a.GetPosition().x - texte_japon.GetRect().GetWidth()/2  , japon_a.GetPosition().y - 30);
+	texte_japon.SetColor(sf::Color(40,66,89));
 
 	sf::String texte_australie("Appuie sur Espace pour aller en Australie",MyFont,20.f);
-	texte_australie.Move((fenetre.GetWidth()/3), (fenetre.GetHeight()/2));
-	texte_australie.SetColor(sf::Color::Blue);
-
+	texte_australie.Move(australie_a.GetPosition().x - texte_australie.GetRect().GetWidth()/2  , australie_a.GetPosition().y - 30);
+	texte_australie.SetColor(sf::Color(40,66,89));
 
 	// # image garçon
 	Person2D garcon_sp(50.f, 100.f, fenetre.GetWidth()/15, 6, 4); // le personnage parcoud 1/10 de la largeur de la fenêtre à chaque pas
-	garcon_sp.SetColor(sf::Color(255, 255, 255, 255));
 
 	// positione le garçon dans le vide horizontalement, à gauche de la fenêtre
 	// mais au centre, verticalement
@@ -159,9 +150,6 @@ int Mapmonde::run(sf::RenderWindow &fenetre)
 
 	// charge l'image
 	garcon_sp.SetImage(Ecran::MonManager.GetImage("le_voyage_de_barbulle/img/sprite/sprite_g_walk_petit.png")); // la taille du personnage dépend de la fenêtre
-	//garcon_sp.Resize(fenetre.GetWidth()/3, fenetre.GetHeight()/2); /* on ne redimensione pas avec le même indice
-																 //   * puisque le sprite à 6 cases en largeur
-																 //   * et 4 en hauteur */
 
 	// clipage du sprite
 	// c-à-d on n'affiche que les partie du sprite qui nous intérèssent
@@ -268,7 +256,6 @@ int Mapmonde::run(sf::RenderWindow &fenetre)
 		fenetre.Draw(SpriteCarte) ;
 
 		// INSTRUCTIONS
-		fenetre.Draw(text);
 
 		//ITALIE
 		if(coli)  {
@@ -340,6 +327,8 @@ int Mapmonde::run(sf::RenderWindow &fenetre)
 			fenetre.Draw(garcon_sp);
 			fenetre.Draw(barbule_sp);
 		}
+
+		fenetre.Draw(titre);
 		// toujours pour actualiser le rendu (et en fin de boucle surtout) !
 		fenetre.Display();
 

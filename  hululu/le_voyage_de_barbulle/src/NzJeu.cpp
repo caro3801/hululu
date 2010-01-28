@@ -48,6 +48,7 @@ int NzJeu::run(sf::RenderWindow &fenetre) {
 	tabMusic.push_back(new Musique("le_voyage_de_barbulle/music/nz/nzmerci.ogg"));
 	tabMusic[0]->Lecture();
 	tabMusic[1]->Lecture();
+	tabMusic[2]->SetLoop(true);
 
 
 	sf::SoundBuffer buffer;
