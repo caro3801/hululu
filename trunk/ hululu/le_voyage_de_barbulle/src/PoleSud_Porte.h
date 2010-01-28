@@ -11,7 +11,10 @@
 #include <SFML/System.hpp>
 #include <SFML/Window.hpp>
 #include <SFML/Graphics.hpp>
+#include <SFML/Audio.hpp>
+
 #include "Ecran.h"
+#include "Musique.h"
 #include "DefineEcrans.h"
 #include "Objet.h"
 
@@ -34,6 +37,9 @@ public:
 	static Objet lampion;
 	static Objet weta;
 	static Objet poncho;
+
+private:
+	unsigned int etape;
 };
 
 #endif /* POLESUD_PORTE_H_ */
