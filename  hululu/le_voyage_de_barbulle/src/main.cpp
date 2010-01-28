@@ -55,8 +55,7 @@ int main(int argc, char** argv)
 	// # Vecteur contenant les adresses des variables-écran
 	vector<Ecran*> tabEcrans;
 
-int ecran = 0;
-
+	int ecran = JEUJAPON;
 
     PoleSud_Porte::blason.setTrouve(true);
     PoleSud_Porte::weta.setTrouve(true);

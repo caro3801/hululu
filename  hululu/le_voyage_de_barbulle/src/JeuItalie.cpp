@@ -481,10 +481,6 @@ int JeuItalie::run(sf::RenderWindow &fenetre) {
 		}
 
 
-		fenetre.Draw(jeu);
-		fenetre.Draw(instructions);
-		pays.dessinerPage(fenetre);
-
 		//Ecrire les instructions : "Cliquez sur l'image fausse pour trouver les erreurs..."
 
 		//convertir nbAtrouver en string avec la fonction ostringstream
@@ -497,7 +493,7 @@ int JeuItalie::run(sf::RenderWindow &fenetre) {
 		nbErreurs.SetText(Texte);
 		nbErreurs.SetFont(MyFont);
 		nbErreurs.SetSize(35.f);
-		fenetre.Draw(nbErreurs);
+
 		if (boutAide.estClique(fenetre)) {
 			afficherAide(fenetre, er1, er2, er3, er4, er5, er6, er7,erreur.GetPosition().x, erreur.GetPosition().y,erreur.GetSize().x,erreur.GetSize().y);
 
@@ -540,7 +536,6 @@ int JeuItalie::run(sf::RenderWindow &fenetre) {
 				tabMusic[i]->SetVolume(100);
 
 
-		fenetre.Display();
 		if (nbATrouver==0)
 		{
 		if (fenetre.GetInput().IsMouseButtonDown(sf::Mouse::Left) && pays.menuActif(fenetre) )
@@ -551,6 +546,12 @@ int JeuItalie::run(sf::RenderWindow &fenetre) {
 			if (fenetre.GetInput().IsMouseButtonDown(sf::Mouse::Left) && pays.menuActif(fenetre) )
 						ecranSuivant=pays.changerEcran(fenetre,JEU_ITALIE,JEU_ITALIE,ITALIEMUSEE) ;
 		}
+
+		fenetre.Draw(jeu);
+		fenetre.Draw(instructions);
+		pays.dessinerPage(fenetre);
+		fenetre.Draw(nbErreurs);
+		fenetre.Display();
 	}
 	// INTERUPTION de toutes les musiques
 	for(unsigned int i = 0; i < tabMusic.size(); i++)

@@ -102,9 +102,9 @@ int ItalieGagne::run(sf::RenderWindow &fenetre)
 				fenetre.Draw(Barbulle);
 				fenetre.Draw(text);
 				fenetre.Draw(Explication);
-				pays.dessinerPage(fenetre);
 				PoleSud_Porte::blason.setTrouve(true);
 				PoleSud_Porte::blason.dessinerObjet(fenetre);
+				pays.dessinerPage(fenetre);
 				fenetre.Display();
 
 				if (fenetre.GetInput().IsMouseButtonDown(sf::Mouse::Left) && pays.menuActif(fenetre) )

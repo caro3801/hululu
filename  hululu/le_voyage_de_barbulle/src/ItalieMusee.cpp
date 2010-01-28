@@ -87,17 +87,16 @@ int ItalieMusee::run(sf::RenderWindow &fenetre) {
 			for(unsigned int i = 0; i < tabMusic.size(); i++)
 				tabMusic[i]->SetVolume(100);
 
-	//Dessin //////////////////////
-	fenetre.Clear();
-	fenetre.Draw(fond);
-	pays.dessinerPage(fenetre);
-	fenetre.Display();
-	if (fenetre.GetInput().IsMouseButtonDown(sf::Mouse::Left) && pays.menuActif(fenetre) )
-						ecranSuivant=pays.changerEcran(fenetre,ITALIEMUSEE,JEU_ITALIE,ITALIEPRESENT) ;
-//		if (fenetre.GetInput().IsMouseButtonDown(sf::Mouse::Left)	&& pays.menuActif(fenetre))
-//			ecranSuivant = pays.changerEcran(fenetre, ITALIEMUSEE, JEU_ITALIE,
-//					ITALIEPRESENT);
+		if (fenetre.GetInput().IsMouseButtonDown(sf::Mouse::Left) && pays.menuActif(fenetre) )
+							ecranSuivant=pays.changerEcran(fenetre,ITALIEMUSEE,JEU_ITALIE,ITALIEPRESENT) ;
+
+		//Dessin //////////////////////
+		fenetre.Clear();
+		fenetre.Draw(fond);
+		pays.dessinerPage(fenetre);
+		fenetre.Display();
 	}
+
 	// INTERUPTION de toutes les musiques
 		for(unsigned int i = 0; i < tabMusic.size(); i++)
 			tabMusic[i]->Stop();
