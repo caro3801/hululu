@@ -31,8 +31,8 @@ bool PoleSud_Porte::ZoneWeta(sf::RenderWindow &fenetre, float rapportW,
 		float rapportH) {
 	float posX = fenetre.GetInput().GetMouseX();
 	float posY = fenetre.GetInput().GetMouseY();
-	if (posX >= (522 * rapportW) && posX <= (730 * rapportW) && posY >= (370
-			* rapportH) && posY <= (480 * rapportH))
+	if (posX >= (522 * rapportW) && posX <= (720 * rapportW) && posY >= (137
+			* rapportH) && posY <= (260 * rapportH))
 		return true;
 	else
 		return false;
@@ -42,8 +42,8 @@ bool PoleSud_Porte::ZonePoncho(sf::RenderWindow &fenetre, float rapportW,
 		float rapportH) {
 	float posX = fenetre.GetInput().GetMouseX();
 	float posY = fenetre.GetInput().GetMouseY();
-	if (posX >= (654 * rapportW) && posX <= (804 * rapportW) && posY >= (798
-			* rapportH) && posY <= (1086 * rapportH))
+	if (posX >= (598 * rapportW) && posX <= (761 * rapportW) && posY >= (598
+			* rapportH) && posY <= (830 * rapportH))
 		return true;
 	else
 		return false;
@@ -52,8 +52,8 @@ bool PoleSud_Porte::ZoneBlason(sf::RenderWindow &fenetre, float rapportW,
 		float rapportH) {
 	float posX = fenetre.GetInput().GetMouseX();
 	float posY = fenetre.GetInput().GetMouseY();
-	if (posX >= (824 * rapportW) && posX <= (986 * rapportW) && posY >= (500
-			* rapportH) && posY <= (636 * rapportH))
+	if (posX >= (824 * rapportW) && posX <= (973 * rapportW) && posY >= (261
+			* rapportH) && posY <= (404 * rapportH))
 		return true;
 	else
 		return false;
@@ -62,8 +62,8 @@ bool PoleSud_Porte::ZoneLanterne(sf::RenderWindow &fenetre, float rapportW,
 		float rapportH) {
 	float posX = fenetre.GetInput().GetMouseX();
 	float posY = fenetre.GetInput().GetMouseY();
-	if (posX >= (982 * rapportW) && posX <= (1068 * rapportW) && posY >= (650
-			* rapportH) && posY <= (804 * rapportH))
+	if (posX >= (972 * rapportW) && posX <= (1046 * rapportW) && posY >= (440
+			* rapportH) && posY <= (600 * rapportH))
 		return true;
 	else
 		return false;
@@ -186,8 +186,8 @@ int PoleSud_Porte::run(sf::RenderWindow &fenetre) {
 	tabMusic.push_back(new Musique( "le_voyage_de_barbulle/music/poleNord/PN1obj.ogg"));
 
 	//definition zones emplacement vide
-	float rapportW = fond.GetSize().x / 2000;
-	float rapportH = fond.GetSize().y / 1614;
+	float rapportW = fond.GetSize().x / 1983;
+	float rapportH = fond.GetSize().y / 1208;
 	unsigned int nbObjTrouves = 0;
 
 	bool ZoneVideWeta = false;
