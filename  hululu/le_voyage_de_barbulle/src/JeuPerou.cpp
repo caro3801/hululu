@@ -119,7 +119,7 @@ int JeuPerou::run(sf::RenderWindow &fenetre) {
 	bool entree = true;
 	bool boolgagner = false;
 	bool boolErreur = false;
-	int sommeDem = 7;
+	int sommeDem = 11;
 	int sommeTot = 0;
 	//IMAGES////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
