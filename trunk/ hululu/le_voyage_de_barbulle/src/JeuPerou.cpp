@@ -109,6 +109,12 @@ int JeuPerou::run(sf::RenderWindow &fenetre) {
 	fond.SetPosition(0.f, 0.f);
 	fond.Resize((fenetre.GetWidth()), (fenetre.GetHeight()));
 
+	//INSTRUCTION ////////////////////////////////////////////////////////////////////////
+
+	sf::Sprite inst;
+	inst.SetImage(Ecran::MonManager.GetImage("le_voyage_de_barbulle/img/perou/instruction.png"));
+	inst.SetPosition((fenetre.GetWidth())*10/20, ((fenetre.GetHeight())/20));
+
 	// texte du bouton
 	sf::String texteV("Valider");
 	texteV.SetColor(sf::Color::Black);
@@ -195,6 +201,7 @@ int JeuPerou::run(sf::RenderWindow &fenetre) {
 		fenetre.Clear(sf::Color(255, 255, 255));
 
 		fenetre.Draw(fond);
+		fenetre.Draw(inst);
 		pays.dessinerPage(fenetre);
 
 		// -- pieces de 1
