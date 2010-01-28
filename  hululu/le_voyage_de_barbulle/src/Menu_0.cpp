@@ -58,6 +58,9 @@ int Menu_0::run(sf::RenderWindow &fenetre)
 	txtNouvPartie.SetFont(cursiveFont);
 	boutNouvPartie.placerTexte(txtNouvPartie);
 
+	// texte du bouton
+	sf::Sprite background(Ecran::MonManager.GetImage("le_voyage_de_barbulle/img/histoire/fond_menu.png"));
+	background.Resize(fenetre.GetWidth(), fenetre.GetHeight());
 
 	// DEF du bouton "continuer" ////////////
 
@@ -158,6 +161,8 @@ int Menu_0::run(sf::RenderWindow &fenetre)
 		fenetre.Draw(txtTitre);
 
 		// DESSIN DES BOUTONS //////////////////////////////////////
+		fenetre.Draw(background);
+
 		// -- nouvelle partie
 		boutNouvPartie.drawMe(fenetre);
 		fenetre.Draw(txtNouvPartie);
@@ -171,6 +176,7 @@ int Menu_0::run(sf::RenderWindow &fenetre)
 		boutCredits.drawMe(fenetre);
 		fenetre.Draw(txtCredits);
 
+
 		fenetre.Display();
 
 		// CLIQUE SUR nouvelle partie ///////////////////////////////
@@ -180,8 +186,6 @@ int Menu_0::run(sf::RenderWindow &fenetre)
 			ecranSuivant = INTRO_G;
 		}
 
-
-		// CLIQUE SUR continuer ///////////////////////////////
 	}
 
 	PoleSud_Porte::weta.setTrouve(true);

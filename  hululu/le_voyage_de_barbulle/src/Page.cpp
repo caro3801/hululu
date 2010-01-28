@@ -1,5 +1,5 @@
 /*
- * Page.cpp
+ *Page.cpp
  *
  *  Created on: 21 déc. 2009
  *      Author: sophie
@@ -10,7 +10,6 @@
 #include "DefineEcrans.h"
 #include <iostream>
 using namespace std;
-
 
 Page::Page() {
 	playing = false;
@@ -24,6 +23,24 @@ Page::~Page() {
 
 void Page::dessinerFond(sf::RenderWindow &fenetre) {
 
+	// aide et fermer
+
+	fontAide.SetImage(Ecran::MonManager.GetImage("le_voyage_de_barbulle/img/histoire/fontBouton_2.png") );
+	fontAide.SetPosition(fenetre.GetWidth()- 120,10);
+	fenetre.Draw(fontAide);
+
+	aide.initBouton("le_voyage_de_barbulle/img/histoire/aide.png","le_voyage_de_barbulle/img/histoire/aide_a.png");
+	aide.placer(fontAide.GetPosition().x+10, 20.f);
+	aide.redimensionner(40.f,40.f);
+	aide.drawMe(fenetre);
+
+	// affichage de l'aide
+	if(aide.estClique(fenetre))
+	{
+		sf::Sprite blocAide(Ecran::MonManager.GetImage("le_voyage_de_barbulle/img/histoire/controles.png"));
+		blocAide.SetPosition(fenetre.GetWidth()/2 - blocAide.GetSize().x/2, fenetre.GetHeight()/2 - blocAide.GetSize().y/2);
+		fenetre.Draw(blocAide);
+	}
 }
 
 void Page::dessinerMusic(sf::RenderWindow &fenetre) {
@@ -31,11 +48,7 @@ void Page::dessinerMusic(sf::RenderWindow &fenetre) {
 
 	fontMusic.SetImage(Ecran::MonManager.GetImage("le_voyage_de_barbulle/img/histoire/fontBouton.png") );
 	fontMusic.SetPosition(10,10);
-	//font.Set(110,60);
 	fenetre.Draw(fontMusic);
-
-
-
 	// -- MUTE /////////////////////
 
 	noMute.initBouton("le_voyage_de_barbulle/img/histoire/icon_music.png","le_voyage_de_barbulle/img/histoire/icon_music_a.png");

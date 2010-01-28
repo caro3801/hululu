@@ -4,6 +4,7 @@
  *  Created on: 21 déc. 2009
  *      Author: sophie
  */
+
 #include <SFML/System.hpp>
 #include <SFML/Window.hpp>
 #include <SFML/Graphics.hpp>
@@ -48,12 +49,16 @@ private:
 
 
 	sf::Sprite fontMusic;
+	sf::Sprite fontAide;
 
 	Bouton pause; //Pause et Play pour lire les instructions
 	Bouton play; //Fonctionnent ensembles ( play || pause)
 	Bouton mute; //Music pour la musique de fond et Mute pour l'enlever
 	Bouton noMute; // (noMute || mute)
 	Bouton repeter; // repeter les instructions
+
+	Bouton aide; // repeter les instructions
+	Bouton fermer; // repeter les instructions
 
 	bool playing;
 	bool muting;
