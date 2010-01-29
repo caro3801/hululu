@@ -50,6 +50,8 @@ class Person2D : public sf::Sprite
 		bool inMoveTo(moveDirection direction);
 		bool readyToMove(float interval);
 
+		void setDirection(moveDirection direction);
+
 	protected:
 		// un Sprite est composé de plusieurs cases
 		// ces cases représentent les états successifs (visuellement) du sprite

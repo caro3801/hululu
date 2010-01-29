@@ -48,7 +48,7 @@ int NzJeu::run(sf::RenderWindow &fenetre) {
 	tabMusic.push_back(new Musique("le_voyage_de_barbulle/music/nz/nzmerci.ogg"));
 	tabMusic[0]->Lecture();
 	tabMusic[1]->Lecture();
-	tabMusic[2]->SetLoop(true);
+	tabMusic[1]->SetLoop(true);
 
 
 	sf::SoundBuffer buffer;
@@ -144,9 +144,6 @@ int NzJeu::run(sf::RenderWindow &fenetre) {
 
 			txtCompteur.SetPosition(maori.GetPosition().x -  txtCompteur.GetRect().GetWidth(), maori.GetPosition().y);
 			ombreTexte(txtCompteur, txtCompteurOMBRE, sf::Color(94,4,5), 2, 2);
-
-			tabMusic[2]->Lecture();
-
 		}
 
 		// EVENEMENTS ///////////////////////
@@ -230,8 +227,14 @@ int NzJeu::run(sf::RenderWindow &fenetre) {
 			txtCompteur.SetText(L"Ah ! Me voila débarrassé de ces wetas pour un moment !\nPour te remercier, voici une statuette du Weta Géant !");
 			txtCompteur.SetPosition(maori.GetPosition().x -  txtCompteur.GetRect().GetWidth(), maori.GetPosition().y);
 			ombreTexte(txtCompteur, txtCompteurOMBRE, sf::Color(94,4,5), 2, 2);
+
+			if(continuer==NZ_JEU)
+				tabMusic[2]->Lecture();
+
 			continuer=MAPPEMONDE;
+
 			PoleSud_Porte::weta.setTrouve(true);
+
 
 			fenetre.Draw(wetaGeant);
 		}

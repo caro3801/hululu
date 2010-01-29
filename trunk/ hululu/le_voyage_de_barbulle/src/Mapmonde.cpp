@@ -112,7 +112,7 @@ int Mapmonde::run(sf::RenderWindow &fenetre)
 
 	//textes pour chacun des pays
 	sf::String texte_canada("Canada: ce pays n'est encore pas disponible...",MyFont,20.f);
-	texte_canada.Move(canada_a.GetPosition().x - texte_canada.GetRect().GetWidth()/2 + 60, canada_a.GetPosition().y - 30);
+	texte_canada.Move(60 + canada_a.GetPosition().x - texte_canada.GetRect().GetWidth()/2 + 60, canada_a.GetPosition().y - 30);
 	texte_canada.SetColor(sf::Color(40,66,89));
 
 	//.Move(.GetPosition().x - texte_.GetRect().GetWidth()/2  , .GetPosition().y - 30);
@@ -134,11 +134,11 @@ int Mapmonde::run(sf::RenderWindow &fenetre)
 	texte_pole.SetColor(sf::Color(40,66,89));
 
 	sf::String texte_japon("Appuie sur Espace pour aller au Japon",MyFont,20.f);
-	texte_japon.Move(japon_a.GetPosition().x - texte_japon.GetRect().GetWidth()/2  , japon_a.GetPosition().y - 30);
+	texte_japon.Move(-60 + japon_a.GetPosition().x - texte_japon.GetRect().GetWidth()/2  , japon_a.GetPosition().y - 30);
 	texte_japon.SetColor(sf::Color(40,66,89));
 
 	sf::String texte_australie("Appuie sur Espace pour aller en Australie",MyFont,20.f);
-	texte_australie.Move(australie_a.GetPosition().x - texte_australie.GetRect().GetWidth()/2  , australie_a.GetPosition().y - 30);
+	texte_australie.Move(-60 + australie_a.GetPosition().x - texte_australie.GetRect().GetWidth()/2  , australie_a.GetPosition().y - 30);
 	texte_australie.SetColor(sf::Color(40,66,89));
 
 	// # image garçon

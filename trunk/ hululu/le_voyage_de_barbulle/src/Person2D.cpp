@@ -210,3 +210,39 @@ bool Person2D::readyToMove(float interval)
 	return ( (timeSinceLastRefresh.GetElapsedTime() * 1000) >= ( interval / (nbCaseX +1) ) );
 }
 
+
+void Person2D::setDirection(moveDirection direction)
+{
+	int px = 0;
+	int py = 0;
+
+	int lx = widthCase;
+	int ly = heightCase;
+
+	switch (direction) {
+		case LEFT:
+			py = 1*heightCase;
+			ly = py + heightCase;
+			lx = widthCase;
+			break;
+		case RIGHT:
+			py = 2*heightCase;
+			ly = py + heightCase;
+			lx = widthCase;
+			break;
+		case TOP:
+			py = 3*heightCase;
+			ly = py + heightCase;
+			lx = widthCase;
+			break;
+		case BOTTOM:
+			py = 0*heightCase;
+			ly = py + heightCase;
+			lx = widthCase;
+			break;
+		default:
+			break;
+	}
+
+	this->SetSubRect(sf::IntRect(px, py, lx, ly));
+}
