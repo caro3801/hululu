@@ -188,10 +188,5 @@ int Menu_0::run(sf::RenderWindow &fenetre)
 
 	}
 
-	PoleSud_Porte::weta.setTrouve(true);
-	PoleSud_Porte::poncho.setTrouve(true);
-	PoleSud_Porte::blason.setTrouve(true);
-	PoleSud_Porte::lampion.setTrouve(true);
-
 	return ecranSuivant;
 }
