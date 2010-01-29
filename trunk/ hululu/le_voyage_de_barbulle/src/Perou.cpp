@@ -11,6 +11,7 @@ using namespace std;
 #include <SFML/System.hpp>
 #include <SFML/Window.hpp>
 #include <SFML/Graphics.hpp>
+#include <SFML/Audio.hpp>
 
 #include "Perou.h"
 #include "Person2D.h"
@@ -19,6 +20,7 @@ using namespace std;
 #include "Page.h"
 #include "AccueilPays.h"
 #include "DefineEcrans.h"
+#include "Musique.h"
 
 // WIKI SFML //////////////////////////
 #include "Bouton.h"
@@ -37,6 +39,8 @@ int Perou::run(sf::RenderWindow &fenetre) {
 	int ecranSuivant = PEROU;
 	sf::Clock Clock; //Horloge
 	Clock.Reset();
+	vector<Musique *> tabMusic;
+
 	sf::Font cursiveFont;
 	if (!cursiveFont.LoadFromFile("le_voyage_de_barbulle/img/font/Cursive_standard_BOLD.ttf", 50.f))
 		cerr << "Erreur lors du chargement de la police" << endl;
@@ -73,10 +77,10 @@ int Perou::run(sf::RenderWindow &fenetre) {
 
 	// SPRITES/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-
+	tabMusic.push_back(new Musique("le_voyage_de_barbulle/music/perou/perou1.ogg"));
 	///AFFICHAGE FENETRE////////////////////////////////
-
-			while(fenetre.IsOpened())
+	tabMusic[0]->Lecture();
+			while(fenetre.IsOpened() && (ecranSuivant == PEROU))
 				{
 					while (fenetre.GetEvent(event)) {
 							    // # Instanciation de tous les écrans fermeture de la fenetre
@@ -122,10 +126,36 @@ int Perou::run(sf::RenderWindow &fenetre) {
 				 fenetre.Display();
 
 				 if (fenetre.GetInput().IsMouseButtonDown(sf::Mouse::Left) && pays.menuActif(fenetre))
-				 			return ecranSuivant=pays.changerEcran(fenetre,PEROU,PEROUPRESENT,MAPPEMONDE) ; //ecranSuivant = jeuPerou (5), ecranCourant = Perou (4),
+				 			ecranSuivant=pays.changerEcran(fenetre,PEROU,PEROUPRESENT,MAPPEMONDE) ; //ecranSuivant = jeuPerou (5), ecranCourant = Perou (4),
 				 																   //ecranPrecedent = Mapemonde (1)
+				 // PAUSE/PLAY instruction ///////////
+				if(!pays.getPlaying() ) {
+					if(tabMusic[0]->GetStatus() == sf::Music::Paused) {
+						tabMusic[0]->Lecture();
+					}
+				} else {
+					 if(tabMusic[0]->GetStatus() == sf::Music::Playing) {
+						tabMusic[0]->Pause();
+					 }
+				}
 
+				// REPETER instruction ///////////////
+				if(pays.getRepeterClique(fenetre) ) {
+						tabMusic[0]->Stop();
+						tabMusic[0]->Lecture();
+				}
+
+				// MUTE instruction //////////////////
+				if(!pays.getMuting())
+					for(unsigned int i = 0; i < tabMusic.size(); i++)
+						tabMusic[i]->SetVolume(0);
+				else
+					for(unsigned int i = 0; i < tabMusic.size(); i++)
+				 				tabMusic[i]->SetVolume(100);
 			}
+		// INTERUPTION de toutes les musiques
+		for(unsigned int i = 0; i < tabMusic.size(); i++)
+			tabMusic[i]->Stop();
 
 	return ecranSuivant;
 
