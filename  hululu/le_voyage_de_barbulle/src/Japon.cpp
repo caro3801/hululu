@@ -12,12 +12,15 @@ using namespace std;
 #include <SFML/System.hpp>
 #include <SFML/Window.hpp>
 #include <SFML/Graphics.hpp>
+#include <SFML/Audio.hpp>
+
 // WIKI SFML //////////////////////////
 #include "Japon.h"
 #include "Bouton.h"
 #include "AccueilPays.h"
 #include "Page.h"
 #include "DefineEcrans.h"
+#include "Musique.h"
 
 
 
@@ -36,6 +39,10 @@ int Japon::run(sf::RenderWindow &fenetre) {
 	int ecranSuivant = JAPON;
 	sf::Clock Clock;
 	Clock.Reset();
+
+	vector<Musique *> tabMusic;
+	tabMusic.push_back(new Musique("le_voyage_de_barbulle/music/japon/japbienv.ogg"));
+
 
 	//IMAGES/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	Page pays;
@@ -61,6 +68,7 @@ int Japon::run(sf::RenderWindow &fenetre) {
 		fenetre.SetView(vue);
 
 		////////////////////////////////
+		tabMusic[0]->Lecture();
 
 			while(fenetre.IsOpened() && (ecranSuivant == JAPON))
 			{
@@ -84,7 +92,35 @@ int Japon::run(sf::RenderWindow &fenetre) {
 				if (fenetre.GetInput().IsKeyDown(sf::Key::O))
 					ecranSuivant=HISTOIREJAPON;
 
-			}
+				// PAUSE/PLAY instruction ///////////
+				if(!pays.getPlaying() ) {
+					if(tabMusic[0]->GetStatus() == sf::Music::Paused) {
+						tabMusic[0]->Lecture();
+					}
+				} else {
+					 if(tabMusic[0]->GetStatus() == sf::Music::Playing) {
+						tabMusic[0]->Pause();
+					 }
+				}
+
+				// REPETER instruction ///////////////
+				if(pays.getRepeterClique(fenetre) ) {
+						tabMusic[0]->Stop();
+						tabMusic[0]->Lecture();
+				}
+
+				// MUTE instruction //////////////////
+				if(!pays.getMuting())
+					for(unsigned int i = 0; i < tabMusic.size(); i++)
+						tabMusic[i]->SetVolume(0);
+				else
+					for(unsigned int i = 0; i < tabMusic.size(); i++)
+						tabMusic[i]->SetVolume(100);
+
+				}
+			// INTERUPTION de toutes les musiques
+			for(unsigned int i = 0; i < tabMusic.size(); i++)
+				tabMusic[i]->Stop();
 
 			return ecranSuivant;
 }
