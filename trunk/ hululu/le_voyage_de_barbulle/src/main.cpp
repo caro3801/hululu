@@ -41,12 +41,12 @@ using namespace std;
 #include "TrajetANZ.h"			// numero 15
 #include "NzIntro.h"			// numero 16
 #include "NzPresent.h"			// numero 17
-#include "NzJeu.h"			// numero 18
-#include "ItalieMusee.h"			// numero 19
-#include "PerouPresent.h"
-#include "GagneJeu.h"	//numero 21
-#include "PerouGagne.h" //numéro 22
-#include "ItalieGagne.h"
+#include "NzJeu.h"				// numero 18
+#include "ItalieMusee.h"		// numero 19
+#include "PerouPresent.h"		// numéro 20
+#include "GagneJeu.h"			// numero 21
+#include "PerouGagne.h" 		// numéro 22
+#include "ItalieGagne.h"		// numéro 23
 
 // PROCEDURE PRINCIPALE/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 int main(int argc, char** argv)
@@ -55,13 +55,8 @@ int main(int argc, char** argv)
 	// # Vecteur contenant les adresses des variables-écran
 	vector<Ecran*> tabEcrans;
 
-int ecran = MENU_0;
+	int ecran = MENU_0;
 
-
-    PoleSud_Porte::blason.setTrouve(true);
-    PoleSud_Porte::weta.setTrouve(true);
-    PoleSud_Porte::lampion.setTrouve(true);
-    PoleSud_Porte::poncho.setTrouve(true);
     // # création de la fenêtre
     sf::RenderWindow fenetre(sf::VideoMode::GetMode(0), "Le voyage de Barbule", sf::Style::Fullscreen);
 	fenetre.SetFramerateLimit(60); //limite la génération d'images a 60/s

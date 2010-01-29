@@ -21,6 +21,7 @@ using namespace std;
 #include "Musique.h"
 
 #include "DefineEcrans.h"
+#include "Page.h"
 
 
 int Mapmonde::run(sf::RenderWindow &fenetre)
@@ -169,9 +170,11 @@ int Mapmonde::run(sf::RenderWindow &fenetre)
 	sf::View vue(sf::FloatRect(0, 0, fenetre.GetWidth(), fenetre.GetHeight()) );
 	fenetre.SetView(vue);
 
-	Musique trameSonore("le_voyage_de_barbulle/music/nz/nuit.ogg");
+	Musique trameSonore("le_voyage_de_barbulle/music/divers/desacords.ogg");
 	trameSonore.SetLoop(true);
 	trameSonore.Lecture();
+
+	Page modelePage;
 
 	// Pour que le programme ne se termine pas :)
 	sf::Event event;
@@ -359,6 +362,37 @@ int Mapmonde::run(sf::RenderWindow &fenetre)
 			fenetre.Draw(barbule_sp);
 		}
 
+
+		// PAUSE/PLAY instruction ///////////
+			if(!modelePage.getPlaying() ) {
+				if(trameSonore.GetStatus() == sf::Music::Paused) {
+					trameSonore.Lecture();
+				}
+			} else {
+				 if(trameSonore.GetStatus() == sf::Music::Playing) {
+					 trameSonore.Pause();
+				 }
+			}
+
+		// REPETER instruction ///////////////
+		if(modelePage.getRepeterClique(fenetre) ) {
+				trameSonore.Stop();
+				trameSonore.Lecture();
+		}
+
+		// MUTE instruction //////////////////
+		if(!modelePage.getMuting())
+			trameSonore.SetVolume(0);
+		else
+			trameSonore.SetVolume(100);
+
+
+
+		if (fenetre.GetInput().IsMouseButtonDown(sf::Mouse::Left) && modelePage.menuActif(fenetre))
+			ecranSuivant=modelePage.changerEcran(fenetre,MAPPEMONDE,MAPPEMONDE,MENU_0) ;
+
+
+		modelePage.dessinerPage(fenetre);
 		fenetre.Draw(titre);
 		// toujours pour actualiser le rendu (et en fin de boucle surtout) !
 		fenetre.Display();
