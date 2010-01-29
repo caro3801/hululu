@@ -33,6 +33,10 @@ int Menu_0::run(sf::RenderWindow &fenetre)
 	if (!cursiveFont.LoadFromFile("le_voyage_de_barbulle/img/font/Cursive_standard_BOLD.ttf", 25.f))
 		cerr << "Erreur lors du chargement de la police" << endl;
 
+	sf::Font cursiveFontLARGE;
+	if (!cursiveFontLARGE.LoadFromFile("le_voyage_de_barbulle/img/font/Cursive_standard_BOLD.ttf", 50.f))
+		cerr << "Erreur lors du chargement de la police" << endl;
+
 
 	Musique musicNuit("le_voyage_de_barbulle/music/nz/nuit.ogg");
 
@@ -126,8 +130,8 @@ int Menu_0::run(sf::RenderWindow &fenetre)
 	// DEF titre de la page /////////////////////
 	// texte du bouton
 	sf::String txtTitre("Voyage avec Barbulle");
-	txtTitre.SetSize(25.f);
-	txtTitre.SetFont(cursiveFont);
+	txtTitre.SetSize(50.f);
+	txtTitre.SetFont(cursiveFontLARGE);
 	sf::Color::Color bleuclair(179,195,228);
 	txtTitre.SetColor(bleuclair);
 
@@ -157,11 +161,11 @@ int Menu_0::run(sf::RenderWindow &fenetre)
 		// init du font de la fenêtre
 		fenetre.Clear(sf::Color(255, 255, 255));
 
-		// titre de la fenêtre
-		fenetre.Draw(txtTitre);
-
 		// DESSIN DES BOUTONS //////////////////////////////////////
 		fenetre.Draw(background);
+
+		// titre de la fenêtre
+		fenetre.Draw(txtTitre);
 
 		// -- nouvelle partie
 		boutNouvPartie.drawMe(fenetre);

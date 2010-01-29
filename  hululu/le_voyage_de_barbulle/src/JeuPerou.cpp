@@ -50,35 +50,37 @@ void JeuPerou::creerPieces(sf::RenderWindow &fenetre,
 
 	val1_1.setValeur(1);
 	val1_1.initBouton(piece1_p, piece1);
-	val1_1.redimensionner(0.65);
+	val1_1.redimensionner(70.f, 70.f);
 	val1_1.placer((fenetre.GetWidth() * 8 / 12), (fenetre.GetHeight() * 9 / 11));
 	val1_1.decalageSouris(val1_1.getTailleX(), val1_1.getTailleY());
+
 	val1_2.setValeur(1);
 	val1_2.initBouton(piece1_p, piece1);
-	val1_2.redimensionner(0.65);
+	val1_2.redimensionner(70.f, 70.f);
 	val1_2.placer((fenetre.GetWidth() * 9 / 12), (fenetre.GetHeight() * 9 / 11));
 	val1_2.decalageSouris(25.0, 25.0);
+
 	val1_3.setValeur(1);
 	val1_3.initBouton(piece1_p, piece1);
-	val1_3.redimensionner(0.65);
-	val1_3.placer((fenetre.GetWidth() * 10 / 12),
-			(fenetre.GetHeight() * 9 / 11));
+	val1_3.redimensionner(70.f, 70.f);
+	val1_3.placer((fenetre.GetWidth() * 10 / 12),(fenetre.GetHeight() * 9 / 11));
 	val1_3.decalageSouris(25.0, 25.0);
 
 	val2_3.setValeur(2);
 	val2_3.initBouton(piece2_p, piece2);
-	val2_3.redimensionner(0.65);
-	val2_3.placer((fenetre.GetWidth() * 10 / 12),
-			(fenetre.GetHeight() * 8 / 11));
+	val2_3.redimensionner(70.f, 70.f);
+	val2_3.placer((fenetre.GetWidth() * 10 / 12),(fenetre.GetHeight() * 8 / 11));
 	val2_3.decalageSouris(25.0, 25.0);
+
 	val5_1.setValeur(5);
 	val5_1.initBouton(piece5_p, piece5);
-	val5_1.redimensionner(0.65);
+	val5_1.redimensionner(70.f, 70.f);
 	val5_1.placer((fenetre.GetWidth() * 8 / 12), (fenetre.GetHeight() * 8 / 11));
 	val5_1.decalageSouris(25.0, 25.0);
+
 	val3_2.setValeur(3);
 	val3_2.initBouton(piece3_p, piece3);
-	val3_2.redimensionner(0.65);
+	val3_2.redimensionner(70.f, 70.f);
 	val3_2.placer((fenetre.GetWidth() * 9 / 12), (fenetre.GetHeight() * 8 / 11));
 	val3_2.decalageSouris(25.0, 25.0);
 }
@@ -180,6 +182,7 @@ int JeuPerou::run(sf::RenderWindow &fenetre) {
 	annuler.redimensionner(0.5);
 	annuler.placer((fenetre.GetWidth() / 2.3), ((fenetre.GetHeight()) / 1.3));
 	annuler.placerTexte(texteA);
+
 	JeuPerou::creerPieces(fenetre,
 			"le_voyage_de_barbulle/img/sprite/piece_1.png",
 			"le_voyage_de_barbulle/img/sprite/piece_1_p.png",
@@ -189,6 +192,7 @@ int JeuPerou::run(sf::RenderWindow &fenetre) {
 			"le_voyage_de_barbulle/img/sprite/piece_3_p.png",
 			"le_voyage_de_barbulle/img/sprite/piece_5.png",
 			"le_voyage_de_barbulle/img/sprite/piece_5_p.png");
+
 	///TEXTES/////////////////
 	sf::Font MyFont;
 	if (!MyFont.LoadFromFile(
@@ -397,7 +401,7 @@ int JeuPerou::run(sf::RenderWindow &fenetre) {
 
 		if (fenetre.GetInput().IsMouseButtonDown(sf::Mouse::Left)
 				&& pays.menuActif(fenetre)&& !val1_1.estClique(fenetre)&& !val1_2.estClique(fenetre)&& !val1_3.estClique(fenetre) && !val2_3.estClique(fenetre)&& !val3_2.estClique(fenetre)&& !val5_1.estClique(fenetre))
-			ecranSuivant = pays.changerEcran(fenetre, JEU_PEROU, JEU_PEROU,PEROU);
+			ecranSuivant = pays.changerEcran(fenetre, JEU_PEROU, JEU_PEROU,PEROUPRESENT);
 	}
 
 	// INTERUPTION de toutes les musiques
