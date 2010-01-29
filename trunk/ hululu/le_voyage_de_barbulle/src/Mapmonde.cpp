@@ -169,6 +169,9 @@ int Mapmonde::run(sf::RenderWindow &fenetre)
 	sf::View vue(sf::FloatRect(0, 0, fenetre.GetWidth(), fenetre.GetHeight()) );
 	fenetre.SetView(vue);
 
+	Musique trameSonore("le_voyage_de_barbulle/music/nz/nuit.ogg");
+	trameSonore.SetLoop(true);
+	trameSonore.Lecture();
 
 	// Pour que le programme ne se termine pas :)
 	sf::Event event;
@@ -362,6 +365,7 @@ int Mapmonde::run(sf::RenderWindow &fenetre)
 
 	}
 
+	trameSonore.Stop();
 	return  ecranSuivant;
 }
 
