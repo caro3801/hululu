@@ -57,8 +57,10 @@ int ItalieGagne::run(sf::RenderWindow &fenetre)
 
 	sf::Sprite Explication;
 		Explication.SetImage(Ecran::MonManager.GetImage("le_voyage_de_barbulle/img/italie/explication.png"));
-
-		Explication.Resize(Explication.GetSize().x*Explication.GetSize().x/fenetre.GetWidth(),Explication.GetSize().y*Explication.GetSize().y/fenetre.GetHeight());
+		sf::Vector2f vect;
+		vect.x=Explication.GetSize().x*Explication.GetSize().x/fenetre.GetWidth();
+		vect.y=Explication.GetSize().y*Explication.GetSize().y/fenetre.GetHeight();
+		Explication.Resize(vect.x,vect.y);
 		Explication.Scale(1.5,1.5);
 		Explication.SetPosition((fenetre.GetWidth())/1.8, ((fenetre.GetHeight())/15));
 	tabMusic.push_back(new Musique("le_voyage_de_barbulle/music/divers/bravo.ogg"));
