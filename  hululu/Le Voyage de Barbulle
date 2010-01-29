@@ -1,0 +1,7 @@
+#!/bin/sh
+
+NAME=$0
+APPNAME="$(basename "$NAME")"
+NAME="${NAME%%/$APPNAME}"
+cd $NAME
+exec "./Debug/Hululu"

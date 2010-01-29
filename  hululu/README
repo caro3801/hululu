@@ -1,0 +1,11 @@
+ATTENTION
+
+Le code source du projet final est dans le dossier le_voyage_de_barbulle 
+(les autres dossiers nous servent pour tester l'appli).
+
+Pour lancer le projet, il faut UTILISER LE LANCEUR "Le Voyage de Barbule".
+Si le lanceur ne marche pas (ça n'arrivera pas...),
+se placer dans le répertoire à la racine du projet ("Hululu")
+et executer "./Debug/Hululu".
+
+Bon jeu !
