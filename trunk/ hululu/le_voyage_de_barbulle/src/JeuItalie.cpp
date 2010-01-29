@@ -328,9 +328,7 @@ int JeuItalie::run(sf::RenderWindow &fenetre) {
 			/ fenetre.GetWidth();
 	float sizeYO = original.GetSize().y * original.GetSize().y
 			/ fenetre.GetHeight();
-	cout<<fenetre.GetWidth()<<","<<fenetre.GetHeight()<<endl;
-	cout<<original.GetSize().x<<","<<original.GetSize().y<<endl;
-	cout<<sizeXO<<","<<sizeYO<<endl;
+
 	original.Resize(sizeXO, sizeYO);
 	original.SetPosition(fenetre.GetWidth() / 2 - original.GetSize().x - 10,
 			(fenetre.GetHeight() - original.GetSize().y) / 2); // positionement de l'image originale
