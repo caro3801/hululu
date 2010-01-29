@@ -108,7 +108,7 @@ int Intro::run(sf::RenderWindow &fenetre) {
 	Person2D garcon_sp(100.f, 200.f, fenetre.GetWidth()/15, 6, 4);	garcon_sp.SetImage(Ecran::MonManager.GetImage("le_voyage_de_barbulle/img/sprite/sprite_g_walk_petit.png")); // la taille du personnage dépend de la fenêtre
 	garcon_sp.SetImage(Ecran::MonManager.GetImage("le_voyage_de_barbulle/img/sprite/sprite_g_walk_v04.png")); // la taille du personnage dépend de la fenêtre
 	garcon_sp.initClip();
-	garcon_sp.SetPosition(-100.f, fenetre.GetHeight()*0.5);
+	garcon_sp.SetPosition(-100.f, fenetre.GetHeight()*0.6);
 
 	Person2D barbule_sp(100.f, 200.f, fenetre.GetWidth()/15, 6, 4);
 	barbule_sp.SetImage(Ecran::MonManager.GetImage("le_voyage_de_barbulle/img/sprite/sprite_monstre_v01.png"));
@@ -249,6 +249,14 @@ int Intro::run(sf::RenderWindow &fenetre) {
 			break;
 		case 6:
 
+
+			garcon_sp.SetX(85);
+			fenetre.Draw(garcon_sp);
+
+			barbule_sp.SetX(fenetre.GetWidth()-300.f);
+			barbule_sp.SetY(garcon_sp.GetPosition().y+10);
+			barbule_sp.setDirection(Person2D::LEFT);
+			fenetre.Draw(barbule_sp);
 
 			if (fenetre.GetInput().IsMouseButtonDown(sf::Mouse::Left) && modelePage.menuActif(fenetre)) {
 				if (modelePage.getGoClique(fenetre)) {

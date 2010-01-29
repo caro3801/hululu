@@ -41,6 +41,16 @@ void Page::dessinerFond(sf::RenderWindow &fenetre) {
 		blocAide.SetPosition(fenetre.GetWidth()/2 - blocAide.GetSize().x/2, fenetre.GetHeight()/2 - blocAide.GetSize().y/2);
 		fenetre.Draw(blocAide);
 	}
+
+
+	fermer.initBouton("le_voyage_de_barbulle/img/histoire/fermer.png","le_voyage_de_barbulle/img/histoire/fermer_a.png");
+	fermer.placer(fontAide.GetPosition().x+60, 20.f);
+	fermer.redimensionner(40.f,40.f);
+	fermer.drawMe(fenetre);
+
+	// ferme la fenêtre
+	if(fermer.estClique(fenetre))
+		fenetre.Close();
 }
 
 void Page::dessinerMusic(sf::RenderWindow &fenetre) {
