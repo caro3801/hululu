@@ -467,7 +467,7 @@ int JeuJapon::run(sf::RenderWindow &fenetre)
 								}
 						}
 
-						if(nbATrouver==0 && Clock.GetElapsedTime()<3)
+						if(nbATrouver==0 && Clock.GetElapsedTime()<2)
 						{
 						fenetre.Draw(Bravo);
 						}
